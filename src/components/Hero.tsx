@@ -16,16 +16,14 @@ const BLUE = '#1795C7';
    CLIENT STRIP
 ───────────────────────────────────────────── */
 const clients = [
-  { abbr: 'BH', name: 'Barchester Healthcare', color: '#1795C7' },
-  { abbr: 'HC', name: 'HC-One',                color: '#5B6CF9' },
-  { abbr: 'CU', name: 'Care UK',               color: '#059669' },
-  { abbr: 'BP', name: 'Bupa Care Homes',        color: '#DB2777' },
-  { abbr: 'AH', name: 'Anchor Hanover',         color: '#D97706' },
-  { abbr: 'PG', name: 'Priory Group',           color: '#7C3AED' },
-  { abbr: 'FS', name: 'Four Seasons Health',    color: '#0891B2' },
-  { abbr: 'MC', name: 'Minster Care',           color: '#BE185D' },
-  { abbr: 'VC', name: 'Voyage Care',            color: '#0D9488' },
-  { abbr: 'MM', name: 'Maria Mallaband',        color: '#B45309' },
+  { src: '/medsolve.png',                  alt: 'Medsolve'              },
+  { src: '/ansacare_logo.webp',            alt: 'Ansacare'              },
+  { src: '/jayco_logo.png',               alt: 'Jayco'                 },
+  { src: '/primcura_healthcare_logo.png',  alt: 'Primcura Healthcare'   },
+  { src: '/Leadcare_logo.png',            alt: 'Leadcare'              },
+  { src: '/annicare_uk.png',              alt: 'Annicare UK'           },
+  { src: '/ocean_logo.png',               alt: 'Ocean'                 },
+  { src: '/Staffnursing_logo.png',        alt: 'Staff Nursing'         },
 ];
 
 function ClientLogoStrip() {
@@ -33,7 +31,7 @@ function ClientLogoStrip() {
   return (
     <div style={{
       borderTop: '1px solid rgba(255,255,255,0.06)',
-      padding: '16px 0',
+      padding: '18px 0',
       overflow: 'hidden',
       position: 'relative',
       background: 'rgba(255,255,255,0.015)',
@@ -41,20 +39,24 @@ function ClientLogoStrip() {
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to right, #07111F, transparent)' }} />
       <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to left, #07111F, transparent)' }} />
       <motion.div
-        style={{ display: 'flex', alignItems: 'center', gap: 40, whiteSpace: 'nowrap' }}
+        style={{ display: 'flex', alignItems: 'center', gap: 48, whiteSpace: 'nowrap' }}
         animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 34, ease: 'linear', repeat: Infinity }}
+        transition={{ duration: 36, ease: 'linear', repeat: Infinity }}
       >
         {doubled.map((c, i) => (
-          <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 9, flexShrink: 0 }}>
-            <div style={{
-              width: 26, height: 26, borderRadius: 7,
-              background: `${c.color}20`, border: `1px solid ${c.color}40`,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 7.5, fontWeight: 800, color: c.color, letterSpacing: '0.04em', flexShrink: 0,
-            }}>{c.abbr}</div>
-            <span style={{ fontSize: 12, fontWeight: 500, color: 'rgba(255,255,255,0.32)', letterSpacing: '0.01em' }}>{c.name}</span>
-            <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(255,255,255,0.10)', display: 'inline-block', marginLeft: 4, flexShrink: 0 }} />
+          <div key={i} style={{
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0,
+            padding: '8px 18px',
+            borderRadius: 10,
+            background: 'rgba(255,255,255,0.07)',
+            border: '1px solid rgba(255,255,255,0.10)',
+          }}>
+            <img
+              src={c.src}
+              alt={c.alt}
+              style={{ height: 28, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.65 }}
+            />
           </div>
         ))}
       </motion.div>

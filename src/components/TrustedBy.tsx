@@ -1,43 +1,66 @@
 import React from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { motion } from 'framer-motion';
 
 const logos = [
-  'MedStaff UK', 'CareFirst Group', 'NurseSync', 'HealthForce Pro',
-  'StaffBridge', 'CareLink360', 'PrimeNurse', 'ShiftWell',
-  'MedStaff UK', 'CareFirst Group', 'NurseSync', 'HealthForce Pro',
-  'StaffBridge', 'CareLink360', 'PrimeNurse', 'ShiftWell',
+  { src: '/medsolve.png',                 alt: 'Medsolve'            },
+  { src: '/ansacare_logo.webp',           alt: 'Ansacare'            },
+  { src: '/jayco_logo.png',              alt: 'Jayco'               },
+  { src: '/primcura_healthcare_logo.png', alt: 'Primcura Healthcare' },
+  { src: '/Leadcare_logo.png',           alt: 'Leadcare'            },
+  { src: '/annicare_uk.png',             alt: 'Annicare UK'         },
+  { src: '/ocean_logo.png',              alt: 'Ocean'               },
+  { src: '/Staffnursing_logo.png',       alt: 'Staff Nursing'       },
 ];
 
 export default function TrustedBy() {
-  const ref = useScrollReveal();
+  const doubled = [...logos, ...logos];
 
   return (
-    <section className="py-14 border-b border-white/5" style={{ background: '#0C1835' }} ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-sm font-semibold text-blue-300/70 uppercase tracking-widest mb-10 sr in-view">
-          Trusted by 600+ UK staffing &amp; healthcare agencies
+    <section style={{ background: '#0C1835', padding: '56px 0', borderBottom: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+        <p style={{ textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 40 }}>
+          Trusted by leading UK staffing &amp; healthcare agencies
         </p>
+      </div>
 
-        {/* Marquee */}
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, #0C1835, transparent)' }} />
-          <div className="absolute right-0 top-0 h-full w-20 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to left, #0C1835, transparent)' }} />
-          <div className="flex overflow-hidden">
-            <div className="marquee-track">
-              {logos.map((name, i) => (
-                <div key={i} className="inline-flex items-center mx-8 flex-shrink-0">
-                  <div className="flex items-center gap-2 px-5 py-2.5 rounded-xl transition-colors"
-                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                    <div className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-violet-500 flex-shrink-0" />
-                    <span className="text-sm font-semibold text-slate-300 whitespace-nowrap">{name}</span>
-                  </div>
-                </div>
-              ))}
+      {/* Marquee */}
+      <div style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Fade edges */}
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 140, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to right, #0C1835, transparent)' }} />
+        <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 140, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to left, #0C1835, transparent)' }} />
+
+        <motion.div
+          style={{ display: 'flex', alignItems: 'center', gap: 32, whiteSpace: 'nowrap' }}
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
+        >
+          {doubled.map((logo, i) => (
+            <div key={i} style={{
+              flexShrink: 0,
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              padding: '14px 28px',
+              borderRadius: 14,
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.09)',
+              backdropFilter: 'blur(8px)',
+              minWidth: 140,
+              transition: 'all 0.2s',
+            }}>
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                style={{
+                  height: 34,
+                  width: 'auto',
+                  maxWidth: 130,
+                  objectFit: 'contain',
+                  filter: 'brightness(0) invert(1)',
+                  opacity: 0.60,
+                }}
+              />
             </div>
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
