@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const logos = [
@@ -13,60 +13,76 @@ const logos = [
 ];
 
 export default function TrustedBy() {
-  const doubled = [...logos, ...logos];
+  const trackRef      = useRef<HTMLDivElement>(null);
+  const containerRef  = useRef<HTMLDivElement>(null);
+  const [dist, setDist] = useState(0);
+
+  useEffect(() => {
+    function measure() {
+      if (trackRef.current && containerRef.current) {
+        const trackW = trackRef.current.scrollWidth;
+        const contW  = containerRef.current.offsetWidth;
+        setDist(Math.max(0, trackW - contW + 40)); // +40 so last logo fully visible
+      }
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
   return (
-    <section style={{ background: '#F8FAFF', padding: '52px 0', borderBottom: '1px solid #EEF2FF' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          style={{
-            textAlign: 'center', fontSize: 11, fontWeight: 700,
-            color: '#9CA3AF', letterSpacing: '0.12em',
-            textTransform: 'uppercase' as const, marginBottom: 36,
+    <section style={{
+      background: '#0C1835',
+      padding: '52px 0',
+      borderBottom: '1px solid rgba(255,255,255,0.06)',
+      overflow: 'hidden',
+    }}>
+      {/* Label */}
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        style={{
+          textAlign: 'center',
+          fontSize: 11, fontWeight: 700,
+          color: 'rgba(255,255,255,0.30)',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase' as const,
+          marginBottom: 36,
+        }}
+      >
+        Trusted by leading UK staffing &amp; healthcare agencies
+      </motion.p>
+
+      {/* Scrolling strip — 8 logos only, no duplication */}
+      <div ref={containerRef} style={{ overflow: 'hidden', padding: '0 40px' }}>
+        <motion.div
+          ref={trackRef}
+          style={{ display: 'flex', alignItems: 'center', gap: 56, width: 'max-content' }}
+          animate={dist > 0 ? { x: [0, -dist] } : {}}
+          transition={{
+            duration: 18,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatType: 'mirror',
           }}
         >
-          Trusted by leading UK staffing &amp; healthcare agencies
-        </motion.p>
-      </div>
-
-      {/* Scrolling strip */}
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Fade edges */}
-        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to right, #F8FAFF, transparent)' }} />
-        <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to left, #F8FAFF, transparent)' }} />
-
-        <motion.div
-          style={{ display: 'flex', alignItems: 'center', gap: 24, whiteSpace: 'nowrap' }}
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
-        >
-          {doubled.map((logo, i) => (
-            <div
-              key={i}
-              style={{
-                flexShrink: 0,
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                padding: '14px 28px',
-                borderRadius: 14,
-                background: '#FFFFFF',
-                border: '1px solid #E5E7EB',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-                minWidth: 140,
-              }}
-            >
+          {logos.map((logo, i) => (
+            <div key={i} style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <img
                 src={logo.src}
                 alt={logo.alt}
                 style={{
-                  height: 36,
+                  height: 38,
                   width: 'auto',
                   maxWidth: 130,
                   objectFit: 'contain',
-                }}
+                  filter: 'brightness(0) invert(1)',
+                  opacity: 0.75,
+                  userSelect: 'none',
+                  draggable: false,
+                } as React.CSSProperties}
               />
             </div>
           ))}

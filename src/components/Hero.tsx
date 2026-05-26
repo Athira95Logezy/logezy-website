@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowRight, CalendarBlank, Clock, Bell, Shield,
@@ -27,40 +27,52 @@ const clients = [
 ];
 
 function ClientLogoStrip() {
-  const doubled = [...clients, ...clients];
+  const trackRef     = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dist, setDist] = useState(0);
+
+  useEffect(() => {
+    function measure() {
+      if (trackRef.current && containerRef.current) {
+        const trackW = trackRef.current.scrollWidth;
+        const contW  = containerRef.current.offsetWidth;
+        setDist(Math.max(0, trackW - contW + 40));
+      }
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
   return (
     <div style={{
       borderTop: '1px solid rgba(255,255,255,0.06)',
       padding: '18px 0',
       overflow: 'hidden',
-      position: 'relative',
       background: 'rgba(255,255,255,0.015)',
     }}>
-      <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to right, #07111F, transparent)' }} />
-      <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to left, #07111F, transparent)' }} />
-      <motion.div
-        style={{ display: 'flex', alignItems: 'center', gap: 48, whiteSpace: 'nowrap' }}
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 36, ease: 'linear', repeat: Infinity }}
-      >
-        {doubled.map((c, i) => (
-          <div key={i} style={{
-            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            flexShrink: 0,
-            padding: '8px 20px',
-            borderRadius: 10,
-            background: 'rgba(255,255,255,0.92)',
-            border: '1px solid rgba(255,255,255,0.18)',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-          }}>
-            <img
-              src={c.src}
-              alt={c.alt}
-              style={{ height: 26, width: 'auto', maxWidth: 110, objectFit: 'contain' }}
-            />
-          </div>
-        ))}
-      </motion.div>
+      <div ref={containerRef} style={{ overflow: 'hidden', padding: '0 40px' }}>
+        <motion.div
+          ref={trackRef}
+          style={{ display: 'flex', alignItems: 'center', gap: 56, width: 'max-content' }}
+          animate={dist > 0 ? { x: [0, -dist] } : {}}
+          transition={{ duration: 16, ease: 'easeInOut', repeat: Infinity, repeatType: 'mirror' }}
+        >
+          {clients.map((c, i) => (
+            <div key={i} style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img
+                src={c.src}
+                alt={c.alt}
+                style={{
+                  height: 26, width: 'auto', maxWidth: 110, objectFit: 'contain',
+                  filter: 'brightness(0) invert(1)', opacity: 0.65,
+                  userSelect: 'none',
+                } as React.CSSProperties}
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }
