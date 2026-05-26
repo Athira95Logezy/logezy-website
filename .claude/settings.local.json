@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir \"D:\\\\claude_projects\\\\logezy_website\")",
+      "Bash(node -e \"import\\('@phosphor-icons/react'\\).then\\(p => { const toCheck = ['ChatCircle','Target','Heart','Sparkle','UserCircleCheck','WarningCircle','Heartbeat','Question','Briefcase','House','Buildings','TrendUp','Pulse','Chat','Rocket','Lightning']; toCheck.forEach\\(n => console.log\\(n + ': ' + \\(n in p ? 'OK' : 'MISSING'\\)\\)\\); }\\)\")"
+    ]
+  }
+}
