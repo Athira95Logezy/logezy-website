@@ -16,46 +16,56 @@ export default function TrustedBy() {
   const doubled = [...logos, ...logos];
 
   return (
-    <section style={{ background: '#0C1835', padding: '56px 0', borderBottom: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
+    <section style={{ background: '#F8FAFF', padding: '52px 0', borderBottom: '1px solid #EEF2FF' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
-        <p style={{ textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 40 }}>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{
+            textAlign: 'center', fontSize: 11, fontWeight: 700,
+            color: '#9CA3AF', letterSpacing: '0.12em',
+            textTransform: 'uppercase' as const, marginBottom: 36,
+          }}
+        >
           Trusted by leading UK staffing &amp; healthcare agencies
-        </p>
+        </motion.p>
       </div>
 
-      {/* Marquee */}
+      {/* Scrolling strip */}
       <div style={{ position: 'relative', overflow: 'hidden' }}>
         {/* Fade edges */}
-        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 140, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to right, #0C1835, transparent)' }} />
-        <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 140, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to left, #0C1835, transparent)' }} />
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to right, #F8FAFF, transparent)' }} />
+        <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 120, zIndex: 10, pointerEvents: 'none', background: 'linear-gradient(to left, #F8FAFF, transparent)' }} />
 
         <motion.div
-          style={{ display: 'flex', alignItems: 'center', gap: 32, whiteSpace: 'nowrap' }}
+          style={{ display: 'flex', alignItems: 'center', gap: 24, whiteSpace: 'nowrap' }}
           animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
+          transition={{ duration: 28, ease: 'linear', repeat: Infinity }}
         >
           {doubled.map((logo, i) => (
-            <div key={i} style={{
-              flexShrink: 0,
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              padding: '14px 28px',
-              borderRadius: 14,
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.09)',
-              backdropFilter: 'blur(8px)',
-              minWidth: 140,
-              transition: 'all 0.2s',
-            }}>
+            <div
+              key={i}
+              style={{
+                flexShrink: 0,
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                padding: '14px 28px',
+                borderRadius: 14,
+                background: '#FFFFFF',
+                border: '1px solid #E5E7EB',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                minWidth: 140,
+              }}
+            >
               <img
                 src={logo.src}
                 alt={logo.alt}
                 style={{
-                  height: 34,
+                  height: 36,
                   width: 'auto',
                   maxWidth: 130,
                   objectFit: 'contain',
-                  filter: 'brightness(0) invert(1)',
-                  opacity: 0.60,
                 }}
               />
             </div>

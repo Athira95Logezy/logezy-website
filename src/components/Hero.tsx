@@ -47,15 +47,16 @@ function ClientLogoStrip() {
           <div key={i} style={{
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
-            padding: '8px 18px',
+            padding: '8px 20px',
             borderRadius: 10,
-            background: 'rgba(255,255,255,0.07)',
-            border: '1px solid rgba(255,255,255,0.10)',
+            background: 'rgba(255,255,255,0.92)',
+            border: '1px solid rgba(255,255,255,0.18)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
           }}>
             <img
               src={c.src}
               alt={c.alt}
-              style={{ height: 28, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.65 }}
+              style={{ height: 26, width: 'auto', maxWidth: 110, objectFit: 'contain' }}
             />
           </div>
         ))}
