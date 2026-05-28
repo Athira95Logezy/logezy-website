@@ -12,10 +12,7 @@ export default function DashboardMockup({ animate = true }: { animate?: boolean 
           <div className="w-3 h-3 rounded-full bg-amber-400" />
           <div className="w-3 h-3 rounded-full bg-emerald-400" />
         </div>
-        <div className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-1.5 flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-emerald-400 flex-shrink-0" />
-          <span className="text-[11px] text-slate-400 font-medium">app.logezy.co.uk/dashboard</span>
-        </div>
+        <div className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-1.5" />
       </div>
 
       {/* Real dashboard screenshot */}

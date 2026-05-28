@@ -429,9 +429,9 @@ function FeatureRow({ idx, color, icon: Icon, tag, live, title, desc, bullets, a
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.68, delay: 0.10, ease: EASE }}
-      style={{ flex: 1.25, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      style={{ flex: 1.6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      <div style={{ width: '100%', maxWidth: 520 }}>
+      <div style={{ width: '100%', maxWidth: 640, zoom: 1.35 }}>
         {anim}
       </div>
     </motion.div>

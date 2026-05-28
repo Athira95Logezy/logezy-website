@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import {
   Target, Lightning, Heart, ArrowRight, CheckCircle,
   Users, Shield, TrendUp, Pulse, CalendarBlank, Heartbeat, Briefcase,
@@ -71,9 +71,7 @@ function MiniDashboard() {
         {['bg-red-400','bg-amber-400','bg-emerald-400'].map(c => (
           <div key={c} className={`w-2.5 h-2.5 rounded-full ${c}`} />
         ))}
-        <div className="flex-1 mx-3 bg-white rounded-md px-3 py-0.5 text-[10px] text-slate-400">
-          app.logezy.co.uk/dashboard
-        </div>
+        <div className="flex-1 mx-3 bg-white rounded-md px-3 py-0.5" />
       </div>
       <div className="bg-white flex" style={{ minHeight: 240 }}>
         <div className="w-12 bg-slate-950 flex flex-col items-center py-3 gap-3">
@@ -183,7 +181,7 @@ export default function About() {
                     color:'#fff', background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
                     boxShadow:'0 4px 24px rgba(91,108,249,0.38)', textDecoration:'none',
                   }}>
-                    Book a Demo <ArrowRight weight="fill" style={{width:15,height:15}}/>
+                    Book a Demo <ArrowRight weight="regular" style={{width:15,height:15}}/>
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
@@ -212,7 +210,7 @@ export default function About() {
                 className="absolute z-10" style={{left:'2%',bottom:'6%'}}>
                 <div style={{display:'inline-flex',alignItems:'center',gap:10,padding:'10px 14px',borderRadius:14,background:'rgba(255,255,255,0.90)',border:'1px solid rgba(91,108,249,0.20)',backdropFilter:'blur(16px)',boxShadow:'0 8px 24px rgba(91,108,249,0.12)'}}>
                   <div style={{width:32,height:32,borderRadius:9,background:'linear-gradient(135deg,#5B6CF9,#1795C7)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                    <Users weight="fill" style={{width:15,height:15,color:'#fff'}}/>
+                    <Users weight="regular" style={{width:15,height:15,color:'#fff'}}/>
                   </div>
                   <div>
                     <p style={{fontSize:14,fontWeight:800,color:'#0C2138',margin:0,lineHeight:1.1}}>600+</p>
@@ -224,7 +222,7 @@ export default function About() {
                 className="absolute z-10" style={{right:'0%',top:'8%'}}>
                 <div style={{display:'inline-flex',alignItems:'center',gap:10,padding:'10px 14px',borderRadius:14,background:'rgba(255,255,255,0.90)',border:'1px solid rgba(5,150,105,0.20)',backdropFilter:'blur(16px)',boxShadow:'0 8px 24px rgba(5,150,105,0.12)'}}>
                   <div style={{width:32,height:32,borderRadius:9,background:'linear-gradient(135deg,#059669,#10B981)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                    <Shield weight="fill" style={{width:15,height:15,color:'#fff'}}/>
+                    <Shield weight="regular" style={{width:15,height:15,color:'#fff'}}/>
                   </div>
                   <div>
                     <p style={{fontSize:14,fontWeight:800,color:'#0C2138',margin:0,lineHeight:1.1}}>100%</p>
@@ -270,7 +268,7 @@ export default function About() {
               <motion.blockquote {...fadeUp(0.4)}
                 className="relative rounded-2xl p-7 mt-2"
                 style={{background:'linear-gradient(135deg,rgba(91,108,249,0.06),rgba(23,149,199,0.06))',border:'1px solid rgba(91,108,249,0.15)'}}>
-                <Quotes weight="fill" style={{width:28,height:28,color:'rgba(91,108,249,0.35)',marginBottom:8}}/>
+                <Quotes weight="regular" style={{width:28,height:28,color:'rgba(91,108,249,0.35)',marginBottom:8}}/>
                 <p className="text-lg font-semibold text-slate-700 leading-relaxed italic">
                   "Good recruiters were spending more time on paperwork than on people. That had to change."
                 </p>
@@ -355,7 +353,7 @@ export default function About() {
                   {/* Icon */}
                   <motion.div whileHover={{scale:1.12,rotate:6}} transition={{type:'spring',stiffness:300}}
                     style={{width:54,height:54,borderRadius:16,background:p.gradient,display:'flex',alignItems:'center',justifyContent:'center',marginBottom:20,boxShadow:`0 8px 24px ${p.glow}`}}>
-                    <Icon weight="fill" style={{width:24,height:24,color:'#fff'}}/>
+                    <Icon weight="regular" style={{width:24,height:24,color:'#fff'}}/>
                   </motion.div>
                   <h3 className="text-lg font-black text-slate-900 mb-3 leading-tight">{p.title}</h3>
                   <p className="text-sm text-slate-500 leading-relaxed">{p.description}</p>
@@ -403,7 +401,7 @@ export default function About() {
                 </div>
                 <div className="px-7 py-5 flex items-center gap-2.5">
                   <div style={{width:22,height:22,borderRadius:'50%',background:'linear-gradient(135deg,#059669,#10B981)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                    <CheckCircle weight="fill" style={{width:13,height:13,color:'#fff'}}/>
+                    <CheckCircle weight="regular" style={{width:13,height:13,color:'#fff'}}/>
                   </div>
                   <span className="text-sm font-bold text-emerald-600">{result}</span>
                 </div>
@@ -455,7 +453,7 @@ export default function About() {
                   className="flex items-start gap-4 p-5 rounded-2xl bg-white"
                   style={{border:`1px solid ${border}`,background:'white'}}>
                   <div style={{width:44,height:44,borderRadius:14,background:color,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,boxShadow:`0 6px 16px ${bg}`}}>
-                    <Icon weight="fill" style={{width:20,height:20,color:'#fff'}}/>
+                    <Icon weight="regular" style={{width:20,height:20,color:'#fff'}}/>
                   </div>
                   <div>
                     <p className="text-sm font-bold text-slate-800 mb-0.5">{label}</p>
@@ -498,7 +496,7 @@ export default function About() {
                     color:'#fff',background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
                     boxShadow:'0 4px 24px rgba(91,108,249,0.38)',textDecoration:'none',
                   }}>
-                    Start Free Trial <ArrowRight weight="fill" style={{width:15,height:15}}/>
+                    Start Free Trial <ArrowRight weight="regular" style={{width:15,height:15}}/>
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
@@ -528,7 +526,7 @@ export default function About() {
                   transition={{type:'spring',stiffness:300,damping:20}}
                   style={{padding:'24px 20px',borderRadius:20,background:'rgba(255,255,255,0.06)',border:'1px solid rgba(255,255,255,0.10)',textAlign:'center'}}>
                   <div style={{width:44,height:44,borderRadius:13,background:g,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 14px'}}>
-                    <Icon weight="fill" style={{width:20,height:20,color:'#fff'}}/>
+                    <Icon weight="regular" style={{width:20,height:20,color:'#fff'}}/>
                   </div>
                   <p style={{fontSize:30,fontWeight:900,background:g,WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text',margin:0,letterSpacing:'-0.03em'}}>{value}</p>
                   <p style={{fontSize:11,color:'rgba(165,210,255,0.50)',marginTop:4,fontWeight:500}}>{label}</p>

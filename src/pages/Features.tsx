@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import {
   CalendarBlank, Clock, Users, Shield, FileText, Receipt,
   DeviceMobile, Briefcase, Buildings, ArrowRight, CheckCircle,
@@ -600,9 +600,7 @@ function FeatureMockup({ feature }: { feature: typeof categories[0]['features'][
           {['#FF5F57','#FEBC2E','#28C840'].map(c => (
             <div key={c} style={{ width:10, height:10, borderRadius:'50%', background:c }}/>
           ))}
-          <div style={{ flex:1, background:'#fff', border:'1px solid #E2E8F0', borderRadius:6, padding:'3px 10px', fontSize:10, color:'#94A3B8', fontFamily:'ui-monospace,monospace' }}>
-            app.logezy.co.uk
-          </div>
+          <div style={{ flex:1, background:'#fff', border:'1px solid #E2E8F0', borderRadius:6, padding:'3px 10px' }} />
         </div>
         {/* Gradient accent bar */}
         <div style={{ height:3, background:feature.gradient }}/>
@@ -685,7 +683,7 @@ export default function FeaturesPage() {
                     return (
                       <div key={f.title} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full"
                         style={{ background:f.tagBg, border:`1px solid ${f.tagColor}28` }}>
-                        <Icon weight="fill" style={{ width:10, height:10, color:f.tagColor }}/>
+                        <Icon weight="regular" style={{ width:10, height:10, color:f.tagColor }}/>
                         <span style={{ fontSize:10, fontWeight:700, color:f.tagColor }}>{f.title}</span>
                       </div>
                     );
@@ -738,7 +736,7 @@ export default function FeaturesPage() {
                       {/* Tag */}
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-5 text-xs font-bold"
                         style={{ background:f.tagBg, border:`1px solid ${f.tagColor}30`, color:f.tagColor }}>
-                        <Icon weight="fill" style={{ width:12, height:12 }}/>
+                        <Icon weight="regular" style={{ width:12, height:12 }}/>
                         {f.subtitle}
                       </div>
 
@@ -757,7 +755,7 @@ export default function FeaturesPage() {
                             viewport={{ once:true }} transition={{ duration:0.4, delay:pi*0.07 }}
                             style={{ display:'flex', alignItems:'flex-start', gap:12 }}>
                             <div style={{ width:22, height:22, borderRadius:'50%', background:f.gradient, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, marginTop:1, boxShadow:`0 4px 12px ${f.glow}` }}>
-                              <CheckCircle weight="fill" style={{ width:12, height:12, color:'#fff' }}/>
+                              <CheckCircle weight="regular" style={{ width:12, height:12, color:'#fff' }}/>
                             </div>
                             <span style={{ fontSize:14, color:'rgba(12,33,56,0.70)', lineHeight:1.6, fontWeight:500 }}>{pt}</span>
                           </motion.li>
@@ -773,7 +771,7 @@ export default function FeaturesPage() {
                           textDecoration:'none',
                         }}>
                           See {f.title} in action
-                          <ArrowRight weight="fill" style={{ width:15, height:15 }}/>
+                          <ArrowRight weight="regular" style={{ width:15, height:15 }}/>
                         </Link>
                       </motion.div>
                     </motion.div>
@@ -853,7 +851,7 @@ export default function FeaturesPage() {
                   color:'#fff', background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
                   boxShadow:'0 4px 24px rgba(91,108,249,0.40)', textDecoration:'none',
                 }}>
-                  Book a Demo <ArrowRight weight="fill" style={{ width:16, height:16 }}/>
+                  Book a Demo <ArrowRight weight="regular" style={{ width:16, height:16 }}/>
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale:1.04, y:-2 }} whileTap={{ scale:0.97 }} transition={{ type:'spring', stiffness:400 }}>

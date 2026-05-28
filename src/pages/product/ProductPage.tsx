@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -56,9 +56,7 @@ function BrowserChrome({ children }: { children: React.ReactNode }) {
             <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c }} />
           ))}
         </div>
-        <div style={{ flex: 1, background: 'white', borderRadius: 5, padding: '3px 10px', fontSize: 10, color: '#6B7280', textAlign: 'center' }}>
-          app.logezy.co.uk
-        </div>
+        <div style={{ flex: 1, background: 'white', borderRadius: 5, padding: '3px 10px' }} />
       </div>
       {children}
     </div>
@@ -701,7 +699,7 @@ function FeatureCardItem({ icon: Icon, title, desc, accent, accentBg, index }: {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         marginBottom: 14,
       }}>
-        <Icon weight="bold" style={{ width: 20, height: 20, color: accent }} />
+        <Icon weight="regular" style={{ width: 20, height: 20, color: accent }} />
       </div>
       <div style={{ fontSize: 15, fontWeight: 700, color: NAVY, marginBottom: 6 }}>{title}</div>
       <div style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.65 }}>{desc}</div>
@@ -782,7 +780,7 @@ export default function ProductPage() {
                   boxShadow: `0 8px 24px ${cfg.accent}40`,
                 }}
               >
-                Book a Free Demo <ArrowRight weight="bold" style={{ width: 16, height: 16 }} />
+                Book a Free Demo <ArrowRight weight="regular" style={{ width: 16, height: 16 }} />
               </motion.a>
               <motion.a
                 href="#cta"
@@ -891,7 +889,7 @@ export default function ProductPage() {
                   boxShadow: `0 8px 28px ${cfg.accent}50`,
                 }}
               >
-                Book a Free Demo <ArrowRight weight="bold" style={{ width: 17, height: 17 }} />
+                Book a Free Demo <ArrowRight weight="regular" style={{ width: 17, height: 17 }} />
               </motion.a>
               <motion.a
                 href="#"

@@ -239,7 +239,7 @@ export default function DashboardShowcase() {
               border: '1px solid rgba(255,255,255,0.09)',
               borderBottom: 'none',
             }}>
-              <ChromeBar url="app.logezy.co.uk/schedule" size="lg" />
+              <ChromeBar size="lg" />
             </div>
 
             {/* screenshot */}

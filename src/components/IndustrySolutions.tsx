@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Heartbeat, Briefcase, Users, CheckCircle, ArrowRight, Buildings } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -24,7 +24,7 @@ const industries = [
     headline: 'Keep every shift covered — even at the last minute',
     desc: 'Keep every shift covered during busy seasons, peak events, and last-minute rushes. Logezy makes temporary staffing in hospitality faster, cleaner, and far less stressful.',
     points: ['Last-minute shift fill & alerts', 'Multi-venue scheduling', 'Digital timesheets on mobile', 'Auto invoicing per client venue', 'Seasonal demand forecasting'],
-    image: '/schudule.png',
+    image: '/schedule.png',
     url: 'app.logezy.co.uk/schedule',
     stat: '3×', statLabel: 'faster shift fill', statColor: 'text-amber-600',
   },
@@ -74,7 +74,7 @@ export default function IndustrySolutions() {
           className="text-center mb-14"
         >
           <div className="section-tag mb-5 inline-flex">
-            <Buildings weight="fill" className="h-3 w-3" />
+            <Buildings weight="regular" className="h-3 w-3" />
             Industry Solutions
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-5 leading-[1.08]"
@@ -105,7 +105,7 @@ export default function IndustrySolutions() {
               className={`flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-semibold border-2 transition-all duration-200 ${
                 active === id ? `${activeStyle} shadow-md scale-105` : `${inactiveStyle}`
               }`}>
-              <Icon weight="fill" className="h-4 w-4" />
+              <Icon weight="regular" className="h-4 w-4" />
               {label}
             </motion.button>
           ))}
@@ -128,7 +128,7 @@ export default function IndustrySolutions() {
                 current.id === 'hospitality' ? 'bg-amber-50 text-amber-700 border-amber-100' :
                 'bg-violet-50 text-violet-700 border-violet-100'
               }`}>
-                <current.icon weight="fill" className="h-4 w-4" />
+                <current.icon weight="regular" className="h-4 w-4" />
                 {current.label}
               </div>
 
@@ -147,7 +147,7 @@ export default function IndustrySolutions() {
                 {current.points.map(pt => (
                   <motion.li key={pt} variants={listItemVariants} className="flex items-center gap-3 text-sm font-medium text-slate-700">
                     <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${current.color} flex items-center justify-center flex-shrink-0 shadow-sm`}>
-                      <CheckCircle weight="fill" className="h-3 w-3 text-white" />
+                      <CheckCircle weight="regular" className="h-3 w-3 text-white" />
                     </div>
                     {pt}
                   </motion.li>
@@ -158,7 +158,7 @@ export default function IndustrySolutions() {
                 <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
                   <Link to="/contact" className="btn-primary rounded-2xl inline-flex items-center gap-2">
                     See {current.label} demo
-                    <ArrowRight weight="fill" className="h-4 w-4" />
+                    <ArrowRight weight="regular" className="h-4 w-4" />
                   </Link>
                 </motion.div>
                 <div>
@@ -184,7 +184,7 @@ export default function IndustrySolutions() {
                   <div className="browser-dot bg-red-400" />
                   <div className="browser-dot bg-amber-400" />
                   <div className="browser-dot bg-emerald-400" />
-                  <div className="browser-bar">{current.url}</div>
+                  <div className="browser-bar" />
                 </div>
                 <img
                   src={current.image}

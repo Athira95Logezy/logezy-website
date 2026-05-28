@@ -181,9 +181,6 @@ export default function DashboardReveal() {
                 display: 'flex', alignItems: 'center', paddingLeft: 10, gap: 6,
               }}>
                 <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#22C55E', opacity: 0.8 }} />
-                <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.28)', fontFamily: '"SF Mono", monospace' }}>
-                  app.logezy.co.uk / dashboard
-                </span>
               </div>
               {/* Tab strip hint */}
               <div style={{ marginLeft: 'auto', display: 'flex', gap: 12, flexShrink: 0 }}>
