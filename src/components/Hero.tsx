@@ -1,462 +1,679 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+﻿/**
+ * Hero.tsx — Premium SaaS hero with scroll-driven card-merge animation
+ *
+ * Layout
+ * ──────
+ * • Gradient bg · dot grid
+ * • LEFT  cards (4, 252 px wide, 14 px gaps): TimesheetsHeader · TimesheetsDonut · TimesheetsStats · ShiftMiniAM
+ * • RIGHT cards (4, 252 px wide, 14 px gaps): BirthdayCard · ShiftMiniJK · WorkerStatCard · CandidatesCard
+ * • LEFT  outer edge  calc(50% - 656px)  ←→  RIGHT outer edge calc(50% + 656px)  [perfect mirror]
+ * • CENTER: badge → H1 → subtitle → CTAs → social proof
+ * • DASHBOARD: full-width image, no browser chrome — perspective tilt
+ * • LOGOS: trusted-by marquee blended directly below dashboard
+ *
+ * Scroll-merge animation (via useScroll spring):
+ *   0.14 → 0.70  Each card flies individually to its dashboard widget position
+ *   0.40 → 0.70  Cards fade + scale down
+ *   0.22 → 0.76  Dashboard rotateX eases 13° → 5°
+ */
+
+import React, { useRef, useState, useCallback } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
-  ArrowRight, CalendarBlank, Clock, Bell, Shield,
-  CheckCircle, Users, FileText, ChartBar, Envelope,
+  ArrowRight, Play, Star,
+  CalendarBlank, Clock, MapPin, Gift, Users,
 } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
-/* ─────────────────────────────────────────────
-   BRAND
-───────────────────────────────────────────── */
-const NAVY = '#0C1835';
-const BLUE = '#1795C7';
+const EASE = [0.22, 1, 0.36, 1] as const;
+const I = '#6366F1';
 
-/* ─────────────────────────────────────────────
-   CLIENT STRIP
-───────────────────────────────────────────── */
-const clients = [
-  { src: '/medsolve.png',                  alt: 'Medsolve'              },
-  { src: '/ansacare_logo.webp',            alt: 'Ansacare'              },
-  { src: '/jayco_logo.png',               alt: 'Jayco'                 },
-  { src: '/primcura_healthcare_logo.png',  alt: 'Primcura Healthcare'   },
-  { src: '/Leadcare_logo.png',            alt: 'Leadcare'              },
-  { src: '/annicare_uk.png',              alt: 'Annicare UK'           },
-  { src: '/ocean_logo.png',               alt: 'Ocean'                 },
-  { src: '/Staffnursing_logo.png',        alt: 'Staff Nursing'         },
+/* ─────────────────────────────────────────────────
+   LOGO DATA (for inline trusted-by strip)
+───────────────────────────────────────────────── */
+const logos = [
+  { src: '/medsolve.png',                 alt: 'Medsolve'      },
+  { src: '/ansacare_logo.webp',           alt: 'Ansacare'      },
+  { src: '/jayco_logo.png',               alt: 'Jayco'         },
+  { src: '/primcura_healthcare_logo.png', alt: 'Primcura'      },
+  { src: '/Leadcare_logo.png',            alt: 'Leadcare'      },
+  { src: '/annicare_uk.png',              alt: 'Annicare UK'   },
+  { src: '/ocean_logo.png',               alt: 'Ocean'         },
+  { src: '/Staffnursing_logo.png',        alt: 'Staff Nursing' },
 ];
+const LOGO_W   = 140;
+const LOGO_GAP = 40;
+const TRACK_W  = (LOGO_W + LOGO_GAP) * logos.length;
+const tripled  = [...logos, ...logos, ...logos];
 
-function ClientLogoStrip() {
-  const trackRef     = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [dist, setDist] = useState(0);
+/* ─────────────────────────────────────────────────
+   SHARED CARD SHELL
+───────────────────────────────────────────────── */
+const CardWrap = ({
+  width, children, style,
+}: { width: number; children: React.ReactNode; style?: React.CSSProperties }) => (
+  <div style={{
+    background: '#FFFFFF',
+    borderRadius: 16,
+    border: '1px solid rgba(226,232,240,0.85)',
+    boxShadow: '0 8px 48px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05)',
+    width,
+    overflow: 'hidden',
+    ...style,
+  }}>
+    {children}
+  </div>
+);
 
-  useEffect(() => {
-    function measure() {
-      if (trackRef.current && containerRef.current) {
-        const trackW = trackRef.current.scrollWidth;
-        const contW  = containerRef.current.offsetWidth;
-        setDist(Math.max(0, trackW - contW + 40));
-      }
-    }
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
+const IB = ({ bg, children }: { bg: string; children: React.ReactNode }) => (
+  <div style={{ width: 32, height: 32, borderRadius: 9, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+    {children}
+  </div>
+);
 
+/* ══════════════════════════════════════════════════
+   TIMESHEETS — SPLIT INTO 3 FLOATING PIECES
+   Piece 1: Header (icon + title + date badge)
+   Piece 2: Donut  (circle chart + legend)
+   Piece 3: Stats  (4 colored tiles)
+══════════════════════════════════════════════════ */
+
+/** Piece 1 — compact header pill */
+function TimesheetsHeaderCard() {
   return (
-    <div style={{
-      borderTop: '1px solid rgba(255,255,255,0.06)',
-      padding: '18px 0',
-      overflow: 'hidden',
-      background: 'rgba(255,255,255,0.015)',
-    }}>
-      <div ref={containerRef} style={{ overflow: 'hidden', padding: '0 40px' }}>
-        <motion.div
-          ref={trackRef}
-          style={{ display: 'flex', alignItems: 'center', gap: 56, width: 'max-content' }}
-          animate={dist > 0 ? { x: [0, -dist] } : {}}
-          transition={{ duration: 16, ease: 'easeInOut', repeat: Infinity, repeatType: 'mirror' }}
-        >
-          {clients.map((c, i) => (
-            <div key={i} style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img
-                src={c.src}
-                alt={c.alt}
-                style={{
-                  height: 26, width: 'auto', maxWidth: 110, objectFit: 'contain',
-                  filter: 'brightness(0) invert(1)', opacity: 0.65,
-                  userSelect: 'none',
-                } as React.CSSProperties}
-              />
-            </div>
-          ))}
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   RIGHT SIDE — LIVE OPERATIONS MOCKUP
-───────────────────────────────────────────── */
-const shifts = [
-  { name: 'S. Mitchell', role: 'Registered Nurse',  time: '07:00 – 15:00', status: 'live',      statusColor: '#10B981', dot: '#10B981' },
-  { name: 'J. Okafor',   role: 'Healthcare Asst',   time: '07:00 – 19:00', status: 'confirmed', statusColor: '#818CF8', dot: '#5B6CF9' },
-  { name: 'P. Sharma',   role: 'Senior Nurse',       time: '15:00 – 23:00', status: 'confirmed', statusColor: '#818CF8', dot: '#5B6CF9' },
-  { name: 'T. Edwards',  role: 'Support Worker',     time: '19:00 – 07:00', status: 'pending',   statusColor: '#F59E0B', dot: '#D97706' },
-  { name: 'A. Collins',  role: 'Team Lead',          time: '08:00 – 16:00', status: 'live',      statusColor: '#10B981', dot: '#10B981' },
-];
-
-const metrics = [
-  { label: 'Fill Rate',   value: '94%',  color: '#10B981', bg: '#10B98118' },
-  { label: 'Compliance',  value: '98.7%', color: '#818CF8', bg: '#5B6CF918' },
-  { label: 'Active Now',  value: '312',   color: '#38BDF8', bg: '#0EA5E918' },
-];
-
-function LiveOpsMockup() {
-  return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-
-      {/* ── Ambient glow ── */}
-      <div style={{ position: 'absolute', top: '5%', left: '5%', right: '-10%', bottom: '5%', background: 'radial-gradient(ellipse at 60% 40%, rgba(91,108,249,0.18) 0%, rgba(23,149,199,0.10) 40%, transparent 70%)', filter: 'blur(50px)', pointerEvents: 'none', zIndex: 0 }} />
-
-      {/* ── MAIN CARD ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        style={{ position: 'relative', zIndex: 2 }}
-      >
-        {/* Gradient border glow */}
-        <div style={{ position: 'absolute', inset: -1.5, borderRadius: 22, background: 'linear-gradient(135deg,rgba(91,108,249,0.5),rgba(23,149,199,0.35),rgba(139,92,246,0.25))', filter: 'blur(3px)', zIndex: 0 }} />
-
-        <div style={{
-          position: 'relative', zIndex: 1,
-          background: 'linear-gradient(160deg, rgba(15,23,48,0.96) 0%, rgba(10,18,40,0.98) 100%)',
-          borderRadius: 20,
-          border: '1px solid rgba(255,255,255,0.08)',
-          backdropFilter: 'blur(24px)',
-          overflow: 'hidden',
-          boxShadow: '0 32px 80px rgba(0,0,0,0.55), 0 8px 24px rgba(0,0,0,0.30)',
-        }}>
-
-          {/* Card header */}
-          <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              {/* Traffic lights */}
-              <div style={{ display: 'flex', gap: 5 }}>
-                {['#FF5F57','#FEBC2E','#28C840'].map(c => <div key={c} style={{ width: 9, height: 9, borderRadius: '50%', background: c }} />)}
-              </div>
-              <div style={{ width: 1, height: 14, background: 'rgba(255,255,255,0.08)', margin: '0 4px' }} />
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <motion.span
-                  animate={{ opacity: [1, 0.2, 1] }}
-                  transition={{ duration: 1.6, repeat: Infinity }}
-                  style={{ display: 'block', width: 7, height: 7, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 6px #10B981' }}
-                />
-                <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>Live Operations</span>
-              </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.30)', fontFamily: 'ui-monospace,monospace' }}>app.logezy.co.uk</span>
-            </div>
+    <CardWrap width={252}>
+      <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ width: 34, height: 34, borderRadius: 10, background: '#E0F9FF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Clock weight="regular" size={17} color="#06B6D4" />
           </div>
-
-          {/* Week header */}
-          <div style={{ padding: '12px 20px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div>
-              <p style={{ margin: 0, fontSize: 13, fontWeight: 800, color: 'rgba(255,255,255,0.85)' }}>Week 20 — Active Shifts</p>
-              <p style={{ margin: '2px 0 0', fontSize: 10.5, color: 'rgba(255,255,255,0.30)' }}>Refreshed 2 minutes ago</p>
-            </div>
-            <div style={{ display: 'flex', gap: 6 }}>
-              {['All','Live','Pending'].map((t, i) => (
-                <div key={t} style={{
-                  padding: '4px 10px', borderRadius: 20, fontSize: 10, fontWeight: 700,
-                  background: i === 0 ? 'rgba(91,108,249,0.25)' : 'rgba(255,255,255,0.05)',
-                  color: i === 0 ? '#818CF8' : 'rgba(255,255,255,0.35)',
-                  border: i === 0 ? '1px solid rgba(91,108,249,0.35)' : '1px solid rgba(255,255,255,0.07)',
-                  cursor: 'default',
-                }}>{t}</div>
-              ))}
-            </div>
-          </div>
-
-          {/* Shift rows */}
-          <div style={{ padding: '0 12px 12px' }}>
-            {shifts.map((s, i) => (
-              <motion.div
-                key={s.name}
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.45, delay: 0.6 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '9px 10px', borderRadius: 12, marginBottom: 4,
-                  background: i % 2 === 0 ? 'rgba(255,255,255,0.03)' : 'transparent',
-                  border: '1px solid transparent',
-                  transition: 'all 0.15s',
-                }}
-              >
-                {/* Avatar */}
-                <div style={{
-                  width: 32, height: 32, borderRadius: 10, flexShrink: 0,
-                  background: `linear-gradient(135deg, ${s.dot}40, ${s.dot}20)`,
-                  border: `1px solid ${s.dot}50`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 11, fontWeight: 800, color: s.dot,
-                }}>
-                  {s.name.split(' ').map(n => n[0]).join('')}
-                </div>
-
-                {/* Name + role */}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.85)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.name}</p>
-                  <p style={{ margin: '2px 0 0', fontSize: 10, color: 'rgba(255,255,255,0.35)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s.role}</p>
-                </div>
-
-                {/* Time */}
-                <div style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(255,255,255,0.45)', flexShrink: 0, fontFamily: 'ui-monospace,monospace' }}>{s.time}</div>
-
-                {/* Status badge */}
-                <div style={{
-                  padding: '3px 9px', borderRadius: 20, flexShrink: 0,
-                  fontSize: 9.5, fontWeight: 800, letterSpacing: '0.03em', textTransform: 'uppercase' as const,
-                  color: s.statusColor,
-                  background: `${s.statusColor}18`,
-                  border: `1px solid ${s.statusColor}35`,
-                }}>{s.status}</div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Bottom metrics bar */}
-          <div style={{ padding: '12px 20px', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', gap: 0 }}>
-            {metrics.map(({ label, value, color, bg }, i) => (
-              <div key={label} style={{
-                flex: 1, textAlign: 'center',
-                borderRight: i < metrics.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
-                padding: '0 8px',
-              }}>
-                <p style={{ margin: 0, fontSize: 16, fontWeight: 900, color, letterSpacing: '-0.02em' }}>{value}</p>
-                <p style={{ margin: '3px 0 0', fontSize: 9.5, color: 'rgba(255,255,255,0.35)', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.05em' }}>{label}</p>
-              </div>
-            ))}
+          <div>
+            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#0F172A', lineHeight: 1.2 }}>Timesheets</p>
+            <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8', marginTop: 2, lineHeight: 1.3 }}>Your Time, Your Transparency.</p>
           </div>
         </div>
-      </motion.div>
-
-      {/* ── FLOATING: Notification card (top-right) ── */}
-      <motion.div
-        initial={{ opacity: 0, x: 20, y: -10 }}
-        animate={{ opacity: 1, x: 0, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        style={{ position: 'absolute', top: -18, right: -20, zIndex: 10 }}
-      >
-        <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}>
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 10,
-            padding: '10px 14px', borderRadius: 14,
-            background: 'rgba(15,23,48,0.92)',
-            border: '1px solid rgba(16,185,129,0.30)',
-            backdropFilter: 'blur(20px)',
-            boxShadow: '0 8px 28px rgba(16,185,129,0.18), 0 2px 8px rgba(0,0,0,0.30)',
-          }}>
-            <div style={{ width: 30, height: 30, borderRadius: 9, background: 'linear-gradient(135deg,#059669,#10B981)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <CheckCircle weight="fill" style={{ width: 15, height: 15, color: '#fff' }} />
-            </div>
-            <div>
-              <p style={{ margin: 0, fontSize: 12, fontWeight: 800, color: 'rgba(255,255,255,0.90)' }}>Shift Filled</p>
-              <p style={{ margin: '2px 0 0', fontSize: 10, color: 'rgba(255,255,255,0.40)' }}>ICU Night — 23:00 start</p>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* ── FLOATING: Invoice sent (bottom-left) ── */}
-      <motion.div
-        initial={{ opacity: 0, x: -20, y: 10 }}
-        animate={{ opacity: 1, x: 0, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
-        style={{ position: 'absolute', bottom: -18, left: -24, zIndex: 10 }}
-      >
-        <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}>
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 10,
-            padding: '10px 14px', borderRadius: 14,
-            background: 'rgba(15,23,48,0.92)',
-            border: '1px solid rgba(91,108,249,0.30)',
-            backdropFilter: 'blur(20px)',
-            boxShadow: '0 8px 28px rgba(91,108,249,0.18), 0 2px 8px rgba(0,0,0,0.30)',
-          }}>
-            <div style={{ width: 30, height: 30, borderRadius: 9, background: 'linear-gradient(135deg,#5B6CF9,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <FileText weight="fill" style={{ width: 15, height: 15, color: '#fff' }} />
-            </div>
-            <div>
-              <p style={{ margin: 0, fontSize: 12, fontWeight: 800, color: 'rgba(255,255,255,0.90)' }}>Invoice Auto-Sent</p>
-              <p style={{ margin: '2px 0 0', fontSize: 10, color: 'rgba(255,255,255,0.40)' }}>NHS Trust A · £4,280.00</p>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* ── FLOATING: Compliance alert (right-middle) ── */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
-        style={{ position: 'absolute', top: '42%', right: -28, zIndex: 10 }}
-      >
-        <motion.div animate={{ y: [0, -7, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}>
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 10,
-            padding: '10px 14px', borderRadius: 14,
-            background: 'rgba(15,23,48,0.92)',
-            border: '1px solid rgba(23,149,199,0.30)',
-            backdropFilter: 'blur(20px)',
-            boxShadow: '0 8px 28px rgba(23,149,199,0.18), 0 2px 8px rgba(0,0,0,0.30)',
-          }}>
-            <div style={{ width: 30, height: 30, borderRadius: 9, background: 'linear-gradient(135deg,#1795C7,#0EA5E9)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <Shield weight="fill" style={{ width: 15, height: 15, color: '#fff' }} />
-            </div>
-            <div>
-              <p style={{ margin: 0, fontSize: 12, fontWeight: 800, color: 'rgba(255,255,255,0.90)' }}>CQC Compliant</p>
-              <p style={{ margin: '2px 0 0', fontSize: 10, color: 'rgba(255,255,255,0.40)' }}>98.7% · All docs valid</p>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-    </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#EEF2FF', padding: '5px 9px', borderRadius: 8, flexShrink: 0 }}>
+          <CalendarBlank weight="regular" size={10} color="#6366F1" />
+          <span style={{ fontSize: 9.5, color: '#6366F1', fontWeight: 700, whiteSpace: 'nowrap' as const }}>May 18th</span>
+        </div>
+      </div>
+    </CardWrap>
   );
 }
 
-/* ─────────────────────────────────────────────
-   HERO
-───────────────────────────────────────────── */
-export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
+/** Piece 2 — donut chart card */
+function TimesheetsDonutCard() {
+  const r = 37, sw = 14;
+  const circ = 2 * Math.PI * r;
+  const segs = [
+    { pct: 0.12, color: '#06B6D4', startAngle: -90                   },  // teal  (top)
+    { pct: 0.51, color: '#818CF8', startAngle: -90 + 43.2            },  // purple
+    { pct: 0.37, color: '#FB923C', startAngle: -90 + 43.2 + 183.6   },  // orange
+  ];
+  const legend = [
+    { color: '#06B6D4', label: 'Invoiced' },
+    { color: '#818CF8', label: 'Pending'  },
+    { color: '#FB923C', label: 'Approved' },
+  ];
+  return (
+    <CardWrap width={210}>
+      {/* donut */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '16px 0 10px' }}>
+        <div style={{ position: 'relative', width: 148, height: 148 }}>
+          <svg viewBox="0 0 100 100" width={148} height={148}>
+            <circle cx="50" cy="50" r={r} fill="none" stroke="#F1F5F9" strokeWidth={sw} />
+            {segs.map((s, i) => (
+              <circle key={i} cx="50" cy="50" r={r} fill="none" stroke={s.color}
+                strokeWidth={sw}
+                strokeDasharray={`${circ * s.pct} ${circ * (1 - s.pct)}`}
+                strokeDashoffset={0} strokeLinecap="butt"
+                transform={`rotate(${s.startAngle} 50 50)`} />
+            ))}
+          </svg>
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontSize: 21, fontWeight: 900, color: '#0F172A', letterSpacing: '-0.04em', lineHeight: 1 }}>100%</span>
+            <span style={{ fontSize: 8, color: '#94A3B8', marginTop: 2, fontWeight: 600 }}>utilised</span>
+          </div>
+        </div>
+      </div>
+      {/* colour legend */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 10, padding: '0 10px 12px' }}>
+        {legend.map(({ color, label }) => (
+          <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <div style={{ width: 7, height: 7, borderRadius: '50%', background: color, flexShrink: 0 }} />
+            <span style={{ fontSize: 8, color: '#94A3B8', fontWeight: 600 }}>{label}</span>
+          </div>
+        ))}
+      </div>
+    </CardWrap>
+  );
+}
 
-  const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.09 } } };
-  const it = {
-    hidden: { opacity: 0, y: 22 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-  };
+/** Piece 3 — stats row card */
+function TimesheetsStatsCard() {
+  const stats = [
+    { val: '95.5', label: 'Total',    bg: '#EEF2FF', color: '#6366F1' },
+    { val: '71.5', label: 'Pending',  bg: '#FFF7ED', color: '#F97316' },
+    { val: '0',    label: 'Approved', bg: '#F0FDF4', color: '#16A34A' },
+    { val: '24',   label: 'Invoiced', bg: '#E0F9FF', color: '#06B6D4' },
+  ];
+  return (
+    <CardWrap width={252}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, padding: '10px 10px 10px' }}>
+        {stats.map(({ val, label, bg, color }) => (
+          <div key={label} style={{ background: bg, borderRadius: 10, padding: '9px 3px', textAlign: 'center' as const }}>
+            <p style={{ margin: 0, fontSize: 14, fontWeight: 800, color, lineHeight: 1 }}>{val}</p>
+            <p style={{ margin: 0, fontSize: 8.5, color: '#94A3B8', marginTop: 3 }}>{label}</p>
+          </div>
+        ))}
+      </div>
+    </CardWrap>
+  );
+}
+
+/* ══════════════════════════════════════════════════
+   UPCOMING BIRTHDAYS CARD  (right · top)
+══════════════════════════════════════════════════ */
+function BirthdayCard() {
+  return (
+    <CardWrap width={252}>
+      <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 9 }}>
+        <IB bg="#EEF2FF"><Gift weight="regular" size={16} color="#6366F1" /></IB>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>Upcoming Birthdays</span>
+      </div>
+      <div style={{ height: 1, background: '#F1F5F9' }} />
+      <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 11 }}>
+        {/* Avatar — photo-style with gradient fallback */}
+        <div style={{
+          width: 38, height: 38, borderRadius: '50%', flexShrink: 0,
+          background: 'linear-gradient(135deg, #FBBF24 0%, #F87171 60%, #F472B6 100%)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 12, fontWeight: 800, color: '#FFFFFF',
+          border: '2px solid rgba(251,191,36,0.35)',
+          boxShadow: '0 2px 8px rgba(248,113,113,0.28)',
+        }}>AM</div>
+        <div>
+          <p style={{ margin: 0, fontSize: 12.5, fontWeight: 700, color: '#0F172A' }}>Amy Mitchell</p>
+          <p style={{ margin: 0, fontSize: 10.5, color: '#94A3B8', marginTop: 2 }}>VIV1CA83</p>
+        </div>
+      </div>
+      <div style={{ height: 1, background: '#F8FAFC', margin: '0 14px' }} />
+      <div style={{ padding: '9px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontSize: 12, color: '#6366F1', fontWeight: 600 }}>View all</span>
+        <span style={{ color: '#6366F1', fontSize: 14, fontWeight: 700 }}>→</span>
+      </div>
+    </CardWrap>
+  );
+}
+
+/* ══════════════════════════════════════════════════
+   SHIFT MINI CARDS  (left · mid + lower)
+══════════════════════════════════════════════════ */
+interface ShiftMiniProps {
+  initials: string; avatarBg: string; avatarColor: string;
+  name: string; role: string;
+  status: string; statusBg: string; statusColor: string;
+  date: string; time: string; location: string;
+}
+function ShiftMiniCard({ initials, avatarBg, avatarColor, name, role, status, statusBg, statusColor, date, time, location }: ShiftMiniProps) {
+  return (
+    <CardWrap width={252}>
+      <div style={{ padding: '10px 12px 11px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{
+              width: 30, height: 30, borderRadius: '50%',
+              background: avatarBg, border: `1.5px solid ${avatarColor}40`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 9.5, fontWeight: 800, color: avatarColor, flexShrink: 0,
+            }}>{initials}</div>
+            <div>
+              <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: '#0F172A' }}>{name}</p>
+              <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8' }}>{role}</p>
+            </div>
+          </div>
+          <span style={{
+            fontSize: 8.5, fontWeight: 700, padding: '2.5px 8px', borderRadius: 6,
+            background: statusBg, color: statusColor, flexShrink: 0,
+          }}>{status}</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 3, paddingLeft: 38 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <CalendarBlank weight="regular" size={10} color="#94A3B8" />
+            <span style={{ fontSize: 9.5, color: '#64748B' }}>{date}, {time}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <MapPin weight="regular" size={10} color="#94A3B8" />
+            <span style={{ fontSize: 9.5, color: '#64748B' }}>{location}</span>
+          </div>
+        </div>
+      </div>
+    </CardWrap>
+  );
+}
+function ShiftMiniAM() {
+  return <ShiftMiniCard
+    initials="AM" avatarBg="rgba(253,230,138,0.65)" avatarColor="#B45309"
+    name="Amy Mitchell" role="HCA"
+    status="Pending" statusBg="#FEF3C7" statusColor="#D97706"
+    date="Tue, May 19th" time="08:00 AM -08:00 PM" location="Test Unit"
+  />;
+}
+function ShiftMiniJK() {
+  return <ShiftMiniCard
+    initials="JK" avatarBg="rgba(153,246,228,0.60)" avatarColor="#0D9488"
+    name="Jake Kennedy" role="HCA"
+    status="Invoiced" statusBg="#CCFBF1" statusColor="#0D9488"
+    date="Tue, May 19th" time="08:00 AM -08:00 PM" location="Mora care"
+  />;
+}
+
+/* ══════════════════════════════════════════════════
+   CANDIDATES CARD  (right · lower-mid)  252px full card
+══════════════════════════════════════════════════ */
+function CandidatesCard() {
+  return (
+    <CardWrap width={252} style={{ padding: '13px 15px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ width: 36, height: 36, borderRadius: 10, background: '#F0FDFA', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Users weight="regular" size={18} color="#0D9488" />
+          </div>
+          <div>
+            <p style={{ margin: 0, fontSize: 9.5, fontWeight: 700, color: '#64748B', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Candidates</p>
+            <p style={{ margin: '2px 0 0', fontSize: 26, fontWeight: 900, color: '#0F172A', letterSpacing: '-0.04em', lineHeight: 1 }}>71</p>
+          </div>
+        </div>
+        <div style={{ textAlign: 'right' as const }}>
+          <span style={{ display: 'block', fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '3px 8px', borderRadius: 9, marginBottom: 4 }}>↑ 4.1%</span>
+          <span style={{ fontSize: 9, color: '#94A3B8', fontWeight: 500 }}>this month</span>
+        </div>
+      </div>
+    </CardWrap>
+  );
+}
+
+/* ══════════════════════════════════════════════════
+   SHIFT FILL RATE CARD  (right · lower)  252px
+══════════════════════════════════════════════════ */
+function WorkerStatCard() {
+  return (
+    <CardWrap width={252} style={{ padding: '13px 15px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
+        <span style={{ fontSize: 10.5, fontWeight: 700, color: '#64748B', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Fill Rate</span>
+        <span style={{ fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '2px 7px', borderRadius: 9 }}>↑ 3.2%</span>
+      </div>
+      <p style={{ margin: '0 0 9px', fontSize: 27, fontWeight: 900, color: '#0F172A', letterSpacing: '-0.03em', lineHeight: 1 }}>94%</p>
+      <div style={{ height: 5.5, borderRadius: 3, background: '#F1F5F9', marginBottom: 9 }}>
+        <div style={{ width: '94%', height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #6366F1, #818CF8)' }} />
+      </div>
+      <div style={{ display: 'flex', gap: 20 }}>
+        {[{ n: '347', l: 'Workers' }, { n: '89', l: 'Active' }].map(({ n, l }) => (
+          <div key={l}>
+            <p style={{ margin: 0, fontSize: 15, fontWeight: 800, color: '#0F172A' }}>{n}</p>
+            <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8' }}>{l}</p>
+          </div>
+        ))}
+      </div>
+    </CardWrap>
+  );
+}
+
+/* ══════════════════════════════════════════════════
+   FLOATING CARD WRAPPER  (entrance + bob)
+══════════════════════════════════════════════════ */
+interface FP {
+  delay: number; fromX: number;
+  floatY: number; floatDur: number; floatDelay: number;
+  rotate: number; children: React.ReactNode;
+}
+function FC({ delay, fromX, floatY, floatDur, floatDelay, rotate, children }: FP) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: fromX, scale: 0.88 }}
+      animate={{ opacity: 1, x: 0, scale: 1 }}
+      transition={{ delay, duration: 0.85, ease: EASE }}
+    >
+      <motion.div
+        animate={{ y: [0, floatY, 0], rotate: [0, rotate, 0] }}
+        transition={{
+          y:      { delay: floatDelay, duration: floatDur,       repeat: Infinity, ease: 'easeInOut' },
+          rotate: { delay: floatDelay, duration: floatDur * 1.1, repeat: Infinity, ease: 'easeInOut' },
+        }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ══════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════ */
+export default function Hero() {
+  const sRef = useRef<HTMLElement>(null);
+  const [m, setM] = useState({ x: 0, y: 0 });
+  const onMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    const r = sRef.current?.getBoundingClientRect();
+    if (!r) return;
+    setM({ x: (e.clientX - r.left - r.width / 2) / r.width, y: (e.clientY - r.top - r.height / 2) / r.height });
+  }, []);
+  const onOut = useCallback(() => setM({ x: 0, y: 0 }), []);
+
+  /* ── scroll spring ── */
+  const { scrollYProgress } = useScroll({ target: sRef, offset: ['start start', 'end start'] });
+  const sp = useSpring(scrollYProgress, { stiffness: 95, damping: 26, restDelta: 0.001 });
+
+  const PHASE: [number, number] = [0.14, 0.70];
+
+  /*
+   *  Scroll-merge vectors — each card flies toward its nearest dashboard widget
+   *
+   *  LEFT  group  (Timesheets + ShiftMiniAM)  → merge right/down into dashboard
+   *  RIGHT group  (Birthday + ShiftJK + WorkerStat + Candidates) → merge left/down
+   *
+   *  sbX/sbY  Timesheets pieces (all 3 share same vector)
+   *  coX/coY  ShiftMiniAM
+   *  buX/buY  CandidatesCard
+   *  bdX/bdY  BirthdayCard
+   *  caX/caY  ShiftMiniJK
+   *  wsX/wsY  WorkerStatCard
+   */
+  const sbX = useTransform(sp, PHASE, [0,  880]);
+  const sbY = useTransform(sp, PHASE, [0,  540]);
+  const coX = useTransform(sp, PHASE, [0,  700]);
+  const coY = useTransform(sp, PHASE, [0,  210]);
+  const buX = useTransform(sp, PHASE, [0,  460]);
+  const buY = useTransform(sp, PHASE, [0,  150]);
+  const bdX = useTransform(sp, PHASE, [0, -180]);
+  const bdY = useTransform(sp, PHASE, [0,  440]);
+  const caX = useTransform(sp, PHASE, [0, -800]);
+  const caY = useTransform(sp, PHASE, [0,  250]);
+  const wsX = useTransform(sp, PHASE, [0, -820]);
+  const wsY = useTransform(sp, PHASE, [0,  240]);
+
+  /* shared fade + shrink */
+  const cardOp = useTransform(sp, [0.40, 0.70], [1, 0]);
+  const cardSc = useTransform(sp, PHASE, [1, 0.60]);
+
+  /* center text parallax */
+  const cy  = useTransform(sp, [0.10, 0.65], [0, -50]);
+  const cop = useTransform(sp, [0.14, 0.60], [1,  0]);
+
+  /* dashboard un-tilts slightly as cards merge */
+  const dashRotX = useTransform(sp, [0.22, 0.76], [13, 5]);
+
+  /* mouse parallax */
+  const mp = (sx: number, sy: number): React.CSSProperties => ({
+    transform: `translate(${m.x * sx}px, ${m.y * sy}px)`,
+    transition: 'transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94)',
+  });
 
   return (
     <section
-      ref={sectionRef}
-      style={{
-        background: 'linear-gradient(160deg, #07111F 0%, #0C1835 45%, #0B1528 100%)',
-        minHeight: '100vh',
-        overflow: 'hidden',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
+      ref={sRef}
+      onMouseMove={onMove}
+      onMouseLeave={onOut}
+      style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(148deg, #EEF2FF 0%, #FAFBFF 46%, #F0F9FF 100%)' }}
     >
-      {/* Background orbs */}
-      <div style={{ position: 'absolute', top: '-10%', left: '-5%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(91,108,249,0.14) 0%, transparent 65%)', filter: 'blur(80px)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: '20%', right: '-8%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(23,149,199,0.12) 0%, transparent 65%)', filter: 'blur(70px)', pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '10%', left: '30%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 65%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+      {/* ── Background blobs ── */}
+      <div style={{ position: 'absolute', top: '-20%', right: '-14%', width: '58%', height: '70%', background: 'radial-gradient(ellipse, rgba(99,102,241,0.16) 0%, rgba(14,165,233,0.07) 44%, transparent 70%)', filter: 'blur(88px)', zIndex: 0, pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '-12%', left: '-12%', width: '52%', height: '58%', background: 'radial-gradient(ellipse, rgba(99,102,241,0.11) 0%, rgba(16,185,129,0.06) 50%, transparent 70%)', filter: 'blur(84px)', zIndex: 0, pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translateX(-50%)', width: '40%', height: '35%', background: 'radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }} />
+      {/* Dot grid */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.11) 1px, transparent 1px)', backgroundSize: '28px 28px', maskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)' }} />
 
-      {/* Subtle grid */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0,
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px)',
-        backgroundSize: '60px 60px',
-        maskImage: 'radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%)',
-        WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%)',
-      }} />
+      {/* ════════════════════════════════════════════════════════
+          FLOATING CARDS — balanced 4 + 4 layout
+          ─────────────────────────────────────────────────────
+          All cards: 252 px wide  (DonutCard: 210 px, same left edge)
+          LEFT  outer edge → calc(50% - 656px)
+          RIGHT outer edge → calc(50% + 656px)   ← perfect mirror
+          Vertical gap between every card: 14 px (consistent)
 
-      {/* Main layout */}
-      <div style={{ flex: 1, position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '88px 48px 56px', width: '100%' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', alignItems: 'center', gap: 64 }}>
+          LEFT stack (Timesheets group):                  h    ends
+            TimesheetsHeaderCard  top  85               58    143
+            TimesheetsDonutCard   top 157               196   353
+            TimesheetsStatsCard   top 367                68   435
+            ShiftMiniAM           top 449                88   537
 
-            {/* ══════════════ LEFT — COPY ══════════════ */}
-            <motion.div variants={stagger} initial="hidden" animate="visible">
+          RIGHT stack (Workforce group):                  h    ends
+            BirthdayCard          top  85               158   243
+            ShiftMiniJK           top 257                88   345
+            WorkerStatCard        top 359               120   479
+            CandidatesCard        top 493                62   555
+      ════════════════════════════════════════════════════════ */}
 
-              {/* Badge */}
-              <motion.div variants={it} style={{ marginBottom: 26 }}>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: '7px 14px 7px 8px', borderRadius: 100,
-                  background: 'rgba(91,108,249,0.12)', border: '1px solid rgba(91,108,249,0.28)',
-                }}>
-                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: 'linear-gradient(135deg,#5B6CF9,#1795C7)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <CheckCircle weight="fill" style={{ width: 12, height: 12, color: '#fff' }} />
-                  </div>
-                  <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.72)', letterSpacing: '0.01em' }}>
-                    Trusted by <strong style={{ color: '#818CF8' }}>500+</strong> UK Staffing Agencies
+      {/* ── LEFT · Piece 1 — Timesheets Header ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 85, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(18, 10)}>
+          <FC delay={0.50} fromX={-52} floatY={-8} floatDur={4.8} floatDelay={0.6} rotate={0.30}>
+            <TimesheetsHeaderCard />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ── LEFT · Piece 2 — Donut chart (same left edge, naturally narrower) ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 157, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(22, 13)}>
+          <FC delay={0.60} fromX={-60} floatY={-12} floatDur={4.2} floatDelay={0.4} rotate={-0.45}>
+            <TimesheetsDonutCard />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ── LEFT · Piece 3 — Stats tiles ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 367, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(16, 9)}>
+          <FC delay={0.70} fromX={-44} floatY={-7} floatDur={5.2} floatDelay={1.0} rotate={0.20}>
+            <TimesheetsStatsCard />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ── LEFT · Shift Mini AM ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 449, zIndex: 8, x: coX, y: coY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(14, 8)}>
+          <FC delay={0.80} fromX={-36} floatY={-8} floatDur={5.0} floatDelay={1.4} rotate={-0.30}>
+            <ShiftMiniAM />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ── RIGHT · Birthday ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 85, zIndex: 8, x: bdX, y: bdY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(-18, 11)}>
+          <FC delay={0.55} fromX={52} floatY={-11} floatDur={4.9} floatDelay={0.7} rotate={-0.40}>
+            <BirthdayCard />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ── RIGHT · Shift Mini JK ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 257, zIndex: 8, x: caX, y: caY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(-14, 8)}>
+          <FC delay={0.65} fromX={44} floatY={-9} floatDur={4.6} floatDelay={1.0} rotate={0.30}>
+            <ShiftMiniJK />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ── RIGHT · Fill Rate ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 359, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(-11, 7)}>
+          <FC delay={0.75} fromX={36} floatY={-7} floatDur={5.3} floatDelay={1.3} rotate={-0.25}>
+            <WorkerStatCard />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ── RIGHT · Candidates ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 493, zIndex: 8, x: buX, y: buY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(-9, 6)}>
+          <FC delay={0.85} fromX={28} floatY={-6} floatDur={4.4} floatDelay={1.6} rotate={0.20}>
+            <CandidatesCard />
+          </FC>
+        </div>
+      </motion.div>
+
+      {/* ════════════════════════════════════
+          CENTER CONTENT
+      ════════════════════════════════════ */}
+      <motion.div style={{ y: cy, opacity: cop, position: 'relative', zIndex: 10 }}>
+        <div style={{ paddingTop: 108 }}>
+          <div style={{ textAlign: 'center', maxWidth: 660, margin: '0 auto', padding: '0 28px 60px' }}>
+
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 16, scale: 0.88 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.06, duration: 0.65, ease: EASE }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24, padding: '5px 16px 5px 7px', borderRadius: 100, background: 'rgba(99,102,241,0.07)', border: '1px solid rgba(99,102,241,0.24)', boxShadow: '0 2px 22px rgba(99,102,241,0.12)' }}
+            >
+              <span style={{ fontSize: 9, fontWeight: 800, padding: '2px 10px', borderRadius: 20, background: `linear-gradient(135deg, ${I} 0%, #818CF8 100%)`, color: '#fff', letterSpacing: '0.08em' }}>NEW</span>
+              <span style={{ fontSize: 12, color: '#64748B', fontWeight: 500 }}>Built for UK temp staffing agencies</span>
+            </motion.div>
+
+            {/* H1 */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.14, duration: 0.92, ease: EASE }}
+              style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.85rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.048em', color: '#0F172A', margin: '0 0 18px' }}
+            >
+              The smarter way to{' '}
+              <span style={{ background: 'linear-gradient(128deg, #6366F1 0%, #0EA5E9 55%, #34D399 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                run your agency.
+              </span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.22, duration: 0.86, ease: EASE }}
+              style={{ fontSize: 'clamp(14px, 1.5vw, 17px)', lineHeight: 1.80, color: '#64748B', maxWidth: 490, margin: '0 auto 32px' }}
+            >
+              Scheduling, compliance, timesheets &amp; payroll — all in one platform designed for UK staffing agencies.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.30, duration: 0.78, ease: EASE }}
+              style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 28 }}
+            >
+              <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 420, damping: 22 }}>
+                <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 30px', borderRadius: 14, textDecoration: 'none', background: `linear-gradient(135deg, ${I} 0%, #818CF8 100%)`, color: '#fff', fontSize: 14.5, fontWeight: 700, boxShadow: `0 6px 30px rgba(99,102,241,0.42), 0 2px 8px rgba(99,102,241,0.22)` }}>
+                  Start Free Trial <ArrowRight weight="regular" style={{ width: 15, height: 15 }} />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 420, damping: 22 }}>
+                <button style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '12px 24px', borderRadius: 14, cursor: 'pointer', background: '#FFFFFF', border: '1px solid rgba(99,102,241,0.22)', color: '#374151', fontSize: 14, fontWeight: 600, boxShadow: '0 2px 18px rgba(0,0,0,0.07)' }}>
+                  <span style={{ width: 28, height: 28, borderRadius: '50%', flexShrink: 0, background: 'rgba(99,102,241,0.09)', border: '1px solid rgba(99,102,241,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Play weight="regular" style={{ width: 10, height: 10, color: I, marginLeft: 1.5 }} />
                   </span>
-                </div>
-              </motion.div>
-
-              {/* Headline — "The Engine Behind" locked to one line */}
-              <motion.h1 variants={it} style={{
-                margin: '0 0 20px', padding: 0,
-                fontSize: 'clamp(1.75rem, 2.8vw, 3.2rem)',
-                fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.1,
-              }}>
-                <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)', whiteSpace: 'nowrap', marginBottom: 4 }}>
-                  The Engine Behind
-                </span>
-                <span style={{
-                  display: 'block',
-                  background: 'linear-gradient(125deg, #38BDF8 0%, #818CF8 55%, #C084FC 100%)',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-                }}>
-                  Every Great Temp Agency.
-                </span>
-              </motion.h1>
-
-              {/* Subtitle */}
-              <motion.p variants={it} style={{
-                fontSize: 15.5, lineHeight: 1.7, color: 'rgba(255,255,255,0.46)',
-                maxWidth: 400, margin: '0 0 32px', fontWeight: 400,
-              }}>
-                The all-in-one staffing platform top UK temp agencies rely on to manage workers, shifts, and compliance — effortlessly.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div variants={it} style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 40 }}>
-                <motion.span whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }} style={{ display: 'inline-flex' }}>
-                  <Link to="/contact" style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                    padding: '13px 28px', borderRadius: 100,
-                    fontSize: 14, fontWeight: 700, color: '#fff',
-                    background: 'linear-gradient(135deg,#5B6CF9 0%,#1795C7 100%)',
-                    boxShadow: '0 4px 22px rgba(91,108,249,0.42), 0 1px 0 rgba(255,255,255,0.12) inset',
-                    textDecoration: 'none', letterSpacing: '-0.01em',
-                  }}>
-                    Start 10-day free trial
-                    <ArrowRight weight="bold" style={{ width: 14, height: 14 }} />
-                  </Link>
-                </motion.span>
-                <motion.span whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }} style={{ display: 'inline-flex' }}>
-                  <Link to="/contact" style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                    padding: '13px 28px', borderRadius: 100,
-                    fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.68)',
-                    background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.13)',
-                    textDecoration: 'none', backdropFilter: 'blur(8px)',
-                  }}>
-                    Book a demo
-                  </Link>
-                </motion.span>
-              </motion.div>
-
-              {/* Stats row */}
-              <motion.div variants={it} style={{ display: 'flex', gap: 0 }}>
-                {[
-                  { val: '500+', lbl: 'UK Agencies'  },
-                  { val: '60%',  lbl: 'Less Admin'   },
-                  { val: '3×',   lbl: 'Faster Fills' },
-                ].map(({ val, lbl }, i) => (
-                  <div key={lbl} style={{
-                    paddingRight: i < 2 ? 24 : 0, marginRight: i < 2 ? 24 : 0,
-                    borderRight: i < 2 ? '1px solid rgba(255,255,255,0.09)' : 'none',
-                  }}>
-                    <p style={{ fontSize: 22, fontWeight: 900, color: '#fff', margin: 0, letterSpacing: '-0.03em' }}>{val}</p>
-                    <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.36)', margin: '3px 0 0', fontWeight: 500, letterSpacing: '0.02em' }}>{lbl}</p>
-                  </div>
-                ))}
+                  Watch Demo
+                </button>
               </motion.div>
             </motion.div>
 
-            {/* ══════════════ RIGHT — LIVE OPS MOCKUP ══════════════ */}
-            <div style={{ position: 'relative', height: 440, overflow: 'visible', padding: '28px 40px 28px 16px' }} className="hidden lg:block">
-              <LiveOpsMockup />
-            </div>
-
+            {/* Social proof */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.44, duration: 0.60, ease: EASE }}
+              style={{ display: 'flex', alignItems: 'center', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                {[...Array(5)].map((_, i) => <Star key={i} weight="regular" style={{ width: 13, height: 13, color: '#FBBF24' }} />)}
+                <span style={{ marginLeft: 5, fontSize: 12.5, color: '#1E293B', fontWeight: 700 }}>4.9 / 5</span>
+              </div>
+              <div style={{ width: 1, height: 14, background: '#E2E8F0' }} />
+              <span style={{ fontSize: 12, color: '#64748B' }}><span style={{ fontWeight: 700, color: '#0F172A' }}>600+</span> UK agencies</span>
+              <div style={{ width: 1, height: 14, background: '#E2E8F0' }} />
+              <span style={{ fontSize: 12, color: '#64748B' }}><span style={{ fontWeight: 700, color: '#0F172A' }}>98.7%</span> compliance rate</span>
+            </motion.div>
           </div>
         </div>
+      </motion.div>
+
+      {/* ════════════════════════════════════
+          DASHBOARD — no browser chrome
+          Just the screenshot with top rounded corners
+          + perspective tilt that eases on scroll
+      ════════════════════════════════════ */}
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.50, duration: 1.18, ease: EASE }}
+        style={{ position: 'relative', zIndex: 6, padding: '0 32px 0' }}
+      >
+        {/* Glow halo */}
+        <div style={{ position: 'absolute', top: -120, left: '5%', right: '5%', height: 240, background: 'radial-gradient(ellipse, rgba(99,102,241,0.24) 0%, rgba(14,165,233,0.10) 48%, transparent 72%)', filter: 'blur(58px)', pointerEvents: 'none', zIndex: -1 }} />
+
+        <div style={{ maxWidth: 1380, margin: '0 auto' }}>
+          {/* perspective wrapper */}
+          <div style={{ perspective: 1800, perspectiveOrigin: 'top center' }}>
+            <motion.div style={{ rotateX: dashRotX, transformOrigin: 'top center', willChange: 'transform' }}>
+              <div style={{
+                borderRadius: '18px 18px 0 0',
+                overflow: 'hidden',
+                boxShadow: [
+                  '0 0 0 1px rgba(99,102,241,0.20)',
+                  '0 -4px 0 rgba(99,102,241,0.24)',
+                  '0 60px 180px rgba(99,102,241,0.24)',
+                  '0 30px 80px rgba(0,0,0,0.18)',
+                ].join(', '),
+              }}>
+                <img
+                  src="/DASHBAORD_NEW.png"
+                  alt="Logezy Dashboard"
+                  style={{ width: '100%', display: 'block', objectFit: 'cover', objectPosition: 'top center' }}
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ════════════════════════════════════
+          TRUSTED BY — blended directly below dashboard
+          No background change, no border — same hero gradient
+      ════════════════════════════════════ */}
+      <div style={{ position: 'relative', zIndex: 6, padding: '44px 0 52px', overflow: 'hidden' }}>
+
+        {/* Ambient glow */}
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 100, background: 'radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }} />
+
+        {/* Marquee */}
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          {/* Left fade — matches hero gradient start */}
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 130, background: 'linear-gradient(90deg, #EEF2FF 0%, transparent 100%)', zIndex: 2, pointerEvents: 'none' }} />
+          {/* Right fade */}
+          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 130, background: 'linear-gradient(-90deg, #F0F9FF 0%, transparent 100%)', zIndex: 2, pointerEvents: 'none' }} />
+
+          <motion.div
+            animate={{ x: [0, -TRACK_W] }}
+            transition={{ duration: 34, repeat: Infinity, ease: 'linear' }}
+            style={{ display: 'flex', alignItems: 'center', gap: LOGO_GAP, width: 'max-content', padding: '4px 0' }}
+          >
+            {tripled.map((logo, i) => (
+              <div key={`${logo.alt}-${i}`} style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', width: LOGO_W }}>
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  draggable={false}
+                  style={{ maxHeight: 44, width: 'auto', maxWidth: LOGO_W, objectFit: 'contain', opacity: 1, filter: 'none', userSelect: 'none', pointerEvents: 'none', display: 'block' } as React.CSSProperties}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
       </div>
 
-      {/* Client strip */}
-      <ClientLogoStrip />
     </section>
   );
 }
