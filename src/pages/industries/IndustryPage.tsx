@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -38,8 +38,6 @@ interface IndustryConfig {
   featuresHeading: string;
   features: FeatureItem[];
   quote: string;
-  ctaHeading: string;
-  ctaSubtext: string;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -74,8 +72,6 @@ const pages: IndustryConfig[] = [
       { icon: ClipboardText, title: 'Fast Onboarding', desc: 'Get nurses placement-ready in hours, not days. A fully digital recruitment portal collects documents, forms, and compliance paperwork before their first shift.', linkTo: '/product/recruitment' },
     ],
     quote: '"Compliance used to be our biggest risk. Now it runs itself."',
-    ctaHeading: 'Ready to run a smarter nursing agency?',
-    ctaSubtext: 'Book a free demo — setup takes hours, not weeks.',
   },
   {
     slug: 'education',
@@ -105,8 +101,6 @@ const pages: IndustryConfig[] = [
       { icon: ClipboardText, title: 'Fast Onboarding', desc: 'Get new candidates through compliance and placement-ready before term starts. A structured digital onboarding flow means no candidate falls through the cracks.', linkTo: '/product/recruitment' },
     ],
     quote: '"We used to spend the whole morning finding cover. Now it takes minutes."',
-    ctaHeading: 'Ready to place faster and stress less?',
-    ctaSubtext: 'Book a free demo — setup takes hours, not weeks.',
   },
   {
     slug: 'hospitality',
@@ -136,8 +130,6 @@ const pages: IndustryConfig[] = [
       { icon: Buildings, title: 'Client Portal', desc: 'Give hotels, venues, and catering clients their own live dashboard — shift coverage, worker profiles, timesheets, and invoices — all in one place.', linkTo: '/product/client-portal' },
     ],
     quote: '"We\'re placing more workers in less time and the team isn\'t drowning in calls anymore."',
-    ctaHeading: 'Ready to keep every shift covered?',
-    ctaSubtext: 'Book a free demo — setup takes hours, not weeks.',
   },
 ];
 
@@ -184,7 +176,7 @@ export default function IndustryPage() {
 
             {/* Badge */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: cfg.accentBg, border: `1px solid ${cfg.accent}30`, borderRadius: 30, padding: '6px 14px', marginBottom: 22 }}>
-              <HeroIcon weight="fill" style={{ width: 14, height: 14, color: cfg.accent }} />
+              <HeroIcon weight="regular" style={{ width: 14, height: 14, color: cfg.accent }} />
               <span style={{ fontSize: 12, fontWeight: 700, color: cfg.accent, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>{cfg.label}</span>
             </div>
 
@@ -212,11 +204,11 @@ export default function IndustryPage() {
 
             {/* CTAs */}
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
-              <motion.a href="#cta" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              <motion.a href="/contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 10, background: `linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`, color: 'white', fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: `0 8px 24px ${cfg.accent}40` }}>
-                Book a Free Demo <ArrowRight weight="bold" style={{ width: 16, height: 16 }} />
+                Book a Free Demo <ArrowRight weight="regular" style={{ width: 16, height: 16 }} />
               </motion.a>
-              <motion.a href="#cta" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              <motion.a href="/contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 10, background: 'white', color: NAVY, fontWeight: 700, fontSize: 15, textDecoration: 'none', border: '1.5px solid #E5E7EB', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
                 Start Free Trial
               </motion.a>
@@ -280,14 +272,14 @@ export default function IndustryPage() {
                 style={{ background: 'white', borderRadius: 14, padding: '24px 22px', border: '1px solid #E5E7EB', boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
                   <div style={{ width: 44, height: 44, borderRadius: 12, background: cfg.accentBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <f.icon weight="bold" style={{ width: 20, height: 20, color: cfg.accent }} />
+                    <f.icon weight="regular" style={{ width: 20, height: 20, color: cfg.accent }} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 15, fontWeight: 700, color: NAVY, marginBottom: 6 }}>{f.title}</div>
                     <div style={{ fontSize: 14, color: '#6B7280', lineHeight: 1.65, marginBottom: f.linkTo ? 12 : 0 }}>{f.desc}</div>
                     {f.linkTo && (
                       <Link to={f.linkTo} style={{ fontSize: 13, fontWeight: 600, color: cfg.accent, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                        Learn more <ArrowRight weight="bold" style={{ width: 12, height: 12 }} />
+                        Learn more <ArrowRight weight="regular" style={{ width: 12, height: 12 }} />
                       </Link>
                     )}
                   </div>
@@ -310,44 +302,13 @@ export default function IndustryPage() {
             </p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: `linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <HeroIcon weight="fill" style={{ width: 16, height: 16, color: 'white' }} />
+                <HeroIcon weight="regular" style={{ width: 16, height: 16, color: 'white' }} />
               </div>
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: NAVY }}>Agency Director</div>
                 <div style={{ fontSize: 12, color: '#9CA3AF' }}>{cfg.label} Staffing Agency, UK</div>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── CTA ──────────────────────────────────── */}
-      <section id="cta" style={{ background: `linear-gradient(135deg,${NAVY} 0%,#0E2050 100%)`, padding: '80px 24px' }}>
-        <div style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
-          <motion.div {...fadeUp}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: `${cfg.accent}22`, border: `1px solid ${cfg.accent}40`, borderRadius: 30, padding: '5px 16px', marginBottom: 24 }}>
-              <div style={{ width: 7, height: 7, borderRadius: '50%', background: cfg.accent }} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: cfg.accent, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Get Started</span>
-            </div>
-            <h2 style={{ fontSize: 'clamp(26px,3.5vw,44px)', fontWeight: 900, color: 'white', lineHeight: 1.15, marginBottom: 14 }}>
-              {cfg.ctaHeading}
-            </h2>
-            <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.65)', marginBottom: 36 }}>
-              {cfg.ctaSubtext}
-            </p>
-            <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' as const }}>
-              <motion.a href="/contact" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 30px', borderRadius: 10, background: `linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`, color: 'white', fontWeight: 700, fontSize: 16, textDecoration: 'none', boxShadow: `0 8px 28px ${cfg.accent}50` }}>
-                Book a Demo <ArrowRight weight="bold" style={{ width: 17, height: 17 }} />
-              </motion.a>
-              <motion.a href="/contact" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 30px', borderRadius: 10, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', fontWeight: 700, fontSize: 16, textDecoration: 'none' }}>
-                Start Free Trial
-              </motion.a>
-            </div>
-            <p style={{ marginTop: 20, fontSize: 13, color: 'rgba(255,255,255,0.40)' }}>
-              No lengthy setup. No commitment. Full support from day one.
-            </p>
           </motion.div>
         </div>
       </section>

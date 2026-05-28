@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Medal, Users, Clock, Shield } from '@phosphor-icons/react';
 
 const stats = [
@@ -49,7 +49,7 @@ export default function About() {
             <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center p-4 bg-white/70 rounded-xl backdrop-blur-sm">
-                  <stat.icon weight="fill" className={`h-8 w-8 mx-auto mb-2 ${stat.color}`} />
+                  <stat.icon weight="regular" className={`h-8 w-8 mx-auto mb-2 ${stat.color}`} />
                   <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                   <div className="text-sm text-gray-600">{stat.label}</div>
                 </div>

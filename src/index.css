@@ -9,6 +9,10 @@
 }
 
 @layer base {
+  :root {
+    --gradient-color: #5B6CF9;
+    --sparkles-color: #818CF8;
+  }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {

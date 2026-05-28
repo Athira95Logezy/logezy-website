@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { ArrowRight, CheckCircle, Lightning } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -98,7 +98,7 @@ export default function CTASection() {
                     boxShadow: '0 8px 32px rgba(23,149,199,0.45), 0 2px 8px rgba(0,0,0,0.2)',
                   }}>
                   Start 10-day free trial
-                  <ArrowRight weight="fill" className="h-4 w-4" />
+                  <ArrowRight weight="regular" className="h-4 w-4" />
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
@@ -124,7 +124,7 @@ export default function CTASection() {
                 'Full support from day one',
               ].map(item => (
                 <motion.div key={item} variants={itemVariants} className="flex items-center gap-2 text-sm font-medium text-white/80">
-                  <CheckCircle weight="fill" className="h-4 w-4 text-emerald-300 flex-shrink-0" />
+                  <CheckCircle weight="regular" className="h-4 w-4 text-emerald-300 flex-shrink-0" />
                   {item}
                 </motion.div>
               ))}

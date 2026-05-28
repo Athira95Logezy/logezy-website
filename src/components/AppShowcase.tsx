@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { DeviceMobile, Bell, Clock, ArrowRight, Shield, CalendarBlank, FileText, ChatCircle, CheckCircle, MapPin } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import PhoneMockupUI from './PhoneMockupUI';
@@ -90,7 +90,7 @@ export default function AppShowcase() {
               <div className="absolute -top-6 -right-6 glass shadow-elevated rounded-2xl px-3.5 py-2.5 animate-float whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-                    <CheckCircle weight="fill" className="h-3.5 w-3.5 text-white" />
+                    <CheckCircle weight="regular" className="h-3.5 w-3.5 text-white" />
                   </div>
                   <div>
                     <p className="text-xs font-bold text-slate-800 leading-none">Shift confirmed</p>
@@ -102,7 +102,7 @@ export default function AppShowcase() {
               <div className="absolute -bottom-4 -left-8 glass shadow-elevated rounded-2xl px-3.5 py-2.5 animate-float-delayed whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <div className="relative w-7 h-7 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                    <MapPin weight="fill" className="h-3.5 w-3.5 text-white" />
+                    <MapPin weight="regular" className="h-3.5 w-3.5 text-white" />
                     <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-white animate-pulse" />
                   </div>
                   <div>
@@ -135,7 +135,7 @@ export default function AppShowcase() {
               <div className="flex items-center gap-3 mb-6">
                 <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold"
                   style={{ background: 'rgba(23,149,199,0.14)', border: '1px solid rgba(23,149,199,0.28)', color: '#A8D8EE' }}>
-                  <DeviceMobile weight="fill" className="h-3 w-3" />
+                  <DeviceMobile weight="regular" className="h-3 w-3" />
                   Mobile App
                 </div>
                 {/* Platform pills */}
@@ -187,7 +187,7 @@ export default function AppShowcase() {
                     transition={{ type: 'spring', stiffness: 300 }}
                     className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 ${color}`}
                   >
-                    <Icon weight="fill" className="h-4 w-4" />
+                    <Icon weight="regular" className="h-4 w-4" />
                   </motion.div>
                   <div>
                     <p className="text-sm font-semibold text-white/85 mb-0.5">{label}</p>
@@ -208,7 +208,7 @@ export default function AppShowcase() {
                 <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
                   <Link to="/contact" className="btn-primary rounded-2xl inline-flex items-center gap-2">
                     Get the app
-                    <ArrowRight weight="fill" className="h-4 w-4" />
+                    <ArrowRight weight="regular" className="h-4 w-4" />
                   </Link>
                 </motion.div>
               </div>

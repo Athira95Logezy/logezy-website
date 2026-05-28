@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, Buildings, Clock, Tag, Heartbeat, ForkKnife, GraduationCap } from '@phosphor-icons/react';
@@ -165,7 +165,7 @@ function BlogCard({ post, index }: { post: typeof blogPosts[0]; index: number })
         <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontSize: 12, color: '#9CA3AF' }}>{post.date}</span>
           <span style={{ fontSize: 13, fontWeight: 600, color: INDIGO, display: 'flex', alignItems: 'center', gap: 4 }}>
-            Read more <ArrowRight weight="bold" style={{ width: 12, height: 12 }} />
+            Read more <ArrowRight weight="regular" style={{ width: 12, height: 12 }} />
           </span>
         </div>
       </div>
@@ -187,7 +187,7 @@ export default function Resources() {
         <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#EEF2FF', border: '1px solid #C7D2FE', borderRadius: 30, padding: '5px 16px', marginBottom: 24 }}>
-              <BookOpen weight="fill" style={{ width: 13, height: 13, color: INDIGO }} />
+              <BookOpen weight="regular" style={{ width: 13, height: 13, color: INDIGO }} />
               <span style={{ fontSize: 12, fontWeight: 700, color: INDIGO, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Resources</span>
             </div>
             <h1 style={{ fontSize: 'clamp(32px,4.5vw,56px)', fontWeight: 900, color: NAVY, lineHeight: 1.1, marginBottom: 16, letterSpacing: '-0.02em' }}>
@@ -239,7 +239,7 @@ export default function Resources() {
                   Discover the key systems and automations that fast-growing temp agencies are using to cut admin overhead — without adding headcount. From digital timesheets to automated compliance tracking, here's what actually moves the needle.
                 </p>
                 <span style={{ fontSize: 14, fontWeight: 700, color: INDIGO, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                  Read the full article <ArrowRight weight="bold" style={{ width: 14, height: 14 }} />
+                  Read the full article <ArrowRight weight="regular" style={{ width: 14, height: 14 }} />
                 </span>
               </div>
               <div style={{ textAlign: 'right' }}>
@@ -295,7 +295,7 @@ export default function Resources() {
                   <div style={{ background: `linear-gradient(135deg,${cs.accentColor}15,${cs.accentColor}05)`, padding: '24px 24px 20px', borderBottom: '1px solid #F3F4F6' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
                       <div style={{ width: 42, height: 42, borderRadius: 12, background: cs.accentBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                        <cs.IndustryIcon weight="fill" style={{ width: 20, height: 20, color: cs.accentColor }} />
+                        <cs.IndustryIcon weight="regular" style={{ width: 20, height: 20, color: cs.accentColor }} />
                       </div>
                       <div>
                         <div style={{ fontSize: 14, fontWeight: 700, color: NAVY }}>{cs.company}</div>
@@ -323,7 +323,7 @@ export default function Resources() {
 
                     <Link to={cs.to}
                       style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 700, color: cs.accentColor, textDecoration: 'none' }}>
-                      See {cs.industry} features <ArrowRight weight="bold" style={{ width: 13, height: 13 }} />
+                      See {cs.industry} features <ArrowRight weight="regular" style={{ width: 13, height: 13 }} />
                     </Link>
                   </div>
                 </motion.div>

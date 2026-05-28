@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Envelope, Phone, MapPin, Clock, Chat, Users, ArrowRight, CaretDown } from '@phosphor-icons/react';
 
@@ -104,7 +104,7 @@ export default function Contact() {
                     className={`w-11 h-11 rounded-xl bg-gradient-to-br ${m.gradient} flex items-center justify-center mb-3 shadow-sm`}
                     whileHover={{ scale: 1.15, rotate: 6 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
-                    <Icon weight="fill" className="h-5 w-5 text-white" />
+                    <Icon weight="regular" className="h-5 w-5 text-white" />
                   </motion.div>
                   <p className="font-semibold text-slate-900 text-sm mb-0.5">{m.title}</p>
                   <p className="text-sky-600 font-medium text-sm mb-1">{m.value}</p>
@@ -161,7 +161,7 @@ export default function Contact() {
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
                   Send Message
-                  <ArrowRight weight="fill" className="h-4 w-4" />
+                  <ArrowRight weight="regular" className="h-4 w-4" />
                 </motion.button>
               </form>
             </motion.div>
@@ -182,7 +182,7 @@ export default function Contact() {
                     className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center mb-5 shadow-sm"
                     whileHover={{ scale: 1.15, rotate: 6 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
-                    <Users weight="fill" className="h-6 w-6 text-white" />
+                    <Users weight="regular" className="h-6 w-6 text-white" />
                   </motion.div>
                   <h3 className="text-xl font-bold text-white mb-2">Book a Live Demo</h3>
                   <p className="text-slate-400 text-sm leading-relaxed mb-6">
@@ -195,14 +195,14 @@ export default function Contact() {
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
                     Schedule a Demo
-                    <ArrowRight weight="fill" className="h-4 w-4" />
+                    <ArrowRight weight="regular" className="h-4 w-4" />
                   </motion.a>
                 </div>
               </div>
               <div className="bento-card p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-blue-500 flex items-center justify-center">
-                    <Clock weight="fill" className="h-4 w-4 text-white" />
+                    <Clock weight="regular" className="h-4 w-4 text-white" />
                   </div>
                   <h3 className="font-semibold text-slate-900">Support Hours</h3>
                 </div>
@@ -261,7 +261,7 @@ export default function Contact() {
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     className="flex-shrink-0">
                     <CaretDown
-                      weight="fill"
+                      weight="regular"
                       className={`h-4 w-4 transition-colors ${openFaq === idx ? 'text-sky-500' : 'text-slate-400'}`}
                     />
                   </motion.span>
@@ -319,7 +319,7 @@ export default function Contact() {
             whileHover={{ scale: 1.04, y: -3 }}
             whileTap={{ scale: 0.97 }}>
             Get Started Free
-            <ArrowRight weight="fill" className="h-4 w-4" />
+            <ArrowRight weight="regular" className="h-4 w-4" />
           </motion.a>
         </div>
       </section>

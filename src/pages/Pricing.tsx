@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Users, UserCircle } from '@phosphor-icons/react';
@@ -162,11 +162,11 @@ export default function Pricing() {
                 border: plan.featured ? '1px solid rgba(255,255,255,0.12)' : `1px solid ${plan.accentLight}`,
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                  <UserCircle weight="fill" style={{ width: 18, height: 18, color: plan.featured ? 'rgba(255,255,255,0.7)' : plan.accent, flexShrink: 0 }} />
+                  <UserCircle weight="regular" style={{ width: 18, height: 18, color: plan.featured ? 'rgba(255,255,255,0.7)' : plan.accent, flexShrink: 0 }} />
                   <span style={{ fontSize: 14, fontWeight: 700, color: plan.featured ? 'white' : '#0C1835' }}>{plan.admins}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <Users weight="fill" style={{ width: 18, height: 18, color: plan.featured ? 'rgba(255,255,255,0.7)' : plan.accent, flexShrink: 0 }} />
+                  <Users weight="regular" style={{ width: 18, height: 18, color: plan.featured ? 'rgba(255,255,255,0.7)' : plan.accent, flexShrink: 0 }} />
                   <span style={{ fontSize: 14, fontWeight: 700, color: plan.featured ? 'white' : '#0C1835' }}>{plan.staff}</span>
                 </div>
               </div>
@@ -176,7 +176,7 @@ export default function Pricing() {
                 {features.map(f => (
                   <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <CheckCircle
-                      weight="fill"
+                      weight="regular"
                       style={{ width: 18, height: 18, color: plan.featured ? '#818CF8' : plan.accent, flexShrink: 0 }}
                     />
                     <span style={{ fontSize: 14, color: plan.featured ? 'rgba(255,255,255,0.80)' : '#374151', fontWeight: 500 }}>{f}</span>
@@ -201,7 +201,7 @@ export default function Pricing() {
                       : `0 4px 14px ${plan.accent}35`,
                   }}
                 >
-                  Register <ArrowRight weight="bold" style={{ width: 15, height: 15 }} />
+                  Register <ArrowRight weight="regular" style={{ width: 15, height: 15 }} />
                 </Link>
               </motion.div>
             </div>

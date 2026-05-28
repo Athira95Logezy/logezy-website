@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   List, X, ArrowRight, CaretDown,
@@ -110,7 +110,7 @@ export default function Header() {
                   transition={{ duration: 0.2 }}
                   className={`inline-flex ${activeDropdown === 'product' ? 'text-blue-500' : 'text-slate-400'}`}
                 >
-                  <CaretDown weight="fill" className="h-3.5 w-3.5" />
+                  <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </motion.span>
               </button>
 
@@ -133,7 +133,7 @@ export default function Header() {
                         <Link key={label} to={to}
                           className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group">
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${color} group-hover:scale-110 transition-transform duration-200`}>
-                            <Icon weight="fill" className="h-3.5 w-3.5" />
+                            <Icon weight="regular" className="h-3.5 w-3.5" />
                           </div>
                           <div className="min-w-0">
                             <p className="text-xs font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight truncate">{label}</p>
@@ -147,7 +147,7 @@ export default function Header() {
                     <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between px-1">
                       <p className="text-xs text-slate-400">All features included in every plan</p>
                       <Link to="/features" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
-                        View all features <ArrowRight weight="fill" className="h-3 w-3" />
+                        View all features <ArrowRight weight="regular" className="h-3 w-3" />
                       </Link>
                     </div>
                   </motion.div>
@@ -168,7 +168,7 @@ export default function Header() {
                   transition={{ duration: 0.2 }}
                   className={`inline-flex ${activeDropdown === 'industries' ? 'text-blue-500' : 'text-slate-400'}`}
                 >
-                  <CaretDown weight="fill" className="h-3.5 w-3.5" />
+                  <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </motion.span>
               </button>
 
@@ -186,7 +186,7 @@ export default function Header() {
                       <Link key={label} to={to}
                         className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors group">
                         <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${color} group-hover:scale-110 transition-transform duration-200`}>
-                          <Icon weight="fill" className="h-4 w-4" />
+                          <Icon weight="regular" className="h-4 w-4" />
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{label}</p>
@@ -232,7 +232,7 @@ export default function Header() {
                 className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)] hover:shadow-[0_4px_16px_rgba(23,149,199,0.45)] transition-all duration-200"
               >
                 Book a Demo
-                <ArrowRight weight="fill" className="h-3.5 w-3.5" />
+                <ArrowRight weight="regular" className="h-3.5 w-3.5" />
               </Link>
             </motion.div>
           </div>
@@ -245,8 +245,8 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             {isMenuOpen
-              ? <X    weight="fill" className="h-5 w-5" />
-              : <List weight="fill" className="h-5 w-5" />
+              ? <X    weight="regular" className="h-5 w-5" />
+              : <List weight="regular" className="h-5 w-5" />
             }
           </motion.button>
         </div>
@@ -269,7 +269,7 @@ export default function Header() {
                   <motion.div key={to} custom={i} variants={mobileLinkVariants} initial="hidden" animate="show">
                     <Link to={to} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
                       <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
-                        <Icon weight="fill" className="h-3.5 w-3.5" />
+                        <Icon weight="regular" className="h-3.5 w-3.5" />
                       </div>
                       {label}
                     </Link>
@@ -282,7 +282,7 @@ export default function Header() {
                   <motion.div key={to} custom={productLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
                     <Link to={to} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
                       <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
-                        <Icon weight="fill" className="h-3.5 w-3.5" />
+                        <Icon weight="regular" className="h-3.5 w-3.5" />
                       </div>
                       {label}
                     </Link>
@@ -320,7 +320,7 @@ export default function Header() {
                       className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold py-3 px-5 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)]"
                     >
                       Book a Demo
-                      <ArrowRight weight="fill" className="h-4 w-4" />
+                      <ArrowRight weight="regular" className="h-4 w-4" />
                     </Link>
                   </motion.div>
                 </div>

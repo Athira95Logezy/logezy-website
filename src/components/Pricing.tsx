@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { CheckCircle, ArrowRight, Lightning, Buildings, Rocket } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -89,7 +89,7 @@ export default function Pricing() {
         <div className="text-center mb-14 sr">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold mb-5"
             style={{ background: 'rgba(23,149,199,0.15)', border: '1px solid rgba(23,149,199,0.28)', color: '#A8D8EE' }}>
-            <Lightning weight="fill" className="h-3 w-3" />
+            <Lightning weight="regular" className="h-3 w-3" />
             Pricing
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 leading-[1.06]"
@@ -156,7 +156,7 @@ export default function Pricing() {
               <div className="relative p-8 flex flex-col flex-1">
                 {/* Icon */}
                 <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${iconColor} flex items-center justify-center mb-5 shadow-lg flex-shrink-0`}>
-                  <Icon weight="fill" className="h-6 w-6 text-white" />
+                  <Icon weight="regular" className="h-6 w-6 text-white" />
                 </div>
 
                 <h3 className={`text-xl font-black mb-2 ${popular ? 'text-white' : 'text-white'}`}>{name}</h3>
@@ -191,7 +191,7 @@ export default function Pricing() {
                 <ul className="space-y-3 mb-8 flex-1">
                   {features.map(f => (
                     <li key={f} className="flex items-center gap-2.5 text-sm">
-                      <CheckCircle weight="fill" className={`h-4 w-4 flex-shrink-0 ${popular ? 'text-blue-200' : 'text-blue-500/70'}`} />
+                      <CheckCircle weight="regular" className={`h-4 w-4 flex-shrink-0 ${popular ? 'text-blue-200' : 'text-blue-500/70'}`} />
                       <span className={popular ? 'text-blue-50' : 'text-blue-100/75'}>{f}</span>
                     </li>
                   ))}
@@ -205,7 +205,7 @@ export default function Pricing() {
                       : 'text-white hover:bg-white/10 border border-white/15'
                   }`}>
                   {cta}
-                  <ArrowRight weight="fill" className="h-4 w-4" />
+                  <ArrowRight weight="regular" className="h-4 w-4" />
                 </Link>
               </div>
             </div>

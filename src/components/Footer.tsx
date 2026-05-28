@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Envelope, MapPin, Phone,
@@ -58,100 +58,6 @@ export default function Footer() {
       <div className="h-1 w-full"
         style={{ background: 'linear-gradient(90deg, #1795C7 0%, #183765 35%, #6366F1 65%, #1795C7 100%)' }} />
 
-      {/* ── CTA BANNER ── */}
-      <div className="relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #0C1640 0%, #183765 40%, #1795C7 100%)' }}>
-
-        {/* Subtle dot pattern */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.06]"
-          style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-        {/* Glow orbs */}
-        <div className="absolute -top-20 right-1/4 w-72 h-72 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(23,149,199,0.35) 0%, transparent 65%)', filter: 'blur(40px)' }} />
-        <div className="absolute -bottom-16 left-1/3 w-56 h-56 rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.35) 0%, transparent 65%)', filter: 'blur(35px)' }} />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-            {/* Left copy */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-5"
-                style={{ background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.18)', color: 'rgba(255,255,255,0.85)' }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Free 10-day trial · No commitment
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-black text-white leading-[1.08] mb-4"
-                style={{ letterSpacing: '-0.025em' }}>
-                Ready to run a more<br />
-                <span style={{ background: 'linear-gradient(135deg, #5EEAD4 0%, #38BDF8 50%, #818CF8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                  efficient temp agency?
-                </span>
-              </h2>
-              <p className="text-lg leading-relaxed mb-8 text-white/75">
-                Join the growing number of recruitment agencies using Logezy to automate their staffing operations, reduce admin, and place more workers — faster.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
-                  transition={{ type: 'spring', stiffness: 400 }}>
-                  <Link to="/contact"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-sm text-slate-900 transition-all duration-200"
-                    style={{ background: 'white', boxShadow: '0 4px 24px rgba(0,0,0,0.2)' }}>
-                    Start your 10-day free trial
-                    <ArrowRight weight="bold" className="h-4 w-4" />
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
-                  transition={{ type: 'spring', stiffness: 400 }}>
-                  <Link to="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl font-semibold text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
-                    style={{ border: '1px solid rgba(255,255,255,0.20)' }}>
-                    Book a demo
-                    <ArrowUpRight weight="bold" className="h-3.5 w-3.5" />
-                  </Link>
-                </motion.div>
-              </div>
-              <p className="mt-5 text-sm text-white/60">
-                No lengthy setup. No commitment. Full support from day one.
-              </p>
-            </motion.div>
-
-            {/* Right — stat cards */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-3"
-            >
-              {[
-                { icon: Shield,       value: 'GDPR',  label: 'Compliant',  gradient: 'from-cyan-400 to-blue-500'    },
-                { icon: CheckCircle,  value: 'CQC',   label: 'Ready',      gradient: 'from-emerald-400 to-teal-500' },
-                { icon: Star,         value: '4.9★',  label: 'App rating', gradient: 'from-amber-400 to-orange-500' },
-                { icon: Lightning,    value: '99.9%', label: 'Uptime SLA', gradient: 'from-violet-400 to-purple-500' },
-              ].map(({ icon: Icon, value, label, gradient }) => (
-                <motion.div key={label} variants={itemVariants}
-                  whileHover={{ y: -4, scale: 1.03 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="rounded-2xl p-5 cursor-default"
-                  style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)', backdropFilter: 'blur(8px)' }}>
-                  <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center mb-3 shadow-lg`}>
-                    <Icon weight="fill" className="h-4 w-4 text-white" />
-                  </div>
-                  <p className={`text-2xl font-black bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>{value}</p>
-                  <p className="text-xs mt-0.5 text-white/70">{label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
       {/* ── MAIN FOOTER ── */}
       <div style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
@@ -183,7 +89,7 @@ export default function Footer() {
                     whileHover={{ scale: 1.15, y: -2 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                     className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-200 ${bg} ${text} ${border}`}>
-                    <Icon weight="fill" className="h-3.5 w-3.5" />
+                    <Icon weight="regular" className="h-3.5 w-3.5" />
                   </motion.a>
                 ))}
               </div>
@@ -203,7 +109,7 @@ export default function Footer() {
                         className="text-sm text-slate-500 hover:text-blue-600 transition-colors duration-150 flex items-center gap-1 group"
                       >
                         <ArrowRight
-                          weight="bold"
+                          weight="regular"
                           className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-blue-500 transition-all duration-200"
                         />
                         {item.label}
@@ -227,7 +133,7 @@ export default function Footer() {
               className="flex items-center gap-2 group">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ background: 'linear-gradient(135deg, #1795C7, #183765)' }}>
-                <Envelope weight="fill" className="h-3 w-3 text-white" />
+                <Envelope weight="regular" className="h-3 w-3 text-white" />
               </div>
               <span className="text-sm text-slate-600 group-hover:text-blue-600 transition-colors font-medium">
                 info@logezy.co.uk
@@ -240,7 +146,7 @@ export default function Footer() {
               className="flex items-center gap-2 group">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ background: 'linear-gradient(135deg, #1795C7, #183765)' }}>
-                <Phone weight="fill" className="h-3 w-3 text-white" />
+                <Phone weight="regular" className="h-3 w-3 text-white" />
               </div>
               <span className="text-sm text-slate-600 group-hover:text-blue-600 transition-colors font-medium">
                 (0333) 006-2179
@@ -252,7 +158,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ background: 'linear-gradient(135deg, #1795C7, #183765)' }}>
-                <MapPin weight="fill" className="h-3 w-3 text-white" />
+                <MapPin weight="regular" className="h-3 w-3 text-white" />
               </div>
               <span className="text-sm text-slate-600">
                 Office 108, The Old Courthouse, 18-22 St Peter's Churchyard, Derby DE1 1NN

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { CaretDown, Question, ArrowRight, ChatCircle } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -63,7 +63,7 @@ export default function FAQ() {
             className="lg:col-span-2"
           >
             <div className="section-tag mb-5 inline-flex">
-              <Question weight="fill" className="h-3 w-3" />
+              <Question weight="regular" className="h-3 w-3" />
               FAQ
             </div>
             <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-5 leading-[1.08]"
@@ -77,7 +77,7 @@ export default function FAQ() {
             {/* CTA card */}
             <div className="rounded-2xl border border-slate-200 p-6 bg-slate-50">
               <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
-                <ChatCircle weight="fill" className="h-5 w-5 text-blue-600" />
+                <ChatCircle weight="regular" className="h-5 w-5 text-blue-600" />
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-2">Still have questions?</h3>
               <p className="text-sm text-slate-500 mb-4 leading-relaxed">
@@ -86,7 +86,7 @@ export default function FAQ() {
               <Link to="/contact"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 group">
                 Chat with us
-                <ArrowRight weight="fill" className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                <ArrowRight weight="regular" className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>
           </motion.div>
@@ -124,7 +124,7 @@ export default function FAQ() {
                         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                         className="inline-flex"
                       >
-                        <CaretDown weight="fill" className="h-4 w-4" />
+                        <CaretDown weight="regular" className="h-4 w-4" />
                       </motion.span>
                     </div>
                   </button>

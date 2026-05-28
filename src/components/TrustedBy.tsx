@@ -1,93 +1,123 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
+/* ─────────────────────────────────────────────
+   LOGO DATA
+───────────────────────────────────────────── */
 const logos = [
-  { src: '/medsolve.png',                 alt: 'Medsolve'            },
-  { src: '/ansacare_logo.webp',           alt: 'Ansacare'            },
-  { src: '/jayco_logo.png',              alt: 'Jayco'               },
-  { src: '/primcura_healthcare_logo.png', alt: 'Primcura Healthcare' },
-  { src: '/Leadcare_logo.png',           alt: 'Leadcare'            },
-  { src: '/annicare_uk.png',             alt: 'Annicare UK'         },
-  { src: '/ocean_logo.png',              alt: 'Ocean'               },
-  { src: '/Staffnursing_logo.png',       alt: 'Staff Nursing'       },
+  { src: '/medsolve.png',                 alt: 'Medsolve'       },
+  { src: '/ansacare_logo.webp',           alt: 'Ansacare'       },
+  { src: '/jayco_logo.png',               alt: 'Jayco'          },
+  { src: '/primcura_healthcare_logo.png', alt: 'Primcura'       },
+  { src: '/Leadcare_logo.png',            alt: 'Leadcare'       },
+  { src: '/annicare_uk.png',              alt: 'Annicare UK'    },
+  { src: '/ocean_logo.png',               alt: 'Ocean'          },
+  { src: '/Staffnursing_logo.png',        alt: 'Staff Nursing'  },
 ];
 
+const LOGO_SLOT = 148;
+const GAP       = 36;
+const TRACK_W   = (LOGO_SLOT + GAP) * logos.length;
+const tripled   = [...logos, ...logos, ...logos];
+
+/* ─────────────────────────────────────────────
+   SECTION — light theme
+───────────────────────────────────────────── */
 export default function TrustedBy() {
-  const trackRef      = useRef<HTMLDivElement>(null);
-  const containerRef  = useRef<HTMLDivElement>(null);
-  const [dist, setDist] = useState(0);
-
-  useEffect(() => {
-    function measure() {
-      if (trackRef.current && containerRef.current) {
-        const trackW = trackRef.current.scrollWidth;
-        const contW  = containerRef.current.offsetWidth;
-        setDist(Math.max(0, trackW - contW + 40)); // +40 so last logo fully visible
-      }
-    }
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
-
   return (
     <section style={{
-      background: '#0C1835',
-      padding: '52px 0',
-      borderBottom: '1px solid rgba(255,255,255,0.06)',
+      background: 'linear-gradient(160deg, #F8FAFF 0%, #FFFFFF 50%, #F0F4FF 100%)',
       overflow: 'hidden',
+      position: 'relative',
+      padding: '48px 0 52px',
+      borderTop: '1px solid rgba(99,102,241,0.10)',
+      borderBottom: '1px solid rgba(99,102,241,0.10)',
     }}>
-      {/* Label */}
-      <motion.p
-        initial={{ opacity: 0, y: 8 }}
+
+      {/* Subtle ambient glow */}
+      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 120, background: 'radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }} />
+
+      {/* Section label */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        style={{
-          textAlign: 'center',
-          fontSize: 11, fontWeight: 700,
-          color: 'rgba(255,255,255,0.30)',
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase' as const,
-          marginBottom: 36,
-        }}
+        style={{ textAlign: 'center', marginBottom: 28 }}
       >
-        Trusted by leading UK staffing &amp; healthcare agencies
-      </motion.p>
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', gap: 7,
+          fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
+          textTransform: 'uppercase', color: '#6366F1',
+          userSelect: 'none',
+        }}>
+          <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'rgba(99,102,241,0.35)', borderRadius: 2 }} />
+          Trusted by UK staffing agencies
+          <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'rgba(99,102,241,0.35)', borderRadius: 2 }} />
+        </span>
+      </motion.div>
 
-      {/* Scrolling strip — 8 logos only, no duplication */}
-      <div ref={containerRef} style={{ overflow: 'hidden', padding: '0 40px' }}>
+      {/* Scrolling track wrapper */}
+      <div style={{ position: 'relative', overflow: 'hidden' }}>
+
+        {/* Left fade */}
+        <div style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, width: 140,
+          background: 'linear-gradient(90deg, #F8FAFF 0%, transparent 100%)',
+          zIndex: 2, pointerEvents: 'none',
+        }} />
+        {/* Right fade */}
+        <div style={{
+          position: 'absolute', right: 0, top: 0, bottom: 0, width: 140,
+          background: 'linear-gradient(-90deg, #F8FAFF 0%, transparent 100%)',
+          zIndex: 2, pointerEvents: 'none',
+        }} />
+
+        {/* Marquee track */}
         <motion.div
-          ref={trackRef}
-          style={{ display: 'flex', alignItems: 'center', gap: 56, width: 'max-content' }}
-          animate={dist > 0 ? { x: [0, -dist] } : {}}
-          transition={{
-            duration: 18,
-            ease: 'easeInOut',
-            repeat: Infinity,
-            repeatType: 'mirror',
+          animate={{ x: [0, -TRACK_W] }}
+          transition={{ duration: 34, repeat: Infinity, ease: 'linear' }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: GAP,
+            width: 'max-content',
+            padding: '6px 0',
           }}
         >
-          {logos.map((logo, i) => (
-            <div key={i} style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {tripled.map((logo, i) => (
+            <div
+              key={`${logo.alt}-${i}`}
+              style={{
+                flexShrink: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: LOGO_SLOT,
+              }}
+            >
               <img
                 src={logo.src}
                 alt={logo.alt}
                 style={{
-                  height: 38,
+                  maxHeight: 44,
                   width: 'auto',
-                  maxWidth: 130,
+                  maxWidth: LOGO_SLOT,
                   objectFit: 'contain',
-                  filter: 'brightness(0) invert(1)',
-                  opacity: 0.75,
+                  opacity: 1,
+                  filter: 'none',
                   userSelect: 'none',
-                  draggable: false,
+                  pointerEvents: 'none',
+                  transition: 'opacity 0.2s, transform 0.2s',
+                  display: 'block',
                 } as React.CSSProperties}
+                draggable={false}
               />
             </div>
           ))}
         </motion.div>
       </div>
+
     </section>
   );
 }
