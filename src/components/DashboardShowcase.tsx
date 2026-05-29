@@ -102,11 +102,13 @@ interface PhoneProps {
   width: number; posStyle: React.CSSProperties;
   rotate: number; delay: number;
   floatY: number; floatDur: number; floatDelay?: number;
+  highlight?: boolean;
 }
 function PhoneScreen({
   src, label, labelColor, labelBg,
   width, posStyle, rotate, delay,
   floatY, floatDur, floatDelay = 0,
+  highlight = false,
 }: PhoneProps) {
   return (
     <motion.div
@@ -114,34 +116,38 @@ function PhoneScreen({
       whileInView={{ opacity:1, scale:1, y:0 }}
       viewport={{ once:true }}
       transition={{ duration:0.68, delay, ease:EASE }}
-      style={{ position:'absolute', ...posStyle, width, rotate, zIndex:5, pointerEvents:'none' }}
+      style={{ position:'absolute', ...posStyle, width, rotate, zIndex: highlight ? 6 : 5, pointerEvents:'none' }}
     >
       {/* label chip */}
-      <div style={{ display:'flex', justifyContent:'center', marginBottom:6 }}>
+      <div style={{ display:'flex', justifyContent:'center', marginBottom:7 }}>
         <div style={{
-          fontSize:9, fontWeight:800, padding:'3px 10px', borderRadius:20,
+          fontSize:9.5, fontWeight:800, padding:'4px 12px', borderRadius:20,
           background: labelBg, color: labelColor,
-          border:`1px solid ${labelColor}40`,
+          border:`1px solid ${labelColor}55`,
           letterSpacing:'0.09em', textTransform:'uppercase' as const,
+          boxShadow: highlight ? `0 0 14px ${labelColor}50` : 'none',
         }}>{label}</div>
       </div>
-      {/* phone — thin realistic bezel, no heavy frame */}
+      {/* phone — thin realistic bezel */}
       <motion.div
         animate={{ y:[0, floatY, 0] }}
         transition={{ delay:floatDelay, duration:floatDur, repeat:Infinity, ease:'easeInOut' }}
         style={{
-          borderRadius:28,
+          borderRadius:32,
           overflow:'hidden',
-          border:'1.5px solid rgba(255,255,255,0.18)',
-          boxShadow:[
+          border: highlight ? `2px solid ${labelColor}80` : '1.5px solid rgba(255,255,255,0.18)',
+          boxShadow: highlight ? [
+            `0 0 0 4px ${labelColor}25`,
+            `0 0 48px ${labelColor}50`,
+            '0 32px 72px rgba(0,0,0,0.60)',
+            '0 8px 24px rgba(0,0,0,0.40)',
+          ].join(', ') : [
             '0 28px 64px rgba(0,0,0,0.55)',
             '0 6px 20px rgba(0,0,0,0.35)',
-            'inset 0 0 0 1px rgba(255,255,255,0.06)',
           ].join(', '),
         }}
       >
-        <img src={src} alt={label}
-          style={{ width:'100%', display:'block' }} />
+        <img src={src} alt={label} style={{ width:'100%', display:'block' }} />
       </motion.div>
     </motion.div>
   );
@@ -277,27 +283,27 @@ export default function DashboardShowcase() {
           </motion.div>
 
           {/* ════ RIGHT: floating screens ════ */}
-          <div style={{ flex:1, position:'relative', height:580, minWidth:0 }}>
+          <div style={{ flex:1, position:'relative', height:640, minWidth:0 }}>
 
-            {/* ── Timesheets — top left, small ── */}
+            {/* ── Timesheets — top-left, orbiting ── */}
             <FloatingScreen
               src="/image_01.png" label="Timesheets"
               labelColor="#34D399" labelBg="rgba(52,211,153,0.15)"
-              width={188} posStyle={{ top:0, left:0 }}
-              rotate={-7} delay={0.55}
+              width={162} posStyle={{ top:10, left:4 }}
+              rotate={-8} delay={0.55}
               floatY={-10} floatDur={5.4} floatDelay={0.9}
             />
 
-            {/* ── Reports — top right, small ── */}
+            {/* ── Reports — top-right, orbiting ── */}
             <FloatingScreen
               src="/reports.png" label="Reports"
               labelColor="#A78BFA" labelBg="rgba(167,139,250,0.15)"
-              width={200} posStyle={{ top:0, right:0 }}
-              rotate={6} delay={0.45}
+              width={168} posStyle={{ top:10, right:0 }}
+              rotate={7} delay={0.45}
               floatY={-9} floatDur={5.8} floatDelay={1.3}
             />
 
-            {/* ── MAIN: Schedule — big, centred ── */}
+            {/* ── MAIN: Schedule — BIG, centred, highlighted ── */}
             <motion.div
               initial={{ opacity:0, y:50, scale:0.93 }}
               whileInView={{ opacity:1, y:0, scale:1 }}
@@ -305,29 +311,30 @@ export default function DashboardShowcase() {
               transition={{ duration:0.90, delay:0.12, ease:EASE }}
               style={{
                 position:'absolute',
-                left:'50%', top:'50%',
+                left:'50%', top:'48%',
                 transform:'translate(-50%, -50%)',
-                width:530, zIndex:3,
+                width:610, zIndex:3,
               }}
             >
-              {/* halo */}
+              {/* broad halo glow */}
               <div style={{
-                position:'absolute', top:-70, left:'5%', right:'5%', height:140,
-                background:'radial-gradient(ellipse, rgba(35,153,202,0.40) 0%, transparent 70%)',
-                filter:'blur(44px)', pointerEvents:'none', zIndex:-1,
+                position:'absolute', top:-80, left:'-5%', right:'-5%', height:160,
+                background:'radial-gradient(ellipse, rgba(35,153,202,0.50) 0%, transparent 70%)',
+                filter:'blur(50px)', pointerEvents:'none', zIndex:-1,
               }} />
 
               <motion.div
-                animate={{ y:[0,-12,0] }}
+                animate={{ y:[0,-10,0] }}
                 transition={{ duration:6.5, repeat:Infinity, ease:'easeInOut' }}
                 style={{
-                  borderRadius:18, overflow:'hidden',
-                  border:'1px solid rgba(255,255,255,0.14)',
+                  borderRadius:20, overflow:'hidden',
+                  /* highlighted ring + glow */
+                  border:'2px solid rgba(35,153,202,0.60)',
                   boxShadow:[
+                    '0 0 0 4px rgba(35,153,202,0.20)',
+                    '0 0 60px rgba(35,153,202,0.45)',
                     '0 48px 110px rgba(0,0,0,0.65)',
                     '0 16px 48px rgba(0,0,0,0.40)',
-                    '0 0 0 1px rgba(35,153,202,0.25)',
-                    '0 0 70px rgba(35,153,202,0.15)',
                   ].join(', '),
                 }}
               >
@@ -349,22 +356,23 @@ export default function DashboardShowcase() {
               </div>
             </motion.div>
 
-            {/* ── Invoices — bottom right, small ── */}
+            {/* ── Invoices — bottom-right, orbiting ── */}
             <FloatingScreen
               src="/image_00.png" label="Invoices"
               labelColor="#FBBF24" labelBg="rgba(251,191,36,0.15)"
-              width={192} posStyle={{ bottom:16, right:8 }}
-              rotate={-5} delay={0.68}
+              width={165} posStyle={{ bottom:28, right:4 }}
+              rotate={-6} delay={0.68}
               floatY={-8} floatDur={4.9} floatDelay={0.5}
             />
 
-            {/* ── Availability — mobile phone, bottom left ── */}
+            {/* ── Availability — mobile, bottom-left, HIGHLIGHTED ── */}
             <PhoneScreen
               src="/Avilability.jpeg" label="Availability"
-              labelColor="#38BDF8" labelBg="rgba(56,189,248,0.15)"
-              width={158} posStyle={{ bottom:10, left:4 }}
-              rotate={7} delay={0.72}
-              floatY={-9} floatDur={5.2} floatDelay={1.0}
+              labelColor="#38BDF8" labelBg="rgba(56,189,248,0.18)"
+              width={205} posStyle={{ bottom:18, left:0 }}
+              rotate={5} delay={0.60}
+              floatY={-11} floatDur={5.2} floatDelay={0.8}
+              highlight
             />
 
           </div>
