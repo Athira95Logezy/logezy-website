@@ -1,20 +1,20 @@
 /**
- * IndustrySolutions.tsx — Animated horizontal rows · Light theme
+ * IndustrySolutions.tsx — Service cards grid + sticky description panel
  *
- * Three full-width industry strips stacked vertically.
- * Each strip: number + floating icon | headline + inline bullets | animated stat | CTA
- * Hover: coloured bg wipes in from left, icon bounces, bullets glow.
- * Entrance: alternating slide-in from left/right.
- * Stat: counts up when row enters the viewport.
+ * Layout
+ * ──────
+ * Left : 2-col card grid (6 industry verticals)
+ * Right: sticky panel — heading · description · CTA (watermark behind)
+ *
+ * Style reference: white shadow cards on light bg, coloured icon containers,
+ * decorative blob on each card, SVG underline accent on heading, pill CTA.
  */
 
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import {
-  Heartbeat, Briefcase, Users,
-  Buildings, ArrowUpRight, CheckCircle,
-  Shield, Clock, CalendarBlank, FileText,
-  Bell, MapPin, ChartBar,
+  Heartbeat, Shield, Briefcase, Bell,
+  Users, ChartBar, Buildings, ArrowRight,
 } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
@@ -23,227 +23,132 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 /* ─────────────────────────────────────────────
    DATA
 ───────────────────────────────────────────── */
-const industries = [
+const cards = [
   {
-    id: 'healthcare', slug: '/industries/healthcare',
-    num: '01', icon: Heartbeat, label: 'Healthcare',
-    color: '#F43F5E', colorBg: 'rgba(244,63,94,0.07)', colorBorder: 'rgba(244,63,94,0.18)',
-    stat: 98, suffix: '%', statLabel: 'compliance rate',
-    headline: 'The right staff, compliantly placed — every time',
-    bullets: ['NMC / HCPC & DBS automation', 'CQC-ready compliance logs', 'GPS clock-in for lone workers'],
-    tags: [Shield, Clock, MapPin, FileText],
+    id: 'healthcare',
+    icon: Heartbeat,
+    label: 'Healthcare Staffing',
+    desc: 'NMC & HCPC compliant placements for hospitals, clinics and NHS trusts.',
+    color: '#F43F5E',
+    light: '#FFF1F3',
+    blob: 'rgba(244,63,94,0.08)',
   },
   {
-    id: 'hospitality', slug: '/industries/hospitality',
-    num: '02', icon: Briefcase, label: 'Hospitality',
-    color: '#F59E0B', colorBg: 'rgba(245,158,11,0.07)', colorBorder: 'rgba(245,158,11,0.20)',
-    stat: 3, suffix: '×', statLabel: 'faster shift fill',
-    headline: 'Fill every shift in seconds — even last minute',
-    bullets: ['Multi-venue scheduling', 'Instant shift fill & alerts', 'Auto invoicing per venue'],
-    tags: [CalendarBlank, Bell, FileText, ChartBar],
+    id: 'care',
+    icon: Shield,
+    label: 'Nursing & Care',
+    desc: 'End-to-end rostering for care homes and lone workers with GPS clock-in.',
+    color: '#10B981',
+    light: '#ECFDF5',
+    blob: 'rgba(16,185,129,0.08)',
   },
   {
-    id: 'education', slug: '/industries/education',
-    num: '03', icon: Users, label: 'Education',
-    color: '#8B5CF6', colorBg: 'rgba(139,92,246,0.07)', colorBorder: 'rgba(139,92,246,0.18)',
-    stat: 60, suffix: '%', statLabel: 'faster bookings',
-    headline: 'Same-day placements without the paperwork headache',
-    bullets: ['DBS & safeguarding checks', 'AWR-compliant payroll', 'School portal with live visibility'],
-    tags: [Shield, CalendarBlank, Bell, Clock],
+    id: 'hotels',
+    icon: Briefcase,
+    label: 'Hotels & Resorts',
+    desc: 'Multi-venue shift scheduling that fills every rota in seconds.',
+    color: '#F59E0B',
+    light: '#FFFBEB',
+    blob: 'rgba(245,158,11,0.08)',
   },
-];
+  {
+    id: 'events',
+    icon: Bell,
+    label: 'Events & Catering',
+    desc: 'Last-minute shift alerts and auto-invoicing per client or event.',
+    color: '#F97316',
+    light: '#FFF7ED',
+    blob: 'rgba(249,115,22,0.08)',
+  },
+  {
+    id: 'schools',
+    icon: Users,
+    label: 'Schools & Academies',
+    desc: 'Same-day cover teachers with DBS and safeguarding automation built in.',
+    color: '#8B5CF6',
+    light: '#F5F3FF',
+    blob: 'rgba(139,92,246,0.08)',
+  },
+  {
+    id: 'tutoring',
+    icon: ChartBar,
+    label: 'Tutoring & SEN',
+    desc: 'AWR-compliant payroll and a school portal with live booking visibility.',
+    color: '#3B82F6',
+    light: '#EFF6FF',
+    blob: 'rgba(59,130,246,0.08)',
+  },
+] as const;
 
-type Ind = typeof industries[0];
+type Card = typeof cards[number];
 
 
 /* ─────────────────────────────────────────────
-   ANIMATED COUNTER
+   INDUSTRY CARD
 ───────────────────────────────────────────── */
-function Counter({ target, suffix, color, inView }: { target: number; suffix: string; color: string; inView: boolean }) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    setVal(0);
-    const duration = 1200;
-    const steps = 40;
-    const inc = target / steps;
-    let cur = 0;
-    const id = setInterval(() => {
-      cur += inc;
-      if (cur >= target) { setVal(target); clearInterval(id); }
-      else setVal(Math.round(cur));
-    }, duration / steps);
-    return () => clearInterval(id);
-  }, [inView, target]);
-
-  return (
-    <span style={{ fontSize: 52, fontWeight: 900, color, lineHeight: 1, letterSpacing: '-0.04em' }}>
-      {val}{suffix}
-    </span>
-  );
-}
-
-
-/* ─────────────────────────────────────────────
-   DIVIDER
-───────────────────────────────────────────── */
-function Divider() {
-  return (
-    <div style={{
-      height: 1,
-      background: 'linear-gradient(90deg, transparent, rgba(203,213,225,0.6) 20%, rgba(203,213,225,0.6) 80%, transparent)',
-    }} />
-  );
-}
-
-
-/* ─────────────────────────────────────────────
-   INDUSTRY ROW
-───────────────────────────────────────────── */
-function IndustryRow({ ind, index }: { ind: Ind; index: number }) {
-  const rowRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(rowRef as React.RefObject<Element>, { once: true, margin: '-80px' });
-  const [hovered, setHovered] = useState(false);
-
+function IndustryCard({ card, index }: { card: Card; index: number }) {
   return (
     <motion.div
-      ref={rowRef}
-      initial={{ opacity: 0, x: index % 2 === 0 ? -48 : 48 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.65, delay: index * 0.10, ease: EASE }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ position: 'relative', overflow: 'hidden', cursor: 'default' }}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: EASE }}
+      whileHover={{ y: -7, transition: { duration: 0.28, ease: EASE } }}
+      style={{
+        background: '#FFFFFF',
+        borderRadius: 22,
+        padding: '32px 28px 30px',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.06), 0 1px 6px rgba(0,0,0,0.04)',
+        cursor: 'default',
+        position: 'relative',
+        overflow: 'hidden',
+        /* hover shadow handled by CSS transition below */
+        transition: 'box-shadow 0.28s ease',
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLElement).style.boxShadow =
+          `0 20px 52px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06), 0 0 0 1.5px ${card.color}22`;
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLElement).style.boxShadow =
+          '0 4px 24px rgba(0,0,0,0.06), 0 1px 6px rgba(0,0,0,0.04)';
+      }}
     >
-      {/* ── hover bg wipe (left → right) ── */}
-      <motion.div
-        animate={{ scaleX: hovered ? 1 : 0 }}
-        transition={{ duration: 0.38, ease: EASE }}
-        style={{
-          position: 'absolute', inset: 0,
-          background: ind.colorBg,
-          transformOrigin: 'left center',
-          pointerEvents: 'none', zIndex: 0,
-        }}
-      />
-
-      {/* ── row content ── */}
+      {/* ── decorative blob (top-right) ── */}
       <div style={{
-        position: 'relative', zIndex: 1,
-        display: 'flex', alignItems: 'center',
-        gap: 0, padding: '36px 40px',
+        position: 'absolute', top: -28, right: -28,
+        width: 110, height: 110, borderRadius: '50%',
+        background: card.blob,
+        pointerEvents: 'none',
+      }} />
+
+      {/* ── icon container ── */}
+      <div style={{
+        width: 70, height: 70, borderRadius: 20,
+        background: card.light,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        marginBottom: 22,
+        position: 'relative',
       }}>
-
-        {/* ── LEFT: number + icon + label ── */}
-        <div style={{
-          flexShrink: 0, width: 160,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
-          paddingRight: 40,
-          borderRight: `1px solid ${ind.colorBorder}`,
-        }}>
-          <span style={{
-            fontSize: 11, fontWeight: 900, letterSpacing: '0.14em',
-            color: ind.color, opacity: 0.6,
-          }}>{ind.num}</span>
-
-          {/* floating icon */}
-          <motion.div
-            animate={hovered
-              ? { y: [-4, 4, -4], scale: 1.12, rotate: 6 }
-              : { y: 0, scale: 1, rotate: 0 }}
-            transition={hovered
-              ? { y: { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }, scale: { duration: 0.3 }, rotate: { duration: 0.3 } }
-              : { duration: 0.35 }}
-            style={{
-              width: 82, height: 82, borderRadius: 22, flexShrink: 0,
-              background: `linear-gradient(135deg, ${ind.color}22, ${ind.color}0D)`,
-              border: `2px solid ${ind.colorBorder}`,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: hovered ? `0 14px 36px ${ind.color}35` : 'none',
-              transition: 'box-shadow 0.3s',
-            }}
-          >
-            <ind.icon weight="regular" size={38} style={{ color: ind.color }} />
-          </motion.div>
-
-          <span style={{ fontSize: 14, fontWeight: 800, color: '#0F172A', letterSpacing: '0.01em' }}>{ind.label}</span>
-
-          {/* mini feature icons */}
-          <div style={{ display: 'flex', gap: 5, marginTop: 2 }}>
-            {ind.tags.map((Icon, i) => (
-              <motion.div
-                key={i}
-                animate={{ scale: hovered ? 1.15 : 1 }}
-                transition={{ delay: i * 0.04, duration: 0.22 }}
-                style={{
-                  width: 26, height: 26, borderRadius: 7,
-                  background: hovered ? `${ind.color}18` : 'rgba(241,245,249,0.8)',
-                  border: `1px solid ${hovered ? ind.colorBorder : 'rgba(226,232,240,0.8)'}`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: 'background 0.25s, border-color 0.25s',
-                }}
-              >
-                <Icon weight="regular" size={12} style={{ color: hovered ? ind.color : '#94A3B8' }} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── CENTRE: headline + bullets ── */}
-        <div style={{ flex: 1, paddingLeft: 40, paddingRight: 40 }}>
-          <h3 style={{
-            fontSize: 'clamp(1.2rem, 1.9vw, 1.5rem)',
-            fontWeight: 800, color: '#0F172A',
-            letterSpacing: '-0.03em', lineHeight: 1.25,
-            marginBottom: 16,
-          }}>{ind.headline}</h3>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {ind.bullets.map((b, i) => (
-              <motion.div
-                key={b}
-                animate={{ x: hovered ? 4 : 0 }}
-                transition={{ delay: i * 0.05, duration: 0.22 }}
-                style={{ display: 'flex', alignItems: 'center', gap: 9 }}
-              >
-                <CheckCircle
-                  weight="fill" size={15}
-                  style={{ color: ind.color, flexShrink: 0, opacity: hovered ? 1 : 0.7, transition: 'opacity 0.2s' }}
-                />
-                <span style={{ fontSize: 14.5, fontWeight: 500, color: hovered ? '#1E293B' : '#64748B', transition: 'color 0.2s' }}>{b}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── RIGHT: animated stat + CTA ── */}
-        <div style={{
-          flexShrink: 0, width: 180,
-          paddingLeft: 40,
-          borderLeft: `1px solid ${ind.colorBorder}`,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-        }}>
-          <Counter target={ind.stat} suffix={ind.suffix} color={ind.color} inView={inView} />
-          <span style={{ fontSize: 11.5, color: '#94A3B8', fontWeight: 500, marginBottom: 16 }}>{ind.statLabel}</span>
-
-          <Link
-            to={ind.slug}
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              padding: '9px 20px', borderRadius: 10,
-              background: hovered ? ind.color : 'transparent',
-              border: `1.5px solid ${ind.color}`,
-              color: hovered ? '#fff' : ind.color,
-              fontSize: 13, fontWeight: 700, textDecoration: 'none',
-              transition: 'background 0.25s, color 0.25s',
-            }}
-          >
-            Explore
-            <ArrowUpRight weight="bold" size={13} />
-          </Link>
-        </div>
-
+        <card.icon weight="regular" size={36} style={{ color: card.color }} />
       </div>
+
+      {/* ── label ── */}
+      <h3 style={{
+        fontSize: 16.5, fontWeight: 800, color: '#0F172A',
+        letterSpacing: '-0.025em', lineHeight: 1.25,
+        marginBottom: 10,
+      }}>
+        {card.label}
+      </h3>
+
+      {/* ── description ── */}
+      <p style={{
+        fontSize: 13.5, color: '#64748B',
+        lineHeight: 1.65, margin: 0,
+      }}>
+        {card.desc}
+      </p>
     </motion.div>
   );
 }
@@ -255,67 +160,155 @@ function IndustryRow({ ind, index }: { ind: Ind; index: number }) {
 export default function IndustrySolutions() {
   return (
     <section style={{
-      position: 'relative', overflow: 'hidden',
-      background: '#FFFFFF',
-      padding: '100px 0 112px',
+      background: '#F7F6FF',
+      padding: '108px 0 120px',
+      overflow: 'hidden',
+      position: 'relative',
     }}>
 
-      {/* ── top + bottom subtle stripe ── */}
-      <div style={{ position:'absolute', top:0, left:0, right:0, height:1, background:'linear-gradient(90deg,transparent,rgba(203,213,225,0.5),transparent)' }} />
-      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:1, background:'linear-gradient(90deg,transparent,rgba(203,213,225,0.5),transparent)' }} />
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px' }}>
 
-      <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 48px' }}>
+        {/* ── flex row: cards | panel ── */}
+        <div style={{
+          display: 'flex',
+          gap: 72,
+          alignItems: 'flex-start',
+        }}>
 
-        {/* ── HEADER ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.60, ease: EASE }}
-          style={{ marginBottom: 60 }}
-        >
+          {/* ════ LEFT: 2-col card grid ════ */}
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 7,
-            padding: '5px 16px 5px 11px', borderRadius: 100,
-            background: 'rgba(99,102,241,0.07)', border: '1px solid rgba(99,102,241,0.18)',
-            marginBottom: 20,
+            flex: 1,
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 20,
           }}>
-            <Buildings weight="regular" size={13} style={{ color: '#6366F1' }} />
-            <span style={{ fontSize: 10.5, fontWeight: 800, color: '#6366F1', letterSpacing: '0.11em', textTransform: 'uppercase' as const }}>Industry Solutions</span>
+            {cards.map((card, i) => (
+              <IndustryCard key={card.id} card={card} index={i} />
+            ))}
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
-            <h2 style={{
-              fontSize: 'clamp(2rem, 3.5vw, 3.2rem)',
-              fontWeight: 900, color: '#0F172A',
-              letterSpacing: '-0.045em', lineHeight: 1.08, margin: 0,
+          {/* ════ RIGHT: description panel (sticky) ════ */}
+          <div style={{
+            width: 380, flexShrink: 0,
+            position: 'sticky', top: 100,
+            paddingTop: 8,
+          }}>
+
+            {/* watermark */}
+            <div style={{
+              position: 'absolute',
+              top: -30, left: -50,
+              fontSize: 130, fontWeight: 900,
+              color: 'rgba(99,102,241,0.055)',
+              letterSpacing: '-0.06em',
+              lineHeight: 1,
+              userSelect: 'none',
+              pointerEvents: 'none',
+              whiteSpace: 'nowrap',
             }}>
-              Built for every sector{' '}
-              <span style={{
-                background: 'linear-gradient(125deg, #F43F5E 0%, #F59E0B 50%, #8B5CF6 100%)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              }}>that never slows down</span>
-            </h2>
-            <p style={{ fontSize: 15.5, color: '#64748B', maxWidth: 340, lineHeight: 1.72, margin: 0 }}>
-              Tailored tools for healthcare, hospitality, and education agencies.
-            </p>
-          </div>
-        </motion.div>
-
-      </div>
-
-      {/* ── ROWS — full bleed so hover bg goes edge-to-edge ── */}
-      <div style={{ borderTop: '1px solid rgba(226,232,240,0.7)', borderBottom: '1px solid rgba(226,232,240,0.7)' }}>
-        {industries.map((ind, i) => (
-          <React.Fragment key={ind.id}>
-            {i > 0 && <Divider />}
-            <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 48px' }}>
-              <IndustryRow ind={ind} index={i} />
+              Industries
             </div>
-          </React.Fragment>
-        ))}
-      </div>
 
+            <motion.div
+              initial={{ opacity: 0, x: 36 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.70, delay: 0.18, ease: EASE }}
+              style={{ position: 'relative', zIndex: 1 }}
+            >
+
+              {/* badge */}
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 7,
+                padding: '5px 16px 5px 11px', borderRadius: 100,
+                background: 'rgba(99,102,241,0.08)',
+                border: '1px solid rgba(99,102,241,0.18)',
+                marginBottom: 22,
+              }}>
+                <Buildings weight="regular" size={13} style={{ color: '#6366F1' }} />
+                <span style={{
+                  fontSize: 10.5, fontWeight: 800,
+                  color: '#6366F1', letterSpacing: '0.11em',
+                  textTransform: 'uppercase' as const,
+                }}>Industry Solutions</span>
+              </div>
+
+              {/* heading + underline accent */}
+              <h2 style={{
+                fontSize: 'clamp(2rem, 3vw, 2.8rem)',
+                fontWeight: 900, color: '#0F172A',
+                letterSpacing: '-0.045em', lineHeight: 1.1,
+                marginBottom: 22,
+              }}>
+                Industries{' '}
+                <span style={{ position: 'relative', display: 'inline-block' }}>
+                  We Serve
+                  <svg
+                    viewBox="0 0 130 14"
+                    style={{
+                      position: 'absolute', bottom: -8, left: 0,
+                      width: '100%', height: 12,
+                      overflow: 'visible',
+                    }}
+                  >
+                    <path
+                      d="M3 9 Q65 2 127 9"
+                      stroke="#F59E0B"
+                      strokeWidth="3.5"
+                      fill="none"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+              </h2>
+
+              {/* description */}
+              <p style={{
+                fontSize: 15.5, color: '#64748B',
+                lineHeight: 1.78, marginBottom: 24,
+              }}>
+                We've built Logezy to handle the complexity of UK staffing agencies — helping teams reduce admin, stay compliant, and fill shifts faster across every sector.
+              </p>
+
+              {/* interest link */}
+              <p style={{
+                fontSize: 14, color: '#6366F1',
+                fontWeight: 600, marginBottom: 36,
+              }}>
+                Interested? Let's explore your sector →
+              </p>
+
+              {/* CTA button */}
+              <Link
+                to="/contact"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 10,
+                  padding: '14px 34px', borderRadius: 100,
+                  background: 'linear-gradient(135deg, #F43F5E 0%, #F97316 100%)',
+                  color: '#fff', fontSize: 15, fontWeight: 700,
+                  textDecoration: 'none',
+                  boxShadow: '0 8px 28px rgba(244,63,94,0.28)',
+                  transition: 'transform 0.22s, box-shadow 0.22s',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 14px 36px rgba(244,63,94,0.38)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
+                  (e.currentTarget as HTMLElement).style.boxShadow = '0 8px 28px rgba(244,63,94,0.28)';
+                }}
+              >
+                Book a Demo
+                <ArrowRight weight="bold" size={16} />
+              </Link>
+
+            </motion.div>
+          </div>
+          {/* end right panel */}
+
+        </div>
+      </div>
     </section>
   );
 }
