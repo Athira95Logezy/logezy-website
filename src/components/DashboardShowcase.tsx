@@ -1,110 +1,102 @@
 /**
- * DashboardShowcase.tsx — Product Tour
+ * DashboardShowcase.tsx — Product Tour (v2)
  *
  * Layout
  * ──────
- * • Dark navy section
- * • Header: badge · H2 · subtitle
- * • Showcase: Schedule screen (BIG, centred, browser chrome)
- *             + 3 small floating screens around it:
- *               Timesheets (top-left) · Reports (top-right) · Invoices (bottom-right)
- * • Feature chips + CTA below
+ * Left  : Trustpilot badge · headline · description · CTA buttons · feature pills
+ * Right : Main schedule screen (large, floating) + 3 smaller overlapping screens
+ *
+ * Background: linear-gradient(135deg, #183765 → #2399CA)
+ * Reference-inspired split-hero with overlapping dashboard mockups.
  */
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CalendarBlank, Clock, ChartBar, FileText, ArrowRight, Desktop } from '@phosphor-icons/react';
+import {
+  CalendarBlank, Clock, ChartBar, FileText,
+  ArrowRight, Star, CheckCircle,
+} from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /* ─────────────────────────────────────────────
-   MINI CHROME BAR  (used on both big + small)
+   MINI CHROME BAR
 ───────────────────────────────────────────── */
-function ChromeBar({ url, size = 'sm' }: { url?: string; size?: 'sm' | 'lg' }) {
-  const h  = size === 'lg' ? 38 : 24;
-  const d  = size === 'lg' ? 10  : 6;
-  const fs = size === 'lg' ? 10  : 8.5;
-  const r  = size === 'lg' ? 8   : 5;
+function ChromeBar({ size = 'sm' }: { size?: 'sm' | 'lg' }) {
+  const h = size === 'lg' ? 36 : 22;
+  const d = size === 'lg' ? 9  : 6;
+  const gap = size === 'lg' ? 6 : 4;
+  const px  = size === 'lg' ? 14 : 9;
   return (
     <div style={{
-      height: h, background: '#0D1526',
+      height: h,
+      background: 'rgba(10,20,50,0.55)',
       display: 'flex', alignItems: 'center',
-      padding: `0 ${size === 'lg' ? 14 : 9}px`, gap: size === 'lg' ? 6 : 4,
+      padding: `0 ${px}px`, gap,
       flexShrink: 0,
     }}>
       {['#F87171', '#FBBF24', '#34D399'].map((c, i) => (
-        <div key={i} style={{ width: d, height: d, borderRadius: '50%', background: c, flexShrink: 0 }} />
+        <div key={i} style={{ width: d, height: d, borderRadius: '50%', background: c }} />
       ))}
-      <div style={{
-        flex: 1, marginLeft: size === 'lg' ? 10 : 6,
-        height: size === 'lg' ? 22 : 14,
-        background: '#1A2540', borderRadius: r,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>
-        {url && <span style={{ fontSize: fs, color: 'rgba(255,255,255,0.30)', fontWeight: 500 }}>{url}</span>}
-      </div>
+      {size === 'lg' && (
+        <div style={{
+          flex: 1, marginLeft: 10, height: 20,
+          background: 'rgba(255,255,255,0.08)', borderRadius: 6,
+        }} />
+      )}
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────
-   SMALL FLOATING SCREEN
+   FLOATING SCREEN
 ───────────────────────────────────────────── */
 interface FloatProps {
-  src: string; label: string; labelColor: string; labelBg: string; labelBorder: string;
-  width: number;
-  posStyle: React.CSSProperties;   // top/bottom/left/right for the absolute wrapper
-  rotate: number;
-  delay: number;
-  floatY: number; floatDur: number; floatDelay: number;
+  src: string; label: string; labelColor: string; labelBg: string;
+  width: number; posStyle: React.CSSProperties;
+  rotate: number; delay: number;
+  floatY: number; floatDur: number; floatDelay?: number;
 }
 
 function FloatingScreen({
-  src, label, labelColor, labelBg, labelBorder,
+  src, label, labelColor, labelBg,
   width, posStyle, rotate, delay,
-  floatY, floatDur, floatDelay,
+  floatY, floatDur, floatDelay = 0,
 }: FloatProps) {
   return (
-    /* entrance wrapper */
     <motion.div
-      initial={{ opacity: 0, scale: 0.80, y: 32 }}
+      initial={{ opacity: 0, scale: 0.82, y: 28 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.75, delay, ease: EASE }}
-      className="hidden xl:block"
+      viewport={{ once: true }}
+      transition={{ duration: 0.70, delay, ease: EASE }}
       style={{
-        position: 'absolute',
-        ...posStyle,
-        width,
-        rotate,
-        zIndex: 6,
+        position: 'absolute', ...posStyle,
+        width, rotate, zIndex: 5,
         pointerEvents: 'none',
       }}
     >
       {/* label chip */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 8 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 7 }}>
         <div style={{
-          fontSize: 9.5, fontWeight: 800, padding: '4px 13px',
+          fontSize: 9, fontWeight: 800, padding: '3px 11px',
           borderRadius: 20, background: labelBg,
-          color: labelColor, border: `1px solid ${labelBorder}`,
-          letterSpacing: '0.08em', textTransform: 'uppercase' as const,
-          boxShadow: `0 2px 12px ${labelBg}`,
+          color: labelColor, border: `1px solid ${labelColor}40`,
+          letterSpacing: '0.09em', textTransform: 'uppercase' as const,
         }}>{label}</div>
       </div>
 
-      {/* float wrapper */}
+      {/* float animation */}
       <motion.div
         animate={{ y: [0, floatY, 0] }}
         transition={{ delay: floatDelay, duration: floatDur, repeat: Infinity, ease: 'easeInOut' }}
       >
-        {/* screen frame */}
         <div style={{
-          borderRadius: 12, overflow: 'hidden',
+          borderRadius: 13, overflow: 'hidden',
           boxShadow: [
-            '0 28px 64px rgba(0,0,0,0.65)',
-            '0 8px 24px rgba(0,0,0,0.45)',
-            '0 0 0 1px rgba(255,255,255,0.09)',
+            '0 28px 64px rgba(0,0,0,0.55)',
+            '0 8px 24px rgba(0,0,0,0.40)',
+            '0 0 0 1px rgba(255,255,255,0.10)',
           ].join(', '),
         }}>
           <ChromeBar size="sm" />
@@ -115,245 +107,243 @@ function FloatingScreen({
   );
 }
 
-
 /* ─────────────────────────────────────────────
    MAIN SECTION
 ───────────────────────────────────────────── */
 export default function DashboardShowcase() {
   return (
     <section style={{
-      position: 'relative',
+      background: 'linear-gradient(135deg, #183765 0%, #1966AA 48%, #2399CA 100%)',
+      padding: '112px 48px 128px',
       overflow: 'hidden',
-      background: 'linear-gradient(160deg, #060C1C 0%, #0B1530 45%, #060C1C 100%)',
-      padding: '116px 48px 128px',
+      position: 'relative',
     }}>
 
-      {/* ── background glow blobs ── */}
-      <div style={{ position: 'absolute', top: '8%', left: '50%', transform: 'translateX(-50%)', width: 1000, height: 700, background: 'radial-gradient(ellipse, rgba(23,149,199,0.11) 0%, rgba(99,102,241,0.06) 48%, transparent 70%)', filter: 'blur(90px)', zIndex: 0, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', bottom: '-5%', right: '15%', width: 600, height: 500, background: 'radial-gradient(ellipse, rgba(99,102,241,0.09) 0%, transparent 70%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
-      <div style={{ position: 'absolute', top: '55%', left: '5%', width: 480, height: 400, background: 'radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%)', filter: 'blur(70px)', zIndex: 0, pointerEvents: 'none' }} />
+      {/* ── dot grid (right-side fade) ── */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)',
+        backgroundSize: '30px 30px',
+        maskImage: 'radial-gradient(ellipse 85% 85% at 70% 50%, black 30%, transparent)',
+        WebkitMaskImage: 'radial-gradient(ellipse 85% 85% at 70% 50%, black 30%, transparent)',
+      }} />
 
-      {/* ── dot grid ── */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)', backgroundSize: '32px 32px', maskImage: 'radial-gradient(ellipse 85% 65% at 50% 30%, black, transparent)', WebkitMaskImage: 'radial-gradient(ellipse 85% 65% at 50% 30%, black, transparent)' }} />
+      {/* ── ambient glow blobs ── */}
+      <div style={{ position: 'absolute', top: '-5%', left: '38%', width: 700, height: 600, background: 'radial-gradient(ellipse, rgba(35,153,202,0.22) 0%, transparent 68%)', filter: 'blur(90px)', zIndex: 0, pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', bottom: '-10%', right: '5%', width: 480, height: 380, background: 'radial-gradient(ellipse, rgba(24,55,101,0.50) 0%, transparent 70%)', filter: 'blur(70px)', zIndex: 0, pointerEvents: 'none' }} />
 
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1340, margin: '0 auto' }}>
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1300, margin: '0 auto' }}>
 
-        {/* ════ HEADER ════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.68, ease: EASE }}
-          style={{ textAlign: 'center', marginBottom: 80 }}
-        >
-          {/* badge */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '5px 16px 5px 11px', borderRadius: 100, background: 'rgba(23,149,199,0.11)', border: '1px solid rgba(23,149,199,0.26)', marginBottom: 22 }}>
-            <Desktop weight="regular" size={13} style={{ color: '#38BDF8' }} />
-            <span style={{ fontSize: 10.5, fontWeight: 800, color: '#38BDF8', letterSpacing: '0.11em', textTransform: 'uppercase' as const }}>Product Tour</span>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 64 }}>
 
-          {/* H2 */}
-          <h2 style={{
-            fontSize: 'clamp(2.2rem, 4vw, 3.8rem)',
-            fontWeight: 900, color: '#F1F5F9',
-            letterSpacing: '-0.046em', lineHeight: 1.07, marginBottom: 18,
-          }}>
-            See Logezy{' '}
-            <span style={{
-              background: 'linear-gradient(125deg, #38BDF8 0%, #818CF8 50%, #34D399 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            }}>in action</span>
-          </h2>
-
-          {/* subtitle */}
-          <p style={{ fontSize: 17, color: 'rgba(165,210,255,0.60)', maxWidth: 500, margin: '0 auto', lineHeight: 1.80 }}>
-            Your complete scheduling hub — timesheets, reports and invoices always within reach.
-          </p>
-        </motion.div>
-
-
-        {/* ════ SHOWCASE AREA ════
-            Container is relative. Schedule centred (big).
-            3 small screens positioned absolutely around it.
-            paddingTop/Bottom create space for floaters that extend beyond schedule.
-        */}
-        <div style={{ position: 'relative', paddingTop: 72, paddingBottom: 80 }}>
-
-          {/* ── Floating: Timesheets (top-left) ── */}
-          <FloatingScreen
-            src="/image_01.png"
-            label="Timesheets"
-            labelColor="#10B981"
-            labelBg="rgba(16,185,129,0.14)"
-            labelBorder="rgba(16,185,129,0.30)"
-            width={272}
-            posStyle={{ top: 0, left: 0 }}
-            rotate={-7}
-            delay={0.50}
-            floatY={-11} floatDur={4.9} floatDelay={0.8}
-          />
-
-          {/* ── Floating: Reports (top-right) ── */}
-          <FloatingScreen
-            src="/reports.png"
-            label="Reports"
-            labelColor="#818CF8"
-            labelBg="rgba(129,140,248,0.14)"
-            labelBorder="rgba(129,140,248,0.30)"
-            width={258}
-            posStyle={{ top: 0, right: 0 }}
-            rotate={6}
-            delay={0.65}
-            floatY={-9} floatDur={5.3} floatDelay={1.2}
-          />
-
-          {/* ── Floating: Invoices (bottom-right) ── */}
-          <FloatingScreen
-            src="/image_00.png"
-            label="Invoices"
-            labelColor="#F59E0B"
-            labelBg="rgba(245,158,11,0.14)"
-            labelBorder="rgba(245,158,11,0.30)"
-            width={264}
-            posStyle={{ bottom: 0, right: 60 }}
-            rotate={-5}
-            delay={0.80}
-            floatY={-10} floatDur={4.6} floatDelay={0.5}
-          />
-
-          {/* ── Main: Schedule (BIG) ── */}
+          {/* ════ LEFT: text content ════ */}
           <motion.div
-            initial={{ opacity: 0, y: 48, scale: 0.97 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, x: -44 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.90, delay: 0.10, ease: EASE }}
-            style={{ position: 'relative', maxWidth: 860, margin: '0 auto', zIndex: 3 }}
+            transition={{ duration: 0.72, ease: EASE }}
+            style={{ flex: '0 0 46%', maxWidth: 510 }}
           >
-            {/* top glow halo */}
-            <div style={{ position: 'absolute', top: -80, left: '8%', right: '8%', height: 160, background: 'radial-gradient(ellipse, rgba(23,149,199,0.30) 0%, rgba(99,102,241,0.12) 50%, transparent 72%)', filter: 'blur(48px)', pointerEvents: 'none', zIndex: -1 }} />
 
-            {/* browser frame */}
+            {/* Trustpilot badge */}
             <div style={{
-              borderRadius: '18px 18px 0 0',
-              overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.09)',
-              borderBottom: 'none',
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '6px 16px 6px 10px', borderRadius: 100,
+              background: 'rgba(255,255,255,0.10)',
+              border: '1px solid rgba(255,255,255,0.20)',
+              marginBottom: 30,
             }}>
-              <ChromeBar size="lg" />
-            </div>
-
-            {/* screenshot */}
-            <div style={{
-              borderRadius: '0 0 18px 18px',
-              overflow: 'hidden',
-              border: '1px solid rgba(255,255,255,0.09)',
-              borderTop: 'none',
-              boxShadow: [
-                '0 48px 130px rgba(0,0,0,0.70)',
-                '0 20px 56px rgba(0,0,0,0.50)',
-                '0 0 0 1px rgba(23,149,199,0.18)',
-                '0 0 80px rgba(23,149,199,0.08)',
-              ].join(', '),
-            }}>
-              <img
-                src="/schedule.png"
-                alt="Logezy Scheduling"
-                style={{ width: '100%', display: 'block' }}
-              />
-            </div>
-
-            {/* caption tag below screen */}
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: 22 }}>
-              <div style={{
-                display: 'inline-flex', alignItems: 'center', gap: 9,
-                padding: '8px 20px', borderRadius: 100,
-                background: 'rgba(23,149,199,0.10)',
-                border: '1px solid rgba(23,149,199,0.22)',
-              }}>
-                <CalendarBlank weight="regular" size={14} style={{ color: '#38BDF8' }} />
-                <span style={{ fontSize: 12.5, fontWeight: 700, color: '#38BDF8' }}>Scheduling</span>
-                <span style={{ width: 1, height: 12, background: 'rgba(56,189,248,0.25)' }} />
-                <span style={{ fontSize: 12, color: 'rgba(165,210,255,0.52)', fontWeight: 400 }}>Fill every shift in minutes</span>
+              <div style={{ display: 'flex', gap: 2 }}>
+                {[1,2,3,4,5].map(i => (
+                  <Star key={i} weight="fill" size={11} style={{ color: '#F59E0B' }} />
+                ))}
               </div>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.88)' }}>
+                4.5 Excellent · Trustpilot
+              </span>
             </div>
+
+            {/* Badge */}
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 7,
+              padding: '4px 14px 4px 10px', borderRadius: 100,
+              background: 'rgba(35,153,202,0.18)', border: '1px solid rgba(35,153,202,0.35)',
+              marginBottom: 22,
+            }}>
+              <CalendarBlank weight="regular" size={12} style={{ color: '#7DD3FC' }} />
+              <span style={{ fontSize: 10, fontWeight: 800, color: '#7DD3FC', letterSpacing: '0.11em', textTransform: 'uppercase' as const }}>Product Tour</span>
+            </div>
+
+            {/* Headline */}
+            <h2 style={{
+              fontSize: 'clamp(2.2rem, 3.6vw, 3.4rem)',
+              fontWeight: 900, color: '#FFFFFF',
+              letterSpacing: '-0.046em', lineHeight: 1.07,
+              marginBottom: 20,
+            }}>
+              The complete staffing platform{' '}
+              <span style={{
+                background: 'linear-gradient(125deg, #7DD3FC 0%, #38BDF8 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              }}>for your agency</span>
+            </h2>
+
+            {/* Description */}
+            <p style={{
+              fontSize: 16.5, color: 'rgba(186,230,255,0.72)',
+              lineHeight: 1.78, marginBottom: 36,
+            }}>
+              Fill shifts instantly, stay compliant, and manage your entire workforce — from scheduling to invoicing — in one powerful platform.
+            </p>
+
+            {/* CTA buttons */}
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginBottom: 40 }}>
+              <Link
+                to="/contact"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '13px 32px', borderRadius: 100, textDecoration: 'none',
+                  background: '#2399CA', color: '#fff',
+                  fontSize: 14.5, fontWeight: 700,
+                  boxShadow: '0 8px 28px rgba(35,153,202,0.45)',
+                }}
+              >
+                Book a Demo
+                <ArrowRight weight="bold" size={15} />
+              </Link>
+              <Link
+                to="/features"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '13px 30px', borderRadius: 100, textDecoration: 'none',
+                  background: 'rgba(255,255,255,0.09)',
+                  border: '1.5px solid rgba(255,255,255,0.22)',
+                  color: '#fff', fontSize: 14.5, fontWeight: 700,
+                }}
+              >
+                Explore Features
+              </Link>
+            </div>
+
+            {/* feature check-list */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { label: 'Shift scheduling & instant fill', color: '#38BDF8' },
+                { label: 'Digital timesheets & payroll export', color: '#34D399' },
+                { label: 'Compliance tracking & DBS alerts', color: '#A78BFA' },
+                { label: 'Automated invoicing per client', color: '#FBBF24' },
+              ].map(({ label, color }) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <CheckCircle weight="fill" size={16} style={{ color, flexShrink: 0 }} />
+                  <span style={{ fontSize: 13.5, fontWeight: 500, color: 'rgba(186,230,255,0.80)' }}>{label}</span>
+                </div>
+              ))}
+            </div>
+
           </motion.div>
 
-        </div>
-        {/* end showcase */}
+          {/* ════ RIGHT: floating screens ════ */}
+          <div style={{ flex: 1, position: 'relative', height: 540, minWidth: 0 }}>
 
+            {/* Timesheets — top left */}
+            <FloatingScreen
+              src="/image_01.png" label="Timesheets"
+              labelColor="#34D399" labelBg="rgba(52,211,153,0.15)"
+              width={210} posStyle={{ top: 10, left: 0 }}
+              rotate={-6} delay={0.55}
+              floatY={-10} floatDur={5.4} floatDelay={0.8}
+            />
 
-        {/* ════ FEATURE CHIPS ════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.60, delay: 0.25, ease: EASE }}
-          style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 52 }}
-        >
-          {[
-            {
-              icon: Clock, label: 'Timesheets',
-              desc: 'Track hours & automate payroll',
-              color: '#10B981', bg: 'rgba(16,185,129,0.09)', border: 'rgba(16,185,129,0.22)',
-            },
-            {
-              icon: ChartBar, label: 'Reports',
-              desc: 'Insights that drive decisions',
-              color: '#818CF8', bg: 'rgba(129,140,248,0.09)', border: 'rgba(129,140,248,0.22)',
-            },
-            {
-              icon: FileText, label: 'Invoices',
-              desc: 'Get paid faster, every time',
-              color: '#F59E0B', bg: 'rgba(245,158,11,0.09)', border: 'rgba(245,158,11,0.22)',
-            },
-          ].map(({ icon: Icon, label, desc, color, bg, border }) => (
-            <div
-              key={label}
+            {/* Reports — top right */}
+            <FloatingScreen
+              src="/reports.png" label="Reports"
+              labelColor="#A78BFA" labelBg="rgba(167,139,250,0.15)"
+              width={230} posStyle={{ top: 0, right: 0 }}
+              rotate={5} delay={0.45}
+              floatY={-9} floatDur={5.8} floatDelay={1.2}
+            />
+
+            {/* Main: Schedule — centre */}
+            <motion.div
+              initial={{ opacity: 0, y: 44, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.88, delay: 0.12, ease: EASE }}
               style={{
-                display: 'flex', alignItems: 'center', gap: 11,
-                padding: '11px 20px', borderRadius: 16,
-                background: bg, border: `1px solid ${border}`,
+                position: 'absolute',
+                left: '50%', top: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: 390, zIndex: 3,
               }}
             >
-              <div style={{
-                width: 36, height: 36, borderRadius: 10, flexShrink: 0,
-                background: `${color}16`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <Icon weight="regular" size={17} style={{ color }} />
+              {/* top halo */}
+              <div style={{ position: 'absolute', top: -60, left: '5%', right: '5%', height: 120, background: 'radial-gradient(ellipse, rgba(35,153,202,0.35) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none', zIndex: -1 }} />
+
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
+                style={{
+                  borderRadius: '16px 16px 0 0',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  borderBottom: 'none',
+                }}
+              >
+                <ChromeBar size="lg" />
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
+                style={{
+                  borderRadius: '0 0 16px 16px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  borderTop: 'none',
+                  boxShadow: [
+                    '0 44px 110px rgba(0,0,0,0.60)',
+                    '0 16px 48px rgba(0,0,0,0.45)',
+                    '0 0 0 1px rgba(35,153,202,0.22)',
+                    '0 0 60px rgba(35,153,202,0.12)',
+                  ].join(', '),
+                }}
+              >
+                <img
+                  src="/schedule.png"
+                  alt="Logezy Scheduling"
+                  style={{ width: '100%', display: 'block' }}
+                />
+              </motion.div>
+
+              {/* caption tag */}
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: '6px 18px', borderRadius: 100,
+                  background: 'rgba(35,153,202,0.18)',
+                  border: '1px solid rgba(35,153,202,0.30)',
+                }}>
+                  <CalendarBlank weight="regular" size={13} style={{ color: '#7DD3FC' }} />
+                  <span style={{ fontSize: 12, fontWeight: 700, color: '#7DD3FC' }}>Scheduling</span>
+                  <span style={{ width: 1, height: 11, background: 'rgba(125,211,252,0.25)' }} />
+                  <span style={{ fontSize: 11.5, color: 'rgba(186,230,255,0.50)', fontWeight: 400 }}>Fill every shift in minutes</span>
+                </div>
               </div>
-              <div>
-                <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>{label}</p>
-                <p style={{ margin: 0, fontSize: 11, color: 'rgba(165,210,255,0.50)', marginTop: 1 }}>{desc}</p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
+            </motion.div>
 
+            {/* Invoices — bottom right */}
+            <FloatingScreen
+              src="/image_00.png" label="Invoices"
+              labelColor="#FBBF24" labelBg="rgba(251,191,36,0.15)"
+              width={215} posStyle={{ bottom: 10, right: 20 }}
+              rotate={-4} delay={0.68}
+              floatY={-8} floatDur={4.9} floatDelay={0.4}
+            />
 
-        {/* ════ CTA ════ */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.35, ease: EASE }}
-          style={{ textAlign: 'center' }}
-        >
-          <Link
-            to="/contact"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: 9,
-              padding: '13px 32px', borderRadius: 14, textDecoration: 'none',
-              background: 'linear-gradient(135deg, #1795C7 0%, #6366F1 100%)',
-              color: '#fff', fontSize: 14.5, fontWeight: 700,
-              boxShadow: '0 8px 32px rgba(23,149,199,0.38), 0 2px 10px rgba(0,0,0,0.25)',
-            }}
-          >
-            Explore all features
-            <ArrowRight weight="regular" size={15} />
-          </Link>
-        </motion.div>
+          </div>
+          {/* end right */}
 
+        </div>
       </div>
     </section>
   );
