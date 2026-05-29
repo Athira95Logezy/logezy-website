@@ -78,16 +78,16 @@ function FloatingScreen({
           letterSpacing:'0.09em', textTransform:'uppercase' as const,
         }}>{label}</div>
       </div>
-      {/* screen */}
+      {/* screen — no chrome bar, realistic floating card */}
       <motion.div
         animate={{ y:[0, floatY, 0] }}
         transition={{ delay:floatDelay, duration:floatDur, repeat:Infinity, ease:'easeInOut' }}
         style={{
-          borderRadius:12, overflow:'hidden',
-          boxShadow:'0 24px 56px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.10)',
+          borderRadius:14, overflow:'hidden',
+          border:'1px solid rgba(255,255,255,0.14)',
+          boxShadow:'0 24px 56px rgba(0,0,0,0.50), 0 6px 18px rgba(0,0,0,0.30)',
         }}
       >
-        <ChromeBar size="sm" />
         <img src={src} alt={label} style={{ width:'100%', display:'block' }} />
       </motion.div>
     </motion.div>
@@ -125,25 +125,23 @@ function PhoneScreen({
           letterSpacing:'0.09em', textTransform:'uppercase' as const,
         }}>{label}</div>
       </div>
-      {/* phone frame */}
+      {/* phone — thin realistic bezel, no heavy frame */}
       <motion.div
         animate={{ y:[0, floatY, 0] }}
         transition={{ delay:floatDelay, duration:floatDur, repeat:Infinity, ease:'easeInOut' }}
         style={{
-          background:'#0D1B3E',
-          borderRadius:24,
-          padding:'10px 8px 14px',
-          boxShadow:'0 28px 64px rgba(0,0,0,0.60), 0 0 0 1.5px rgba(255,255,255,0.12)',
+          borderRadius:28,
+          overflow:'hidden',
+          border:'1.5px solid rgba(255,255,255,0.18)',
+          boxShadow:[
+            '0 28px 64px rgba(0,0,0,0.55)',
+            '0 6px 20px rgba(0,0,0,0.35)',
+            'inset 0 0 0 1px rgba(255,255,255,0.06)',
+          ].join(', '),
         }}
       >
-        {/* pill notch */}
-        <div style={{ width:36, height:5, background:'rgba(255,255,255,0.18)',
-          borderRadius:10, margin:'0 auto 8px' }} />
         <img src={src} alt={label}
-          style={{ width:'100%', display:'block', borderRadius:14 }} />
-        {/* home bar */}
-        <div style={{ width:40, height:4, background:'rgba(255,255,255,0.22)',
-          borderRadius:10, margin:'10px auto 0' }} />
+          style={{ width:'100%', display:'block' }} />
       </motion.div>
     </motion.div>
   );
@@ -322,25 +320,18 @@ export default function DashboardShowcase() {
               <motion.div
                 animate={{ y:[0,-12,0] }}
                 transition={{ duration:6.5, repeat:Infinity, ease:'easeInOut' }}
-              >
-                {/* chrome top */}
-                <div style={{ borderRadius:'18px 18px 0 0', overflow:'hidden',
-                  border:'1px solid rgba(255,255,255,0.13)', borderBottom:'none' }}>
-                  <ChromeBar size="lg" />
-                </div>
-                {/* screenshot */}
-                <div style={{
-                  borderRadius:'0 0 18px 18px', overflow:'hidden',
-                  border:'1px solid rgba(255,255,255,0.13)', borderTop:'none',
+                style={{
+                  borderRadius:18, overflow:'hidden',
+                  border:'1px solid rgba(255,255,255,0.14)',
                   boxShadow:[
                     '0 48px 110px rgba(0,0,0,0.65)',
-                    '0 16px 48px rgba(0,0,0,0.45)',
+                    '0 16px 48px rgba(0,0,0,0.40)',
                     '0 0 0 1px rgba(35,153,202,0.25)',
                     '0 0 70px rgba(35,153,202,0.15)',
                   ].join(', '),
-                }}>
-                  <img src="/schedule.png" alt="Logezy Scheduling" style={{ width:'100%', display:'block' }} />
-                </div>
+                }}
+              >
+                <img src="/schedule.png" alt="Logezy Scheduling" style={{ width:'100%', display:'block' }} />
               </motion.div>
 
               {/* caption */}
