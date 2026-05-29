@@ -136,13 +136,13 @@ function IndustryRow({ ind, index }: { ind: Ind; index: number }) {
 
         {/* ── LEFT: number + icon + label ── */}
         <div style={{
-          flexShrink: 0, width: 130,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
+          flexShrink: 0, width: 160,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
           paddingRight: 40,
           borderRight: `1px solid ${ind.colorBorder}`,
         }}>
           <span style={{
-            fontSize: 10, fontWeight: 900, letterSpacing: '0.14em',
+            fontSize: 11, fontWeight: 900, letterSpacing: '0.14em',
             color: ind.color, opacity: 0.6,
           }}>{ind.num}</span>
 
@@ -155,18 +155,18 @@ function IndustryRow({ ind, index }: { ind: Ind; index: number }) {
               ? { y: { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }, scale: { duration: 0.3 }, rotate: { duration: 0.3 } }
               : { duration: 0.35 }}
             style={{
-              width: 64, height: 64, borderRadius: 18, flexShrink: 0,
+              width: 82, height: 82, borderRadius: 22, flexShrink: 0,
               background: `linear-gradient(135deg, ${ind.color}22, ${ind.color}0D)`,
               border: `2px solid ${ind.colorBorder}`,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: hovered ? `0 12px 32px ${ind.color}30` : 'none',
+              boxShadow: hovered ? `0 14px 36px ${ind.color}35` : 'none',
               transition: 'box-shadow 0.3s',
             }}
           >
-            <ind.icon weight="regular" size={28} style={{ color: ind.color }} />
+            <ind.icon weight="regular" size={38} style={{ color: ind.color }} />
           </motion.div>
 
-          <span style={{ fontSize: 12, fontWeight: 800, color: '#0F172A', letterSpacing: '0.01em' }}>{ind.label}</span>
+          <span style={{ fontSize: 14, fontWeight: 800, color: '#0F172A', letterSpacing: '0.01em' }}>{ind.label}</span>
 
           {/* mini feature icons */}
           <div style={{ display: 'flex', gap: 5, marginTop: 2 }}>
@@ -192,7 +192,7 @@ function IndustryRow({ ind, index }: { ind: Ind; index: number }) {
         {/* ── CENTRE: headline + bullets ── */}
         <div style={{ flex: 1, paddingLeft: 40, paddingRight: 40 }}>
           <h3 style={{
-            fontSize: 'clamp(1.05rem, 1.6vw, 1.25rem)',
+            fontSize: 'clamp(1.2rem, 1.9vw, 1.5rem)',
             fontWeight: 800, color: '#0F172A',
             letterSpacing: '-0.03em', lineHeight: 1.25,
             marginBottom: 16,
@@ -210,7 +210,7 @@ function IndustryRow({ ind, index }: { ind: Ind; index: number }) {
                   weight="fill" size={15}
                   style={{ color: ind.color, flexShrink: 0, opacity: hovered ? 1 : 0.7, transition: 'opacity 0.2s' }}
                 />
-                <span style={{ fontSize: 13.5, fontWeight: 500, color: hovered ? '#1E293B' : '#64748B', transition: 'color 0.2s' }}>{b}</span>
+                <span style={{ fontSize: 14.5, fontWeight: 500, color: hovered ? '#1E293B' : '#64748B', transition: 'color 0.2s' }}>{b}</span>
               </motion.div>
             ))}
           </div>
