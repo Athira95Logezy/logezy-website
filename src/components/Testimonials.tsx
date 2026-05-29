@@ -352,10 +352,10 @@ export default function Testimonials() {
             {/* featured quote card */}
             <div style={{
               width: '100%',
-              background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+              background: 'linear-gradient(135deg, #1795C7 0%, #6366F1 100%)',
               borderRadius: 22,
               padding: '26px 26px 22px',
-              boxShadow: '0 8px 40px rgba(15,23,42,0.22)',
+              boxShadow: '0 8px 40px rgba(99,102,241,0.32)',
               position: 'relative',
               overflow: 'hidden',
             }}>
@@ -363,7 +363,7 @@ export default function Testimonials() {
               <div style={{
                 position: 'absolute', top: -40, right: -40,
                 width: 140, height: 140, borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(0,182,122,0.25) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%)',
                 pointerEvents: 'none',
               }} />
 
@@ -408,9 +408,9 @@ export default function Testimonials() {
                 marginTop: 20,
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '12px 28px', borderRadius: 100, textDecoration: 'none',
-                background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+                background: 'linear-gradient(135deg, #1795C7 0%, #6366F1 100%)',
                 color: '#fff', fontSize: 13.5, fontWeight: 700,
-                boxShadow: '0 4px 20px rgba(15,23,42,0.20)',
+                boxShadow: '0 4px 20px rgba(99,102,241,0.30)',
               }}
             >
               Join them — Book a Demo
