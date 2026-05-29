@@ -10,7 +10,8 @@ import { motion } from 'framer-motion';
 import {
   Heartbeat, Briefcase, Users,
   Buildings, ArrowUpRight,
-  CheckCircle,
+  CheckCircle, Shield, Clock, CalendarBlank,
+  FileText, Bell, MapPin, ChartBar,
 } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
@@ -36,8 +37,7 @@ const industries = [
       'CQC-ready compliance logs',
       'GPS clock-in for lone workers',
     ],
-    image: 'https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=800&q=80',
-    imgAlt: 'Healthcare staffing',
+    miniIcons: [Shield, Clock, MapPin, FileText],
   },
   {
     id: 'hospitality',
@@ -55,8 +55,7 @@ const industries = [
       'Instant shift fill & alerts',
       'Auto invoicing per venue',
     ],
-    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80',
-    imgAlt: 'Hospitality staffing',
+    miniIcons: [CalendarBlank, Bell, FileText, ChartBar],
   },
   {
     id: 'education',
@@ -74,8 +73,7 @@ const industries = [
       'AWR-compliant payroll',
       'School portal with live visibility',
     ],
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80',
-    imgAlt: 'Education staffing',
+    miniIcons: [Shield, CalendarBlank, Bell, Clock],
   },
 ];
 
@@ -108,46 +106,60 @@ function IndustryCard({ ind, index }: { ind: Ind; index: number }) {
           height: '100%',
         }}
       >
-        {/* ── image section ── */}
-        <div style={{ position: 'relative', height: 220, overflow: 'hidden', flexShrink: 0 }}>
-          <img
-            src={ind.image}
-            alt={ind.imgAlt}
+        {/* ── icon panel ── */}
+        <div style={{
+          position: 'relative',
+          background: `linear-gradient(145deg, ${ind.colorLight}, rgba(255,255,255,0.6))`,
+          borderBottom: `1px solid ${ind.colorBorder}`,
+          padding: '32px 24px 28px',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+          overflow: 'hidden',
+        }}>
+          {/* soft glow */}
+          <div style={{
+            position: 'absolute', top: '50%', left: '50%',
+            transform: 'translate(-50%,-50%)',
+            width: 180, height: 180,
+            background: `radial-gradient(circle, ${ind.colorLight} 0%, transparent 70%)`,
+            pointerEvents: 'none',
+          }} />
+
+          {/* large central icon */}
+          <motion.div
+            whileHover={{ scale: 1.10, rotate: 5 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 20 }}
             style={{
-              width: '100%', height: '100%',
-              objectFit: 'cover', objectPosition: 'center',
-              display: 'block',
-              transition: 'transform 0.5s ease',
+              width: 72, height: 72, borderRadius: 20,
+              background: `linear-gradient(135deg, ${ind.color}22, ${ind.color}0E)`,
+              border: `2px solid ${ind.colorBorder}`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: `0 8px 24px ${ind.color}20`,
+              position: 'relative', zIndex: 1, marginBottom: 18,
             }}
-            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
-            onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-          />
+          >
+            <ind.icon weight="regular" size={32} style={{ color: ind.color }} />
+          </motion.div>
 
-          {/* coloured overlay — subtle tint */}
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: `linear-gradient(160deg, ${ind.color}28 0%, transparent 55%)`,
-          }} />
-
-          {/* fade to white at bottom */}
-          <div style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0,
-            height: 80,
-            background: 'linear-gradient(to bottom, transparent 0%, #ffffff 100%)',
-          }} />
-
-          {/* floating industry badge — bottom-left of image */}
-          <div style={{
-            position: 'absolute', bottom: 16, left: 20,
-            display: 'inline-flex', alignItems: 'center', gap: 7,
-            padding: '6px 14px 6px 10px', borderRadius: 100,
-            background: 'rgba(255,255,255,0.92)',
-            backdropFilter: 'blur(8px)',
-            border: `1px solid ${ind.colorBorder}`,
-            boxShadow: '0 2px 12px rgba(0,0,0,0.10)',
-          }}>
-            <ind.icon weight="regular" size={14} style={{ color: ind.color }} />
-            <span style={{ fontSize: 11, fontWeight: 800, color: ind.colorText, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>{ind.label}</span>
+          {/* 4 mini feature icons in a row */}
+          <div style={{ display: 'flex', gap: 8, position: 'relative', zIndex: 1 }}>
+            {ind.miniIcons.map((Icon, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 + i * 0.06, duration: 0.35, ease: EASE }}
+                style={{
+                  width: 38, height: 38, borderRadius: 10, flexShrink: 0,
+                  background: '#ffffff',
+                  border: `1px solid ${ind.colorBorder}`,
+                  boxShadow: `0 2px 8px ${ind.color}12`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >
+                <Icon weight="regular" size={16} style={{ color: ind.color }} />
+              </motion.div>
+            ))}
           </div>
         </div>
 
