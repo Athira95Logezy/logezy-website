@@ -289,8 +289,8 @@ export default function DashboardShowcase() {
             <FloatingScreen
               src="/image_01.png" label="Timesheets"
               labelColor="#34D399" labelBg="rgba(52,211,153,0.15)"
-              width={162} posStyle={{ top:10, left:4 }}
-              rotate={-8} delay={0.55}
+              width={155} posStyle={{ top:0, left:0 }}
+              rotate={-10} delay={0.55}
               floatY={-10} floatDur={5.4} floatDelay={0.9}
             />
 
@@ -298,8 +298,8 @@ export default function DashboardShowcase() {
             <FloatingScreen
               src="/reports.png" label="Reports"
               labelColor="#A78BFA" labelBg="rgba(167,139,250,0.15)"
-              width={168} posStyle={{ top:10, right:0 }}
-              rotate={7} delay={0.45}
+              width={165} posStyle={{ top:0, right:0 }}
+              rotate={8} delay={0.45}
               floatY={-9} floatDur={5.8} floatDelay={1.3}
             />
 
@@ -311,9 +311,9 @@ export default function DashboardShowcase() {
               transition={{ duration:0.90, delay:0.12, ease:EASE }}
               style={{
                 position:'absolute',
-                left:'50%', top:'48%',
-                transform:'translate(-50%, -50%)',
-                width:610, zIndex:3,
+                left:'54%', top:'50%',
+                transform:'translate(-46%, -50%)',
+                width:580, zIndex:3,
               }}
             >
               {/* broad halo glow */}
@@ -360,17 +360,17 @@ export default function DashboardShowcase() {
             <FloatingScreen
               src="/image_00.png" label="Invoices"
               labelColor="#FBBF24" labelBg="rgba(251,191,36,0.15)"
-              width={165} posStyle={{ bottom:28, right:4 }}
-              rotate={-6} delay={0.68}
+              width={160} posStyle={{ bottom:10, right:0 }}
+              rotate={-7} delay={0.68}
               floatY={-8} floatDur={4.9} floatDelay={0.5}
             />
 
-            {/* ── Availability — mobile, bottom-left, HIGHLIGHTED ── */}
+            {/* ── Availability — mobile, center-left, HIGHLIGHTED ── */}
             <PhoneScreen
               src="/Avilability.jpeg" label="Availability"
               labelColor="#38BDF8" labelBg="rgba(56,189,248,0.18)"
-              width={205} posStyle={{ bottom:18, left:0 }}
-              rotate={5} delay={0.60}
+              width={225} posStyle={{ top:140, left:0 }}
+              rotate={3} delay={0.60}
               floatY={-11} floatDur={5.2} floatDelay={0.8}
               highlight
             />
