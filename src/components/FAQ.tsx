@@ -49,8 +49,27 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-28" style={{ background: '#F7F6FF', position: 'relative', overflow: 'hidden' }}>
+
+      {/* large "FAQ" watermark */}
+      <div style={{
+        position: 'absolute',
+        top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: 'clamp(160px, 22vw, 320px)',
+        fontWeight: 900,
+        color: 'rgba(99,102,241,0.045)',
+        letterSpacing: '-0.06em',
+        lineHeight: 1,
+        userSelect: 'none',
+        pointerEvents: 'none',
+        whiteSpace: 'nowrap',
+        zIndex: 0,
+      }}>
+        FAQ
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ position: 'relative', zIndex: 1 }}>
 
         <div className="grid lg:grid-cols-5 gap-16 items-start">
 
@@ -75,7 +94,7 @@ export default function FAQ() {
             </p>
 
             {/* CTA card */}
-            <div className="rounded-2xl border border-slate-200 p-6 bg-slate-50">
+            <div className="rounded-2xl border p-6" style={{ background: '#fff', borderColor: 'rgba(99,102,241,0.18)' }}>
               <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
                 <ChatCircle weight="regular" className="h-5 w-5 text-blue-600" />
               </div>
