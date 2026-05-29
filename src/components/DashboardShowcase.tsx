@@ -307,7 +307,7 @@ export default function DashboardShowcase() {
                 position:'absolute',
                 left:'50%', top:'50%',
                 transform:'translate(-50%, -50%)',
-                width:460, zIndex:3,
+                width:530, zIndex:3,
               }}
             >
               {/* halo */}
@@ -362,7 +362,7 @@ export default function DashboardShowcase() {
             <PhoneScreen
               src="/Avilability.jpeg" label="Availability"
               labelColor="#38BDF8" labelBg="rgba(56,189,248,0.15)"
-              width={118} posStyle={{ bottom:10, left:12 }}
+              width={158} posStyle={{ bottom:10, left:4 }}
               rotate={7} delay={0.72}
               floatY={-9} floatDur={5.2} floatDelay={1.0}
             />
@@ -373,12 +373,12 @@ export default function DashboardShowcase() {
         </div>
       </div>
 
-      {/* ── bottom wave curve ── */}
+      {/* ── bottom concave arch curve ── */}
       <div style={{ position:'absolute', bottom:0, left:0, right:0, zIndex:2, lineHeight:0 }}>
-        <svg viewBox="0 0 1440 90" preserveAspectRatio="none"
-          style={{ width:'100%', height:90, display:'block' }}>
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none"
+          style={{ width:'100%', height:80, display:'block' }}>
           <path
-            d="M0,40 C240,90 600,10 900,55 C1140,88 1320,20 1440,50 L1440,90 L0,90 Z"
+            d="M0,68 C360,0 1080,0 1440,68 L1440,80 L0,80 Z"
             fill="#ffffff"
           />
         </svg>
