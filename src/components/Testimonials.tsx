@@ -1,249 +1,222 @@
 /**
- * Testimonials.tsx — Customer Stories
+ * Testimonials.tsx — Customer Stories · Trustpilot integration
  *
- * Design
+ * Layout
  * ──────
- * • Dark navy section
- * • Cursor-following radial spotlight (useMotionTemplate)
- * • 3 testimonial cards with per-card 3D tilt + glowing border that tracks cursor
- * • Auto-scroll logo marquee
- * • 4-stat animated counter strip
+ * Left  : cards scrolling UP   (seamless vertical marquee, fade mask)
+ * Center: Trustpilot score badge · H2 · featured quote · CTA
+ * Right : cards scrolling DOWN (opposite direction)
+ *
+ * Reviews sourced from trustpilot.com/review/logezy.co.uk
+ * TrustScore 4.5 / 5 · Excellent · 43 reviews
+ *
+ * Light theme, clean white cards, amber stars, green Trustpilot badge.
  */
 
-import React, { useRef, useState } from 'react';
-import {
-  motion,
-  useMotionValue, useTransform, useSpring,
-  useMotionTemplate,
-} from 'framer-motion';
-import { Star, Users, TrendUp, Clock, Shield } from '@phosphor-icons/react';
-import AnimatedCounter from './AnimatedCounter';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Star, ArrowRight, Quotes } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /* ─────────────────────────────────────────────
-   DATA
+   REVIEW DATA  (real Trustpilot reviews)
 ───────────────────────────────────────────── */
-const testimonials = [
+interface Review {
+  name: string; initial: string; color: string;
+  stars: number; company: string; date: string;
+  title: string; text: string;
+}
+
+const leftReviews: Review[] = [
   {
-    quote: "Compliance used to be our biggest headache. Now every document, every certificate, every expiry date is tracked automatically. It's transformed how we run our healthcare staffing operation.",
-    name: 'Sarah Mitchell',
-    role: 'Operations Director',
-    company: 'CareFirst Group',
-    rating: 5,
-    tag: 'Compliance',
-    color: '#38BDF8',
-    initials: 'SM',
+    name: 'Angela', initial: 'A', color: '#F43F5E', stars: 5,
+    company: 'Care Agency, UK', date: 'Jan 2024',
+    title: 'Changed our operations completely',
+    text: 'Using Logezy has changed our operations process. The stress in this department has reduced by 98% — it has been truly transformative for our whole team.',
   },
   {
-    quote: 'The digital timesheets alone saved us hours every week. Timesheets approved, invoices out, payroll done — it all just flows now. The team has never been more on top of things.',
-    name: 'James Okafor',
-    role: 'Director',
-    company: 'MedStaff UK',
-    rating: 5,
-    tag: 'Timesheets',
-    color: '#34D399',
-    initials: 'JO',
+    name: 'presley Bunting', initial: 'P', color: '#10B981', stars: 5,
+    company: 'Staffing Agency', date: 'Jan 2024',
+    title: 'Exceptional system, four years strong',
+    text: 'I\'ve relied on Logezy for the past four years, and it\'s truly an exceptional system with an outstanding support team behind it.',
   },
   {
-    quote: "The shift management alone was worth it. We're placing more temps in less time and the team is less stressed than they've ever been. Logezy just works.",
-    name: 'Priya Sharma',
-    role: 'Founder',
-    company: 'NurseSync',
-    rating: 5,
-    tag: 'Scheduling',
-    color: '#818CF8',
-    initials: 'PS',
+    name: 'Angeline', initial: 'A', color: '#F97316', stars: 5,
+    company: 'Care Provider', date: 'Mar 2025',
+    title: 'Thank you Athira',
+    text: 'Thank you Athira from Logezy — you have been very helpful and I love the attention to detail in everything you do for us.',
+  },
+  {
+    name: 'Jason Carter', initial: 'J', color: '#8B5CF6', stars: 5,
+    company: 'Recruitment Agency', date: 'Sep 2023',
+    title: 'Great software',
+    text: 'Great software. It really helps me to streamline my business and create efficiency. It has everything a staffing agency needs to run well.',
+  },
+  {
+    name: 'Nargis Nawaz', initial: 'N', color: '#3B82F6', stars: 5,
+    company: 'Healthcare Agency', date: 'Aug 2023',
+    title: 'Simplified our recruitment',
+    text: 'Very good software and easy to use app that has simplified the way we run our healthcare recruitment business completely.',
+  },
+  {
+    name: 'Tresheka Walker', initial: 'T', color: '#F59E0B', stars: 5,
+    company: 'Recruitment Agency', date: 'Feb 2022',
+    title: 'Great for agencies of all sizes',
+    text: 'An all round great software for recruitment companies of any size, with an exceptional team at hand to support you throughout.',
   },
 ];
 
-const stats = [
-  { value: 600, suffix: '+', label: 'UK agencies',       icon: Users,    color: '#38BDF8' },
-  { value: 98,  suffix: '%', label: 'client retention',  icon: TrendUp,  color: '#34D399' },
-  { value: 80,  suffix: '%', label: 'less admin time',   icon: Clock,    color: '#818CF8' },
-  { value: 99,  suffix: '%', label: 'compliance rate',   icon: Shield,   color: '#F59E0B' },
-];
-
-const brands = [
-  'NHS', 'CareFirst Group', 'MedStaff UK', 'NurseSync',
-  'HealthForce', 'BrightCare', 'StaffHub', 'MedLink',
+const rightReviews: Review[] = [
+  {
+    name: 'Frontline Care Solutions', initial: 'F', color: '#F43F5E', stars: 5,
+    company: 'Crawley, West Sussex', date: 'Jun 2021',
+    title: 'The best staff management software',
+    text: 'Amazing software to build your business. Excellent backup from the team for any issues. Our staff love the mobile app — they say they haven\'t experienced anything like it before.',
+  },
+  {
+    name: 'Sophie Tamale', initial: 'S', color: '#F59E0B', stars: 5,
+    company: 'Healthcare Recruiter', date: 'Jan 2024',
+    title: '3 years and still the best',
+    text: 'We have worked with Logezy for 3 years now. Manoj and the team are very supportive and responsive — always there when we need them.',
+  },
+  {
+    name: 'Bit Healthcare', initial: 'B', color: '#14B8A6', stars: 5,
+    company: 'Healthcare Recruitment', date: 'May 2023',
+    title: 'Using Logezy since 2018',
+    text: 'We started using Logezy back in 2018. Since then, no other recruitment software has matched its features and the team\'s dedication to their clients.',
+  },
+  {
+    name: 'IGM Premium Care', initial: 'I', color: '#6366F1', stars: 5,
+    company: 'Care Provider', date: 'Jun 2021',
+    title: 'I definitely recommend Logezy',
+    text: 'I definitely recommend Logezy. Khushali and her team helped us tremendously. Our workflow has improved significantly and everything runs more smoothly now.',
+  },
+  {
+    name: 'JordanH', initial: 'J', color: '#10B981', stars: 5,
+    company: 'Healthcare Agency, Torbay', date: 'Jun 2021',
+    title: 'Exceptional team throughout',
+    text: 'The team at Logezy have been exceptional throughout our time working with them. Their responsiveness and ongoing support has been outstanding.',
+  },
+  {
+    name: 'Richard', initial: 'R', color: '#6366F1', stars: 5,
+    company: 'UK Business', date: 'Aug 2025',
+    title: 'Brilliant service from start to finish',
+    text: 'Brilliant service from start to finish. Professional, responsive and delivered exactly what we needed. Could not be happier with the results.',
+  },
 ];
 
 
 /* ─────────────────────────────────────────────
-   3D TILT CARD  (cursor-reactive border + tilt)
+   STAR RATING
 ───────────────────────────────────────────── */
-type TData = typeof testimonials[0];
-
-function TiltCard({ t, index }: { t: TData; index: number }) {
-  const cardRef  = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-
-  /* normalised -0.5 → +0.5 cursor position relative to card */
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-
-  const sp = { stiffness: 300, damping: 28 };
-  const rotX = useSpring(useTransform(my, [-0.5, 0.5], [ 7, -7]), sp);
-  const rotY = useSpring(useTransform(mx, [-0.5, 0.5], [-7,  7]), sp);
-
-  /* glow border position: 0-100% */
-  const gx = useSpring(useTransform(mx, [-0.5, 0.5], [0, 100]), sp);
-  const gy = useSpring(useTransform(my, [-0.5, 0.5], [0, 100]), sp);
-
-  /* animated border gradient that follows cursor */
-  const borderBg = useMotionTemplate`radial-gradient(200px circle at ${gx}% ${gy}%, ${t.color}70, rgba(255,255,255,0.06) 100%)`;
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-    mx.set((e.clientX - left) / width  - 0.5);
-    my.set((e.clientY - top)  / height - 0.5);
-  };
-  const onLeave = () => { mx.set(0); my.set(0); setActive(false); };
-
+function StarRow({ count }: { count: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 44 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.68, delay: index * 0.13, ease: EASE }}
-      style={{ perspective: 900 }}
-    >
-      {/* 1-px border wrapper — gradient follows cursor */}
-      <motion.div
-        ref={cardRef}
-        onMouseMove={onMove}
-        onMouseEnter={() => setActive(true)}
-        onMouseLeave={onLeave}
-        style={{
-          background: active ? borderBg : 'rgba(255,255,255,0.07)',
-          padding: 1,
-          borderRadius: 18,
-          rotateX: rotX,
-          rotateY: rotY,
-          transformStyle: 'preserve-3d',
-          cursor: 'default',
-          height: '100%',
-        }}
-      >
-        {/* card body */}
-        <div style={{
-          background: 'linear-gradient(145deg, rgba(13,21,38,0.95), rgba(8,14,28,0.98))',
-          borderRadius: 17,
-          padding: '28px 28px 24px',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          overflow: 'hidden',
-          position: 'relative',
-        }}>
-
-          {/* inner colour splash (top-left) */}
-          <motion.div
-            animate={{ opacity: active ? 1 : 0 }}
-            transition={{ duration: 0.4 }}
-            style={{
-              position: 'absolute', top: -70, left: -50,
-              width: 240, height: 240,
-              background: `radial-gradient(circle, ${t.color}18 0%, transparent 70%)`,
-              pointerEvents: 'none',
-            }}
-          />
-
-          {/* ── top row: stars + tag ── */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 22, position: 'relative', zIndex: 1 }}>
-            <div style={{ display: 'flex', gap: 3 }}>
-              {[...Array(t.rating)].map((_, j) => (
-                <Star key={j} weight="fill" size={14} style={{ color: '#FBBF24' }} />
-              ))}
-            </div>
-            <span style={{
-              fontSize: 9.5, fontWeight: 800, padding: '3px 12px', borderRadius: 20,
-              background: `${t.color}14`, color: t.color,
-              border: `1px solid ${t.color}30`,
-              letterSpacing: '0.08em', textTransform: 'uppercase' as const,
-            }}>{t.tag}</span>
-          </div>
-
-          {/* ── quote icon ── */}
-          <div style={{
-            fontSize: 52, lineHeight: 1, fontWeight: 900, fontFamily: 'Georgia, serif',
-            color: t.color, opacity: 0.22, marginBottom: 8,
-            position: 'relative', zIndex: 1,
-          }}>"</div>
-
-          {/* ── quote text ── */}
-          <p style={{
-            fontSize: 14.5, lineHeight: 1.78,
-            color: 'rgba(226,232,240,0.80)',
-            fontStyle: 'italic',
-            flex: 1,
-            position: 'relative', zIndex: 1,
-            marginBottom: 24,
-          }}>{t.quote}</p>
-
-          {/* ── author ── */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 13,
-            paddingTop: 20,
-            borderTop: '1px solid rgba(255,255,255,0.07)',
-            position: 'relative', zIndex: 1,
-          }}>
-            <motion.div
-              animate={{ boxShadow: active ? `0 0 18px ${t.color}50` : '0 0 0px transparent' }}
-              transition={{ duration: 0.4 }}
-              style={{
-                width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
-                background: `${t.color}1E`,
-                border: `2px solid ${t.color}45`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 13, fontWeight: 800, color: t.color,
-              }}
-            >{t.initials}</motion.div>
-            <div>
-              <p style={{ margin: 0, fontSize: 13.5, fontWeight: 700, color: '#F1F5F9' }}>{t.name}</p>
-              <p style={{ margin: 0, fontSize: 11.5, color: 'rgba(148,163,184,0.60)', marginTop: 2 }}>
-                {t.role} ·{' '}
-                <span style={{ color: 'rgba(148,163,184,0.85)', fontWeight: 600 }}>{t.company}</span>
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </motion.div>
-    </motion.div>
+    <div style={{ display: 'flex', gap: 2 }}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <Star key={i} weight="fill" size={13}
+          style={{ color: i < count ? '#F59E0B' : '#E2E8F0' }} />
+      ))}
+    </div>
   );
 }
 
 
 /* ─────────────────────────────────────────────
-   AUTO-SCROLL MARQUEE
+   TRUSTPILOT STAR (green box, white star)
 ───────────────────────────────────────────── */
-function Marquee() {
-  const doubled = [...brands, ...brands];
+function TpStar({ filled = true }: { filled?: boolean }) {
   return (
     <div style={{
+      width: 34, height: 34, borderRadius: 4,
+      background: filled ? '#00B67A' : '#DCDCE6',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+    }}>
+      <Star weight="fill" size={20} style={{ color: '#fff' }} />
+    </div>
+  );
+}
+
+
+/* ─────────────────────────────────────────────
+   REVIEW CARD
+───────────────────────────────────────────── */
+function ReviewCard({ r }: { r: Review }) {
+  return (
+    <div style={{
+      background: '#FFFFFF',
+      borderRadius: 18,
+      padding: '20px 22px 18px',
+      boxShadow: '0 2px 16px rgba(0,0,0,0.055), 0 1px 4px rgba(0,0,0,0.04)',
+      border: '1px solid rgba(226,232,240,0.65)',
+      marginBottom: 14,
+      flexShrink: 0,
+    }}>
+      {/* stars */}
+      <StarRow count={r.stars} />
+
+      {/* title */}
+      <h4 style={{
+        fontSize: 13.5, fontWeight: 700, color: '#0F172A',
+        margin: '10px 0 7px', letterSpacing: '-0.01em', lineHeight: 1.3,
+      }}>
+        {r.title}
+      </h4>
+
+      {/* text */}
+      <p style={{
+        fontSize: 13, color: '#64748B',
+        lineHeight: 1.65, margin: '0 0 14px',
+      }}>
+        {r.text}
+      </p>
+
+      {/* reviewer */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{
+          width: 34, height: 34, borderRadius: '50%', flexShrink: 0,
+          background: r.color + '18',
+          border: `1.5px solid ${r.color}30`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 13, fontWeight: 800, color: r.color,
+        }}>
+          {r.initial}
+        </div>
+        <div style={{ minWidth: 0 }}>
+          <p style={{ fontSize: 12.5, fontWeight: 700, color: '#0F172A', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.name}</p>
+          <p style={{ fontSize: 11, color: '#94A3B8', margin: 0 }}>{r.company}</p>
+        </div>
+        <span style={{ marginLeft: 'auto', fontSize: 10.5, color: '#CBD5E1', whiteSpace: 'nowrap' }}>{r.date}</span>
+      </div>
+    </div>
+  );
+}
+
+
+/* ─────────────────────────────────────────────
+   SCROLL COLUMN
+───────────────────────────────────────────── */
+function ScrollColumn({ items, direction, duration }: {
+  items: Review[]; direction: 'up' | 'down'; duration: number;
+}) {
+  const combined = [...items, ...items]; // duplicate for seamless loop
+
+  return (
+    <div style={{
+      flex: 1,
+      position: 'relative',
+      height: 620,
       overflow: 'hidden',
-      maskImage:       'linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%)',
-      WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%)',
+      /* fade mask top + bottom */
+      maskImage: 'linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)',
+      WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%)',
     }}>
       <motion.div
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-        style={{ display: 'flex', gap: 14, width: 'max-content' }}
+        animate={{ y: direction === 'up' ? ['0%', '-50%'] : ['-50%', '0%'] }}
+        transition={{ duration, repeat: Infinity, ease: 'linear' }}
       >
-        {doubled.map((name, i) => (
-          <div key={i} style={{
-            padding: '8px 22px', borderRadius: 100,
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            fontSize: 12, fontWeight: 700,
-            color: 'rgba(148,163,184,0.55)',
-            whiteSpace: 'nowrap', letterSpacing: '0.04em',
-            flexShrink: 0,
-          }}>{name}</div>
-        ))}
+        {combined.map((r, i) => <ReviewCard key={i} r={r} />)}
       </motion.div>
     </div>
   );
@@ -254,207 +227,203 @@ function Marquee() {
    MAIN SECTION
 ───────────────────────────────────────────── */
 export default function Testimonials() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [cursorIn, setCursorIn] = useState(false);
-
-  /* ── raw cursor position (relative to section) ── */
-  const mX = useMotionValue(-600);
-  const mY = useMotionValue(-600);
-
-  /* ── spotlight follows cursor slowly ── */
-  const spX = useSpring(mX, { stiffness: 55, damping: 18 });
-  const spY = useSpring(mY, { stiffness: 55, damping: 18 });
-  const spotlight = useMotionTemplate`radial-gradient(750px circle at ${spX}px ${spY}px, rgba(23,149,199,0.13), transparent 55%)`;
-
-  /* ── cursor dot: snappy ── */
-  const dotX = useSpring(mX, { stiffness: 700, damping: 40 });
-  const dotY = useSpring(mY, { stiffness: 700, damping: 40 });
-  /* offset by half-size so dot is centred on cursor */
-  const dotXC = useTransform(dotX, v => v - 5);
-  const dotYC = useTransform(dotY, v => v - 5);
-
-  /* ── cursor ring: laggy ── */
-  const ringX = useSpring(mX, { stiffness: 100, damping: 22 });
-  const ringY = useSpring(mY, { stiffness: 100, damping: 22 });
-  const ringXC = useTransform(ringX, v => v - 22);
-  const ringYC = useTransform(ringY, v => v - 22);
-
-  const onMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = sectionRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mX.set(e.clientX - rect.left);
-    mY.set(e.clientY - rect.top);
-    if (!cursorIn) setCursorIn(true);
-  };
-  const onLeave = () => {
-    mX.set(-600); mY.set(-600);
-    setCursorIn(false);
-  };
-
   return (
-    <motion.section
-      ref={sectionRef as React.RefObject<HTMLElement>}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{
-        position: 'relative', overflow: 'hidden',
-        background: 'linear-gradient(160deg, #060C1C 0%, #0B1530 50%, #060C1C 100%)',
-        padding: '116px 48px 128px',
-        cursor: cursorIn ? 'none' : 'auto',
-      }}
-    >
+    <section style={{
+      background: '#F7F8FA',
+      padding: '108px 0 120px',
+      overflow: 'hidden',
+      position: 'relative',
+    }}>
 
-      {/* ── cursor spotlight ── */}
-      <motion.div style={{
-        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-        background: spotlight,
-      }} />
+      {/* subtle top/bottom border lines */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(203,213,225,0.5), transparent)' }} />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(203,213,225,0.5), transparent)' }} />
 
-      {/* ── custom cursor dot ── */}
-      <motion.div
-        animate={{ opacity: cursorIn ? 1 : 0, scale: cursorIn ? 1 : 0.3 }}
-        transition={{ duration: 0.2 }}
-        style={{
-          position: 'absolute', left: 0, top: 0,
-          width: 10, height: 10, borderRadius: '50%',
-          background: '#38BDF8',
-          boxShadow: '0 0 12px rgba(56,189,248,0.9), 0 0 24px rgba(56,189,248,0.4)',
-          x: dotXC, y: dotYC,
-          pointerEvents: 'none', zIndex: 20,
-        }}
-      />
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 48px' }}>
 
-      {/* ── cursor ring (lagging) ── */}
-      <motion.div
-        animate={{ opacity: cursorIn ? 1 : 0, scale: cursorIn ? 1 : 0.3 }}
-        transition={{ duration: 0.25 }}
-        style={{
-          position: 'absolute', left: 0, top: 0,
-          width: 44, height: 44, borderRadius: '50%',
-          border: '1.5px solid rgba(56,189,248,0.45)',
-          x: ringXC, y: ringYC,
-          pointerEvents: 'none', zIndex: 20,
-        }}
-      />
-
-      {/* ── dot grid ── */}
-      <div style={{
-        position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
-        backgroundSize: '32px 32px',
-        maskImage:       'radial-gradient(ellipse 88% 70% at 50% 30%, black, transparent)',
-        WebkitMaskImage: 'radial-gradient(ellipse 88% 70% at 50% 30%, black, transparent)',
-      }} />
-
-      {/* ── ambient blobs ── */}
-      <div style={{ position:'absolute', top:'4%',  left:'18%',  width:700, height:600, background:'radial-gradient(ellipse, rgba(23,149,199,0.07) 0%, transparent 70%)', filter:'blur(90px)', zIndex:0, pointerEvents:'none' }} />
-      <div style={{ position:'absolute', bottom:'8%', right:'8%', width:500, height:400, background:'radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)', filter:'blur(80px)', zIndex:0, pointerEvents:'none' }} />
-
-      {/* ═══════════════ CONTENT ═══════════════ */}
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1220, margin: '0 auto' }}>
-
-        {/* ── HEADER ── */}
+        {/* ── section header ── */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.68, ease: EASE }}
-          style={{ textAlign: 'center', marginBottom: 72 }}
+          transition={{ duration: 0.60, ease: EASE }}
+          style={{ textAlign: 'center', marginBottom: 64 }}
         >
-          {/* badge */}
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
+            display: 'inline-flex', alignItems: 'center', gap: 7,
             padding: '5px 16px 5px 11px', borderRadius: 100,
-            background: 'rgba(251,191,36,0.10)', border: '1px solid rgba(251,191,36,0.24)',
-            marginBottom: 22,
+            background: 'rgba(0,182,122,0.08)', border: '1px solid rgba(0,182,122,0.22)',
+            marginBottom: 18,
           }}>
-            <Star weight="fill" size={12} style={{ color: '#FBBF24' }} />
-            <span style={{ fontSize: 10.5, fontWeight: 800, color: '#FCD34D', letterSpacing: '0.11em', textTransform: 'uppercase' as const }}>Customer Stories</span>
+            <Star weight="fill" size={12} style={{ color: '#00B67A' }} />
+            <span style={{ fontSize: 10.5, fontWeight: 800, color: '#00B67A', letterSpacing: '0.11em', textTransform: 'uppercase' as const }}>Customer Stories</span>
           </div>
 
           <h2 style={{
-            fontSize: 'clamp(2.2rem, 4vw, 3.8rem)',
-            fontWeight: 900, color: '#F1F5F9',
-            letterSpacing: '-0.046em', lineHeight: 1.07, marginBottom: 18,
+            fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+            fontWeight: 900, color: '#0F172A',
+            letterSpacing: '-0.045em', lineHeight: 1.1,
+            margin: 0,
           }}>
-            Loved by UK{' '}
+            Loved by agencies{' '}
             <span style={{
-              background: 'linear-gradient(125deg, #38BDF8 0%, #818CF8 50%, #34D399 100%)',
+              background: 'linear-gradient(125deg, #00B67A 0%, #6366F1 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            }}>agencies</span>
+            }}>across the UK</span>
           </h2>
-
-          <p style={{ fontSize: 17, color: 'rgba(165,210,255,0.58)', maxWidth: 490, margin: '0 auto', lineHeight: 1.80 }}>
-            See how workforce leaders across the UK transformed their operations with Logezy.
-          </p>
         </motion.div>
 
-        {/* ── TESTIMONIAL CARDS ── */}
-        <div className="testimonials-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 64 }}>
-          {testimonials.map((t, i) => (
-            <TiltCard key={t.name} t={t} index={i} />
-          ))}
-        </div>
+        {/* ── 3-column layout ── */}
+        <div style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
 
-        {/* ── MARQUEE ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          style={{ marginBottom: 72 }}
-        >
-          <p style={{
-            textAlign: 'center', fontSize: 10, fontWeight: 700,
-            color: 'rgba(148,163,184,0.35)', letterSpacing: '0.14em',
-            textTransform: 'uppercase', marginBottom: 20,
-          }}>Trusted by leading UK agencies</p>
-          <Marquee />
-        </motion.div>
+          {/* LEFT: scroll up */}
+          <ScrollColumn items={leftReviews} direction="up" duration={32} />
 
-        {/* ── STATS ── */}
-        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-          {stats.map(({ value, suffix, label, icon: Icon, color }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.09, ease: EASE }}
-              whileHover={{ y: -5 }}
+          {/* CENTER: Trustpilot panel */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.70, delay: 0.15, ease: EASE }}
+            style={{
+              flexShrink: 0, width: 320,
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              gap: 0,
+            }}
+          >
+
+            {/* Trustpilot badge card */}
+            <div style={{
+              width: '100%',
+              background: '#FFFFFF',
+              borderRadius: 22,
+              padding: '28px 26px 24px',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.08), 0 2px 12px rgba(0,0,0,0.05)',
+              border: '1px solid rgba(226,232,240,0.8)',
+              marginBottom: 20,
+              textAlign: 'center',
+            }}>
+              {/* Trustpilot wordmark */}
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                marginBottom: 16,
+              }}>
+                <div style={{ display: 'flex', gap: 4 }}>
+                  {[true, true, true, true, true].map((f, i) => <TpStar key={i} filled={f} />)}
+                </div>
+              </div>
+
+              <div style={{
+                fontSize: 11, fontWeight: 800, color: '#191919',
+                letterSpacing: '0.01em', marginBottom: 6,
+                fontFamily: 'system-ui, sans-serif',
+              }}>
+                ★ Trustpilot
+              </div>
+
+              {/* Score */}
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 6, marginBottom: 4 }}>
+                <span style={{ fontSize: 52, fontWeight: 900, color: '#00B67A', lineHeight: 1, letterSpacing: '-0.04em' }}>4.5</span>
+                <span style={{ fontSize: 16, color: '#94A3B8', fontWeight: 500 }}>/5</span>
+              </div>
+              <p style={{ fontSize: 13, fontWeight: 700, color: '#00B67A', margin: '0 0 4px' }}>Excellent</p>
+              <p style={{ fontSize: 12, color: '#94A3B8', margin: 0 }}>Based on 43 reviews</p>
+
+              <a
+                href="https://www.trustpilot.com/review/logezy.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  marginTop: 18,
+                  fontSize: 12, fontWeight: 600, color: '#00B67A',
+                  textDecoration: 'none',
+                  padding: '7px 18px', borderRadius: 100,
+                  background: 'rgba(0,182,122,0.08)',
+                  border: '1px solid rgba(0,182,122,0.20)',
+                  transition: 'background 0.2s',
+                }}
+              >
+                See all reviews on Trustpilot
+                <ArrowRight weight="bold" size={11} />
+              </a>
+            </div>
+
+            {/* featured quote card */}
+            <div style={{
+              width: '100%',
+              background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+              borderRadius: 22,
+              padding: '26px 26px 22px',
+              boxShadow: '0 8px 40px rgba(15,23,42,0.22)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}>
+              {/* accent glow */}
+              <div style={{
+                position: 'absolute', top: -40, right: -40,
+                width: 140, height: 140, borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(0,182,122,0.25) 0%, transparent 70%)',
+                pointerEvents: 'none',
+              }} />
+
+              {/* quote mark */}
+              <div style={{
+                fontSize: 60, lineHeight: 1,
+                fontFamily: 'Georgia, serif',
+                color: '#00B67A', opacity: 0.35,
+                marginBottom: 4,
+                userSelect: 'none',
+              }}>"</div>
+
+              <p style={{
+                fontSize: 14.5, color: '#F1F5F9',
+                lineHeight: 1.70, margin: '0 0 18px',
+                fontStyle: 'italic',
+                position: 'relative', zIndex: 1,
+              }}>
+                Using Logezy has changed our operations process. The stress in this department has reduced by 98%.
+              </p>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, position: 'relative', zIndex: 1 }}>
+                <div style={{
+                  width: 36, height: 36, borderRadius: '50%',
+                  background: 'rgba(244,63,94,0.2)',
+                  border: '1.5px solid rgba(244,63,94,0.35)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 13, fontWeight: 800, color: '#FB7185',
+                }}>A</div>
+                <div>
+                  <p style={{ margin: 0, fontSize: 12.5, fontWeight: 700, color: '#F1F5F9' }}>Angela</p>
+                  <p style={{ margin: 0, fontSize: 11, color: 'rgba(165,210,255,0.50)' }}>Care Agency, UK</p>
+                </div>
+                <StarRow count={5} />
+              </div>
+            </div>
+
+            {/* CTA */}
+            <Link
+              to="/contact"
               style={{
-                padding: '28px 20px', borderRadius: 16, textAlign: 'center',
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
+                marginTop: 20,
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '12px 28px', borderRadius: 100, textDecoration: 'none',
+                background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+                color: '#fff', fontSize: 13.5, fontWeight: 700,
+                boxShadow: '0 4px 20px rgba(15,23,42,0.20)',
               }}
             >
-              <div style={{
-                width: 46, height: 46, borderRadius: 13, margin: '0 auto 14px',
-                background: `${color}14`, border: `1px solid ${color}2A`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <Icon weight="regular" size={20} style={{ color }} />
-              </div>
-              <p style={{ margin: '0 0 5px', fontSize: 38, fontWeight: 900, color, letterSpacing: '-0.04em', lineHeight: 1 }}>
-                <AnimatedCounter to={value} suffix={suffix} />
-              </p>
-              <p style={{ margin: 0, fontSize: 12.5, color: 'rgba(148,163,184,0.55)', fontWeight: 500 }}>{label}</p>
-            </motion.div>
-          ))}
+              Join them — Book a Demo
+              <ArrowRight weight="bold" size={14} />
+            </Link>
+
+          </motion.div>
+
+          {/* RIGHT: scroll down */}
+          <ScrollColumn items={rightReviews} direction="down" duration={28} />
+
         </div>
-
       </div>
-
-      {/* ── responsive ── */}
-      <style>{`
-        @media (max-width: 960px) {
-          .testimonials-grid { grid-template-columns: 1fr !important; max-width: 520px; margin-left: auto; margin-right: auto; }
-        }
-        @media (max-width: 640px) {
-          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-      `}</style>
-
-    </motion.section>
+    </section>
   );
 }
