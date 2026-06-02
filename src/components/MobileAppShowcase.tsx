@@ -167,7 +167,7 @@ function FloatingNotification() {
 /* ─── Realistic iPhone 15 Pro Mockup ─── */
 function IPhoneMockup() {
   return (
-    <div style={{ position: 'relative', userSelect: 'none', display: 'inline-block' }}>
+    <div style={{ position: 'relative', userSelect: 'none' }}>
 
       {/* ── Left side buttons ── */}
       {/* Action button */}
@@ -365,57 +365,8 @@ function WatchNotifCard({
 /* ─── Realistic Apple Watch Series 9 ─── */
 function AppleWatch() {
   return (
-    <div style={{ position: 'relative', userSelect: 'none', display: 'inline-block' }}>
+    <div style={{ position: 'relative', userSelect: 'none' }}>
 
-      {/* ── Forearm — extends downward from under the watch, like a wrist you look down at ── */}
-      <div style={{
-        position: 'absolute',
-        top: '100%',          /* starts right below the watch component */
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: 176,           /* matches watch body width */
-        height: 160,
-        zIndex: 0,
-        overflow: 'visible',
-      }}>
-        {/* Main forearm cylinder — tapers slightly wider toward bottom */}
-        <div style={{
-          position: 'absolute',
-          top: -28,            /* overlap slightly under the bottom band */
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 176,
-          height: 188,
-          borderRadius: '0 0 50px 50px',
-          background: 'linear-gradient(180deg, #C8845A 0%, #B5703C 25%, #A06030 55%, #8A5228 80%, #754420 100%)',
-          boxShadow:
-            'inset -10px 0 22px rgba(0,0,0,0.28), ' +
-            'inset 10px 0 22px rgba(0,0,0,0.2), ' +
-            'inset 0 -12px 30px rgba(0,0,0,0.38), ' +
-            '0 24px 50px rgba(0,0,0,0.6)',
-          overflow: 'hidden',
-        }}>
-          {/* Top-of-wrist centre highlight (light catches top of cylindrical arm) */}
-          <div style={{
-            position: 'absolute', top: 0, left: '22%', right: '22%', height: 90,
-            background: 'linear-gradient(180deg, rgba(255,220,175,0.35) 0%, rgba(255,200,140,0.1) 60%, transparent 100%)',
-            borderRadius: '0 0 50% 50%',
-          }} />
-          {/* Wrist crease lines */}
-          <div style={{ position: 'absolute', top: 50, left: 18, right: 18, height: 1.5, background: 'rgba(0,0,0,0.14)', borderRadius: 4 }} />
-          <div style={{ position: 'absolute', top: 60, left: 28, right: 28, height: 1, background: 'rgba(0,0,0,0.09)', borderRadius: 4 }} />
-          <div style={{ position: 'absolute', top: 68, left: 38, right: 38, height: 0.5, background: 'rgba(0,0,0,0.06)', borderRadius: 4 }} />
-          {/* Left edge shadow (cylindrical depth) */}
-          <div style={{ position: 'absolute', inset: 0, width: 28, background: 'linear-gradient(to right, rgba(0,0,0,0.32), transparent)' }} />
-          {/* Right edge shadow */}
-          <div style={{ position: 'absolute', inset: 0, left: 'auto', width: 28, background: 'linear-gradient(to left, rgba(0,0,0,0.26), transparent)' }} />
-          {/* Bottom fade-out so arm blends naturally into section background */}
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 70, background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.45))' }} />
-        </div>
-      </div>
-
-      {/* ── Watch content (above arm) ── */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
 
       {/* Received pill */}
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
@@ -599,7 +550,6 @@ function AppleWatch() {
         />
       ))}
 
-      </div>{/* end watch content */}
     </div>
   );
 }
@@ -648,7 +598,7 @@ export default function MobileAppShowcase() {
   return (
     <section ref={sectionRef} style={{
       background: 'linear-gradient(135deg, #183765 0%, #1966AA 48%, #2399CA 100%)',
-      padding: '100px 24px 200px',
+      padding: '100px 24px',
       position: 'relative',
       overflow: 'hidden',
     }}>
