@@ -367,38 +367,51 @@ function AppleWatch() {
   return (
     <div style={{ position: 'relative', userSelect: 'none', display: 'inline-block' }}>
 
-      {/* ── Wrist / Arm behind watch ── */}
-      {/* A wide flat forearm cylinder — extends well beyond the watch on both sides */}
+      {/* ── Forearm — extends downward from under the watch, like a wrist you look down at ── */}
       <div style={{
         position: 'absolute',
-        bottom: 10,
+        top: '100%',          /* starts right below the watch component */
         left: '50%',
         transform: 'translateX(-50%)',
-        width: 300,
-        height: 52,
-        borderRadius: '6px 6px 28px 28px',
-        background: 'linear-gradient(180deg, #D4956A 0%, #B8703A 30%, #9A5C28 65%, #7E4B1A 100%)',
-        boxShadow:
-          'inset -18px 0 28px rgba(0,0,0,0.3), ' +
-          'inset 18px 0 28px rgba(0,0,0,0.22), ' +
-          'inset 0 -6px 18px rgba(0,0,0,0.4), ' +
-          '0 20px 44px rgba(0,0,0,0.6)',
-        overflow: 'hidden',
+        width: 176,           /* matches watch body width */
+        height: 160,
         zIndex: 0,
+        overflow: 'visible',
       }}>
-        {/* Central top-of-wrist highlight */}
+        {/* Main forearm cylinder — tapers slightly wider toward bottom */}
         <div style={{
-          position: 'absolute', top: 0, left: '30%', right: '30%', height: 24,
-          background: 'linear-gradient(180deg, rgba(255,225,185,0.38) 0%, transparent 100%)',
-          borderRadius: '0 0 50% 50%',
-        }} />
-        {/* Wrist crease */}
-        <div style={{ position: 'absolute', top: 22, left: 80, right: 80, height: 1.5, background: 'rgba(0,0,0,0.15)', borderRadius: 3 }} />
-        <div style={{ position: 'absolute', top: 30, left: 110, right: 110, height: 1, background: 'rgba(0,0,0,0.09)', borderRadius: 3 }} />
-        {/* Side edge shadows — left taper */}
-        <div style={{ position: 'absolute', inset: 0, width: 50, background: 'linear-gradient(to right, rgba(0,0,0,0.38), transparent)' }} />
-        {/* Side edge shadows — right taper */}
-        <div style={{ position: 'absolute', inset: 0, left: 'auto', width: 50, background: 'linear-gradient(to left, rgba(0,0,0,0.32), transparent)' }} />
+          position: 'absolute',
+          top: -28,            /* overlap slightly under the bottom band */
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 176,
+          height: 188,
+          borderRadius: '0 0 50px 50px',
+          background: 'linear-gradient(180deg, #C8845A 0%, #B5703C 25%, #A06030 55%, #8A5228 80%, #754420 100%)',
+          boxShadow:
+            'inset -10px 0 22px rgba(0,0,0,0.28), ' +
+            'inset 10px 0 22px rgba(0,0,0,0.2), ' +
+            'inset 0 -12px 30px rgba(0,0,0,0.38), ' +
+            '0 24px 50px rgba(0,0,0,0.6)',
+          overflow: 'hidden',
+        }}>
+          {/* Top-of-wrist centre highlight (light catches top of cylindrical arm) */}
+          <div style={{
+            position: 'absolute', top: 0, left: '22%', right: '22%', height: 90,
+            background: 'linear-gradient(180deg, rgba(255,220,175,0.35) 0%, rgba(255,200,140,0.1) 60%, transparent 100%)',
+            borderRadius: '0 0 50% 50%',
+          }} />
+          {/* Wrist crease lines */}
+          <div style={{ position: 'absolute', top: 50, left: 18, right: 18, height: 1.5, background: 'rgba(0,0,0,0.14)', borderRadius: 4 }} />
+          <div style={{ position: 'absolute', top: 60, left: 28, right: 28, height: 1, background: 'rgba(0,0,0,0.09)', borderRadius: 4 }} />
+          <div style={{ position: 'absolute', top: 68, left: 38, right: 38, height: 0.5, background: 'rgba(0,0,0,0.06)', borderRadius: 4 }} />
+          {/* Left edge shadow (cylindrical depth) */}
+          <div style={{ position: 'absolute', inset: 0, width: 28, background: 'linear-gradient(to right, rgba(0,0,0,0.32), transparent)' }} />
+          {/* Right edge shadow */}
+          <div style={{ position: 'absolute', inset: 0, left: 'auto', width: 28, background: 'linear-gradient(to left, rgba(0,0,0,0.26), transparent)' }} />
+          {/* Bottom fade-out so arm blends naturally into section background */}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 70, background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.45))' }} />
+        </div>
       </div>
 
       {/* ── Watch content (above arm) ── */}
@@ -635,7 +648,7 @@ export default function MobileAppShowcase() {
   return (
     <section ref={sectionRef} style={{
       background: 'linear-gradient(135deg, #183765 0%, #1966AA 48%, #2399CA 100%)',
-      padding: '100px 24px 140px',
+      padding: '100px 24px 200px',
       position: 'relative',
       overflow: 'hidden',
     }}>
