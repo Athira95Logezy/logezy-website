@@ -595,7 +595,7 @@ export default function MobileAppShowcase() {
 
   return (
     <section ref={sectionRef} style={{
-      background: 'linear-gradient(160deg, #07111F 0%, #0C1835 55%, #080E2A 100%)',
+      background: 'linear-gradient(135deg, #183765 0%, #1966AA 48%, #2399CA 100%)',
       padding: '100px 24px',
       position: 'relative',
       overflow: 'hidden',

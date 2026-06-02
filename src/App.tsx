@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
+import SocialSidebar from './components/SocialSidebar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Features from './pages/Features';
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="min-h-screen">
       <ScrollProgress />
+      <SocialSidebar />
       <Header />
       <ScrollToTop />
       <Routes>

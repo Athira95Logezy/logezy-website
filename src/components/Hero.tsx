@@ -445,7 +445,7 @@ export default function Hero() {
       ════════════════════════════════════════════════════════ */}
 
       {/* ── LEFT · Piece 1 — Timesheets Header ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 85, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 70, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(18, 10)}>
           <FC delay={0.50} fromX={-52} floatY={-8} floatDur={4.8} floatDelay={0.6} rotate={0.30}>
             <TimesheetsHeaderCard />
@@ -453,17 +453,17 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── LEFT · Piece 2 — Donut chart (same left edge, naturally narrower) ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 157, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
-        <div style={mp(22, 13)}>
-          <FC delay={0.60} fromX={-60} floatY={-12} floatDur={4.2} floatDelay={0.4} rotate={-0.45}>
+      {/* ── RIGHT · Donut chart (moved from left) ── */}
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 70, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+        <div style={mp(-22, 13)}>
+          <FC delay={0.60} fromX={60} floatY={-12} floatDur={4.2} floatDelay={0.4} rotate={0.45}>
             <TimesheetsDonutCard />
           </FC>
         </div>
       </motion.div>
 
       {/* ── LEFT · Piece 3 — Stats tiles ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 367, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 220, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(16, 9)}>
           <FC delay={0.70} fromX={-44} floatY={-7} floatDur={5.2} floatDelay={1.0} rotate={0.20}>
             <TimesheetsStatsCard />
@@ -472,7 +472,7 @@ export default function Hero() {
       </motion.div>
 
       {/* ── LEFT · Shift Mini AM ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 449, zIndex: 8, x: coX, y: coY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 300, zIndex: 8, x: coX, y: coY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(14, 8)}>
           <FC delay={0.80} fromX={-36} floatY={-8} floatDur={5.0} floatDelay={1.4} rotate={-0.30}>
             <ShiftMiniAM />
@@ -480,17 +480,8 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── RIGHT · Birthday ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 85, zIndex: 8, x: bdX, y: bdY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
-        <div style={mp(-18, 11)}>
-          <FC delay={0.55} fromX={52} floatY={-11} floatDur={4.9} floatDelay={0.7} rotate={-0.40}>
-            <BirthdayCard />
-          </FC>
-        </div>
-      </motion.div>
-
       {/* ── RIGHT · Shift Mini JK ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 257, zIndex: 8, x: caX, y: caY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 220, zIndex: 8, x: caX, y: caY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-14, 8)}>
           <FC delay={0.65} fromX={44} floatY={-9} floatDur={4.6} floatDelay={1.0} rotate={0.30}>
             <ShiftMiniJK />
@@ -498,17 +489,8 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── RIGHT · Fill Rate ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 359, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
-        <div style={mp(-11, 7)}>
-          <FC delay={0.75} fromX={36} floatY={-7} floatDur={5.3} floatDelay={1.3} rotate={-0.25}>
-            <WorkerStatCard />
-          </FC>
-        </div>
-      </motion.div>
-
       {/* ── RIGHT · Candidates ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 493, zIndex: 8, x: buX, y: buY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 330, zIndex: 8, x: buX, y: buY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-9, 6)}>
           <FC delay={0.85} fromX={28} floatY={-6} floatDur={4.4} floatDelay={1.6} rotate={0.20}>
             <CandidatesCard />
@@ -628,7 +610,7 @@ export default function Hero() {
                 ].join(', '),
               }}>
                 <img
-                  src="/DASHBAORD_NEW.png"
+                  src="/dashboard_v2.png"
                   alt="Logezy Dashboard"
                   style={{ width: '100%', display: 'block', objectFit: 'cover', objectPosition: 'top center' }}
                 />

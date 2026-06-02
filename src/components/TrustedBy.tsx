@@ -15,8 +15,8 @@ const logos = [
   { src: '/Staffnursing_logo.png',        alt: 'Staff Nursing'  },
 ];
 
-const LOGO_SLOT = 148;
-const GAP       = 36;
+const LOGO_SLOT = 180;
+const GAP       = 48;
 const TRACK_W   = (LOGO_SLOT + GAP) * logos.length;
 const tripled   = [...logos, ...logos, ...logos];
 
@@ -29,7 +29,7 @@ export default function TrustedBy() {
       background: 'linear-gradient(160deg, #F8FAFF 0%, #FFFFFF 50%, #F0F4FF 100%)',
       overflow: 'hidden',
       position: 'relative',
-      padding: '48px 0 52px',
+      padding: '72px 0 60px',
       borderTop: '1px solid rgba(99,102,241,0.10)',
       borderBottom: '1px solid rgba(99,102,241,0.10)',
     }}>
@@ -100,7 +100,7 @@ export default function TrustedBy() {
                 src={logo.src}
                 alt={logo.alt}
                 style={{
-                  maxHeight: 44,
+                  maxHeight: 64,
                   width: 'auto',
                   maxWidth: LOGO_SLOT,
                   objectFit: 'contain',

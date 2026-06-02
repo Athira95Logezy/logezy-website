@@ -1,9 +1,9 @@
 /**
- * MobileAppFeatures.tsx — Alternating editorial feature rows · Light theme
+ * MobileAppFeatures.tsx — Stockie-style S-curve layout · Light theme
  *
- * No card boxes. Six features laid out as clean horizontal rows that
- * alternate text-left / animation-right and vice-versa.
- * Animations float freely on the light background — no wrapping shells.
+ * Top section: 35/65 two-column grid with left copy + right S-curve of 3 features.
+ * Bottom section: 3-column grid for features 4-6 with connecting arc.
+ * All 6 animation components and feature data unchanged.
  */
 
 import React, { useRef, useEffect, useState } from 'react';
@@ -316,9 +316,9 @@ function ChatAnim() {
 
 
 /* ════════════════════════════════════════════════
-   FEATURE ROW  — one row per feature, alternating
+   FEATURE NODE — Stockie-style card
 ════════════════════════════════════════════════ */
-interface FRProps {
+interface FNProps {
   idx:     number;
   color:   string;
   icon:    React.ComponentType<any>;
@@ -328,131 +328,85 @@ interface FRProps {
   desc:    string;
   bullets: string[];
   anim:    React.ReactNode;
-  reverse: boolean;
 }
 
-function FeatureRow({ idx, color, icon: Icon, tag, live, title, desc, bullets, anim, reverse }: FRProps) {
+function FeatureNode({ idx, color, icon: Icon, title, desc, anim }: FNProps) {
   const num = String(idx + 1).padStart(2, '0');
-
-  /* ── text block ── */
-  const textBlock = (
+  return (
     <motion.div
-      initial={{ opacity: 0, x: reverse ? 36 : -36 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.68, ease: EASE }}
-      style={{ flex: 1, position: 'relative' }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.6, delay: idx * 0.08, ease: EASE }}
+      style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
     >
-      {/* decorative large number watermark */}
+      {/* ghost number */}
       <div style={{
         position: 'absolute',
-        top: -48, [reverse ? 'right' : 'left']: -20,
-        fontSize: 152, fontWeight: 900,
-        color: `${color}18`,
+        top: -32, left: -12,
+        fontSize: 130, fontWeight: 900,
+        color: 'rgba(15,23,42,0.04)',
         lineHeight: 1, pointerEvents: 'none', userSelect: 'none',
         letterSpacing: '-0.04em', zIndex: 0,
       }}>{num}</div>
 
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        {/* icon + tag row */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 22 }}>
-          <div style={{
-            width: 46, height: 46, borderRadius: 14,
-            background: `${color}12`, border: `1.5px solid ${color}28`,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-          }}>
-            <Icon weight="regular" size={22} style={{ color }} />
-          </div>
-
-          <span style={{
-            fontSize: 9.5, fontWeight: 700, padding: '4px 13px', borderRadius: 20,
-            background: `${color}0D`, color, border: `1px solid ${color}24`,
-            letterSpacing: '0.09em', textTransform: 'uppercase' as const,
-          }}>{tag}</span>
-
-          {live && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '4px 11px', borderRadius: 20, background: 'rgba(249,115,22,0.07)', border: '1px solid rgba(249,115,22,0.20)' }}>
-              <motion.div
-                animate={{ opacity: [1, 0.15, 1], scale: [1, 0.6, 1] }}
-                transition={{ duration: 1.4, repeat: Infinity }}
-                style={{ width: 5, height: 5, borderRadius: '50%', background: '#F97316' }}
-              />
-              <span style={{ fontSize: 8.5, fontWeight: 800, color: '#F97316', letterSpacing: '0.06em' }}>LIVE</span>
-            </div>
-          )}
+      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+        {/* icon circle */}
+        <div style={{
+          width: 56, height: 56, borderRadius: '50%',
+          background: '#FFFFFF',
+          border: `2px solid ${color}`,
+          boxShadow: `0 4px 16px ${color}28`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          marginBottom: 16,
+        }}>
+          <Icon weight="regular" size={24} style={{ color }} />
         </div>
 
-        {/* headline */}
+        {/* title */}
         <h3 style={{
-          fontSize: 'clamp(1.55rem, 2.4vw, 2.15rem)',
-          fontWeight: 900, color: '#0F172A',
-          letterSpacing: '-0.04em', lineHeight: 1.12,
-          marginBottom: 14,
+          fontSize: 20, fontWeight: 800, color: '#0F172A',
+          margin: '0 0 8px', letterSpacing: '-0.03em', lineHeight: 1.2,
         }}>{title}</h3>
 
-        {/* description */}
+        {/* desc */}
         <p style={{
-          fontSize: 15.5, lineHeight: 1.84, color: '#64748B',
-          marginBottom: 32, maxWidth: 430,
+          fontSize: 14, color: '#64748B', lineHeight: 1.7,
+          margin: '0 0 12px', maxWidth: 280,
         }}>{desc}</p>
 
-        {/* feature bullets */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {bullets.map((b, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: reverse ? 14 : -14 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.18 + i * 0.09, duration: 0.44, ease: EASE }}
-              style={{ display: 'flex', alignItems: 'center', gap: 11 }}
-            >
-              <div style={{
-                width: 22, height: 22, borderRadius: '50%', flexShrink: 0,
-                background: `${color}10`, border: `1.5px solid ${color}2C`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <span style={{ fontSize: 9.5, fontWeight: 900, color }}>✓</span>
-              </div>
-              <span style={{ fontSize: 14.5, color: '#475569', fontWeight: 500, lineHeight: 1.5 }}>{b}</span>
-            </motion.div>
-          ))}
+        {/* learn more */}
+        <span style={{
+          fontSize: 11, fontWeight: 700, color, textTransform: 'uppercase',
+          letterSpacing: '0.08em', cursor: 'default',
+        }}>Learn More →</span>
+
+        {/* animation card */}
+        <div style={{
+          marginTop: 20,
+          background: '#FFFFFF',
+          borderRadius: 14,
+          boxShadow: '0 4px 24px rgba(0,0,0,0.07)',
+          padding: '14px',
+          border: '1px solid rgba(226,232,240,0.8)',
+        }}>
+          {anim}
         </div>
       </div>
     </motion.div>
-  );
-
-  /* ── animation block ── */
-  const animBlock = (
-    <motion.div
-      initial={{ opacity: 0, x: reverse ? -36 : 36 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.68, delay: 0.10, ease: EASE }}
-      style={{ flex: 1.6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-    >
-      <div style={{ width: '100%', maxWidth: 640, zoom: 1.35 }}>
-        {anim}
-      </div>
-    </motion.div>
-  );
-
-  return (
-    <div className="maf-row" style={{ display: 'flex', alignItems: 'center', gap: 52 }}>
-      {reverse ? <>{animBlock}{textBlock}</> : <>{textBlock}{animBlock}</>}
-    </div>
   );
 }
 
 
 /* ════════════════════════════════════════════════
-   DIVIDER
+   DIVIDER — gentle separator between top + bottom
 ════════════════════════════════════════════════ */
 function Divider() {
   return (
     <div style={{
       height: 1,
-      background: 'linear-gradient(90deg, transparent 0%, rgba(203,213,225,0.7) 15%, rgba(203,213,225,0.7) 85%, transparent 100%)',
+      margin: '80px 0',
+      background: 'linear-gradient(90deg, transparent 0%, rgba(203,213,225,0.6) 20%, rgba(203,213,225,0.6) 80%, transparent 100%)',
     }} />
   );
 }
@@ -463,14 +417,13 @@ function Divider() {
 ════════════════════════════════════════════════ */
 export default function MobileAppFeatures() {
 
-  const features: Omit<FRProps, 'idx'>[] = [
+  const features: Omit<FNProps, 'idx'>[] = [
     {
       color: '#6366F1', icon: CalendarBlank, tag: 'Most Used',
       title: 'Shift Management',
       desc:  'Workers see their shifts, confirm in seconds, and get reminders — all from their phone. No more missed messages or last-minute confusion.',
       bullets: ['One-tap shift confirmation', 'Automated shift reminders', 'Shift swap requests'],
       anim:    <ShiftAnim />,
-      reverse: false,
     },
     {
       color: '#10B981', icon: Clock, tag: 'Time Saver',
@@ -478,7 +431,6 @@ export default function MobileAppFeatures() {
       desc:  "Workers share when they're free so you fill shifts with people who actually want to work — every time.",
       bullets: ['Weekly availability picker', 'Smart staff matching', 'Auto-fill open shifts'],
       anim:    <AvailabilityAnim />,
-      reverse: true,
     },
     {
       color: '#8B5CF6', icon: Shield, tag: 'CQC Ready',
@@ -486,7 +438,6 @@ export default function MobileAppFeatures() {
       desc:  'Workers upload documents, your team tracks everything. CQC-ready from day one — no chasing, no guesswork.',
       bullets: ['Document expiry alerts', 'Auto-renewal reminders', 'Audit-ready records'],
       anim:    <ComplianceAnim />,
-      reverse: false,
     },
     {
       color: '#F59E0B', icon: FileText, tag: 'Auto-Payroll',
@@ -494,7 +445,6 @@ export default function MobileAppFeatures() {
       desc:  'GPS clock-in, digital sign-off, instant payroll export. The easy way to ensure every worker gets paid right, every time.',
       bullets: ['GPS clock-in / out', 'Digital client sign-off', 'Auto payroll export'],
       anim:    <TimesheetAnim />,
-      reverse: true,
     },
     {
       color: '#F97316', icon: Bell, tag: 'Real-Time', live: true,
@@ -502,7 +452,6 @@ export default function MobileAppFeatures() {
       desc:  'Agency, workers and clients all get the right updates instantly — push, SMS or email. Everyone stays in the loop, automatically.',
       bullets: ['Push + SMS + email alerts', 'Read receipts built-in', 'No-show auto-alerts'],
       anim:    <NotificationsAnim />,
-      reverse: false,
     },
     {
       color: '#0EA5E9', icon: ChatCircle, tag: 'Built-In',
@@ -510,111 +459,227 @@ export default function MobileAppFeatures() {
       desc:  'Workers reach your team and your team reaches them — all in one place, right inside the app. Every message is logged, searchable, and nothing ever gets lost.',
       bullets: ['Group & direct messaging', 'Full searchable history', 'Works within Logezy'],
       anim:    <ChatAnim />,
-      reverse: true,
     },
+  ];
+
+  const topFeatures    = features.slice(0, 3);
+  const bottomFeatures = features.slice(3, 6);
+
+  const stats = [
+    { label: '98.7% compliance rate',      color: '#6366F1' },
+    { label: '< 2 min shift confirmation',  color: '#10B981' },
+    { label: 'Push · SMS · Email alerts',   color: '#0EA5E9' },
+    { label: '99.9% uptime',                color: '#F97316' },
   ];
 
   return (
     <section style={{
       position: 'relative', overflow: 'hidden',
-      background: 'linear-gradient(180deg, #F8FAFF 0%, #FFFFFF 28%, #F8FAFF 60%, #FFFFFF 100%)',
+      background: 'linear-gradient(180deg, #F2F4F8 0%, #FFFFFF 50%, #F2F4F8 100%)',
       padding: '120px 56px 140px',
     }}>
 
       {/* ── subtle dot grid ── */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-        backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.055) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.045) 1px, transparent 1px)',
         backgroundSize: '34px 34px',
         maskImage: 'radial-gradient(ellipse 85% 65% at 50% 40%, black 20%, transparent 100%)',
         WebkitMaskImage: 'radial-gradient(ellipse 85% 65% at 50% 40%, black 20%, transparent 100%)',
       }} />
 
-      {/* ── ambient centre glow ── */}
-      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 900, height: 700, background: 'radial-gradient(ellipse, rgba(99,102,241,0.045) 0%, transparent 68%)', filter: 'blur(80px)', zIndex: 0, pointerEvents: 'none' }} />
-
       {/* ─── CONTENT ─── */}
       <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto' }}>
 
-        {/* ════ SECTION HEADER ════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.68, ease: EASE }}
-          style={{ textAlign: 'center', marginBottom: 96 }}
-        >
-          {/* badge */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '5px 18px 5px 12px', borderRadius: 100, background: 'rgba(99,102,241,0.07)', border: '1px solid rgba(99,102,241,0.18)', marginBottom: 24 }}>
-            <div style={{ width: 6.5, height: 6.5, borderRadius: '50%', background: '#6366F1' }} />
-            <span style={{ fontSize: 11, fontWeight: 700, color: '#6366F1', letterSpacing: '0.10em', textTransform: 'uppercase' }}>App Features</span>
-          </div>
+        {/* ════ TOP SECTION — 35/65 grid ════ */}
+        <div className="maf-top-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: '35% 65%',
+          gap: 64,
+          alignItems: 'start',
+          marginBottom: 0,
+        }}>
 
-          {/* H2 */}
-          <h2 style={{
-            fontSize: 'clamp(2.1rem, 4vw, 3.5rem)',
-            fontWeight: 900, color: '#0F172A',
-            letterSpacing: '-0.045em', lineHeight: 1.08, marginBottom: 20,
-          }}>
-            Everything your workforce needs,{' '}
-            <span style={{
-              background: 'linear-gradient(125deg, #6366F1 0%, #0EA5E9 50%, #10B981 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            }}>in one app.</span>
-          </h2>
+          {/* ── LEFT: copy + stats ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.68, ease: EASE }}
+            style={{ paddingTop: 40 }}
+          >
+            {/* badge */}
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 7,
+              padding: '5px 16px 5px 10px', borderRadius: 100,
+              background: 'rgba(99,102,241,0.07)', border: '1px solid rgba(99,102,241,0.18)',
+              marginBottom: 24,
+            }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#6366F1' }} />
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#6366F1', letterSpacing: '0.10em', textTransform: 'uppercase' }}>App Features</span>
+            </div>
 
-          {/* subtitle */}
-          <p style={{ fontSize: 17, color: '#64748B', maxWidth: 520, margin: '0 auto 40px', lineHeight: 1.8 }}>
-            Six powerful features that keep your workforce engaged, compliant and earning — with zero friction.
-          </p>
+            {/* H2 */}
+            <h2 style={{
+              fontSize: 'clamp(1.8rem, 2.8vw, 2.8rem)',
+              fontWeight: 900, color: '#0F172A',
+              letterSpacing: '-0.045em', lineHeight: 1.1, marginBottom: 18,
+            }}>
+              Everything your workforce needs,{' '}
+              <span style={{
+                background: 'linear-gradient(125deg, #6366F1 0%, #0EA5E9 50%, #10B981 100%)',
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+              }}>in one app.</span>
+            </h2>
 
-          {/* stats dots */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 32, flexWrap: 'wrap' }}>
-            {[
-              { label: '98.7% compliance rate',      color: '#6366F1' },
-              { label: '< 2 min shift confirmation',  color: '#10B981' },
-              { label: 'Push · SMS · Email alerts',   color: '#0EA5E9' },
-              { label: '99.9% uptime',                color: '#F97316' },
-            ].map(({ label, color }, i, arr) => (
-              <React.Fragment key={label}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {/* subtitle */}
+            <p style={{ fontSize: 15.5, color: '#64748B', lineHeight: 1.8, marginBottom: 32, maxWidth: 340 }}>
+              Six powerful features that keep your workforce engaged, compliant and earning — with zero friction.
+            </p>
+
+            {/* CTA */}
+            <div style={{ marginBottom: 48 }}>
+              <a href="#" style={{
+                display: 'inline-block',
+                padding: '13px 28px',
+                borderRadius: 100,
+                background: '#0F172A',
+                color: '#FFFFFF',
+                fontSize: 14,
+                fontWeight: 700,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+                boxShadow: '0 4px 16px rgba(15,23,42,0.22)',
+              }}>Get the App</a>
+            </div>
+
+            {/* stats strip */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {stats.map(({ label, color }) => (
+                <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <div style={{ width: 7, height: 7, borderRadius: '50%', background: color, flexShrink: 0 }} />
                   <span style={{ fontSize: 13, color: '#64748B', fontWeight: 600 }}>{label}</span>
                 </div>
-                {i < arr.length - 1 && <div style={{ width: 1, height: 14, background: 'rgba(203,213,225,0.8)', flexShrink: 0 }} />}
-              </React.Fragment>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* ── RIGHT: S-curve with first 3 features ── */}
+          <div style={{ position: 'relative' }}>
+
+            {/* S-curve SVG behind the feature nodes */}
+            <svg
+              viewBox="0 0 760 560"
+              style={{
+                position: 'absolute',
+                top: 0, left: 0,
+                width: '100%', height: '100%',
+                pointerEvents: 'none', zIndex: 0,
+              }}
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M 80 480 C 200 440, 300 360, 400 300 S 580 180, 680 80"
+                stroke="#3B82F6"
+                strokeWidth="2.5"
+                fill="none"
+                opacity="0.35"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            {/* Feature nodes arranged along S-curve */}
+            <div className="maf-scurve-nodes" style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr 1fr',
+              gap: 24,
+              position: 'relative',
+              zIndex: 1,
+            }}>
+              {/* node 1 — bottom-left */}
+              <div style={{ gridColumn: 1, gridRow: 1, alignSelf: 'end', paddingTop: 200 }}>
+                <FeatureNode idx={0} {...topFeatures[0]} />
+              </div>
+              {/* node 2 — center */}
+              <div style={{ gridColumn: 2, gridRow: 1, alignSelf: 'center', paddingTop: 60 }}>
+                <FeatureNode idx={1} {...topFeatures[1]} />
+              </div>
+              {/* node 3 — top-right */}
+              <div style={{ gridColumn: 3, gridRow: 1, alignSelf: 'start' }}>
+                <FeatureNode idx={2} {...topFeatures[2]} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ════ DIVIDER ════ */}
+        <Divider />
+
+        {/* ════ BOTTOM SECTION — features 4-6 in 3 columns ════ */}
+        <div style={{ position: 'relative' }}>
+
+          {/* gentle connecting arc behind bottom 3 */}
+          <svg
+            viewBox="0 0 1200 120"
+            style={{
+              position: 'absolute',
+              top: 40, left: 0,
+              width: '100%', height: 120,
+              pointerEvents: 'none', zIndex: 0,
+            }}
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M 80 80 Q 400 20, 600 60 Q 800 100, 1120 40"
+              stroke="#3B82F6"
+              strokeWidth="2"
+              fill="none"
+              opacity="0.25"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          <div className="maf-bottom-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 48,
+            position: 'relative',
+            zIndex: 1,
+          }}>
+            {bottomFeatures.map((f, i) => (
+              <FeatureNode key={f.title} idx={i + 3} {...f} />
             ))}
           </div>
-        </motion.div>
-
-        {/* ════ FEATURE ROWS ════ */}
-        <div>
-          {features.map((f, i) => (
-            <React.Fragment key={f.title}>
-              {i > 0 && <Divider />}
-              <div style={{ padding: '84px 0' }}>
-                <FeatureRow idx={i} {...f} />
-              </div>
-            </React.Fragment>
-          ))}
         </div>
 
       </div>
 
       {/* ── responsive ── */}
       <style>{`
-        @media (max-width: 900px) {
-          .maf-row {
-            flex-direction: column !important;
-            gap: 48px !important;
+        @media (max-width: 1024px) {
+          .maf-top-grid {
+            grid-template-columns: 1fr !important;
           }
-          .maf-row > * {
-            flex: none !important;
-            width: 100% !important;
+          .maf-scurve-nodes {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .maf-scurve-nodes > div {
+            padding-top: 0 !important;
+            align-self: auto !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .maf-scurve-nodes {
+            grid-template-columns: 1fr !important;
+          }
+          .maf-bottom-grid {
+            grid-template-columns: 1fr !important;
           }
         }
         @media (max-width: 640px) {
-          .maf-row { gap: 36px !important; }
+          section {
+            padding: 72px 24px 96px !important;
+          }
         }
       `}</style>
 

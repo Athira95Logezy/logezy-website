@@ -197,7 +197,7 @@ const features = [
 /* ─────────────────────────────────────────────
    SECTION OVERLAY POPUP PANEL
 ───────────────────────────────────────────── */
-function SectionPopup({
+function ExpandPanel({
   feature,
   onClose,
 }: {
@@ -229,7 +229,7 @@ function SectionPopup({
           padding: '32px 40px',
         }}
       >
-        {/* ── Large popup card ── */}
+        {/* ── Large popup card — wider ── */}
         <motion.div
           key={feature.id}
           initial={{ scale: 0.92, opacity: 0, y: 24 }}
@@ -239,9 +239,9 @@ function SectionPopup({
           onClick={e => e.stopPropagation()}
           style={{
             width: '100%',
-            maxWidth: 1160,
-            height: '82vh',
-            maxHeight: 720,
+            maxWidth: 1340,
+            height: '86vh',
+            maxHeight: 780,
             borderRadius: 24,
             overflow: 'hidden',
             display: 'flex',
@@ -254,7 +254,7 @@ function SectionPopup({
         >
           {/* ── LEFT PANEL — details ── */}
           <div style={{
-            width: 400,
+            width: 440,
             flexShrink: 0,
             background: '#FFFFFF',
             borderRight: `1px solid ${feature.color}12`,
@@ -287,7 +287,7 @@ function SectionPopup({
             </div>
 
             <h2 style={{
-              fontSize: 26, fontWeight: 900,
+              fontSize: 28, fontWeight: 900,
               color: '#0F172A', margin: '0 0 10px',
               letterSpacing: '-0.03em', lineHeight: 1.18,
             }}>
@@ -453,7 +453,7 @@ export default function Features() {
         background: 'linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%)',
         paddingTop: 96,
         paddingBottom: 88,
-        position: 'relative',   /* ← overlay anchors here */
+        position: 'relative',
       }}
     >
       {/* Top separator */}
@@ -584,7 +584,7 @@ export default function Features() {
           })}
         </motion.div>
 
-        {/* ── Bottom CTA ── */}
+          {/* ── Bottom CTA ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -611,7 +611,7 @@ export default function Features() {
       {/* ── Section-level overlay popup — anchored to section ── */}
       <AnimatePresence>
         {selected && (
-          <SectionPopup
+          <ExpandPanel
             key={selected.id}
             feature={selected}
             onClose={() => setSelected(null)}
