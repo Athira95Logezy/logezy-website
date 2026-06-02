@@ -365,7 +365,44 @@ function WatchNotifCard({
 /* ─── Realistic Apple Watch Series 9 ─── */
 function AppleWatch() {
   return (
-    <div style={{ position: 'relative', userSelect: 'none' }}>
+    <div style={{ position: 'relative', userSelect: 'none', display: 'inline-block' }}>
+
+      {/* ── Wrist / Arm behind watch ── */}
+      {/* A wide flat forearm cylinder — extends well beyond the watch on both sides */}
+      <div style={{
+        position: 'absolute',
+        bottom: 10,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: 300,
+        height: 52,
+        borderRadius: '6px 6px 28px 28px',
+        background: 'linear-gradient(180deg, #D4956A 0%, #B8703A 30%, #9A5C28 65%, #7E4B1A 100%)',
+        boxShadow:
+          'inset -18px 0 28px rgba(0,0,0,0.3), ' +
+          'inset 18px 0 28px rgba(0,0,0,0.22), ' +
+          'inset 0 -6px 18px rgba(0,0,0,0.4), ' +
+          '0 20px 44px rgba(0,0,0,0.6)',
+        overflow: 'hidden',
+        zIndex: 0,
+      }}>
+        {/* Central top-of-wrist highlight */}
+        <div style={{
+          position: 'absolute', top: 0, left: '30%', right: '30%', height: 24,
+          background: 'linear-gradient(180deg, rgba(255,225,185,0.38) 0%, transparent 100%)',
+          borderRadius: '0 0 50% 50%',
+        }} />
+        {/* Wrist crease */}
+        <div style={{ position: 'absolute', top: 22, left: 80, right: 80, height: 1.5, background: 'rgba(0,0,0,0.15)', borderRadius: 3 }} />
+        <div style={{ position: 'absolute', top: 30, left: 110, right: 110, height: 1, background: 'rgba(0,0,0,0.09)', borderRadius: 3 }} />
+        {/* Side edge shadows — left taper */}
+        <div style={{ position: 'absolute', inset: 0, width: 50, background: 'linear-gradient(to right, rgba(0,0,0,0.38), transparent)' }} />
+        {/* Side edge shadows — right taper */}
+        <div style={{ position: 'absolute', inset: 0, left: 'auto', width: 50, background: 'linear-gradient(to left, rgba(0,0,0,0.32), transparent)' }} />
+      </div>
+
+      {/* ── Watch content (above arm) ── */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
 
       {/* Received pill */}
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
@@ -548,6 +585,8 @@ function AppleWatch() {
           transition={{ duration: 2.4, repeat: Infinity, delay: (n - 1) * 0.65, ease: 'easeOut' }}
         />
       ))}
+
+      </div>{/* end watch content */}
     </div>
   );
 }
@@ -596,7 +635,7 @@ export default function MobileAppShowcase() {
   return (
     <section ref={sectionRef} style={{
       background: 'linear-gradient(135deg, #183765 0%, #1966AA 48%, #2399CA 100%)',
-      padding: '100px 24px',
+      padding: '100px 24px 140px',
       position: 'relative',
       overflow: 'hidden',
     }}>
