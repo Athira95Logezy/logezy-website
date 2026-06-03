@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import { ArrowRight, BookOpen, Buildings, Clock, Tag, Heartbeat, ForkKnife, GraduationCap } from '@phosphor-icons/react';
 
 /* ═══════════════════════════════════════════════
@@ -178,6 +179,8 @@ function BlogCard({ post, index }: { post: typeof blogPosts[0]; index: number })
 ═══════════════════════════════════════════════ */
 export default function Resources() {
   const [activeTab, setActiveTab] = useState<'all' | 'blog' | 'case-studies'>('all');
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
 
   return (
     <div style={{ minHeight: '100vh', background: 'white' }}>
@@ -226,7 +229,7 @@ export default function Resources() {
 
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }}
               whileHover={{ boxShadow: '0 16px 56px rgba(91,108,249,0.12)' }}
-              style={{ background: 'linear-gradient(135deg,#EEF2FF 0%,#F5F3FF 100%)', borderRadius: 20, padding: '40px 44px', border: '1px solid #C7D2FE', cursor: 'pointer', display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'center' }}>
+              style={{ background: 'linear-gradient(135deg,#EEF2FF 0%,#F5F3FF 100%)', borderRadius: 20, padding: isMobile ? '28px 20px' : '40px 44px', border: '1px solid #C7D2FE', cursor: 'pointer', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr auto', gap: isMobile ? 16 : 40, alignItems: 'center' }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
                   <span style={{ fontSize: 11, fontWeight: 700, color: INDIGO, background: '#EEF2FF', border: '1px solid #C7D2FE', padding: '3px 10px', borderRadius: 20 }}>Agency Growth</span>
@@ -258,7 +261,7 @@ export default function Resources() {
               <div style={{ height: 2, width: 32, background: '#E5E7EB', borderRadius: 2 }} />
               <span style={{ fontSize: 13, fontWeight: 700, color: '#9CA3AF', textTransform: 'uppercase' as const, letterSpacing: '0.08em' }}>Latest Articles</span>
             </motion.div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: 20 }}>
               {blogPosts.slice(1).map((post, i) => (
                 <BlogCard key={post.id} post={post} index={i} />
               ))}
@@ -284,7 +287,7 @@ export default function Resources() {
               </p>
             </motion.div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: 24 }}>
               {caseStudies.map((cs, i) => (
                 <motion.div key={cs.id}
                   initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}

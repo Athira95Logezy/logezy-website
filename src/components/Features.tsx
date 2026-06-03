@@ -7,6 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FeatureIllustration } from './FeatureIllustrations';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 
 const featureUrl: Record<string, string> = {
   scheduling:    'schedule',
@@ -206,6 +207,8 @@ function ExpandPanel({
 }) {
   const Icon = feature.icon;
   const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+  const panelVw = useWindowWidth();
+  const panelMobile = panelVw < 640;
 
   return (
     <>
@@ -226,7 +229,7 @@ function ExpandPanel({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '32px 40px',
+          padding: panelMobile ? '16px' : '32px 40px',
         }}
       >
         {/* ── Large popup card — wider ── */}
@@ -240,11 +243,12 @@ function ExpandPanel({
           style={{
             width: '100%',
             maxWidth: 1340,
-            height: '86vh',
-            maxHeight: 780,
-            borderRadius: 24,
+            height: panelMobile ? '92vh' : '86vh',
+            maxHeight: panelMobile ? '100vh' : 780,
+            borderRadius: panelMobile ? 20 : 24,
             overflow: 'hidden',
             display: 'flex',
+            flexDirection: panelMobile ? 'column' : 'row',
             background: '#FFFFFF',
             boxShadow:
               '0 60px 140px rgba(0,0,0,0.42), ' +
@@ -254,14 +258,15 @@ function ExpandPanel({
         >
           {/* ── LEFT PANEL — details ── */}
           <div style={{
-            width: 440,
+            width: panelMobile ? '100%' : 440,
             flexShrink: 0,
             background: '#FFFFFF',
-            borderRight: `1px solid ${feature.color}12`,
+            borderRight: panelMobile ? 'none' : `1px solid ${feature.color}12`,
+            borderBottom: panelMobile ? `1px solid ${feature.color}12` : 'none',
             display: 'flex',
             flexDirection: 'column',
             overflowY: 'auto',
-            padding: '44px 44px 36px',
+            padding: panelMobile ? '28px 24px 20px' : '44px 44px 36px',
           }}>
             {/* Icon + tag row */}
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
@@ -352,8 +357,8 @@ function ExpandPanel({
             </div>
           </div>
 
-          {/* ── RIGHT PANEL — screenshot ── */}
-          <div style={{
+          {/* ── RIGHT PANEL — screenshot (hidden on mobile) ── */}
+          {!panelMobile && <div style={{
             flex: 1,
             background: `linear-gradient(140deg, ${feature.bg} 0%, rgba(248,250,252,1) 55%)`,
             display: 'flex',
@@ -428,7 +433,7 @@ function ExpandPanel({
                 <FeatureIllustration id={feature.id} color={feature.color} />
               </motion.div>
             </div>
-          </div>
+          </div>}
         </motion.div>
       </motion.div>
     </>
@@ -441,6 +446,9 @@ function ExpandPanel({
 export default function Features() {
   const [selected, setSelected] = useState<typeof features[0] | null>(null);
   const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+  const vw = useWindowWidth();
+  const isMobile = vw < 640;
+  const isTablet = vw < 1024;
 
   function toggleFeature(f: typeof features[0]) {
     setSelected(prev => (prev?.id === f.id ? null : f));
@@ -451,15 +459,15 @@ export default function Features() {
       id="features"
       style={{
         background: 'linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%)',
-        paddingTop: 96,
-        paddingBottom: 88,
+        paddingTop: isMobile ? 56 : 96,
+        paddingBottom: isMobile ? 56 : 88,
         position: 'relative',
       }}
     >
       {/* Top separator */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: '#EEF2F7' }} />
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: isMobile ? '0 16px' : isTablet ? '0 24px' : '0 40px' }}>
 
         {/* ── Header ── */}
         <motion.div
@@ -508,11 +516,7 @@ export default function Features() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-40px' }}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(6, 1fr)',
-            gap: 10,
-          }}
+          style={{ display: 'grid', gap: isMobile ? 8 : 10 }}
           className="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
         >
           {features.map(f => {
@@ -536,8 +540,8 @@ export default function Features() {
                 style={{
                   background: isSelected ? f.bg : '#FFFFFF',
                   border: isSelected ? `1.5px solid ${f.color}48` : '1.5px solid #E8ECF4',
-                  borderRadius: 18,
-                  padding: '20px 14px 18px',
+                  borderRadius: isMobile ? 14 : 18,
+                  padding: isMobile ? '14px 10px 12px' : '20px 14px 18px',
                   cursor: 'pointer',
                   textAlign: 'left' as const,
                   outline: 'none',
@@ -554,17 +558,18 @@ export default function Features() {
                 }}
               >
                 <div style={{
-                  width: 60, height: 60, borderRadius: 17,
+                  width: isMobile ? 44 : 60, height: isMobile ? 44 : 60,
+                  borderRadius: isMobile ? 12 : 17,
                   background: f.bg,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                   boxShadow: isSelected ? `0 6px 18px ${f.color}28` : `0 4px 14px ${f.color}20`,
                 }}>
-                  <Icon weight="regular" style={{ width: 28, height: 28, color: f.color }} />
+                  <Icon weight="regular" style={{ width: isMobile ? 20 : 28, height: isMobile ? 20 : 28, color: f.color }} />
                 </div>
 
                 <span style={{
-                  fontSize: 12, fontWeight: 700,
+                  fontSize: isMobile ? 10 : 12, fontWeight: 700,
                   color: isSelected ? f.color : '#1E293B',
                   lineHeight: 1.3, letterSpacing: '-0.01em',
                   transition: 'color 0.18s',
@@ -573,7 +578,7 @@ export default function Features() {
                 </span>
 
                 <span style={{
-                  fontSize: 9, fontWeight: 700,
+                  fontSize: isMobile ? 8 : 9, fontWeight: 700,
                   color: '#94A3B8', letterSpacing: '0.04em',
                   textTransform: 'uppercase' as const,
                 }}>

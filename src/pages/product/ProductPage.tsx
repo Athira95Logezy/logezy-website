@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 import {
   CalendarBlank, Clock, Bell, Shield, MapPin, ChartBar, ChartLine, Receipt,
   Users, DeviceMobile, Buildings, Briefcase, FileText, ArrowRight, CheckCircle,
@@ -713,6 +714,8 @@ function FeatureCardItem({ icon: Icon, title, desc, accent, accentBg, index }: {
 export default function ProductPage() {
   const { slug } = useParams<{ slug: string }>();
   const cfg = pages.find(p => p.slug === slug);
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
 
   if (!cfg) {
     return (
@@ -731,7 +734,7 @@ export default function ProductPage() {
 
       {/* ── HERO ──────────────────────────────────── */}
       <section style={{ background: cfg.heroBg, paddingTop: 80, paddingBottom: 80, overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 60, alignItems: 'center' }}>
 
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
@@ -842,9 +845,7 @@ export default function ProductPage() {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: group.items.length <= 4
-                ? 'repeat(auto-fit, minmax(240px, 1fr))'
-                : 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))',
               gap: 20,
             }}>
               {group.items.map((item, idx) => (

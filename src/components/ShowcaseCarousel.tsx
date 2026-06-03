@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import {
   ArrowLeft, ArrowRight, Play, Pause,
   CalendarBlank, Bell, CheckCircle, Buildings,
@@ -492,6 +493,8 @@ export default function ShowcaseCarousel() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [dir, setDir] = useState(1);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
 
   const slide = slides[current];
 
@@ -516,7 +519,7 @@ export default function ShowcaseCarousel() {
   return (
     <section style={{
       background: 'linear-gradient(160deg, #080E2A 0%, #0C1640 50%, #080E2A 100%)',
-      padding: '100px 48px 120px',
+      padding: isMobile ? '60px 16px 72px' : '100px 48px 120px',
       position: 'relative',
       overflow: 'hidden',
     }}>
@@ -563,7 +566,7 @@ export default function ShowcaseCarousel() {
         </motion.div>
 
         {/* ── Main carousel ── */}
-        <div style={{ display: 'flex', gap: 48, alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? 32 : 48, alignItems: isMobile ? 'stretch' : 'center' }}>
 
           {/* LEFT — copy */}
           <div style={{ flex: 1, minWidth: 0 }}>

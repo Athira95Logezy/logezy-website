@@ -17,6 +17,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, ArrowRight, Quotes } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -227,10 +228,12 @@ function ScrollColumn({ items, direction, duration }: {
    MAIN SECTION
 ───────────────────────────────────────────── */
 export default function Testimonials() {
+  const width = useWindowWidth();
+  const isMobile = width < 768;
   return (
     <section style={{
       background: '#F7F8FA',
-      padding: '108px 0 120px',
+      padding: isMobile ? '64px 0 72px' : '108px 0 120px',
       overflow: 'hidden',
       position: 'relative',
     }}>
@@ -239,7 +242,7 @@ export default function Testimonials() {
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(203,213,225,0.5), transparent)' }} />
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, background: 'linear-gradient(90deg, transparent, rgba(203,213,225,0.5), transparent)' }} />
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 48px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: isMobile ? '0 20px' : '0 48px' }}>
 
         {/* ── section header ── */}
         <motion.div
@@ -274,10 +277,10 @@ export default function Testimonials() {
         </motion.div>
 
         {/* ── 3-column layout ── */}
-        <div style={{ display: 'flex', gap: 36, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: isMobile ? 0 : 36, alignItems: 'center' }}>
 
-          {/* LEFT: scroll up */}
-          <ScrollColumn items={leftReviews} direction="up" duration={32} />
+          {/* LEFT: scroll up — hidden on mobile */}
+          {!isMobile && <ScrollColumn items={leftReviews} direction="up" duration={32} />}
 
           {/* CENTER: Trustpilot panel */}
           <motion.div
@@ -286,7 +289,7 @@ export default function Testimonials() {
             viewport={{ once: true }}
             transition={{ duration: 0.70, delay: 0.15, ease: EASE }}
             style={{
-              flexShrink: 0, width: 320,
+              flexShrink: 0, width: isMobile ? '100%' : 320,
               display: 'flex', flexDirection: 'column', alignItems: 'center',
               gap: 0,
             }}
@@ -419,8 +422,8 @@ export default function Testimonials() {
 
           </motion.div>
 
-          {/* RIGHT: scroll down */}
-          <ScrollColumn items={rightReviews} direction="down" duration={28} />
+          {/* RIGHT: scroll down — hidden on mobile */}
+          {!isMobile && <ScrollColumn items={rightReviews} direction="down" duration={28} />}
 
         </div>
       </div>

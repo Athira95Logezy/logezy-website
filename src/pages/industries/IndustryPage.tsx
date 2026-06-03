@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 import {
   CalendarBlank, Shield, DeviceMobile, FileText, Buildings, ClipboardText,
   Bell, ArrowRight, CheckCircle, Users, Clock, Heartbeat, BookOpen, ForkKnife,
@@ -139,6 +140,8 @@ const pages: IndustryConfig[] = [
 export default function IndustryPage() {
   const { slug } = useParams<{ slug: string }>();
   const cfg = pages.find(p => p.slug === slug);
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
 
   if (!cfg) {
     return (
@@ -163,7 +166,7 @@ export default function IndustryPage() {
 
       {/* ── HERO ──────────────────────────────────── */}
       <section style={{ background: cfg.heroBg, paddingTop: 80, paddingBottom: 72, overflow: 'hidden' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, alignItems: 'center' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 56, alignItems: 'center' }}>
 
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
@@ -263,7 +266,7 @@ export default function IndustryPage() {
             </h2>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: 20 }}>
             {cfg.features.map((f, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}

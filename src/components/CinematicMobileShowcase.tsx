@@ -1,4 +1,5 @@
 ﻿import React, { useEffect, useRef } from 'react';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
@@ -366,6 +367,8 @@ export default function CinematicMobileShowcase() {
   const phoneRef = useRef<HTMLDivElement>(null);
   const sceneRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeScene, setActiveScene] = React.useState(0);
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
 
   useEffect(() => {
     if (!sectionRef.current || !stickyRef.current) return;
@@ -457,12 +460,12 @@ export default function CinematicMobileShowcase() {
 
       {/* Main layout: scenes left, phone right (sticky) */}
       <div style={{
-        display: 'flex', gap: 0, maxWidth: 1200, margin: '0 auto',
-        padding: '0 24px 100px', position: 'relative', zIndex: 2, alignItems: 'flex-start',
+        display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: 0, maxWidth: 1200, margin: '0 auto',
+        padding: isMobile ? '0 16px 60px' : '0 24px 100px', position: 'relative', zIndex: 2, alignItems: 'flex-start',
       }}>
 
         {/* ── LEFT: Scene list ── */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 0, paddingRight: 40 }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 0, paddingRight: isMobile ? 0 : 40 }}>
           {SCENES.map((s, idx) => {
             const Icon = s.icon;
             const isActive = activeScene === idx;
@@ -520,7 +523,7 @@ export default function CinematicMobileShowcase() {
         {/* ── RIGHT: Sticky Phone ── */}
         <div
           ref={stickyRef}
-          style={{ position: 'sticky', top: '50%', transform: 'translateY(-50%)', flexShrink: 0 }}
+          style={{ position: isMobile ? 'relative' : 'sticky', top: isMobile ? 'auto' : '50%', transform: isMobile ? 'none' : 'translateY(-50%)', flexShrink: 0, display: isMobile ? 'flex' : 'block', justifyContent: isMobile ? 'center' : undefined }}
         >
           <div ref={phoneRef} style={{ opacity: 0 }}>
             <PhoneFrame screenComponent={ScreenComp} glowColor={scene.color} key={scene.id} />

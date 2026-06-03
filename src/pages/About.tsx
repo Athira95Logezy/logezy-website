@@ -147,7 +147,7 @@ export default function About() {
         }}/>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
             {/* Left */}
             <motion.div initial={{opacity:0,x:-30}} animate={{opacity:1,x:0}} transition={{duration:0.7,ease:[0.22,1,0.36,1]}}>
@@ -241,7 +241,7 @@ export default function About() {
       <section className="py-28 bg-white relative overflow-hidden">
         <div style={{position:'absolute',right:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16 items-start">
+          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-start">
 
             {/* Left — sticky label + accent */}
             <motion.div {...fadeUp(0)} className="lg:sticky lg:top-28">
@@ -250,7 +250,7 @@ export default function About() {
                 Built by people who understand recruitment.
               </h2>
               {/* Decorative number */}
-              <div style={{fontSize:120,fontWeight:900,color:'rgba(23,149,199,0.07)',lineHeight:1,userSelect:'none',letterSpacing:'-0.05em'}}>
+              <div style={{fontSize:'clamp(4rem,12vw,7.5rem)',fontWeight:900,color:'rgba(23,149,199,0.07)',lineHeight:1,userSelect:'none',letterSpacing:'-0.05em'}}>
                 01
               </div>
             </motion.div>
@@ -309,7 +309,7 @@ export default function About() {
           </motion.p>
 
           {/* 3 stats */}
-          <motion.div {...fadeUp(0.24)} className="grid grid-cols-3 gap-6 mt-14 max-w-xl mx-auto">
+          <motion.div {...fadeUp(0.24)} className="grid grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-6 mt-14 max-w-xl mx-auto">
             {[
               {val:'600+', lbl:'UK Agencies'},
               {val:'80%',  lbl:'Less Admin'},
@@ -386,8 +386,8 @@ export default function About() {
             style={{border:'1px solid #E2E8F0',boxShadow:'0 8px 40px rgba(0,0,0,0.07)'}}>
             {/* Header */}
             <div className="grid grid-cols-2" style={{background:'linear-gradient(135deg,#0C1835,#0E2050)'}}>
-              <div className="px-7 py-5 text-sm font-bold text-white/70 border-r border-white/10">What used to take hours</div>
-              <div className="px-7 py-5 text-sm font-bold text-white">With Logezy</div>
+              <div className="px-4 sm:px-7 py-4 sm:py-5 text-xs sm:text-sm font-bold text-white/70 border-r border-white/10">What used to take hours</div>
+              <div className="px-4 sm:px-7 py-4 sm:py-5 text-xs sm:text-sm font-bold text-white">With Logezy</div>
             </div>
             {/* Rows */}
             {handleRows.map(({ task, result }, i) => (
@@ -395,11 +395,11 @@ export default function About() {
                 initial={{opacity:0,x:-20}} whileInView={{opacity:1,x:0}}
                 viewport={{once:true}} transition={{duration:0.4,delay:i*0.07}}
                 className={`grid grid-cols-2 group transition-colors ${i%2===0?'bg-white':'bg-slate-50/50'} hover:bg-blue-50/40`}>
-                <div className="px-7 py-5 text-sm text-slate-600 border-r border-slate-100 flex items-center gap-3">
+                <div className="px-4 sm:px-7 py-4 sm:py-5 text-xs sm:text-sm text-slate-600 border-r border-slate-100 flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-slate-300 flex-shrink-0"/>
                   {task}
                 </div>
-                <div className="px-7 py-5 flex items-center gap-2.5">
+                <div className="px-4 sm:px-7 py-4 sm:py-5 flex items-center gap-2.5">
                   <div style={{width:22,height:22,borderRadius:'50%',background:'linear-gradient(135deg,#059669,#10B981)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
                     <CheckCircle weight="regular" style={{width:13,height:13,color:'#fff'}}/>
                   </div>
@@ -417,7 +417,7 @@ export default function About() {
       <section className="py-28 bg-[#F8FAFC] relative overflow-hidden">
         <div style={{position:'absolute',left:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-16 items-center">
 
             {/* Left */}
             <div>
@@ -475,7 +475,7 @@ export default function About() {
         <div style={{position:'absolute',bottom:0,right:0,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(139,92,246,0.10) 0%,transparent 65%)',transform:'translate(30%,30%)',pointerEvents:'none'}}/>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
 
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.65,ease:[0.22,1,0.36,1]}}>
               <h2 className="font-black text-white leading-[1.08] mb-5"

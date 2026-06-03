@@ -8,6 +8,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import {
   CalendarBlank, Clock, Shield, FileText, Bell, ChatCircle,
   CheckCircle, MapPin,
@@ -416,6 +417,9 @@ function Divider() {
    MAIN SECTION
 ════════════════════════════════════════════════ */
 export default function MobileAppFeatures() {
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
+  const isTablet = vw < 1024;
 
   const features: Omit<FNProps, 'idx'>[] = [
     {
@@ -476,7 +480,7 @@ export default function MobileAppFeatures() {
     <section style={{
       position: 'relative', overflow: 'hidden',
       background: 'linear-gradient(180deg, #F2F4F8 0%, #FFFFFF 50%, #F2F4F8 100%)',
-      padding: '120px 56px 140px',
+      padding: isMobile ? '60px 20px 80px' : isTablet ? '80px 32px 100px' : '120px 56px 140px',
     }}>
 
       {/* ── subtle dot grid ── */}
@@ -494,8 +498,8 @@ export default function MobileAppFeatures() {
         {/* ════ TOP SECTION — 35/65 grid ════ */}
         <div className="maf-top-grid" style={{
           display: 'grid',
-          gridTemplateColumns: '35% 65%',
-          gap: 64,
+          gridTemplateColumns: isTablet ? '1fr' : '35% 65%',
+          gap: isTablet ? 40 : 64,
           alignItems: 'start',
           marginBottom: 0,
         }}>
@@ -521,9 +525,10 @@ export default function MobileAppFeatures() {
 
             {/* H2 */}
             <h2 style={{
-              fontSize: 'clamp(1.8rem, 2.8vw, 2.8rem)',
+              fontSize: isMobile ? 'clamp(1.5rem, 6vw, 1.9rem)' : 'clamp(1.8rem, 2.8vw, 2.8rem)',
               fontWeight: 900, color: '#0F172A',
               letterSpacing: '-0.045em', lineHeight: 1.1, marginBottom: 18,
+              overflowWrap: 'break-word',
             }}>
               Everything your workforce needs,{' '}
               <span style={{
@@ -591,21 +596,21 @@ export default function MobileAppFeatures() {
             {/* Feature nodes arranged along S-curve */}
             <div className="maf-scurve-nodes" style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
+              gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '1fr 1fr 1fr',
               gap: 24,
               position: 'relative',
               zIndex: 1,
             }}>
               {/* node 1 — bottom-left */}
-              <div style={{ gridColumn: 1, gridRow: 1, alignSelf: 'end', paddingTop: 200 }}>
+              <div style={{ gridColumn: isMobile ? 'auto' : 1, gridRow: isMobile ? 'auto' : 1, alignSelf: isMobile ? 'auto' : 'end', paddingTop: isMobile ? 0 : 200 }}>
                 <FeatureNode idx={0} {...topFeatures[0]} />
               </div>
               {/* node 2 — center */}
-              <div style={{ gridColumn: 2, gridRow: 1, alignSelf: 'center', paddingTop: 60 }}>
+              <div style={{ gridColumn: isMobile ? 'auto' : 2, gridRow: isMobile ? 'auto' : 1, alignSelf: isMobile ? 'auto' : 'center', paddingTop: isMobile ? 0 : 60 }}>
                 <FeatureNode idx={1} {...topFeatures[1]} />
               </div>
               {/* node 3 — top-right */}
-              <div style={{ gridColumn: 3, gridRow: 1, alignSelf: 'start' }}>
+              <div style={{ gridColumn: isMobile ? 'auto' : 3, gridRow: isMobile ? 'auto' : 1, alignSelf: isMobile ? 'auto' : 'start' }}>
                 <FeatureNode idx={2} {...topFeatures[2]} />
               </div>
             </div>
@@ -641,8 +646,8 @@ export default function MobileAppFeatures() {
 
           <div className="maf-bottom-grid" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 48,
+            gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3, 1fr)',
+            gap: isMobile ? 24 : isTablet ? 32 : 48,
             position: 'relative',
             zIndex: 1,
           }}>

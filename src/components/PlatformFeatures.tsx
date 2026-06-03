@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Zap, ShieldCheck, BarChart3, Smartphone,
@@ -207,6 +208,8 @@ function PreviewCard({ feature }: { feature: typeof features[0] }) {
 export default function PlatformFeatures() {
   const [activeId, setActiveId] = useState(features[0].id);
   const active = features.find((f) => f.id === activeId)!;
+  const width = useWindowWidth();
+  const isMobile = width < 768;
 
   return (
     <section style={{
@@ -221,7 +224,7 @@ export default function PlatformFeatures() {
         filter: 'blur(40px)', pointerEvents: 'none',
       }} />
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 40px 96px', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '60px 20px 72px' : '80px 40px 96px', position: 'relative', zIndex: 1 }}>
 
         {/* ── HEADLINE ── */}
         <motion.div
@@ -269,7 +272,7 @@ export default function PlatformFeatures() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 420px',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 420px',
             gap: 24,
             alignItems: 'start',
           }}
@@ -414,12 +417,12 @@ export default function PlatformFeatures() {
             })}
           </div>
 
-          {/* RIGHT: animated preview card */}
-          <div style={{ position: 'sticky', top: 24 }}>
+          {/* RIGHT: animated preview card — hidden on mobile */}
+          {!isMobile && <div style={{ position: 'sticky', top: 24 }}>
             <AnimatePresence mode="wait">
               <PreviewCard key={active.id} feature={active} />
             </AnimatePresence>
-          </div>
+          </div>}
         </motion.div>
 
       </div>

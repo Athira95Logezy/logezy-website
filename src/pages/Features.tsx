@@ -705,7 +705,7 @@ export default function FeaturesPage() {
           <div style={{ background:cat.accentBg, borderTop:`3px solid ${cat.accentColor}`, borderBottom:'1px solid rgba(0,0,0,0.06)' }}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
               <motion.div {...fadeUp(0)} className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <span style={{ fontSize:72, fontWeight:900, color:`${cat.accentColor}18`, lineHeight:1, letterSpacing:'-0.05em', userSelect:'none', flexShrink:0 }}>
+                <span style={{ fontSize:'clamp(2.5rem,8vw,4.5rem)', fontWeight:900, color:`${cat.accentColor}18`, lineHeight:1, letterSpacing:'-0.05em', userSelect:'none', flexShrink:0 }}>
                   {cat.num}
                 </span>
                 <div>
@@ -729,7 +729,7 @@ export default function FeaturesPage() {
             return (
               <section key={f.title} className={fi % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                  <div className={`grid lg:grid-cols-2 gap-16 items-center ${f.reverse ? '' : ''}`}>
+                  <div className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center ${f.reverse ? '' : ''}`}>
 
                     {/* Copy */}
                     <motion.div {...fadeUp(0)} style={{ order: f.reverse ? 2 : 1 }}>

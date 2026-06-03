@@ -60,7 +60,7 @@ export default function DashboardReveal() {
         filter: 'blur(70px)', pointerEvents: 'none',
       }} />
 
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px', position: 'relative', zIndex: 1 }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(16px, 4vw, 40px)', position: 'relative', zIndex: 1 }}>
 
         {/* ── Section header ── */}
         <motion.div

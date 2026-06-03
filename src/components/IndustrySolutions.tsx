@@ -12,6 +12,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import {
   Heartbeat, Shield, Briefcase, Bell,
   Users, ChartBar, Buildings, ArrowRight,
@@ -158,20 +159,24 @@ function IndustryCard({ card, index }: { card: Card; index: number }) {
    MAIN SECTION
 ───────────────────────────────────────────── */
 export default function IndustrySolutions() {
+  const width = useWindowWidth();
+  const isMobile = width < 768;
+  const isTablet = width < 1024;
   return (
     <section style={{
       background: '#F7F6FF',
-      padding: '108px 0 120px',
+      padding: isMobile ? '64px 0 72px' : '108px 0 120px',
       overflow: 'hidden',
       position: 'relative',
     }}>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 20px' : '0 48px' }}>
 
         {/* ── flex row: cards | panel ── */}
         <div style={{
           display: 'flex',
-          gap: 72,
+          flexDirection: isTablet ? 'column' : 'row',
+          gap: isTablet ? 40 : 72,
           alignItems: 'flex-start',
         }}>
 
@@ -179,8 +184,8 @@ export default function IndustrySolutions() {
           <div style={{
             flex: 1,
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 20,
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+            gap: 16,
           }}>
             {cards.map((card, i) => (
               <IndustryCard key={card.id} card={card} index={i} />
@@ -189,8 +194,8 @@ export default function IndustrySolutions() {
 
           {/* ════ RIGHT: description panel (sticky) ════ */}
           <div style={{
-            width: 380, flexShrink: 0,
-            position: 'sticky', top: 100,
+            width: isTablet ? '100%' : 380, flexShrink: 0,
+            position: isTablet ? 'relative' : 'sticky', top: 100,
             paddingTop: 8,
           }}>
 

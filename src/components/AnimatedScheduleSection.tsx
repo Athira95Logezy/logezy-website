@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -529,6 +530,8 @@ function AcceptedNotifWidget({ phase }: { phase: number }) {
 /* ── Shared phase controller ── */
 function ShowcasePair() {
   const [phase, setPhase] = useState(0);
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
 
   useEffect(() => {
     if (phase === 0) { const t = setTimeout(() => setPhase(1), 2800); return () => clearTimeout(t); }
@@ -539,7 +542,7 @@ function ShowcasePair() {
   }, [phase]);
 
   return (
-    <div style={{ display: 'flex', gap: 0, alignItems: 'flex-start', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: 0, alignItems: isMobile ? 'center' : 'flex-start', position: 'relative' }}>
 
       {/* Phone */}
       <motion.div
@@ -549,10 +552,11 @@ function ShowcasePair() {
         transition={{ duration: 0.72, delay: 0.30, ease: EASE }}
         style={{
           flexShrink: 0,
-          marginTop: 80,
-          marginRight: -60,
+          marginTop: isMobile ? 0 : 80,
+          marginRight: isMobile ? 0 : -60,
           zIndex: 8,
           position: 'relative',
+          transform: isMobile ? 'scale(0.85)' : undefined,
         }}
       >
         <motion.div
@@ -571,8 +575,8 @@ function ShowcasePair() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Desktop browser */}
-      <motion.div
+      {/* Desktop browser — hidden on mobile */}
+      {!isMobile && <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -648,7 +652,7 @@ function ShowcasePair() {
           filter: 'blur(4px)',
           pointerEvents: 'none',
         }} />
-      </motion.div>
+      </motion.div>}
     </div>
   );
 }
@@ -770,10 +774,12 @@ function GeometricShapes() {
    SECTION
 ───────────────────────────────── */
 export default function AnimatedScheduleSection() {
+  const vw = useWindowWidth();
+  const isMobileSection = vw < 768;
   return (
     <section style={{
       background: 'linear-gradient(135deg, #183765 0%, #1966AA 40%, #2E8FBF 70%, #5AB4D5 100%)',
-      padding: '100px 0 0',
+      padding: isMobileSection ? '60px 0 0' : '100px 0 0',
       overflow: 'hidden',
       position: 'relative',
     }}>
@@ -799,7 +805,7 @@ export default function AnimatedScheduleSection() {
       {/* Center-right accent glow */}
       <div style={{ position: 'absolute', top: '20%', right: '5%', width: 600, height: 600, background: 'radial-gradient(ellipse,rgba(90,180,213,0.25) 0%,transparent 70%)', filter: 'blur(100px)', pointerEvents: 'none', zIndex: 0 }} />
 
-      <div style={{ position: 'relative', zIndex: 3, maxWidth: 1440, margin: '0 auto', padding: '0 28px' }}>
+      <div style={{ position: 'relative', zIndex: 3, maxWidth: 1440, margin: '0 auto', padding: isMobileSection ? '0 16px' : '0 28px' }}>
 
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, ease: EASE }} style={{ textAlign: 'center', marginBottom: 52 }}>
@@ -834,13 +840,24 @@ export default function AnimatedScheduleSection() {
 
       </div>
 
-      {/* Bottom wave divider — layered effect */}
-      <div style={{ position: 'relative', zIndex: 4, lineHeight: 0, marginTop: 80 }}>
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ width: '100%', height: 100, display: 'block' }}>
-          {/* Shadow wave behind */}
-          <path d="M0,60 C240,110 480,10 720,55 C960,100 1200,15 1440,58 L1440,100 L0,100 Z" fill="rgba(90,180,213,0.15)" />
-          {/* Primary wave */}
-          <path d="M0,70 C200,20 400,95 600,55 C800,15 1000,85 1200,50 C1320,28 1400,72 1440,68 L1440,100 L0,100 Z" fill="#ffffff" />
+      {/* Bottom curve — desktop only, hidden on mobile */}
+      <div className="hidden md:block" style={{ position: 'relative', zIndex: 4, lineHeight: 0, marginTop: 60 }}>
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ width: '100%', height: 120, display: 'block' }}>
+          {/* Deep teal accent layer */}
+          <path
+            d="M0,80 C180,30 360,100 540,65 C720,30 900,95 1080,60 C1260,25 1380,75 1440,70 L1440,120 L0,120 Z"
+            fill="rgba(25,102,170,0.35)"
+          />
+          {/* Mid blue layer */}
+          <path
+            d="M0,90 C200,50 400,110 600,75 C800,40 1000,100 1200,68 C1320,48 1400,88 1440,82 L1440,120 L0,120 Z"
+            fill="rgba(35,153,202,0.25)"
+          />
+          {/* Bottom fill — next section colour */}
+          <path
+            d="M0,100 C240,55 480,115 720,80 C960,45 1200,105 1440,88 L1440,120 L0,120 Z"
+            fill="#F7F6FF"
+          />
         </svg>
       </div>
     </section>

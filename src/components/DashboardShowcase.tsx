@@ -1,4 +1,5 @@
 import React from 'react';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 import { motion } from 'framer-motion';
 import {
   CalendarBlank, Shield, Clock, FileText,
@@ -265,6 +266,8 @@ function PhoneFrame({ src, alt }: { src: string; alt: string }) {
    MAIN SECTION
 ───────────────────────────────────────────── */
 export default function DashboardShowcase() {
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
   return (
     <section style={{
       background: 'linear-gradient(160deg, #0A1228 0%, #0F1E45 45%, #1A3A6B 100%)',
@@ -288,7 +291,7 @@ export default function DashboardShowcase() {
         filter: 'blur(80px)', pointerEvents: 'none', zIndex: 0,
       }} />
 
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1280, margin: '0 auto', padding: '0 48px' }}>
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1280, margin: '0 auto', padding: isMobile ? '0 16px' : '0 48px' }}>
 
         {/* ── CENTERED HEADER ── */}
         <motion.div
@@ -339,11 +342,12 @@ export default function DashboardShowcase() {
 
           {/* Stats strip */}
           <div style={{
-            display: 'inline-flex', gap: 0,
+            display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 0,
             background: 'rgba(255,255,255,0.05)',
             border: '1px solid rgba(255,255,255,0.10)',
             borderRadius: 16, overflow: 'hidden',
             backdropFilter: 'blur(10px)',
+            maxWidth: '100%',
           }}>
             {STATS.map(({ value, label }, i) => (
               <div key={label} style={{
@@ -478,12 +482,14 @@ export default function DashboardShowcase() {
 
       </div>
 
-      {/* ── Bottom arch wave ── */}
-      <div style={{ position: 'relative', zIndex: 2, lineHeight: 0, marginTop: -2 }}>
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ width: '100%', height: 80, display: 'block' }}>
-          <path d="M0,68 C360,0 1080,0 1440,68 L1440,80 L0,80 Z" fill="#ffffff" />
-        </svg>
-      </div>
+      {/* ── Bottom arch wave — hidden on mobile ── */}
+      {!isMobile && (
+        <div style={{ position: 'relative', zIndex: 2, lineHeight: 0, marginTop: -2 }}>
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ width: '100%', height: 80, display: 'block' }}>
+            <path d="M0,68 C360,0 1080,0 1440,68 L1440,80 L0,80 Z" fill="#ffffff" />
+          </svg>
+        </div>
+      )}
     </section>
   );
 }

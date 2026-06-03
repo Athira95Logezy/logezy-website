@@ -98,7 +98,7 @@ export default function Pricing() {
       </section>
 
       {/* ── CARDS ───────────────────────────────── */}
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '0 20px 80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: 20, alignItems: 'start' }}>
+      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '0 20px 80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(260px,100%),1fr))', gap: 20, alignItems: 'start' }}>
         {plans.map((plan, i) => (
           <motion.div
             key={plan.name}

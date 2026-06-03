@@ -123,7 +123,7 @@ export default function Header() {
                     exit="exit"
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-2xl border border-slate-200/70 p-4"
                     style={{
-                      width: 580,
+                      width: 'min(580px, 95vw)',
                       boxShadow: '0 24px 64px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.04)',
                     }}
                   >
