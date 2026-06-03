@@ -815,7 +815,7 @@ export default function AnimatedScheduleSection() {
           </div>
           <h2 style={{ fontSize: 'clamp(2rem,3.5vw,3.2rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.045em', lineHeight: 1.08, margin: '0 0 16px' }}>
             All smart work tools{' '}
-            <span style={{ backgroundImage: 'linear-gradient(125deg,#00D4FF 0%,#7DD3FC 50%,#34D399 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>in one place.</span>
+            <span style={{ backgroundImage: 'linear-gradient(125deg,#00D4FF 0%,#7DD3FC 50%,#34D399 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', display: 'inline'}}>in one place.</span>
           </h2>
           <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.65)', lineHeight: 1.72, maxWidth: 500, margin: '0 auto 24px' }}>
             Watch Logezy fill an open shift in real time — from sick call to confirmed worker in under 60 seconds.

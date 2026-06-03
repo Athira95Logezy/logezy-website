@@ -524,7 +524,7 @@ export default function Hero() {
               style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.85rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.048em', color: '#0F172A', margin: '0 0 18px' }}
             >
               The smarter way to{' '}
-              <span style={{ background: 'linear-gradient(128deg, #6366F1 0%, #0EA5E9 55%, #34D399 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              <span style={{ background: 'linear-gradient(128deg, #6366F1 0%, #0EA5E9 55%, #34D399 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>
                 run your agency.
               </span>
             </motion.h1>

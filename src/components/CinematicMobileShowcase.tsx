@@ -451,7 +451,7 @@ export default function CinematicMobileShowcase() {
           fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 900, color: '#fff',
           letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: 16,
         }}>
-          Your workers. <span style={{ background: 'linear-gradient(125deg, #38BDF8 0%, #818CF8 55%, #C084FC 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Always connected.</span>
+          Your workers. <span style={{ background: 'linear-gradient(125deg, #38BDF8 0%, #818CF8 55%, #C084FC 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>Always connected.</span>
         </h2>
         <p style={{ fontSize: 'clamp(1rem, 1.5vw, 1.15rem)', color: 'rgba(165,210,255,0.75)', maxWidth: 520, margin: '0 auto 60px', lineHeight: 1.7 }}>
           Give your temps a mobile experience that carries your brand and keeps them engaged from first shift to last.

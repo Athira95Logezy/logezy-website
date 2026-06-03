@@ -656,7 +656,7 @@ export default function FeaturesPage() {
             className="font-black leading-[1.06] mb-6"
             style={{ fontSize:'clamp(2.4rem,5vw,4rem)', letterSpacing:'-0.03em', color:'#0C2138' }}>
             Everything your agency needs.{' '}
-            <span style={{ background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 50%,#8B5CF6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
+            <span style={{ background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 50%,#8B5CF6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', display: 'inline'}}>
               Nothing it doesn't.
             </span>
           </motion.h1>
@@ -763,7 +763,7 @@ export default function FeaturesPage() {
                       </ul>
 
                       <motion.div whileHover={{ scale:1.03, y:-2 }} whileTap={{ scale:0.97 }} transition={{ type:'spring', stiffness:400 }}>
-                        <Link to="/contact" style={{
+                        <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                           display:'inline-flex', alignItems:'center', gap:8,
                           padding:'13px 24px', borderRadius:100,
                           fontSize:14, fontWeight:700, color:'#fff',
@@ -772,7 +772,7 @@ export default function FeaturesPage() {
                         }}>
                           See {f.title} in action
                           <ArrowRight weight="regular" style={{ width:15, height:15 }}/>
-                        </Link>
+                        </a>
                       </motion.div>
                     </motion.div>
 
@@ -801,7 +801,7 @@ export default function FeaturesPage() {
               className="text-4xl sm:text-5xl font-black text-slate-900"
               style={{ letterSpacing:'-0.025em' }}>
               Simple to start,{' '}
-              <span style={{ background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
+              <span style={{ background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', display: 'inline'}}>
                 powerful to scale.
               </span>
             </motion.h2>
@@ -852,7 +852,7 @@ export default function FeaturesPage() {
                   boxShadow:'0 4px 24px rgba(91,108,249,0.40)', textDecoration:'none',
                 }}>
                   Book a Demo <ArrowRight weight="regular" style={{ width:16, height:16 }}/>
-                </Link>
+                </a>
               </motion.div>
               <motion.div whileHover={{ scale:1.04, y:-2 }} whileTap={{ scale:0.97 }} transition={{ type:'spring', stiffness:400 }}>
                 <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
@@ -862,7 +862,7 @@ export default function FeaturesPage() {
                   border:'1.5px solid rgba(255,255,255,0.16)', textDecoration:'none',
                 }}>
                   Start Free Trial
-                </Link>
+                </a>
               </motion.div>
             </div>
           </motion.div>

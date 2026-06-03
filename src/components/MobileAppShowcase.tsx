@@ -300,8 +300,7 @@ export default function MobileAppShowcase() {
               background: 'linear-gradient(125deg,#22D3EE 0%,#818CF8 46%,#C084FC 76%,#EC4899 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>
+              backgroundClip: 'text', display: 'inline'}}>
               in their pocket.
             </span>
           </h2>

@@ -533,8 +533,7 @@ export default function MobileAppFeatures() {
               Everything your workforce needs,{' '}
               <span style={{
                 background: 'linear-gradient(125deg, #6366F1 0%, #0EA5E9 50%, #10B981 100%)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              }}>in one app.</span>
+                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>in one app.</span>
             </h2>
 
             {/* subtitle */}

@@ -163,8 +163,7 @@ export default function About() {
                 We built what temp agencies{' '}
                 <span style={{
                   background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',
-                  WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text',
-                }}>
+                  WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', display: 'inline'}}>
                   actually needed.
                 </span>
               </h1>
@@ -175,14 +174,14 @@ export default function About() {
 
               <div className="flex flex-wrap gap-3">
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <Link to="/contact" style={{
+                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     padding:'14px 28px', borderRadius:100, fontSize:14, fontWeight:700,
                     color:'#fff', background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
                     boxShadow:'0 4px 24px rgba(91,108,249,0.38)', textDecoration:'none',
                   }}>
                     Book a Demo <ArrowRight weight="regular" style={{width:15,height:15}}/>
-                  </Link>
+                  </a>
                 </motion.div>
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
                   <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
@@ -192,7 +191,7 @@ export default function About() {
                     border:'2px solid rgba(12,33,56,0.20)', textDecoration:'none',
                   }}>
                     Start Free Trial
-                  </Link>
+                  </a>
                 </motion.div>
               </div>
             </motion.div>
@@ -298,7 +297,7 @@ export default function About() {
             className="font-black leading-[1.08] mb-8 text-white"
             style={{fontSize:'clamp(2.4rem,5vw,4rem)',letterSpacing:'-0.03em'}}>
             Our mission is{' '}
-            <span style={{background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>
+            <span style={{background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text', display: 'inline'}}>
               simple.
             </span>
           </motion.h2>
@@ -481,7 +480,7 @@ export default function About() {
               <h2 className="font-black text-white leading-[1.08] mb-5"
                 style={{fontSize:'clamp(2rem,4vw,3.2rem)',letterSpacing:'-0.03em'}}>
                 Ready to see what Logezy<br/>
-                <span style={{background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>
+                <span style={{background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text', display: 'inline'}}>
                   can do for your agency?
                 </span>
               </h2>
@@ -490,14 +489,14 @@ export default function About() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <Link to="/contact" style={{
+                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex',alignItems:'center',gap:8,
                     padding:'14px 28px',borderRadius:100,fontSize:15,fontWeight:700,
                     color:'#fff',background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
                     boxShadow:'0 4px 24px rgba(91,108,249,0.38)',textDecoration:'none',
                   }}>
                     Start Free Trial <ArrowRight weight="regular" style={{width:15,height:15}}/>
-                  </Link>
+                  </a>
                 </motion.div>
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
                   <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
@@ -507,7 +506,7 @@ export default function About() {
                     border:'1.5px solid rgba(255,255,255,0.16)',textDecoration:'none',
                   }}>
                     Book a Demo
-                  </Link>
+                  </a>
                 </motion.div>
               </div>
             </motion.div>
