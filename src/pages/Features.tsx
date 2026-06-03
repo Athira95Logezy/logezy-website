@@ -817,7 +817,7 @@ export default function FeaturesPage() {
                 transition={{ type:'spring', stiffness:280, damping:22 }}
                 className="bg-white rounded-3xl p-8"
                 style={{ border:'1px solid #E2E8F0', boxShadow:'0 4px 16px rgba(0,0,0,0.04)' }}>
-                <p style={{ fontSize:48, fontWeight:900, background:'linear-gradient(135deg,#5B6CF9,#1795C7)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', lineHeight:1, marginBottom:16 }}>
+                <p style={{ fontSize:48, fontWeight:900, color:'#5B6CF9', lineHeight:1, marginBottom:16 }}>
                   {step.num}
                 </p>
                 <h3 className="text-lg font-black text-slate-900 mb-2">{step.title}</h3>

@@ -757,11 +757,7 @@ export default function ProductPage() {
             </h1>
 
             {/* Tagline */}
-            <p style={{
-              fontSize: 'clamp(18px,2.2vw,26px)', fontWeight: 700, lineHeight: 1.3, marginBottom: 20,
-              background: `linear-gradient(135deg, ${cfg.accent}, ${cfg.accent}99)`,
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-            }}>
+            <p style={{ fontSize: 'clamp(18px,2.2vw,26px)', fontWeight: 700, lineHeight: 1.3, marginBottom: 20, color: cfg.accent }}>
               {cfg.tagline}
             </p>
 

@@ -16,7 +16,7 @@ export default function About() {
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                How It <span className="bg-gradient-to-r from-[#193765] to-[#2299c9] bg-clip-text text-transparent whitespace-nowrap">Works</span>
+                How It <span className="bg-gradient-to-r from-[#193765] to-[#2299c9] bg-clip-text text-transparent whitespace-nowrap inline">Works</span>
               </h2>
             </div>
 

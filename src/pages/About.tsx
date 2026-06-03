@@ -527,7 +527,7 @@ export default function About() {
                   <div style={{width:44,height:44,borderRadius:13,background:g,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 14px'}}>
                     <Icon weight="regular" style={{width:20,height:20,color:'#fff'}}/>
                   </div>
-                  <p style={{fontSize:30,fontWeight:900,background:g,WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text',margin:0,letterSpacing:'-0.03em'}}>{value}</p>
+                  <p style={{fontSize:30,fontWeight:900,color:'#fff',margin:0,letterSpacing:'-0.03em'}}>{value}</p>
                   <p style={{fontSize:11,color:'rgba(165,210,255,0.50)',marginTop:4,fontWeight:500}}>{label}</p>
                 </motion.div>
               ))}

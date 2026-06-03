@@ -28,18 +28,22 @@
 @layer utilities {
 
   .gradient-text {
+    display: inline;
     background: linear-gradient(135deg, #1795C7 0%, #183765 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
     animation: text-shimmer 5s linear infinite;
   }
   .gradient-text-static {
+    display: inline;
     background: linear-gradient(135deg, #1795C7 0%, #183765 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
   }
 
   .glass {
