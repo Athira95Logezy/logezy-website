@@ -223,17 +223,22 @@ export default function Header() {
 
           {/* ── Desktop CTA ── */}
           <div className="hidden lg:flex items-center gap-2">
-            <button className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors px-3 py-2 rounded-lg hover:bg-slate-50">
+            <a
+              href="https://accounts.logezy.co/login"
+              target="_blank" rel="noopener noreferrer"
+              className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors px-3 py-2 rounded-lg hover:bg-slate-50"
+            >
               Sign in
-            </button>
+            </a>
             <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
-              <Link
-                to="/contact"
+              <a
+                href="https://booking.logezy.co/#/67044000000025008"
+                target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)] hover:shadow-[0_4px_16px_rgba(23,149,199,0.45)] transition-all duration-200"
               >
                 Book a Demo
                 <ArrowRight weight="regular" className="h-3.5 w-3.5" />
-              </Link>
+              </a>
             </motion.div>
           </div>
 
@@ -311,17 +316,22 @@ export default function Header() {
 
                 {/* CTAs */}
                 <div className="pt-3 mt-2 border-t border-slate-100 flex flex-col gap-2 px-1">
-                  <button className="w-full text-center py-2.5 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">
+                  <a
+                    href="https://accounts.logezy.co/login"
+                    target="_blank" rel="noopener noreferrer"
+                    className="w-full text-center py-2.5 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+                  >
                     Sign in
-                  </button>
+                  </a>
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                    <Link
-                      to="/contact"
+                    <a
+                      href="https://booking.logezy.co/#/67044000000025008"
+                      target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold py-3 px-5 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)]"
                     >
                       Book a Demo
                       <ArrowRight weight="regular" className="h-4 w-4" />
-                    </Link>
+                    </a>
                   </motion.div>
                 </div>
               </nav>

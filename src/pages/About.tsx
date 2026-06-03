@@ -185,7 +185,7 @@ export default function About() {
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <Link to="/contact" style={{
+                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     padding:'14px 28px', borderRadius:100, fontSize:14, fontWeight:600,
                     color:'#0C2138', background:'transparent',
@@ -500,7 +500,7 @@ export default function About() {
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <Link to="/contact" style={{
+                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex',alignItems:'center',gap:8,
                     padding:'14px 28px',borderRadius:100,fontSize:15,fontWeight:600,
                     color:'rgba(255,255,255,0.80)',background:'rgba(255,255,255,0.08)',

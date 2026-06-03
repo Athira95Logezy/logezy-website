@@ -284,8 +284,9 @@ export default function IndustrySolutions() {
               </p>
 
               {/* CTA button */}
-              <Link
-                to="/contact"
+              <a
+                href="https://booking.logezy.co/#/67044000000025008"
+                target="_blank" rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 10,
                   padding: '14px 34px', borderRadius: 100,
@@ -306,7 +307,7 @@ export default function IndustrySolutions() {
               >
                 Book a Demo
                 <ArrowRight weight="bold" size={16} />
-              </Link>
+              </a>
 
             </motion.div>
           </div>

@@ -28,7 +28,7 @@ const links = {
     { label: 'Contact Us',              to: '/contact'                  },
   ],
   Support: [
-    { label: 'Book a Demo',             to: '/contact'                  },
+    { label: 'Book a Demo',             to: 'https://booking.logezy.co/#/67044000000025008', external: true },
     { label: 'Contact Us',              to: '/contact'                  },
   ],
 };
@@ -104,16 +104,24 @@ export default function Footer() {
                 <ul className="space-y-2">
                   {items.map(item => (
                     <li key={item.label}>
-                      <Link
-                        to={item.to}
-                        className="text-sm text-slate-500 hover:text-blue-600 transition-colors duration-150 flex items-center gap-1 group"
-                      >
-                        <ArrowRight
-                          weight="regular"
-                          className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-blue-500 transition-all duration-200"
-                        />
-                        {item.label}
-                      </Link>
+                      {(item as any).external ? (
+                        <a
+                          href={item.to}
+                          target="_blank" rel="noopener noreferrer"
+                          className="text-sm text-slate-500 hover:text-blue-600 transition-colors duration-150 flex items-center gap-1 group"
+                        >
+                          <ArrowRight weight="regular" className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-blue-500 transition-all duration-200" />
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link
+                          to={item.to}
+                          className="text-sm text-slate-500 hover:text-blue-600 transition-colors duration-150 flex items-center gap-1 group"
+                        >
+                          <ArrowRight weight="regular" className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-blue-500 transition-all duration-200" />
+                          {item.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

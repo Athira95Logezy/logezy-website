@@ -207,11 +207,11 @@ export default function IndustryPage() {
 
             {/* CTAs */}
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
-              <motion.a href="/contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              <motion.a href="https://booking.logezy.co/#/67044000000025008" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 10, background: `linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`, color: 'white', fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: `0 8px 24px ${cfg.accent}40` }}>
                 Book a Free Demo <ArrowRight weight="regular" style={{ width: 16, height: 16 }} />
               </motion.a>
-              <motion.a href="/contact" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              <motion.a href="https://booking.logezy.co/#/67044000000025008" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 10, background: 'white', color: NAVY, fontWeight: 700, fontSize: 15, textDecoration: 'none', border: '1.5px solid #E5E7EB', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
                 Start Free Trial
               </motion.a>

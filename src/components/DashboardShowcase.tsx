@@ -382,7 +382,7 @@ export default function DashboardShowcase() {
             </div>
           ))}
           {/* CTA buttons inline */}
-          <Link to="/contact" style={{
+          <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
             padding: '8px 20px', borderRadius: 100, textDecoration: 'none',
             background: 'linear-gradient(135deg, #2399CA 0%, #1966AA 100%)',
@@ -391,7 +391,7 @@ export default function DashboardShowcase() {
             border: '1px solid rgba(255,255,255,0.18)',
           }}>
             Book a Demo <ArrowRight weight="bold" size={12} />
-          </Link>
+          </a>
           <Link to="/features" style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
             padding: '8px 18px', borderRadius: 100, textDecoration: 'none',

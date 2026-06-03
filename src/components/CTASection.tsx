@@ -91,22 +91,23 @@ export default function CTASection() {
               className="flex flex-wrap justify-center gap-4 mb-10"
             >
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <Link to="/contact"
+                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white font-bold text-base px-8 py-4 rounded-full"
                   style={{
                     background: 'linear-gradient(135deg, #1795C7 0%, #183765 100%)',
                     boxShadow: '0 8px 32px rgba(23,149,199,0.45), 0 2px 8px rgba(0,0,0,0.2)',
+                    textDecoration: 'none',
                   }}>
                   Start 10-day free trial
                   <ArrowRight weight="regular" className="h-4 w-4" />
-                </Link>
+                </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <Link to="/contact"
+                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white font-semibold text-base px-8 py-4 rounded-full hover:bg-blue-50 transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
-                  style={{ color: '#183765', border: '2px solid rgba(255,255,255,0.9)' }}>
+                  style={{ color: '#183765', border: '2px solid rgba(255,255,255,0.9)', textDecoration: 'none' }}>
                   Book a demo
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
 

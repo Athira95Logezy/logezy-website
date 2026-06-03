@@ -405,8 +405,9 @@ export default function Testimonials() {
             </div>
 
             {/* CTA */}
-            <Link
-              to="/contact"
+            <a
+              href="https://booking.logezy.co/#/67044000000025008"
+              target="_blank" rel="noopener noreferrer"
               style={{
                 marginTop: 20,
                 display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -418,7 +419,7 @@ export default function Testimonials() {
             >
               Join them — Book a Demo
               <ArrowRight weight="bold" size={14} />
-            </Link>
+            </a>
 
           </motion.div>
 

@@ -329,8 +329,9 @@ export default function MobileAppShowcase() {
           </div>
 
           {/* CTA — no app store badges */}
-          <Link
-            to="/contact"
+          <a
+            href="https://booking.logezy.co/#/67044000000025008"
+            target="_blank" rel="noopener noreferrer"
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 7,
               padding: '12px 24px', borderRadius: 13,
@@ -343,7 +344,7 @@ export default function MobileAppShowcase() {
           >
             Get your branded app
             <ArrowRight weight="bold" style={{ width: 13, height: 13 }} />
-          </Link>
+          </a>
         </div>
 
         {/* ═══ COL 2: iPhone (center) ═══ */}
