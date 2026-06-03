@@ -297,10 +297,7 @@ export default function MobileAppShowcase() {
           }}>
             Your workforce,<br />
             <span style={{
-              background: 'linear-gradient(125deg,#22D3EE 0%,#818CF8 46%,#C084FC 76%,#EC4899 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text', display: 'inline'}}>
+              color: '#22D3EE', display: 'inline'}}>
               in their pocket.
             </span>
           </h2>

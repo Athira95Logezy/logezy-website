@@ -89,8 +89,7 @@ export default function DashboardReveal() {
           }}>
             Your entire agency,{' '}
             <span style={{
-              background: 'linear-gradient(120deg, #06B6D4 0%, #818CF8 50%, #C4B5FD 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>
+              color: '#06B6D4', display: 'inline'}}>
               beautifully visualised.
             </span>
           </h2>

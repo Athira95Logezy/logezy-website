@@ -253,8 +253,7 @@ export default function PlatformFeatures() {
           }}>
             Built for UK staffing agencies{' '}
             <span style={{
-              background: 'linear-gradient(120deg, #7C3AED 0%, #2563EB 55%, #0EA5E9 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>
+              color: '#7C3AED', display: 'inline'}}>
               that mean business.
             </span>
           </h2>

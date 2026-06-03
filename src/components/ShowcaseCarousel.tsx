@@ -556,7 +556,7 @@ export default function ShowcaseCarousel() {
           </div>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.04em', lineHeight: 1.1, margin: '0 0 14px' }}>
             60 seconds to fill a shift.{' '}
-            <span style={{ background: 'linear-gradient(125deg, #7DD3FC 0%, #38BDF8 50%, #34D399 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>
+            <span style={{ color: '#7DD3FC', display: 'inline'}}>
               Watch it happen.
             </span>
           </h2>

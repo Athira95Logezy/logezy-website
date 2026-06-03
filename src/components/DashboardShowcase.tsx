@@ -329,8 +329,7 @@ export default function DashboardShowcase() {
             The complete staffing platform
             <br />
             <span style={{
-              background: 'linear-gradient(125deg, #7DD3FC 0%, #38BDF8 45%, #34D399 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>
+              color: '#7DD3FC', display: 'inline'}}>
               built for UK agencies.
             </span>
           </h2>

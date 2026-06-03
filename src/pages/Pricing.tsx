@@ -86,7 +86,7 @@ export default function Pricing() {
 
           <h1 style={{ fontSize: 'clamp(28px,4vw,52px)', fontWeight: 900, color: '#0C1835', lineHeight: 1.1, marginBottom: 14, letterSpacing: '-0.02em' }}>
             Choose Your{' '}
-            <span style={{ background: 'linear-gradient(135deg,#5B6CF9,#7C3AED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'inline'}}>
+            <span style={{ color: '#5B6CF9', display: 'inline'}}>
               Subscription
             </span>
           </h1>

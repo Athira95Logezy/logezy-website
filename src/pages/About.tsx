@@ -90,7 +90,7 @@ function MiniDashboard() {
               { label:'Open Shifts',     value:'12',    color:'from-amber-500 to-orange-500' },
             ].map(({ label, value, color }) => (
               <div key={label} className="bg-slate-50 rounded-lg p-2.5 border border-slate-100">
-                <p className={`text-sm font-black bg-gradient-to-r ${color} bg-clip-text text-transparent`}>{value}</p>
+                <p className="text-sm font-black text-slate-800">{value}</p>
                 <p className="text-[8px] text-slate-400 mt-0.5">{label}</p>
               </div>
             ))}
@@ -162,8 +162,7 @@ export default function About() {
                 style={{ fontSize:'clamp(2.4rem,4vw,3.6rem)', letterSpacing:'-0.03em', color:'#0C2138' }}>
                 We built what temp agencies{' '}
                 <span style={{
-                  background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',
-                  WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', display: 'inline'}}>
+                  color: '#1795C7', display: 'inline'}}>
                   actually needed.
                 </span>
               </h1>
@@ -297,7 +296,7 @@ export default function About() {
             className="font-black leading-[1.08] mb-8 text-white"
             style={{fontSize:'clamp(2.4rem,5vw,4rem)',letterSpacing:'-0.03em'}}>
             Our mission is{' '}
-            <span style={{background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text', display: 'inline'}}>
+            <span style={{color: '#1795C7', display: 'inline'}}>
               simple.
             </span>
           </motion.h2>
@@ -480,7 +479,7 @@ export default function About() {
               <h2 className="font-black text-white leading-[1.08] mb-5"
                 style={{fontSize:'clamp(2rem,4vw,3.2rem)',letterSpacing:'-0.03em'}}>
                 Ready to see what Logezy<br/>
-                <span style={{background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text', display: 'inline'}}>
+                <span style={{color: '#1795C7', display: 'inline'}}>
                   can do for your agency?
                 </span>
               </h2>

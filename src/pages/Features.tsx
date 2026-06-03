@@ -273,7 +273,7 @@ function RecruitmentScreen() {
           { stage:'Offer',    count:2,  color:'from-emerald-500 to-emerald-700'},
         ].map(({ stage, count, color }) => (
           <div key={stage} className="bg-slate-50 rounded-lg p-2 text-center border border-slate-100">
-            <p className={`text-base font-black bg-gradient-to-r ${color} bg-clip-text text-transparent`}>{count}</p>
+            <p className="text-base font-black text-slate-800">{count}</p>
             <p className="text-[7px] text-slate-400">{stage}</p>
           </div>
         ))}
@@ -656,7 +656,7 @@ export default function FeaturesPage() {
             className="font-black leading-[1.06] mb-6"
             style={{ fontSize:'clamp(2.4rem,5vw,4rem)', letterSpacing:'-0.03em', color:'#0C2138' }}>
             Everything your agency needs.{' '}
-            <span style={{ background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 50%,#8B5CF6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', display: 'inline'}}>
+            <span style={{ color: '#1795C7', display: 'inline'}}>
               Nothing it doesn't.
             </span>
           </motion.h1>
@@ -801,7 +801,7 @@ export default function FeaturesPage() {
               className="text-4xl sm:text-5xl font-black text-slate-900"
               style={{ letterSpacing:'-0.025em' }}>
               Simple to start,{' '}
-              <span style={{ background:'linear-gradient(125deg,#1795C7 0%,#5B6CF9 55%,#8B5CF6 100%)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text', display: 'inline'}}>
+              <span style={{ color: '#1795C7', display: 'inline'}}>
                 powerful to scale.
               </span>
             </motion.h2>

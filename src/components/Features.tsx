@@ -498,8 +498,7 @@ export default function Features() {
           }}>
             Everything your agency needs{' '}
             <span style={{
-              background: 'linear-gradient(120deg, #5B6CF9 10%, #2563EB 55%, #06B6D4 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>
+              color: '#5B6CF9', display: 'inline'}}>
               in one place.
             </span>
           </h2>

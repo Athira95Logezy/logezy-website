@@ -186,13 +186,7 @@ export default function IndustryPage() {
             {/* Title */}
             <h1 style={{ fontSize: 'clamp(30px,4vw,52px)', fontWeight: 900, color: NAVY, lineHeight: 1.1, marginBottom: 14, letterSpacing: '-0.02em' }}>
               Staffing software built for{' '}
-              <span style={{
-                background: `linear-gradient(135deg, ${cfg.accent}, ${cfg.accentMid})`,
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                display: 'inline',
-              }}>{cfg.label}</span>{' '}agencies.
+              <span style={{ color: cfg.accent }}>{cfg.label}</span>{' '}agencies.
             </h1>
 
             {/* Tagline */}

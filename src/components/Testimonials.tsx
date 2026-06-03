@@ -270,8 +270,7 @@ export default function Testimonials() {
           }}>
             Loved by agencies{' '}
             <span style={{
-              background: 'linear-gradient(125deg, #00B67A 0%, #6366F1 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', display: 'inline'}}>across the UK</span>
+              color: '#00B67A', display: 'inline'}}>across the UK</span>
           </h2>
         </motion.div>
 
