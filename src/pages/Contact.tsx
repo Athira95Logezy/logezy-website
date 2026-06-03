@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Envelope, Phone, MapPin, Clock, Chat, Users, ArrowRight, CaretDown } from '@phosphor-icons/react';
 
 const contactMethods = [
-  { icon: Envelope, title: 'Email us', value: 'hello@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500' },
-  { icon: Phone, title: 'Call us', value: '+1 (555) 123-4567', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500' },
+  { icon: Envelope, title: 'Email us', value: 'info@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500' },
+  { icon: Phone, title: 'Call us', value: '(0333) 006-2179', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500' },
   { icon: Chat, title: 'Live chat', value: 'Available in-app', description: '24/7 support for active customers.', gradient: 'from-indigo-400 to-violet-500' },
-  { icon: MapPin, title: 'Visit us', value: 'London, UK', description: 'By appointment only.', gradient: 'from-violet-400 to-purple-500' },
+  { icon: MapPin, title: 'Visit us', value: 'Derby, DE1 1NN', description: 'Office 108, The Old Courthouse, 18-22 St Peter\'s Churchyard', gradient: 'from-violet-400 to-purple-500' },
 ];
 
 const faqs = [
@@ -189,7 +189,7 @@ export default function Contact() {
                     Get a personalised 30-minute walkthrough tailored to your agency's needs.
                   </p>
                   <motion.a
-                    href="mailto:hello@logezy.co.uk?subject=Demo Request"
+                    href="mailto:info@logezy.co.uk?subject=Demo Request"
                     className="btn-primary text-sm justify-center w-full"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.97 }}
@@ -213,6 +213,34 @@ export default function Contact() {
                       <span className={`font-medium ${k === 'Live Chat' ? 'text-emerald-600' : 'text-slate-700'}`}>{v}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* Contact details card */}
+              <div className="bento-card p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center">
+                    <MapPin weight="regular" className="h-4 w-4 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900">Contact Details</h3>
+                </div>
+                <div className="space-y-3 text-sm text-slate-600">
+                  <div className="flex items-center gap-2">
+                    <Envelope weight="regular" className="h-4 w-4 text-sky-500 flex-shrink-0" />
+                    <a href="mailto:info@logezy.co.uk" className="hover:text-sky-600 transition-colors">info@logezy.co.uk</a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Phone weight="regular" className="h-4 w-4 text-emerald-500 flex-shrink-0" />
+                    <a href="tel:03330062179" className="hover:text-emerald-600 transition-colors">(0333) 006-2179</a>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <MapPin weight="regular" className="h-4 w-4 text-violet-500 flex-shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">
+                      Office 108, The Old Courthouse,<br />
+                      18-22 St Peter's Churchyard,<br />
+                      Derby, DE1 1NN
+                    </span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -310,7 +338,7 @@ export default function Contact() {
             Join 600+ UK agencies already running smarter with Logezy.
           </motion.p>
           <motion.a
-            href="mailto:hello@logezy.co.uk"
+            href="mailto:info@logezy.co.uk"
             className="btn-primary inline-flex"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
