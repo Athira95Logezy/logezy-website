@@ -262,9 +262,9 @@ function ShiftMiniAM() {
 function ShiftMiniJK() {
   return <ShiftMiniCard
     initials="JK" avatarBg="rgba(153,246,228,0.60)" avatarColor="#0D9488"
-    name="Jake Kennedy" role="HCA"
+    name="Jake Kennedy" role="Senior Carer"
     status="Invoiced" statusBg="#CCFBF1" statusColor="#0D9488"
-    date="Tue, May 19th" time="08:00 AM -08:00 PM" location="Mora care"
+    date="Tue, May 19th" time="08:00 AM – 08:00 PM" location="NHS Ward B, London"
   />;
 }
 
@@ -299,72 +299,109 @@ function CandidatesCard() {
 function ScheduleMiniCard() {
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const dates = [18,19,20,21,22,23,24];
-  const shifts = [
-    { initials:'JK', color:'#0D9488', bg:'rgba(153,246,228,0.55)', name:'Jake Kennedy', role:'HCA', time:'07:30–19:30', dot:'#10B981' },
-    { initials:'AM', color:'#B45309', bg:'rgba(253,230,138,0.55)', name:'Amy Mitchell', role:'HCA', time:'08:00–20:00', dot:'#F59E0B' },
-  ];
   return (
     <CardWrap width={252}>
       {/* Header */}
-      <div style={{ padding:'11px 13px 9px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+      <div style={{ padding:'10px 13px 8px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
         <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-          <div style={{ width:32, height:32, borderRadius:9, background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-            <CalendarBlank weight="regular" size={15} color="#6366F1" />
+          <div style={{ width:28, height:28, borderRadius:8, background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+            <CalendarBlank weight="regular" size={13} color="#6366F1" />
           </div>
           <div>
-            <p style={{ margin:0, fontSize:12.5, fontWeight:700, color:'#0F172A', lineHeight:1.2 }}>Schedule</p>
-            <p style={{ margin:0, fontSize:9, color:'#94A3B8', marginTop:1 }}>May 2026</p>
+            <p style={{ margin:0, fontSize:12, fontWeight:700, color:'#0F172A', lineHeight:1.2 }}>Schedule</p>
+            <p style={{ margin:0, fontSize:8.5, color:'#94A3B8', marginTop:1 }}>May 2026</p>
           </div>
         </div>
-        <span style={{ fontSize:8.5, fontWeight:700, color:'#6366F1', background:'#EEF2FF', padding:'3px 8px', borderRadius:7 }}>Week</span>
+        <span style={{ fontSize:8, fontWeight:700, color:'#6366F1', background:'#EEF2FF', padding:'2px 7px', borderRadius:6 }}>Week</span>
       </div>
       <div style={{ height:1, background:'#F1F5F9' }} />
-      {/* Mini calendar strip */}
-      <div style={{ padding:'8px 10px 6px' }}>
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(7,1fr)', gap:2 }}>
+      {/* Compact calendar strip */}
+      <div style={{ padding:'7px 10px 8px' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(7,1fr)', gap:1 }}>
           {days.map(d => (
-            <div key={d} style={{ textAlign:'center' as const, fontSize:7.5, fontWeight:700, color:'#94A3B8', paddingBottom:3 }}>{d}</div>
+            <div key={d} style={{ textAlign:'center' as const, fontSize:7, fontWeight:700, color:'#94A3B8', paddingBottom:2 }}>{d}</div>
           ))}
           {dates.map((d,i) => {
             const active = d === 21;
             return (
               <div key={d} style={{
-                textAlign:'center' as const, fontSize:10, fontWeight: active?800:600,
-                padding:'4px 0', borderRadius:7,
+                textAlign:'center' as const, fontSize:9.5, fontWeight: active?800:600,
+                padding:'3px 0', borderRadius:6,
                 background: active ? '#6366F1' : 'transparent',
                 color: active ? '#fff' : i>=5 ? '#F97316' : '#374151',
               }}>{d}</div>
             );
           })}
         </div>
-        {/* Shift dots under selected day */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(7,1fr)', gap:2, marginTop:3 }}>
+        {/* Dots */}
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(7,1fr)', gap:1, marginTop:2 }}>
           {dates.map((d) => (
-            <div key={d} style={{ display:'flex', justifyContent:'center', gap:2 }}>
-              {d===21 && <div style={{ width:4, height:4, borderRadius:'50%', background:'#6366F1' }} />}
-              {(d===19||d===23) && <div style={{ width:4, height:4, borderRadius:'50%', background:'#10B981' }} />}
+            <div key={d} style={{ display:'flex', justifyContent:'center' }}>
+              {d===21 && <div style={{ width:3, height:3, borderRadius:'50%', background:'#6366F1' }} />}
+              {(d===19||d===23) && <div style={{ width:3, height:3, borderRadius:'50%', background:'#10B981' }} />}
             </div>
           ))}
         </div>
       </div>
-      <div style={{ height:1, background:'#F1F5F9' }} />
-      {/* Shift entries */}
-      <div style={{ padding:'8px 12px 10px', display:'flex', flexDirection:'column' as const, gap:6 }}>
-        {shifts.map(s => (
-          <div key={s.initials} style={{ display:'flex', alignItems:'center', gap:8 }}>
-            <div style={{ width:24, height:24, borderRadius:'50%', background:s.bg, border:`1.5px solid ${s.color}40`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:8, fontWeight:800, color:s.color, flexShrink:0 }}>{s.initials}</div>
-            <div style={{ flex:1, minWidth:0 }}>
-              <p style={{ margin:0, fontSize:10.5, fontWeight:700, color:'#0F172A', lineHeight:1.2 }}>{s.name}</p>
-              <p style={{ margin:0, fontSize:8.5, color:'#94A3B8' }}>{s.role}</p>
-            </div>
-            <div style={{ display:'flex', alignItems:'center', gap:4 }}>
-              <div style={{ width:5, height:5, borderRadius:'50%', background:s.dot, flexShrink:0 }} />
-              <span style={{ fontSize:8.5, color:'#64748B', fontWeight:600, whiteSpace:'nowrap' as const }}>{s.time}</span>
+    </CardWrap>
+  );
+}
+
+/* ══════════════════════════════════════════════════
+   PHONE FLOATING MICRO-CARDS
+══════════════════════════════════════════════════ */
+function ShiftConfirmedCard() {
+  return (
+    <div style={{ background:'#fff', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 32px rgba(0,0,0,0.12),0 0 0 1px rgba(0,0,0,0.05)', display:'flex', alignItems:'center', gap:10, minWidth:200 }}>
+      <div style={{ width:32, height:32, borderRadius:9, background:'#ECFDF5', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+        <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <div>
+        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#0F172A', lineHeight:1.2 }}>Shift Confirmed ✓</p>
+        <p style={{ margin:0, fontSize:9, color:'#10B981', marginTop:2 }}>NHS Ward B · 07:00–19:00</p>
+      </div>
+    </div>
+  );
+}
+
+function AvailabilityCard() {
+  const days = ['M','T','W','T','F','S','S'];
+  const avail = [true,false,true,true,false,true,false];
+  return (
+    <div style={{ background:'#fff', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 32px rgba(0,0,0,0.12),0 0 0 1px rgba(0,0,0,0.05)', minWidth:190 }}>
+      <div style={{ display:'flex', alignItems:'center', gap:7, marginBottom:8 }}>
+        <div style={{ width:28, height:28, borderRadius:8, background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+          <Clock weight="regular" size={13} color="#6366F1" />
+        </div>
+        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#0F172A' }}>Availability</p>
+      </div>
+      <div style={{ display:'flex', gap:4 }}>
+        {days.map((d,i) => (
+          <div key={i} style={{ display:'flex', flexDirection:'column' as const, alignItems:'center', gap:3 }}>
+            <span style={{ fontSize:7, fontWeight:700, color:'#94A3B8' }}>{d}</span>
+            <div style={{ width:16, height:16, borderRadius:5,
+              background: avail[i] ? '#6366F1' : '#F1F5F9',
+              display:'flex', alignItems:'center', justifyContent:'center' }}>
+              {avail[i] && <svg width={8} height={8} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>}
             </div>
           </div>
         ))}
       </div>
-    </CardWrap>
+    </div>
+  );
+}
+
+function SignedTimesheetCard() {
+  return (
+    <div style={{ background:'#fff', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 32px rgba(0,0,0,0.12),0 0 0 1px rgba(0,0,0,0.05)', display:'flex', alignItems:'center', gap:10, minWidth:200 }}>
+      <div style={{ width:32, height:32, borderRadius:9, background:'#FFF7ED', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+        <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div>
+        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#0F172A', lineHeight:1.2 }}>Signed Timesheet</p>
+        <p style={{ margin:0, fontSize:9, color:'#F97316', marginTop:2 }}>32h 15m · Week May 19</p>
+      </div>
+    </div>
   );
 }
 
@@ -751,6 +788,42 @@ export default function Hero() {
               <div style={{ position:'absolute', inset:-40, borderRadius:'50%',
                 background:'radial-gradient(ellipse,rgba(99,102,241,0.22) 0%,transparent 65%)',
                 filter:'blur(28px)', zIndex:-1, pointerEvents:'none' }} />
+            </motion.div>
+          </motion.div>
+
+          {/* ── Shift Confirmed card — left of phone ── */}
+          <motion.div
+            className="hidden lg:block"
+            initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
+            transition={{ delay:1.0, duration:0.8, ease:EASE }}
+            style={{ position:'absolute', right:224, top:-70, zIndex:22, pointerEvents:'none' }}
+          >
+            <motion.div animate={{ y:[0,-7,0] }} transition={{ duration:3.8, repeat:Infinity, ease:'easeInOut', delay:0.3 }}>
+              <ShiftConfirmedCard />
+            </motion.div>
+          </motion.div>
+
+          {/* ── Availability card — left-lower of phone ── */}
+          <motion.div
+            className="hidden lg:block"
+            initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
+            transition={{ delay:1.15, duration:0.8, ease:EASE }}
+            style={{ position:'absolute', right:228, top:48, zIndex:22, pointerEvents:'none' }}
+          >
+            <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:4.2, repeat:Infinity, ease:'easeInOut', delay:0.8 }}>
+              <AvailabilityCard />
+            </motion.div>
+          </motion.div>
+
+          {/* ── Signed Timesheet card — bottom of phone ── */}
+          <motion.div
+            className="hidden lg:block"
+            initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
+            transition={{ delay:1.3, duration:0.8, ease:EASE }}
+            style={{ position:'absolute', right:20, top:200, zIndex:22, pointerEvents:'none' }}
+          >
+            <motion.div animate={{ y:[0,-6,0] }} transition={{ duration:4.5, repeat:Infinity, ease:'easeInOut', delay:1.2 }}>
+              <SignedTimesheetCard />
             </motion.div>
           </motion.div>
         </div>
