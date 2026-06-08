@@ -585,7 +585,7 @@ export default function Hero() {
       </motion.div>
 
       {/* ── RIGHT · Schedule mini card ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 70, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 660px)', top: 70, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-18, 11)}>
           <FC delay={0.55} fromX={56} floatY={-10} floatDur={4.8} floatDelay={0.5} rotate={-0.35}>
             <ScheduleMiniCard />
@@ -594,7 +594,7 @@ export default function Hero() {
       </motion.div>
 
       {/* ── RIGHT · Shift Mini JK ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 220, zIndex: 8, x: caX, y: caY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 660px)', top: 220, zIndex: 8, x: caX, y: caY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-14, 8)}>
           <FC delay={0.65} fromX={44} floatY={-9} floatDur={4.6} floatDelay={1.0} rotate={0.30}>
             <ShiftMiniJK />
@@ -603,7 +603,7 @@ export default function Hero() {
       </motion.div>
 
       {/* ── RIGHT · Candidates ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 330, zIndex: 8, x: buX, y: buY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
+      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 660px)', top: 330, zIndex: 8, x: buX, y: buY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-9, 6)}>
           <FC delay={0.85} fromX={28} floatY={-6} floatDur={4.4} floatDelay={1.6} rotate={0.20}>
             <CandidatesCard />
@@ -734,7 +734,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 40, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ delay: 0.8, duration: 1.0, ease: EASE }}
-            style={{ position: 'absolute', right: 148, top: -100, zIndex: 20, pointerEvents: 'none' }}
+            style={{ position: 'absolute', right: -28, top: -100, zIndex: 20, pointerEvents: 'none' }}
           >
             <motion.div
               animate={{ y: [0, -12, 0] }}
@@ -789,52 +789,6 @@ export default function Hero() {
                 background:'radial-gradient(ellipse,rgba(99,102,241,0.22) 0%,transparent 65%)',
                 filter:'blur(28px)', zIndex:-1, pointerEvents:'none' }} />
             </motion.div>
-          </motion.div>
-
-          {/* ── Notification cards — right of phone ── */}
-          <motion.div
-            className="hidden lg:block"
-            initial={{ opacity:0, x:30 }} animate={{ opacity:1, x:0 }}
-            transition={{ delay:1.0, duration:0.8, ease:EASE }}
-            style={{ position:'absolute', right:-28, top:-90, zIndex:22, pointerEvents:'none', display:'flex', flexDirection:'column', gap:10 }}
-          >
-            {[
-              { color:'#10B981', bg:'#ECFDF5', icon:<svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>, type:'SHIFT CONFIRMED', title:'Shift Confirmed ✓', sub:'NHS Ward B · 07:00–19:00', delay:0 },
-              { color:'#6366F1', bg:'#EEF2FF', icon:<svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="#6366F1" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>, type:'NEW BOOKING', title:'New Booking Available', sub:'May 26 · HCA · Tap to view', delay:0.12 },
-              { color:'#F97316', bg:'#FFF7ED', icon:<svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>, type:'TIMESHEET', title:'Timesheet Approved', sub:'32h 15m · Week May 19', delay:0.24 },
-              { color:'#8B5CF6', bg:'#F5F3FF', icon:<svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, type:'MESSAGE', title:'Message from Agency', sub:'Important update about…', delay:0.36 },
-            ].map((n, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity:0, x:20 }} animate={{ opacity:1, x:0 }}
-                transition={{ delay:1.1 + n.delay, duration:0.6, ease:EASE }}
-              >
-                <motion.div
-                  animate={{ y:[0, -5, 0] }}
-                  transition={{ duration:3.8+i*0.4, repeat:Infinity, ease:'easeInOut', delay:i*0.6 }}
-                  style={{
-                    background:'rgba(255,255,255,0.97)',
-                    backdropFilter:'blur(16px)',
-                    borderRadius:14,
-                    padding:'9px 12px',
-                    boxShadow:`0 8px 28px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05), 0 0 16px ${n.color}18`,
-                    display:'flex', alignItems:'flex-start', gap:9, width:200,
-                    borderLeft:`3px solid ${n.color}`,
-                  }}
-                >
-                  <div style={{ width:26, height:26, borderRadius:8, background:n.bg, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, marginTop:1 }}>
-                    {n.icon}
-                  </div>
-                  <div style={{ minWidth:0 }}>
-                    <div style={{ fontSize:7.5, fontWeight:800, color:n.color, letterSpacing:'0.07em', textTransform:'uppercase' as const, marginBottom:3 }}>{n.type}</div>
-                    <p style={{ margin:0, fontSize:10.5, fontWeight:700, color:'#0F172A', lineHeight:1.25 }}>{n.title}</p>
-                    <p style={{ margin:'2px 0 0', fontSize:9, color:'#94A3B8', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' as const }}>{n.sub}</p>
-                  </div>
-                  <motion.div style={{ width:6, height:6, borderRadius:'50%', background:n.color, flexShrink:0, marginTop:3, boxShadow:`0 0 6px ${n.color}` }}
-                    animate={{ opacity:[1,0.2,1], scale:[1,1.4,1] }} transition={{ duration:1.4, repeat:Infinity }} />
-                </motion.div>
-              </motion.div>
-            ))}
           </motion.div>
 
           {/* ── Shift Confirmed card — left of phone ── */}
