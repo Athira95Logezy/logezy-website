@@ -244,7 +244,7 @@ export default function About() {
             {/* Left — sticky label + accent */}
             <motion.div {...fadeUp(0)} className="lg:sticky lg:top-28">
               <div className="section-tag mb-6 inline-flex">Our Story</div>
-              <h2 className="text-4xl sm:text-5xl font-black text-slate-900 leading-[1.08] mb-8" style={{letterSpacing:'-0.03em'}}>
+              <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-8" style={{letterSpacing:'-0.03em', lineHeight:1.25}}>
                 Built by people who understand recruitment.
               </h2>
               {/* Decorative number */}
@@ -270,7 +270,6 @@ export default function About() {
                 <p className="text-lg font-semibold text-slate-700 leading-relaxed italic">
                   "Good recruiters were spending more time on paperwork than on people. That had to change."
                 </p>
-                <p className="text-sm text-slate-400 mt-3 font-medium">— Logezy Founders</p>
               </motion.blockquote>
             </div>
           </div>
@@ -465,73 +464,75 @@ export default function About() {
       </section>
 
       {/* ══════════════════════════════════════
-          FINAL CTA
+          FINAL CTA — redesigned
       ══════════════════════════════════════ */}
-      <section className="py-24 relative overflow-hidden"
-        style={{background:'linear-gradient(135deg,#0F172A 0%,#1E1B4B 100%)'}}>
-        <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse at 50% 0%,rgba(23,149,199,0.16) 0%,transparent 60%)',pointerEvents:'none'}}/>
-        <div style={{position:'absolute',bottom:0,right:0,width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(139,92,246,0.10) 0%,transparent 65%)',transform:'translate(30%,30%)',pointerEvents:'none'}}/>
+      <section className="relative overflow-hidden py-24"
+        style={{background:'linear-gradient(160deg,#0C1835 0%,#0F172A 50%,#1E1B4B 100%)'}}>
+        {/* Glows */}
+        <div style={{position:'absolute',top:0,left:'50%',transform:'translateX(-50%)',width:900,height:400,background:'radial-gradient(ellipse at 50% 0%,rgba(23,149,199,0.14) 0%,transparent 60%)',filter:'blur(48px)',pointerEvents:'none'}}/>
+        <div style={{position:'absolute',bottom:0,right:0,width:480,height:480,borderRadius:'50%',background:'radial-gradient(circle,rgba(139,92,246,0.10) 0%,transparent 65%)',transform:'translate(30%,30%)',pointerEvents:'none'}}/>
+        <div style={{position:'absolute',bottom:0,left:0,width:400,height:400,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.08) 0%,transparent 65%)',transform:'translate(-30%,30%)',pointerEvents:'none'}}/>
+        {/* Dot grid */}
+        <div style={{position:'absolute',inset:0,opacity:0.025,backgroundImage:'radial-gradient(rgba(255,255,255,1) 1px,transparent 1px)',backgroundSize:'24px 24px',pointerEvents:'none'}}/>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-            <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.65,ease:[0.22,1,0.36,1]}}>
-              <h2 className="font-black text-white leading-[1.08] mb-5"
-                style={{fontSize:'clamp(2rem,4vw,3.2rem)',letterSpacing:'-0.03em'}}>
-                Ready to see what Logezy<br/>
-                <span style={{color: '#1795C7', display: 'inline'}}>
-                  can do for your agency?
-                </span>
-              </h2>
-              <p style={{color:'rgba(165,210,255,0.65)',fontSize:18,lineHeight:1.65,marginBottom:32}}>
-                Join hundreds of temp recruitment agencies already running smoother, faster, and smarter.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
-                    display:'inline-flex',alignItems:'center',gap:8,
-                    padding:'14px 28px',borderRadius:100,fontSize:15,fontWeight:700,
-                    color:'#fff',background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
-                    boxShadow:'0 4px 24px rgba(91,108,249,0.38)',textDecoration:'none',
-                  }}>
-                    Start Free Trial <ArrowRight weight="regular" style={{width:15,height:15}}/>
-                  </a>
-                </motion.div>
-                <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
-                    display:'inline-flex',alignItems:'center',gap:8,
-                    padding:'14px 28px',borderRadius:100,fontSize:15,fontWeight:600,
-                    color:'rgba(255,255,255,0.80)',background:'rgba(255,255,255,0.08)',
-                    border:'1.5px solid rgba(255,255,255,0.16)',textDecoration:'none',
-                  }}>
-                    Book a Demo
-                  </a>
-                </motion.div>
-              </div>
-            </motion.div>
+          {/* Heading */}
+          <motion.div initial={{opacity:0,y:28}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.65,ease:[0.22,1,0.36,1]}}>
+            <h2 style={{fontSize:'clamp(2.2rem,4.5vw,3.6rem)',fontWeight:900,color:'#fff',
+              lineHeight:1.15,letterSpacing:'-0.03em',marginBottom:16}}>
+              Ready to see what Logezy{' '}
+              <span style={{color:'#38BDF8'}}>can do for your agency?</span>
+            </h2>
+            <p style={{color:'rgba(165,210,255,0.60)',fontSize:18,lineHeight:1.72,marginBottom:36,maxWidth:560,margin:'0 auto 36px'}}>
+              Join hundreds of temp recruitment agencies already running smoother, faster, and smarter.
+            </p>
 
-            {/* Stats grid */}
-            <motion.div initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.65,delay:0.1,ease:[0.22,1,0.36,1]}}
-              className="hidden lg:grid grid-cols-2 gap-4">
-              {[
-                { icon:Users,   label:'UK Agencies',    value:'600+', g:'linear-gradient(135deg,#5B6CF9,#1795C7)' },
-                { icon:TrendUp, label:'Admin Saved',    value:'80%',  g:'linear-gradient(135deg,#8B5CF6,#A855F7)' },
-                { icon:Shield,  label:'CQC Compliance', value:'100%', g:'linear-gradient(135deg,#059669,#10B981)' },
-                { icon:Pulse,   label:'App Uptime',     value:'99.9%',g:'linear-gradient(135deg,#D97706,#F59E0B)' },
-              ].map(({icon:Icon,label,value,g}) => (
-                <motion.div key={label}
-                  whileHover={{scale:1.05,y:-4}}
-                  transition={{type:'spring',stiffness:300,damping:20}}
-                  style={{padding:'24px 20px',borderRadius:20,background:'rgba(255,255,255,0.06)',border:'1px solid rgba(255,255,255,0.10)',textAlign:'center'}}>
-                  <div style={{width:44,height:44,borderRadius:13,background:g,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 14px'}}>
-                    <Icon weight="regular" style={{width:20,height:20,color:'#fff'}}/>
-                  </div>
-                  <p style={{fontSize:30,fontWeight:900,color:'#fff',margin:0,letterSpacing:'-0.03em'}}>{value}</p>
-                  <p style={{fontSize:11,color:'rgba(165,210,255,0.50)',marginTop:4,fontWeight:500}}>{label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+            {/* CTAs */}
+            <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap' as const,marginBottom:64}}>
+              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+                whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}
+                style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 32px',borderRadius:100,
+                  fontSize:15,fontWeight:800,color:'#fff',background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
+                  boxShadow:'0 8px 28px rgba(91,108,249,0.42)',textDecoration:'none'}}>
+                Start Free Trial <ArrowRight weight="bold" style={{width:15,height:15}}/>
+              </motion.a>
+              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+                whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}
+                style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 32px',borderRadius:100,
+                  fontSize:15,fontWeight:700,color:'rgba(255,255,255,0.82)',
+                  background:'rgba(255,255,255,0.08)',border:'1.5px solid rgba(255,255,255,0.18)',textDecoration:'none'}}>
+                Book a Demo
+              </motion.a>
+            </div>
+          </motion.div>
+
+          {/* 3 stat cards — no CQC */}
+          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
+            transition={{duration:0.6,delay:0.15,ease:[0.22,1,0.36,1]}}
+            style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16,maxWidth:700,margin:'0 auto'}}>
+            {[
+              { icon:Users,   label:'UK Agencies',  value:'600+', g:'linear-gradient(135deg,#5B6CF9,#1795C7)', glow:'rgba(91,108,249,0.22)'  },
+              { icon:TrendUp, label:'Admin Saved',   value:'80%',  g:'linear-gradient(135deg,#8B5CF6,#A855F7)', glow:'rgba(139,92,246,0.22)' },
+              { icon:Pulse,   label:'App Uptime',    value:'99.9%',g:'linear-gradient(135deg,#D97706,#F59E0B)', glow:'rgba(217,119,6,0.22)'  },
+            ].map(({icon:Icon,label,value,g,glow}) => (
+              <motion.div key={label}
+                whileHover={{scale:1.06,y:-5}}
+                transition={{type:'spring',stiffness:300,damping:20}}
+                style={{padding:'28px 16px',borderRadius:20,background:'rgba(255,255,255,0.06)',
+                  border:'1px solid rgba(255,255,255,0.10)',textAlign:'center',position:'relative',overflow:'hidden'}}>
+                <div style={{position:'absolute',top:-20,right:-20,width:70,height:70,borderRadius:'50%',background:glow,filter:'blur(18px)',pointerEvents:'none'}}/>
+                <div style={{width:46,height:46,borderRadius:14,background:g,display:'flex',alignItems:'center',
+                  justifyContent:'center',margin:'0 auto 14px',boxShadow:`0 8px 20px ${glow}`}}>
+                  <Icon weight="fill" style={{width:21,height:21,color:'#fff'}}/>
+                </div>
+                <p style={{fontSize:32,fontWeight:900,color:'#fff',margin:0,letterSpacing:'-0.03em',lineHeight:1}}>{value}</p>
+                <p style={{fontSize:11,color:'rgba(165,210,255,0.50)',marginTop:6,fontWeight:600,
+                  textTransform:'uppercase' as const,letterSpacing:'0.06em'}}>{label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
         </div>
       </section>
 
