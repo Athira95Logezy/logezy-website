@@ -107,7 +107,7 @@ export default function DashboardReveal() {
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}
           >
             <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 380, damping: 20 }}>
-              <Link to="/contact" style={{
+              <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '11px 24px', borderRadius: 12, textDecoration: 'none',
                 background: 'linear-gradient(135deg, #2396C6 0%, #06B6D4 100%)',
@@ -115,7 +115,7 @@ export default function DashboardReveal() {
                 boxShadow: '0 0 24px rgba(99,102,241,0.38)',
               }}>
                 Get Started Free <ArrowRight weight="regular" style={{ width: 13, height: 13 }} />
-              </Link>
+              </a>
             </motion.div>
             <motion.div whileHover={{ scale: 1.03, y: -1 }} transition={{ type: 'spring', stiffness: 380, damping: 20 }}>
               <Link to="/features" style={{

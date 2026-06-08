@@ -102,11 +102,12 @@ export default function FAQ() {
               <p className="text-sm text-slate-500 mb-4 leading-relaxed">
                 Our team is happy to walk you through the platform and answer any questions.
               </p>
-              <Link to="/contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#2396C6] hover:text-[#183963] group">
+              <button
+                onClick={() => { try { (window as any).$zoho?.salesiq?.floatwindow?.visible('show'); } catch(e){} }}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#2396C6] hover:text-[#183963] group cursor-pointer bg-transparent border-none p-0">
                 Chat with us
                 <ArrowRight weight="regular" className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
+              </button>
             </div>
           </motion.div>
 

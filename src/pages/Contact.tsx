@@ -338,7 +338,9 @@ export default function Contact() {
             Join 600+ UK agencies already running smarter with Logezy.
           </motion.p>
           <motion.a
-            href="mailto:info@logezy.co.uk"
+            href="https://booking.logezy.co/#/67044000000025008"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary inline-flex"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
