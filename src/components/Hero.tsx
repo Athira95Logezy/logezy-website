@@ -453,14 +453,6 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── RIGHT · Donut chart (moved from left) ── */}
-      <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 70, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
-        <div style={mp(-22, 13)}>
-          <FC delay={0.60} fromX={60} floatY={-12} floatDur={4.2} floatDelay={0.4} rotate={0.45}>
-            <TimesheetsDonutCard />
-          </FC>
-        </div>
-      </motion.div>
 
       {/* ── LEFT · Piece 3 — Stats tiles ── */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 220, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
