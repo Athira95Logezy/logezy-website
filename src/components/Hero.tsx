@@ -189,37 +189,42 @@ export default function Hero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.11) 1px, transparent 1px)', backgroundSize: '28px 28px', maskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)' }} />
 
       {/* ════════════════════════════════════════════════════════
-          FEATURE PILL CARDS — mobile app features, pop 1-by-1
-          Positioned left of phone (right side), stacked
+          FEATURE PILL CARDS — spread across the full hero width
+          LEFT side  → fromX negative (slides in from left)
+          RIGHT side → fromX positive (slides in from right)
       ════════════════════════════════════════════════════════ */}
 
-      {/* Feature pills — LEFT column near phone */}
+      {/* ── LEFT side cards ── */}
       {[
-        { icon: CalendarBlank, iconColor: '#6366F1', iconBg: '#EEF2FF', label: 'Shift Confirmed',    sub: 'NHS Ward B · 07:00–19:00',   top: 60,  delay: 0.50, fromX: -50, floatY: -8,  floatDur: 4.8, floatDelay: 0.4 },
-        { icon: MapPin,        iconColor: '#F59E0B', iconBg: '#FFFBEB', label: 'GPS Clock In',       sub: 'Verified · 07:02 AM',         top: 130, delay: 0.65, fromX: -44, floatY: -10, floatDur: 5.2, floatDelay: 0.8 },
-        { icon: Shield,        iconColor: '#10B981', iconBg: '#ECFDF5', label: 'DBS Valid ✓',        sub: 'Compliance up to date',       top: 200, delay: 0.78, fromX: -38, floatY: -7,  floatDur: 4.6, floatDelay: 1.2 },
-        { icon: Clock,         iconColor: '#06B6D4', iconBg: '#E0F9FF', label: 'Timesheet Sent',     sub: '32h 15m this week',           top: 270, delay: 0.90, fromX: -32, floatY: -9,  floatDur: 5.0, floatDelay: 1.6 },
-        { icon: Bell,          iconColor: '#8B5CF6', iconBg: '#F5F3FF', label: 'New Shift Available', sub: 'Band 6 · Tap to accept',     top: 340, delay: 1.02, fromX: -26, floatY: -6,  floatDur: 4.4, floatDelay: 2.0 },
+        { icon: CalendarBlank, iconColor: '#6366F1', iconBg: '#EEF2FF', label: 'Shift Confirmed',     sub: 'NHS Ward B · 07:00–19:00',  top:  80, delay: 0.45, fromX: -55, floatY: -9,  floatDur: 4.8, floatDelay: 0.3 },
+        { icon: Shield,        iconColor: '#10B981', iconBg: '#ECFDF5', label: 'DBS Valid ✓',         sub: 'Compliance up to date',      top: 195, delay: 0.62, fromX: -48, floatY: -7,  floatDur: 5.2, floatDelay: 0.8 },
+        { icon: Clock,         iconColor: '#06B6D4', iconBg: '#E0F9FF', label: 'Timesheet Approved',  sub: '32h 15m · this week',        top: 310, delay: 0.78, fromX: -40, floatY: -10, floatDur: 4.6, floatDelay: 1.3 },
+        { icon: Bell,          iconColor: '#8B5CF6', iconBg: '#F5F3FF', label: 'Push Notification',   sub: 'New shift · Tap to accept',  top: 420, delay: 0.92, fromX: -34, floatY: -6,  floatDur: 5.0, floatDelay: 1.8 },
       ].map((item, i) => (
-        <motion.div key={i} className="hidden xl:block"
-          style={{ position: 'absolute', left: 'calc(50% + 380px)', top: item.top, zIndex: 8, pointerEvents: 'none' }}>
-          <FC delay={item.delay} fromX={item.fromX} floatY={item.floatY} floatDur={item.floatDur} floatDelay={item.floatDelay} rotate={0.2}>
-            <FeaturePill icon={item.icon} iconColor={item.iconColor} iconBg={item.iconBg} label={item.label} sub={item.sub} />
-          </FC>
+        <motion.div key={`left-${i}`} className="hidden xl:block"
+          style={{ position: 'absolute', left: 'calc(50% - 670px)', top: item.top, zIndex: 8, pointerEvents: 'none' }}>
+          <div style={mp(16, 9)}>
+            <FC delay={item.delay} fromX={item.fromX} floatY={item.floatY} floatDur={item.floatDur} floatDelay={item.floatDelay} rotate={0.25}>
+              <FeaturePill icon={item.icon} iconColor={item.iconColor} iconBg={item.iconBg} label={item.label} sub={item.sub} />
+            </FC>
+          </div>
         </motion.div>
       ))}
 
-      {/* Feature pills — RIGHT column (further right) */}
+      {/* ── RIGHT side cards ── */}
       {[
-        { icon: DeviceMobile,  iconColor: '#6366F1', iconBg: '#EEF2FF', label: 'Mobile App',         sub: 'iOS & Android',               top: 95,  delay: 0.60, fromX: 50, floatY: -9,  floatDur: 5.0, floatDelay: 0.6 },
-        { icon: CheckCircle,   iconColor: '#10B981', iconBg: '#ECFDF5', label: 'Worker Accepted',    sub: 'James O. · just now',         top: 175, delay: 0.75, fromX: 44, floatY: -7,  floatDur: 4.6, floatDelay: 1.0 },
-        { icon: CalendarBlank, iconColor: '#F59E0B', iconBg: '#FFFBEB', label: 'Availability Set',   sub: 'Mon–Fri this week',           top: 255, delay: 0.88, fromX: 38, floatY: -11, floatDur: 5.4, floatDelay: 1.4 },
+        { icon: DeviceMobile,  iconColor: '#6366F1', iconBg: '#EEF2FF', label: 'Mobile App',          sub: 'iOS & Android',              top:  70, delay: 0.52, fromX: 55, floatY: -8,  floatDur: 5.0, floatDelay: 0.5 },
+        { icon: MapPin,        iconColor: '#F59E0B', iconBg: '#FFFBEB', label: 'GPS Clock In',        sub: 'Verified · 07:02 AM',        top: 185, delay: 0.68, fromX: 48, floatY: -11, floatDur: 4.6, floatDelay: 1.0 },
+        { icon: CheckCircle,   iconColor: '#10B981', iconBg: '#ECFDF5', label: 'Worker Accepted',     sub: 'James O. · just now',        top: 300, delay: 0.82, fromX: 42, floatY: -7,  floatDur: 5.2, floatDelay: 1.5 },
+        { icon: CalendarBlank, iconColor: '#F59E0B', iconBg: '#FFFBEB', label: 'Availability Set',    sub: 'Mon–Fri this week',          top: 415, delay: 0.96, fromX: 36, floatY: -9,  floatDur: 4.8, floatDelay: 2.0 },
       ].map((item, i) => (
-        <motion.div key={i} className="hidden xl:block"
-          style={{ position: 'absolute', left: 'calc(50% + 600px)', top: item.top, zIndex: 8, pointerEvents: 'none' }}>
-          <FC delay={item.delay} fromX={item.fromX} floatY={item.floatY} floatDur={item.floatDur} floatDelay={item.floatDelay} rotate={0.25}>
-            <FeaturePill icon={item.icon} iconColor={item.iconColor} iconBg={item.iconBg} label={item.label} sub={item.sub} />
-          </FC>
+        <motion.div key={`right-${i}`} className="hidden xl:block"
+          style={{ position: 'absolute', left: 'calc(50% + 470px)', top: item.top, zIndex: 8, pointerEvents: 'none' }}>
+          <div style={mp(-16, 9)}>
+            <FC delay={item.delay} fromX={item.fromX} floatY={item.floatY} floatDur={item.floatDur} floatDelay={item.floatDelay} rotate={-0.25}>
+              <FeaturePill icon={item.icon} iconColor={item.iconColor} iconBg={item.iconBg} label={item.label} sub={item.sub} />
+            </FC>
+          </div>
         </motion.div>
       ))}
 
