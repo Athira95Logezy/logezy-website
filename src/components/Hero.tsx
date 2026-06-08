@@ -20,7 +20,7 @@
 import React, { useRef, useState, useCallback } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
-  ArrowRight, Play, Star,
+  ArrowRight, Star,
   CalendarBlank, Clock, MapPin, Gift, Users,
 } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
@@ -544,12 +544,9 @@ export default function Hero() {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 420, damping: 22 }}>
-                <button style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '12px 24px', borderRadius: 14, cursor: 'pointer', background: '#FFFFFF', border: '1px solid rgba(99,102,241,0.22)', color: '#374151', fontSize: 14, fontWeight: 600, boxShadow: '0 2px 18px rgba(0,0,0,0.07)' }}>
-                  <span style={{ width: 28, height: 28, borderRadius: '50%', flexShrink: 0, background: 'rgba(99,102,241,0.09)', border: '1px solid rgba(99,102,241,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Play weight="regular" style={{ width: 10, height: 10, color: I, marginLeft: 1.5 }} />
-                  </span>
-                  Watch Demo
-                </button>
+                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 14, cursor: 'pointer', background: '#FFFFFF', border: '1px solid rgba(99,102,241,0.22)', color: '#374151', fontSize: 14, fontWeight: 600, boxShadow: '0 2px 18px rgba(0,0,0,0.07)', textDecoration: 'none' }}>
+                  Book a Demo
+                </a>
               </motion.div>
             </motion.div>
 
