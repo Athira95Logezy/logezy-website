@@ -1,20 +1,20 @@
-/**
- * Hero.tsx � Premium SaaS hero with scroll-driven card-merge animation
+﻿/**
+ * Hero.tsx — Premium SaaS hero with scroll-driven card-merge animation
  *
  * Layout
- * ------
- * � Gradient bg � dot grid
- * � LEFT  cards (4, 252 px wide, 14 px gaps): TimesheetsHeader � TimesheetsDonut � TimesheetsStats � ShiftMiniAM
- * � RIGHT cards (4, 252 px wide, 14 px gaps): BirthdayCard � ShiftMiniJK � WorkerStatCard � CandidatesCard
- * � LEFT  outer edge  calc(50% - 656px)  ??  RIGHT outer edge calc(50% + 656px)  [perfect mirror]
- * � CENTER: badge ? H1 ? subtitle ? CTAs ? social proof
- * � DASHBOARD: full-width image, no browser chrome � perspective tilt
- * � LOGOS: trusted-by marquee blended directly below dashboard
+ * ──────
+ * • Gradient bg · dot grid
+ * • LEFT  cards (4, 252 px wide, 14 px gaps): TimesheetsHeader · TimesheetsDonut · TimesheetsStats · ShiftMiniAM
+ * • RIGHT cards (4, 252 px wide, 14 px gaps): BirthdayCard · ShiftMiniJK · WorkerStatCard · CandidatesCard
+ * • LEFT  outer edge  calc(50% - 656px)  ←→  RIGHT outer edge calc(50% + 656px)  [perfect mirror]
+ * • CENTER: badge → H1 → subtitle → CTAs → social proof
+ * • DASHBOARD: full-width image, no browser chrome — perspective tilt
+ * • LOGOS: trusted-by marquee blended directly below dashboard
  *
  * Scroll-merge animation (via useScroll spring):
- *   0.14 ? 0.70  Each card flies individually to its dashboard widget position
- *   0.40 ? 0.70  Cards fade + scale down
- *   0.22 ? 0.76  Dashboard rotateX eases 13� ? 5�
+ *   0.14 → 0.70  Each card flies individually to its dashboard widget position
+ *   0.40 → 0.70  Cards fade + scale down
+ *   0.22 → 0.76  Dashboard rotateX eases 13° → 5°
  */
 
 import React, { useRef, useState, useCallback } from 'react';
@@ -28,9 +28,9 @@ import { Link } from 'react-router-dom';
 const EASE = [0.22, 1, 0.36, 1] as const;
 const I = '#2396C6';
 
-/* -------------------------------------------------
+/* ─────────────────────────────────────────────────
    LOGO DATA (for inline trusted-by strip)
-------------------------------------------------- */
+───────────────────────────────────────────────── */
 const logos = [
   { src: '/medsolve.png',                 alt: 'Medsolve'      },
   { src: '/ansacare_logo.webp',           alt: 'Ansacare'      },
@@ -46,9 +46,9 @@ const LOGO_GAP = 40;
 const TRACK_W  = (LOGO_W + LOGO_GAP) * logos.length;
 const tripled  = [...logos, ...logos, ...logos];
 
-/* -------------------------------------------------
+/* ─────────────────────────────────────────────────
    SHARED CARD SHELL
-------------------------------------------------- */
+───────────────────────────────────────────────── */
 const CardWrap = ({
   width, children, style,
 }: { width: number; children: React.ReactNode; style?: React.CSSProperties }) => (
@@ -71,14 +71,14 @@ const IB = ({ bg, children }: { bg: string; children: React.ReactNode }) => (
   </div>
 );
 
-/* --------------------------------------------------
-   TIMESHEETS � SPLIT INTO 3 FLOATING PIECES
+/* ══════════════════════════════════════════════════
+   TIMESHEETS — SPLIT INTO 3 FLOATING PIECES
    Piece 1: Header (icon + title + date badge)
    Piece 2: Donut  (circle chart + legend)
    Piece 3: Stats  (4 colored tiles)
--------------------------------------------------- */
+══════════════════════════════════════════════════ */
 
-/** Piece 1 � compact header pill */
+/** Piece 1 — compact header pill */
 function TimesheetsHeaderCard() {
   return (
     <CardWrap width={252}>
@@ -101,7 +101,7 @@ function TimesheetsHeaderCard() {
   );
 }
 
-/** Piece 2 � donut chart card */
+/** Piece 2 — donut chart card */
 function TimesheetsDonutCard() {
   const r = 37, sw = 14;
   const circ = 2 * Math.PI * r;
@@ -149,7 +149,7 @@ function TimesheetsDonutCard() {
   );
 }
 
-/** Piece 3 � stats row card */
+/** Piece 3 — stats row card */
 function TimesheetsStatsCard() {
   const stats = [
     { val: '95.5', label: 'Total',    bg: '#E8F5FB', color: '#2396C6' },
@@ -171,9 +171,9 @@ function TimesheetsStatsCard() {
   );
 }
 
-/* --------------------------------------------------
-   UPCOMING BIRTHDAYS CARD  (right � top)
--------------------------------------------------- */
+/* ══════════════════════════════════════════════════
+   UPCOMING BIRTHDAYS CARD  (right · top)
+══════════════════════════════════════════════════ */
 function BirthdayCard() {
   return (
     <CardWrap width={252}>
@@ -183,7 +183,7 @@ function BirthdayCard() {
       </div>
       <div style={{ height: 1, background: '#F1F5F9' }} />
       <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 11 }}>
-        {/* Avatar � photo-style with gradient fallback */}
+        {/* Avatar — photo-style with gradient fallback */}
         <div style={{
           width: 38, height: 38, borderRadius: '50%', flexShrink: 0,
           background: 'linear-gradient(135deg, #FBBF24 0%, #F87171 60%, #F472B6 100%)',
@@ -200,15 +200,15 @@ function BirthdayCard() {
       <div style={{ height: 1, background: '#F8FAFC', margin: '0 14px' }} />
       <div style={{ padding: '9px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span style={{ fontSize: 12, color: '#2396C6', fontWeight: 600 }}>View all</span>
-        <span style={{ color: '#2396C6', fontSize: 14, fontWeight: 700 }}>?</span>
+        <span style={{ color: '#2396C6', fontSize: 14, fontWeight: 700 }}>→</span>
       </div>
     </CardWrap>
   );
 }
 
-/* --------------------------------------------------
-   SHIFT MINI CARDS  (left � mid + lower)
--------------------------------------------------- */
+/* ══════════════════════════════════════════════════
+   SHIFT MINI CARDS  (left · mid + lower)
+══════════════════════════════════════════════════ */
 interface ShiftMiniProps {
   initials: string; avatarBg: string; avatarColor: string;
   name: string; role: string;
@@ -264,13 +264,13 @@ function ShiftMiniJK() {
     initials="JK" avatarBg="rgba(153,246,228,0.60)" avatarColor="#0D9488"
     name="Jake Kennedy" role="Senior Carer"
     status="Invoiced" statusBg="#CCFBF1" statusColor="#0D9488"
-    date="Tue, May 19th" time="08:00 AM � 08:00 PM" location="NHS Ward B, London"
+    date="Tue, May 19th" time="08:00 AM – 08:00 PM" location="NHS Ward B, London"
   />;
 }
 
-/* --------------------------------------------------
-   CANDIDATES CARD  (right � lower-mid)  252px full card
--------------------------------------------------- */
+/* ══════════════════════════════════════════════════
+   CANDIDATES CARD  (right · lower-mid)  252px full card
+══════════════════════════════════════════════════ */
 function CandidatesCard() {
   return (
     <CardWrap width={252} style={{ padding: '13px 15px' }}>
@@ -285,7 +285,7 @@ function CandidatesCard() {
           </div>
         </div>
         <div style={{ textAlign: 'right' as const }}>
-          <span style={{ display: 'block', fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '3px 8px', borderRadius: 9, marginBottom: 4 }}>? 4.1%</span>
+          <span style={{ display: 'block', fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '3px 8px', borderRadius: 9, marginBottom: 4 }}>↑ 4.1%</span>
           <span style={{ fontSize: 9, color: '#94A3B8', fontWeight: 500 }}>this month</span>
         </div>
       </div>
@@ -293,9 +293,9 @@ function CandidatesCard() {
   );
 }
 
-/* --------------------------------------------------
-   SCHEDULE MINI CARD  (right � top)  252px
--------------------------------------------------- */
+/* ══════════════════════════════════════════════════
+   SCHEDULE MINI CARD  (right · top)  252px
+══════════════════════════════════════════════════ */
 function ScheduleMiniCard() {
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const dates = [18,19,20,21,22,23,24];
@@ -347,9 +347,9 @@ function ScheduleMiniCard() {
   );
 }
 
-/* --------------------------------------------------
+/* ══════════════════════════════════════════════════
    PHONE FLOATING MICRO-CARDS
--------------------------------------------------- */
+══════════════════════════════════════════════════ */
 function ShiftConfirmedCard() {
   return (
     <div style={{ background:'#fff', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 32px rgba(0,0,0,0.12),0 0 0 1px rgba(0,0,0,0.05)', display:'flex', alignItems:'center', gap:10, minWidth:200 }}>
@@ -357,8 +357,8 @@ function ShiftConfirmedCard() {
         <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
       <div>
-        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#183963', lineHeight:1.2 }}>Shift Confirmed ?</p>
-        <p style={{ margin:0, fontSize:9, color:'#10B981', marginTop:2 }}>NHS Ward B � 07:00�19:00</p>
+        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#183963', lineHeight:1.2 }}>Shift Confirmed ✓</p>
+        <p style={{ margin:0, fontSize:9, color:'#10B981', marginTop:2 }}>NHS Ward B · 07:00–19:00</p>
       </div>
     </div>
   );
@@ -399,21 +399,21 @@ function SignedTimesheetCard() {
       </div>
       <div>
         <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#183963', lineHeight:1.2 }}>Signed Timesheet</p>
-        <p style={{ margin:0, fontSize:9, color:'#F97316', marginTop:2 }}>32h 15m � Week May 19</p>
+        <p style={{ margin:0, fontSize:9, color:'#F97316', marginTop:2 }}>32h 15m · Week May 19</p>
       </div>
     </div>
   );
 }
 
-/* --------------------------------------------------
-   SHIFT FILL RATE CARD  (right � lower)  252px
--------------------------------------------------- */
+/* ══════════════════════════════════════════════════
+   SHIFT FILL RATE CARD  (right · lower)  252px
+══════════════════════════════════════════════════ */
 function WorkerStatCard() {
   return (
     <CardWrap width={252} style={{ padding: '13px 15px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
         <span style={{ fontSize: 10.5, fontWeight: 700, color: '#64748B', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Fill Rate</span>
-        <span style={{ fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '2px 7px', borderRadius: 9 }}>? 3.2%</span>
+        <span style={{ fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '2px 7px', borderRadius: 9 }}>↑ 3.2%</span>
       </div>
       <p style={{ margin: '0 0 9px', fontSize: 27, fontWeight: 900, color: '#183963', letterSpacing: '-0.03em', lineHeight: 1 }}>94%</p>
       <div style={{ height: 5.5, borderRadius: 3, background: '#F1F5F9', marginBottom: 9 }}>
@@ -431,9 +431,9 @@ function WorkerStatCard() {
   );
 }
 
-/* --------------------------------------------------
+/* ══════════════════════════════════════════════════
    FLOATING CARD WRAPPER  (entrance + bob)
--------------------------------------------------- */
+══════════════════════════════════════════════════ */
 interface FP {
   delay: number; fromX: number;
   floatY: number; floatDur: number; floatDelay: number;
@@ -459,9 +459,9 @@ function FC({ delay, fromX, floatY, floatDur, floatDelay, rotate, children }: FP
   );
 }
 
-/* --------------------------------------------------
+/* ══════════════════════════════════════════════════
    HERO
--------------------------------------------------- */
+══════════════════════════════════════════════════ */
 export default function Hero() {
   const sRef = useRef<HTMLElement>(null);
   const [m, setM] = useState({ x: 0, y: 0 });
@@ -472,17 +472,17 @@ export default function Hero() {
   }, []);
   const onOut = useCallback(() => setM({ x: 0, y: 0 }), []);
 
-  /* -- scroll spring -- */
+  /* ── scroll spring ── */
   const { scrollYProgress } = useScroll({ target: sRef, offset: ['start start', 'end start'] });
   const sp = useSpring(scrollYProgress, { stiffness: 95, damping: 26, restDelta: 0.001 });
 
   const PHASE: [number, number] = [0.14, 0.70];
 
   /*
-   *  Scroll-merge vectors � each card flies toward its nearest dashboard widget
+   *  Scroll-merge vectors — each card flies toward its nearest dashboard widget
    *
-   *  LEFT  group  (Timesheets + ShiftMiniAM)  ? merge right/down into dashboard
-   *  RIGHT group  (Birthday + ShiftJK + WorkerStat + Candidates) ? merge left/down
+   *  LEFT  group  (Timesheets + ShiftMiniAM)  → merge right/down into dashboard
+   *  RIGHT group  (Birthday + ShiftJK + WorkerStat + Candidates) → merge left/down
    *
    *  sbX/sbY  Timesheets pieces (all 3 share same vector)
    *  coX/coY  ShiftMiniAM
@@ -528,19 +528,19 @@ export default function Hero() {
       onMouseLeave={onOut}
       style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(148deg, #E8F5FB 0%, #FAFBFF 46%, #F0F9FF 100%)' }}
     >
-      {/* -- Background blobs -- */}
+      {/* ── Background blobs ── */}
       <div style={{ position: 'absolute', top: '-20%', right: '-14%', width: '58%', height: '70%', background: 'radial-gradient(ellipse, rgba(99,102,241,0.16) 0%, rgba(14,165,233,0.07) 44%, transparent 70%)', filter: 'blur(88px)', zIndex: 0, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: '-12%', left: '-12%', width: '52%', height: '58%', background: 'radial-gradient(ellipse, rgba(99,102,241,0.11) 0%, rgba(16,185,129,0.06) 50%, transparent 70%)', filter: 'blur(84px)', zIndex: 0, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translateX(-50%)', width: '40%', height: '35%', background: 'radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }} />
       {/* Dot grid */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.11) 1px, transparent 1px)', backgroundSize: '28px 28px', maskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)' }} />
 
-      {/* --------------------------------------------------------
-          FLOATING CARDS � balanced 4 + 4 layout
-          -----------------------------------------------------
+      {/* ════════════════════════════════════════════════════════
+          FLOATING CARDS — balanced 4 + 4 layout
+          ─────────────────────────────────────────────────────
           All cards: 252 px wide  (DonutCard: 210 px, same left edge)
-          LEFT  outer edge ? calc(50% - 656px)
-          RIGHT outer edge ? calc(50% + 656px)   ? perfect mirror
+          LEFT  outer edge → calc(50% - 656px)
+          RIGHT outer edge → calc(50% + 656px)   ← perfect mirror
           Vertical gap between every card: 14 px (consistent)
 
           LEFT stack (Timesheets group):                  h    ends
@@ -554,9 +554,9 @@ export default function Hero() {
             ShiftMiniJK           top 257                88   345
             WorkerStatCard        top 359               120   479
             CandidatesCard        top 493                62   555
-      -------------------------------------------------------- */}
+      ════════════════════════════════════════════════════════ */}
 
-      {/* -- LEFT � Piece 1 � Timesheets Header -- */}
+      {/* ── LEFT · Piece 1 — Timesheets Header ── */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 70, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(18, 10)}>
           <FC delay={0.50} fromX={-52} floatY={-8} floatDur={4.8} floatDelay={0.6} rotate={0.30}>
@@ -566,7 +566,7 @@ export default function Hero() {
       </motion.div>
 
 
-      {/* -- LEFT � Piece 3 � Stats tiles -- */}
+      {/* ── LEFT · Piece 3 — Stats tiles ── */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 220, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(16, 9)}>
           <FC delay={0.70} fromX={-44} floatY={-7} floatDur={5.2} floatDelay={1.0} rotate={0.20}>
@@ -575,7 +575,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* -- LEFT � Shift Mini AM -- */}
+      {/* ── LEFT · Shift Mini AM ── */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 300, zIndex: 8, x: coX, y: coY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(14, 8)}>
           <FC delay={0.80} fromX={-36} floatY={-8} floatDur={5.0} floatDelay={1.4} rotate={-0.30}>
@@ -584,7 +584,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* -- RIGHT � Schedule mini card -- */}
+      {/* ── RIGHT · Schedule mini card ── */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 70, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-18, 11)}>
           <FC delay={0.55} fromX={56} floatY={-10} floatDur={4.8} floatDelay={0.5} rotate={-0.35}>
@@ -593,7 +593,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* -- RIGHT � Shift Mini JK -- */}
+      {/* ── RIGHT · Shift Mini JK ── */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 220, zIndex: 8, x: caX, y: caY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-14, 8)}>
           <FC delay={0.65} fromX={44} floatY={-9} floatDur={4.6} floatDelay={1.0} rotate={0.30}>
@@ -602,7 +602,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* -- RIGHT � Candidates -- */}
+      {/* ── RIGHT · Candidates ── */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 330, zIndex: 8, x: buX, y: buY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-9, 6)}>
           <FC delay={0.85} fromX={28} floatY={-6} floatDur={4.4} floatDelay={1.6} rotate={0.20}>
@@ -611,9 +611,9 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ------------------------------------
+      {/* ════════════════════════════════════
           CENTER CONTENT
-      ------------------------------------ */}
+      ════════════════════════════════════ */}
       <motion.div style={{ y: cy, opacity: cop, position: 'relative', zIndex: 10 }}>
         <div style={{ paddingTop: 108 }}>
           <div style={{ textAlign: 'center', maxWidth: 660, margin: '0 auto', padding: '0 28px 60px' }}>
@@ -649,7 +649,7 @@ export default function Hero() {
               transition={{ delay: 0.22, duration: 0.86, ease: EASE }}
               style={{ fontSize: 'clamp(14px, 1.5vw, 17px)', lineHeight: 1.80, color: '#64748B', maxWidth: 490, margin: '0 auto 32px' }}
             >
-              Scheduling, compliance, timesheets &amp; payroll � all in one platform designed for UK staffing agencies.
+              Scheduling, compliance, timesheets &amp; payroll — all in one platform designed for UK staffing agencies.
             </motion.p>
 
             {/* CTAs */}
@@ -691,11 +691,11 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ------------------------------------
-          DASHBOARD � no browser chrome
+      {/* ════════════════════════════════════
+          DASHBOARD — no browser chrome
           Just the screenshot with top rounded corners
           + perspective tilt that eases on scroll
-      ------------------------------------ */}
+      ════════════════════════════════════ */}
       <motion.div
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
@@ -728,7 +728,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* -- Floating phone mockup � matches dashboard border style -- */}
+          {/* ── Floating phone mockup — matches dashboard border style ── */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity: 0, x: 40, y: 20 }}
@@ -740,7 +740,7 @@ export default function Hero() {
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
             >
-              {/* Phone container � same indigo border/shadow as dashboard */}
+              {/* Phone container — same indigo border/shadow as dashboard */}
               <div style={{
                 position: 'relative',
                 userSelect: 'none',
@@ -754,7 +754,7 @@ export default function Hero() {
                   '0 30px 80px rgba(0,0,0,0.22)',
                 ].join(', '),
               }}>
-                {/* Side buttons � subtle, same colour tone as frame */}
+                {/* Side buttons — subtle, same colour tone as frame */}
                 <div style={{ position:'absolute', left:-3, top:96, width:3, height:28,
                   background:'rgba(99,102,241,0.35)', borderRadius:'3px 0 0 3px' }} />
                 <div style={{ position:'absolute', left:-3, top:138, width:3, height:52,
@@ -791,7 +791,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* -- Agency Chat card � right of phone, compact -- */}
+          {/* ── Agency Chat card — right of phone, compact ── */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, x:30 }} animate={{ opacity:1, x:0 }}
@@ -818,14 +818,14 @@ export default function Hero() {
                   <div style={{ display:'flex', alignItems:'flex-end', gap:5 }}>
                     <div style={{ width:18, height:18, borderRadius:'50%', background:'#E8F5FB', display:'flex', alignItems:'center', justifyContent:'center', fontSize:6.5, fontWeight:800, color:'#2396C6', flexShrink:0 }}>AG</div>
                     <div style={{ background:'#F1F5F9', borderRadius:'9px 9px 9px 2px', padding:'5px 8px' }}>
-                      <p style={{ margin:0, fontSize:8.5, color:'#334155', lineHeight:1.3 }}>Shift docs ready ??</p>
+                      <p style={{ margin:0, fontSize:8.5, color:'#334155', lineHeight:1.3 }}>Shift docs ready 📋</p>
                       <p style={{ margin:'2px 0 0', fontSize:6.5, color:'#94A3B8' }}>09:41</p>
                     </div>
                   </div>
                   <div style={{ display:'flex', justifyContent:'flex-end' }}>
                     <div style={{ background:'linear-gradient(135deg,#2396C6,#5AB4D5)', borderRadius:'9px 9px 2px 9px', padding:'5px 8px' }}>
-                      <p style={{ margin:0, fontSize:8.5, color:'#fff', lineHeight:1.3 }}>Thanks! ??</p>
-                      <p style={{ margin:'2px 0 0', fontSize:6.5, color:'rgba(255,255,255,0.65)', textAlign:'right' as const }}>??</p>
+                      <p style={{ margin:0, fontSize:8.5, color:'#fff', lineHeight:1.3 }}>Thanks! 👍</p>
+                      <p style={{ margin:'2px 0 0', fontSize:6.5, color:'rgba(255,255,255,0.65)', textAlign:'right' as const }}>✓✓</p>
                     </div>
                   </div>
                 </div>
@@ -833,7 +833,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* -- Shift Confirmed card � left of phone -- */}
+          {/* ── Shift Confirmed card — left of phone ── */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
@@ -845,7 +845,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* -- Availability card � left-lower of phone -- */}
+          {/* ── Availability card — left-lower of phone ── */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
@@ -857,7 +857,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* -- Signed Timesheet card � bottom of phone -- */}
+          {/* ── Signed Timesheet card — bottom of phone ── */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
@@ -871,10 +871,10 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ------------------------------------
-          TRUSTED BY � blended directly below dashboard
-          No background change, no border � same hero gradient
-      ------------------------------------ */}
+      {/* ════════════════════════════════════
+          TRUSTED BY — blended directly below dashboard
+          No background change, no border — same hero gradient
+      ════════════════════════════════════ */}
       <div style={{ position: 'relative', zIndex: 6, padding: '44px 0 52px', overflow: 'hidden' }}>
 
         {/* Ambient glow */}
@@ -882,7 +882,7 @@ export default function Hero() {
 
         {/* Marquee */}
         <div style={{ position: 'relative', overflow: 'hidden' }}>
-          {/* Left fade � matches hero gradient start */}
+          {/* Left fade — matches hero gradient start */}
           <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 130, background: 'linear-gradient(90deg, #E8F5FB 0%, transparent 100%)', zIndex: 2, pointerEvents: 'none' }} />
           {/* Right fade */}
           <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 130, background: 'linear-gradient(-90deg, #F0F9FF 0%, transparent 100%)', zIndex: 2, pointerEvents: 'none' }} />

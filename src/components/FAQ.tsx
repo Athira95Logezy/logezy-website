@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ï»¿import React, { useState } from 'react';
 import { CaretDown, Question, ArrowRight, ChatCircle } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: 'Can Logezy handle compliance tracking for temporary workers?',
-    a: 'Yes. Logezy automatically tracks right-to-work documents, DBS certificates, and expiring certifications across your workforce — so your agency stays audit-ready without the manual chasing.',
+    a: 'Yes. Logezy automatically tracks right-to-work documents, DBS certificates, and expiring certifications across your workforce â€” so your agency stays audit-ready without the manual chasing.',
   },
   {
     q: 'How does the digital timesheet process work?',
@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: 'Is there a mobile app for temporary workers?',
-    a: 'Yes — a fully branded candidate app for your agency. Workers manage availability, view shifts, submit timesheets, and chat with your team all in one place.',
+    a: 'Yes â€” a fully branded candidate app for your agency. Workers manage availability, view shifts, submit timesheets, and chat with your team all in one place.',
   },
   {
     q: 'How quickly can we get set up?',
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: 'Can we try Logezy before committing?',
-    a: 'Yes. Start a free 10-day trial — no credit card required — or book a demo and we\'ll walk you through everything.',
+    a: 'Yes. Start a free 10-day trial â€” no credit card required â€” or book a demo and we\'ll walk you through everything.',
   },
 ];
 
@@ -73,7 +73,7 @@ export default function FAQ() {
 
         <div className="grid lg:grid-cols-5 gap-16 items-start">
 
-          {/* Left column — sticky heading */}
+          {/* Left column â€” sticky heading */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -110,7 +110,7 @@ export default function FAQ() {
             </div>
           </motion.div>
 
-          {/* Right column — accordion */}
+          {/* Right column â€” accordion */}
           <motion.div
             variants={listVariants}
             initial="hidden"

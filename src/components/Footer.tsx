@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Envelope, MapPin, Phone,
@@ -54,11 +54,11 @@ export default function Footer() {
   return (
     <footer className="relative bg-white overflow-hidden">
 
-      {/* -- TOP RAINBOW STRIP -- */}
+      {/* ── TOP RAINBOW STRIP ── */}
       <div className="h-1 w-full"
         style={{ background: 'linear-gradient(90deg, #2396C6 0%, #183765 35%, #2396C6 65%, #2396C6 100%)' }} />
 
-      {/* -- MAIN FOOTER -- */}
+      {/* ── MAIN FOOTER ── */}
       <div style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
 
@@ -129,7 +129,7 @@ export default function Footer() {
             ))}
           </motion.div>
 
-          {/* -- CONTACT STRIP -- */}
+          {/* ── CONTACT STRIP ── */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -177,12 +177,12 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* -- BOTTOM BAR -- */}
+      {/* ── BOTTOM BAR ── */}
       <div style={{ background: 'linear-gradient(90deg, #0C1640 0%, #183765 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              � {new Date().getFullYear()} Logezy Ltd. All rights reserved.
+              © {new Date().getFullYear()} Logezy Ltd. All rights reserved.
             </p>
             <div className="flex items-center">
               {['Privacy', 'Terms', 'Cookies', 'GDPR'].map((l, i, arr) => (
@@ -194,7 +194,7 @@ export default function Footer() {
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.40)')}>
                     {l}
                   </a>
-                  {i < arr.length - 1 && <span style={{ color: 'rgba(255,255,255,0.18)' }} className="text-xs">�</span>}
+                  {i < arr.length - 1 && <span style={{ color: 'rgba(255,255,255,0.18)' }} className="text-xs">·</span>}
                 </React.Fragment>
               ))}
             </div>

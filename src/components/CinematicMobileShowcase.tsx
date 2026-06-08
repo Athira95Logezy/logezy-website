@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { useWindowWidth } from '../hooks/useWindowWidth';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,15 +11,15 @@ import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ---------------------------------------------
-   PHONE SCREEN CONTENT � one per scene
---------------------------------------------- */
+/* ─────────────────────────────────────────────
+   PHONE SCREEN CONTENT — one per scene
+───────────────────────────────────────────── */
 
 function ShiftScreen() {
   const shifts = [
-    { role: 'Band 5 RN', ward: 'NHS Ward B', time: '07:00�19:00', status: 'Confirmed', color: '#10B981' },
-    { role: 'HCA', ward: 'Primcura Care', time: '19:00�07:00', status: 'Pending', color: '#F59E0B' },
-    { role: 'Senior Carer', ward: 'Leadcare', time: '09:00�17:00', status: 'Confirmed', color: '#10B981' },
+    { role: 'Band 5 RN', ward: 'NHS Ward B', time: '07:00–19:00', status: 'Confirmed', color: '#10B981' },
+    { role: 'HCA', ward: 'Primcura Care', time: '19:00–07:00', status: 'Pending', color: '#F59E0B' },
+    { role: 'Senior Carer', ward: 'Leadcare', time: '09:00–17:00', status: 'Confirmed', color: '#10B981' },
   ];
   return (
     <div style={{ padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -29,7 +29,7 @@ function ShiftScreen() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <p style={{ fontSize: 12, fontWeight: 700, color: '#fff', marginBottom: 2 }}>{s.role}</p>
-              <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)' }}>{s.ward} � {s.time}</p>
+              <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)' }}>{s.ward} · {s.time}</p>
             </div>
             <span style={{ fontSize: 9, fontWeight: 700, padding: '3px 8px', borderRadius: 20, background: s.color + '22', color: s.color, border: `1px solid ${s.color}44` }}>{s.status}</span>
           </div>
@@ -68,7 +68,7 @@ function AvailabilityScreen() {
         <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)' }}>Agency notified of your availability</p>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {['Morning (06:00�14:00)', 'Day (09:00�17:00)', 'Night (19:00�07:00)'].map((slot, i) => (
+        {['Morning (06:00–14:00)', 'Day (09:00–17:00)', 'Night (19:00–07:00)'].map((slot, i) => (
           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: 10, border: '1px solid rgba(255,255,255,0.07)' }}>
             <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.6)' }}>{slot}</span>
             <div style={{ width: 36, height: 20, borderRadius: 10, background: i === 1 ? 'linear-gradient(90deg, #38BDF8, #5AB4D5)' : 'rgba(255,255,255,0.1)', position: 'relative', cursor: 'default' }}>
@@ -86,7 +86,7 @@ function ComplianceScreen() {
     { name: 'DBS Certificate', status: 'Valid', expiry: 'Dec 2025', color: '#10B981' },
     { name: 'NMC Pin', status: 'Valid', expiry: 'Mar 2026', color: '#10B981' },
     { name: 'Moving & Handling', status: 'Expires Soon', expiry: '14 days', color: '#F59E0B' },
-    { name: 'Hepatitis B', status: 'Upload needed', expiry: '�', color: '#EF4444' },
+    { name: 'Hepatitis B', status: 'Upload needed', expiry: '—', color: '#EF4444' },
   ];
   return (
     <div style={{ padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -117,13 +117,13 @@ function TimesheetScreen() {
     <div style={{ padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
       <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 2 }}>Digital Timesheet</p>
       <div style={{ background: 'rgba(56,189,248,0.08)', border: '1px solid rgba(56,189,248,0.2)', borderRadius: 14, padding: '14px' }}>
-        <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>Shift: NHS Ward B � Today</p>
+        <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>Shift: NHS Ward B · Today</p>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
           <div style={{ textAlign: 'center' }}>
             <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', marginBottom: 3 }}>START</p>
             <p style={{ fontSize: 20, fontWeight: 800, color: '#38BDF8' }}>07:02</p>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.2)', fontSize: 18 }}>?</div>
+          <div style={{ display: 'flex', alignItems: 'center', color: 'rgba(255,255,255,0.2)', fontSize: 18 }}>→</div>
           <div style={{ textAlign: 'center' }}>
             <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', marginBottom: 3 }}>END</p>
             <p style={{ fontSize: 20, fontWeight: 800, color: '#5AB4D5' }}>19:04</p>
@@ -135,7 +135,7 @@ function TimesheetScreen() {
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
           <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)' }}>Gross earnings</span>
-          <span style={{ fontSize: 10, fontWeight: 700, color: '#34D399' }}>�204.34</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color: '#34D399' }}>£204.34</span>
         </div>
       </div>
       <div style={{ display: 'flex', gap: 6 }}>
@@ -145,11 +145,11 @@ function TimesheetScreen() {
         </div>
         <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: 10, padding: '8px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.07)' }}>
           <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>INVOICED</p>
-          <p style={{ fontSize: 14, fontWeight: 800, color: '#34D399' }}>�612</p>
+          <p style={{ fontSize: 14, fontWeight: 800, color: '#34D399' }}>£612</p>
         </div>
         <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: 10, padding: '8px', textAlign: 'center', border: '1px solid rgba(255,255,255,0.07)' }}>
           <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', marginBottom: 2 }}>PENDING</p>
-          <p style={{ fontSize: 14, fontWeight: 800, color: '#F59E0B' }}>�204</p>
+          <p style={{ fontSize: 14, fontWeight: 800, color: '#F59E0B' }}>£204</p>
         </div>
       </div>
       <button style={{ width: '100%', background: 'linear-gradient(135deg, #10B981, #059669)', border: 'none', borderRadius: 10, padding: '10px 0', fontSize: 11, fontWeight: 700, color: '#fff', cursor: 'default' }}>Sign &amp; Submit Timesheet</button>
@@ -159,11 +159,11 @@ function TimesheetScreen() {
 
 function NotificationsScreen() {
   const notifs = [
-    { icon: '??', title: 'New shift available', body: 'Band 5 RN � Wed 28 May � NHS Trusts', time: '2m ago', dot: '#38BDF8' },
-    { icon: '?', title: 'Timesheet approved', body: 'Week ending 24 May � �612.00 paid', time: '1h ago', dot: '#10B981' },
-    { icon: '??', title: 'Document expiring', body: 'Moving & Handling � 14 days left', time: '3h ago', dot: '#F59E0B' },
-    { icon: '??', title: 'Message from Agency', body: '"Can you cover Saturday night?"', time: 'Yesterday', dot: '#5AB4D5' },
-    { icon: '??', title: 'Shift reminder', body: 'Tomorrow 07:00 � Primcura Care, London', time: 'Yesterday', dot: '#C084FC' },
+    { icon: '📋', title: 'New shift available', body: 'Band 5 RN · Wed 28 May · NHS Trusts', time: '2m ago', dot: '#38BDF8' },
+    { icon: '✅', title: 'Timesheet approved', body: 'Week ending 24 May · £612.00 paid', time: '1h ago', dot: '#10B981' },
+    { icon: '⚠️', title: 'Document expiring', body: 'Moving & Handling — 14 days left', time: '3h ago', dot: '#F59E0B' },
+    { icon: '💬', title: 'Message from Agency', body: '"Can you cover Saturday night?"', time: 'Yesterday', dot: '#5AB4D5' },
+    { icon: '🏥', title: 'Shift reminder', body: 'Tomorrow 07:00 · Primcura Care, London', time: 'Yesterday', dot: '#C084FC' },
   ];
   return (
     <div style={{ padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -188,17 +188,17 @@ function ChatScreen() {
   const messages = [
     { from: 'agency', text: "Hi Sarah! Can you cover Saturday's night shift at Primcura?", time: '10:32' },
     { from: 'me', text: "Yes, I can do that! What time does it start?", time: '10:34' },
-    { from: 'agency', text: "19:00�07:00. I'll confirm the booking now ??", time: '10:35' },
+    { from: 'agency', text: "19:00–07:00. I'll confirm the booking now 👍", time: '10:35' },
     { from: 'me', text: "Perfect, see you then!", time: '10:36' },
-    { from: 'system', text: 'Shift confirmed � Sat 31 May � 19:00�07:00', time: '10:36' },
+    { from: 'system', text: 'Shift confirmed · Sat 31 May · 19:00–07:00', time: '10:36' },
   ];
   return (
     <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: 8, height: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 0 8px', borderBottom: '1px solid rgba(255,255,255,0.08)', marginBottom: 4 }}>
-        <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #38BDF8, #5AB4D5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12 }}>??</div>
+        <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #38BDF8, #5AB4D5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12 }}>🏥</div>
         <div>
           <p style={{ fontSize: 11, fontWeight: 700, color: '#fff', lineHeight: 1 }}>Logezy Agency</p>
-          <p style={{ fontSize: 9, color: '#34D399', marginTop: 1 }}>? Online</p>
+          <p style={{ fontSize: 9, color: '#34D399', marginTop: 1 }}>● Online</p>
         </div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6, overflowY: 'hidden', flex: 1 }}>
@@ -223,9 +223,9 @@ function ChatScreen() {
   );
 }
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    SCENE DATA
---------------------------------------------- */
+───────────────────────────────────────────── */
 
 const SCENES = [
   {
@@ -235,7 +235,7 @@ const SCENES = [
     badge: 'Shift Management',
     headline: 'Every shift,\nconfirmed instantly.',
     body: 'Workers see their schedule, confirm in seconds, and get automatic reminders. No WhatsApp chains, no missed calls, no last-minute confusion.',
-    stat: { value: '3�', label: 'faster confirmation' },
+    stat: { value: '3×', label: 'faster confirmation' },
     screen: ShiftScreen,
   },
   {
@@ -244,7 +244,7 @@ const SCENES = [
     color: '#10B981',
     badge: 'Availability',
     headline: 'Know who\'s free\nbefore you ask.',
-    body: 'Workers set their availability in real time. You fill shifts with people who actually want to work � no guessing, no awkward calls.',
+    body: 'Workers set their availability in real time. You fill shifts with people who actually want to work — no guessing, no awkward calls.',
     stat: { value: '94%', label: 'fill rate achieved' },
     screen: AvailabilityScreen,
   },
@@ -284,15 +284,15 @@ const SCENES = [
     color: '#5AB4D5',
     badge: 'In-App Chat',
     headline: 'One message,\nshift sorted.',
-    body: "Direct, compliant messaging between agency and worker � right inside the app. Everything logged, nothing lost in personal inboxes.",
+    body: "Direct, compliant messaging between agency and worker — right inside the app. Everything logged, nothing lost in personal inboxes.",
     stat: { value: '< 2 min', label: 'avg response time' },
     screen: ChatScreen,
   },
 ];
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    PHONE FRAME COMPONENT
---------------------------------------------- */
+───────────────────────────────────────────── */
 
 function PhoneFrame({ screenComponent: ScreenComponent, glowColor }: { screenComponent: React.FC; glowColor: string }) {
   return (
@@ -345,7 +345,7 @@ function PhoneFrame({ screenComponent: ScreenComponent, glowColor }: { screenCom
         </div>
         {/* Bottom nav */}
         <div style={{ height: 52, background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 8px', flexShrink: 0 }}>
-          {['??', '??', '??', '??', '??'].map((icon, i) => (
+          {['🏠', '📅', '🔔', '💬', '👤'].map((icon, i) => (
             <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '4px 8px' }}>
               <span style={{ fontSize: 14 }}>{icon}</span>
               {i === 0 && <div style={{ width: 4, height: 4, borderRadius: '50%', background: '#38BDF8' }} />}
@@ -357,9 +357,9 @@ function PhoneFrame({ screenComponent: ScreenComponent, glowColor }: { screenCom
   );
 }
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    MAIN COMPONENT
---------------------------------------------- */
+───────────────────────────────────────────── */
 
 export default function CinematicMobileShowcase() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -464,7 +464,7 @@ export default function CinematicMobileShowcase() {
         padding: isMobile ? '0 16px 60px' : '0 24px 100px', position: 'relative', zIndex: 2, alignItems: 'flex-start',
       }}>
 
-        {/* -- LEFT: Scene list -- */}
+        {/* ── LEFT: Scene list ── */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 0, paddingRight: isMobile ? 0 : 40 }}>
           {SCENES.map((s, idx) => {
             const Icon = s.icon;
@@ -520,7 +520,7 @@ export default function CinematicMobileShowcase() {
           })}
         </div>
 
-        {/* -- RIGHT: Sticky Phone -- */}
+        {/* ── RIGHT: Sticky Phone ── */}
         <div
           ref={stickyRef}
           style={{ position: isMobile ? 'relative' : 'sticky', top: isMobile ? 'auto' : '50%', transform: isMobile ? 'none' : 'translateY(-50%)', flexShrink: 0, display: isMobile ? 'flex' : 'block', justifyContent: isMobile ? 'center' : undefined }}

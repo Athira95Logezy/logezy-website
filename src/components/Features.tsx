@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import {
   CalendarBlank, Shield, Users, Clock, ChartBar, ArrowRight, Lightning, Receipt,
   DeviceMobile, MapPin, Bell, FileText, FolderOpen, Buildings, UserCircle, TrendUp,
@@ -45,7 +45,7 @@ const features = [
     icon: Clock,
     title: 'Digital Timesheets',
     tag: 'Time Saver',
-    desc: 'Workers submit timesheets from their phone, managers approve in one click. No paper, no chasing, no errors � just automated timesheet software that works.',
+    desc: 'Workers submit timesheets from their phone, managers approve in one click. No paper, no chasing, no errors — just automated timesheet software that works.',
     points: ['Mobile-first timesheet app', 'One-click manager approval', 'GPS-verified clock in/out', 'Automated reminders', 'Exportable timesheet data'],
     color: '#D97706', gradient: 'linear-gradient(135deg, #D97706, #F59E0B)', bg: 'rgba(217,119,6,0.09)',
   },
@@ -81,7 +81,7 @@ const features = [
     icon: DeviceMobile,
     title: 'Mobile App',
     tag: 'iOS & Android',
-    desc: 'Give your workers everything they need in their pocket. Check shifts, submit timesheets, upload documents, and clock in/out � all from the Logezy mobile app.',
+    desc: 'Give your workers everything they need in their pocket. Check shifts, submit timesheets, upload documents, and clock in/out — all from the Logezy mobile app.',
     points: ['Available on iOS & Android', 'Push shift notifications', 'In-app document uploads', 'Availability management', 'Booking & timesheet history'],
     color: '#7C3AED', gradient: 'linear-gradient(135deg, #7C3AED, #8B5CF6)', bg: 'rgba(124,58,237,0.09)',
   },
@@ -126,7 +126,7 @@ const features = [
     icon: FolderOpen,
     title: 'Document Management',
     tag: 'Secure',
-    desc: 'Store, manage, and retrieve every document � contracts, training certificates, passports and payslips � all in one secure, organised location.',
+    desc: 'Store, manage, and retrieve every document — contracts, training certificates, passports and payslips — all in one secure, organised location.',
     points: ['Secure cloud storage', 'Worker document uploads', 'Expiry tracking & alerts', 'Role-based access control', 'One-click document requests'],
     color: '#0D9488', gradient: 'linear-gradient(135deg, #0D9488, #14B8A6)', bg: 'rgba(13,148,136,0.09)',
   },
@@ -135,7 +135,7 @@ const features = [
     icon: Users,
     title: 'Candidate Management',
     tag: 'Core',
-    desc: 'Keep every candidate record in one organised hub. Manage profiles, documents, skills, and placement history � no spreadsheets needed.',
+    desc: 'Keep every candidate record in one organised hub. Manage profiles, documents, skills, and placement history — no spreadsheets needed.',
     points: ['Centralised candidate profiles', 'Skills & availability tracking', 'Placement history log', 'Custom candidate tags', 'Bulk candidate import'],
     color: '#2396C6', gradient: 'linear-gradient(135deg, #2396C6, #0EA5E9)', bg: 'rgba(23,149,199,0.09)',
   },
@@ -144,7 +144,7 @@ const features = [
     icon: Buildings,
     title: 'Client Portal',
     tag: 'Self-Service',
-    desc: 'Give your clients their own portal to view schedules, approve timesheets, and track invoices � reducing back-and-forth and saving your team hours every week.',
+    desc: 'Give your clients their own portal to view schedules, approve timesheets, and track invoices — reducing back-and-forth and saving your team hours every week.',
     points: ['Branded client login portal', 'Timesheet approval workflow', 'Invoice viewing & download', 'Shift schedule visibility', 'Direct messaging'],
     color: '#183765', gradient: 'linear-gradient(135deg, #183765, #1D4ED8)', bg: 'rgba(24,55,101,0.09)',
   },
@@ -180,7 +180,7 @@ const features = [
     icon: Lightning,
     title: 'Auto-Processing',
     tag: 'New',
-    desc: 'Let Logezy handle the entire post-shift process automatically � timesheet approval, invoice generation, and payroll calculation. Set it once and forget it.',
+    desc: 'Let Logezy handle the entire post-shift process automatically — timesheet approval, invoice generation, and payroll calculation. Set it once and forget it.',
     points: ['End-to-end automation rules', 'Auto-approve trusted workers', 'Scheduled invoice dispatch', 'Automated payroll triggers', 'Rule-based exception handling'],
     color: '#7C3AED', gradient: 'linear-gradient(135deg, #7C3AED, #A855F7)', bg: 'rgba(124,58,237,0.09)',
   },
@@ -189,15 +189,15 @@ const features = [
     icon: TrendUp,
     title: 'Analytics',
     tag: 'Data-Driven',
-    desc: 'Revenue trends, fill rates, compliance scores, and worker performance � all visualised in one powerful analytics dashboard for deeper insight.',
+    desc: 'Revenue trends, fill rates, compliance scores, and worker performance — all visualised in one powerful analytics dashboard for deeper insight.',
     points: ['Revenue & margin tracking', 'Fill rate & vacancy analytics', 'Worker performance scores', 'Client profitability reports', 'Custom KPI dashboards'],
     color: '#0284C7', gradient: 'linear-gradient(135deg, #0284C7, #38BDF8)', bg: 'rgba(2,132,199,0.09)',
   },
 ];
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    SECTION OVERLAY POPUP PANEL
---------------------------------------------- */
+───────────────────────────────────────────── */
 function ExpandPanel({
   feature,
   onClose,
@@ -212,7 +212,7 @@ function ExpandPanel({
 
   return (
     <>
-      {/* -- Dark overlay covering the whole section -- */}
+      {/* ── Dark overlay covering the whole section ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -232,7 +232,7 @@ function ExpandPanel({
           padding: panelMobile ? '16px' : '32px 40px',
         }}
       >
-        {/* -- Large popup card � wider -- */}
+        {/* ── Large popup card — wider ── */}
         <motion.div
           key={feature.id}
           initial={{ scale: 0.92, opacity: 0, y: 24 }}
@@ -256,7 +256,7 @@ function ExpandPanel({
               '0 0 0 1px rgba(255,255,255,0.06)',
           }}
         >
-          {/* -- LEFT PANEL � details -- */}
+          {/* ── LEFT PANEL — details ── */}
           <div style={{
             width: panelMobile ? '100%' : 440,
             flexShrink: 0,
@@ -357,7 +357,7 @@ function ExpandPanel({
             </div>
           </div>
 
-          {/* -- RIGHT PANEL � screenshot (hidden on mobile) -- */}
+          {/* ── RIGHT PANEL — screenshot (hidden on mobile) ── */}
           {!panelMobile && <div style={{
             flex: 1,
             background: `linear-gradient(140deg, ${feature.bg} 0%, rgba(248,250,252,1) 55%)`,
@@ -376,7 +376,7 @@ function ExpandPanel({
               filter: 'blur(44px)', pointerEvents: 'none',
             }} />
 
-            {/* Close ? */}
+            {/* Close ✕ */}
             <motion.button
               onClick={onClose}
               whileHover={{ scale: 1.12, rotate: 90 }}
@@ -440,9 +440,9 @@ function ExpandPanel({
   );
 }
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    FEATURES SECTION
---------------------------------------------- */
+───────────────────────────────────────────── */
 export default function Features() {
   const [selected, setSelected] = useState<typeof features[0] | null>(null);
   const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -469,7 +469,7 @@ export default function Features() {
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: isMobile ? '0 16px' : isTablet ? '0 24px' : '0 40px' }}>
 
-        {/* -- Header -- */}
+        {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -508,7 +508,7 @@ export default function Features() {
           </p>
         </motion.div>
 
-        {/* -- Feature grid -- */}
+        {/* ── Feature grid ── */}
         <motion.div
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.038 } } }}
           initial="hidden"
@@ -587,7 +587,7 @@ export default function Features() {
           })}
         </motion.div>
 
-          {/* -- Bottom CTA -- */}
+          {/* ── Bottom CTA ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -611,7 +611,7 @@ export default function Features() {
         </motion.div>
       </div>
 
-      {/* -- Section-level overlay popup � anchored to section -- */}
+      {/* ── Section-level overlay popup — anchored to section ── */}
       <AnimatePresence>
         {selected && (
           <ExpandPanel

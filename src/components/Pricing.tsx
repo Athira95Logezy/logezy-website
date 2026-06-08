@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ï»¿import React, { useState } from 'react';
 import { CheckCircle, ArrowRight, Lightning, Buildings, Rocket } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -142,7 +142,7 @@ export default function Pricing() {
               {popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
                   <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-black px-5 py-1.5 rounded-full shadow-lg whitespace-nowrap shadow-orange-500/30">
-                    ? Most Popular
+                    âœ¦ Most Popular
                   </div>
                 </div>
               )}
@@ -167,13 +167,13 @@ export default function Pricing() {
                   <div className="mb-8">
                     <div className="flex items-end gap-1 mb-1">
                       <span className="text-5xl font-black text-white leading-none">
-                        £{annual ? annualPrice : monthly}
+                        Â£{annual ? annualPrice : monthly}
                       </span>
                       <span className={`text-sm mb-1.5 ${popular ? 'text-[#E8F5FB]/70' : 'text-[#A8D9EF]/50'}`}>/mo</span>
                     </div>
                     {annual && (
                       <p className={`text-xs ${popular ? 'text-[#E8F5FB]/60' : 'text-blue-300/40'}`}>
-                        Billed annually · £{(annualPrice! * 12).toLocaleString()}/year
+                        Billed annually Â· Â£{(annualPrice! * 12).toLocaleString()}/year
                       </p>
                     )}
                   </div>
@@ -192,7 +192,7 @@ export default function Pricing() {
                   {features.map(f => (
                     <li key={f} className="flex items-center gap-2.5 text-sm">
                       <CheckCircle weight="regular" className={`h-4 w-4 flex-shrink-0 ${popular ? 'text-[#A8D9EF]' : 'text-[#2396C6]/70'}`} />
-                      <span className={popular ? 'text-[#E8F5FB]' : 'text-[#E8F5FB]/75'}>{f}</span>
+                      <span className={popular ? 'text-blue-50' : 'text-[#E8F5FB]/75'}>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -215,9 +215,9 @@ export default function Pricing() {
         {/* Footer note */}
         <p className="text-center text-sm mt-10 sr" style={{ color: 'rgba(147,197,253,0.80)' }}>
           All plans include a 10-day free trial. No credit card required.
-          <span className="mx-2">·</span>
+          <span className="mx-2">Â·</span>
           Cancel any time.
-          <span className="mx-2">·</span>
+          <span className="mx-2">Â·</span>
           <Link to="/contact" className="hover:underline font-medium" style={{ color: 'rgba(147,197,253,0.7)' }}>Talk to us</Link> if you're unsure which plan fits.
         </p>
       </div>

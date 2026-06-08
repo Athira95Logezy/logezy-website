@@ -1,4 +1,4 @@
-import React from 'react';
+ï»¿import React from 'react';
 import { ArrowRight, CheckCircle, Lightning } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -55,7 +55,7 @@ export default function CTASection() {
               style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)' }}
             >
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-              Free 10-day trial · No commitment
+              Free 10-day trial Â· No commitment
             </motion.div>
 
             {/* Headline */}
@@ -79,7 +79,7 @@ export default function CTASection() {
               transition={{ duration: 0.6, delay: 0.18 }}
               className="text-xl text-[#E8F5FB]/80 leading-relaxed mb-10 max-w-2xl mx-auto"
             >
-              Join the growing number of recruitment agencies using Logezy to automate their staffing operations, reduce admin, and place more workers — faster.
+              Join the growing number of recruitment agencies using Logezy to automate their staffing operations, reduce admin, and place more workers â€” faster.
             </motion.p>
 
             {/* CTAs */}

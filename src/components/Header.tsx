@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   List, X, ArrowRight, CaretDown,
@@ -8,9 +8,9 @@ import {
 } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    NAV DATA
---------------------------------------------- */
+───────────────────────────────────────────── */
 const productLinks = [
   { icon: CalendarBlank, label: 'Scheduling',               desc: 'Drag-and-drop rota builder',     color: 'text-violet-600 bg-violet-50', to: '/product/scheduling'       },
   { icon: Clock,         label: 'Availability',             desc: 'Live workforce availability',     color: 'text-teal-600 bg-teal-50',     to: '/product/availability'      },
@@ -34,9 +34,9 @@ const industryLinks = [
   { icon: ForkKnife,  label: 'Hospitality',          desc: 'Hotels, events & catering',       color: 'text-amber-600 bg-amber-50',   to: '/industries/hospitality' },
 ];
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    ANIMATION VARIANTS
---------------------------------------------- */
+───────────────────────────────────────────── */
 const dropdownVariants = {
   hidden: { opacity: 0, scale: 0.96, y: -6 },
   show:   { opacity: 1, scale: 1,    y:  0, transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } },
@@ -54,9 +54,9 @@ const mobileLinkVariants = {
   show:   (i: number) => ({ opacity: 1, x: 0, transition: { delay: i * 0.04, duration: 0.22 } }),
 };
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    HEADER
---------------------------------------------- */
+───────────────────────────────────────────── */
 export default function Header() {
   const [isMenuOpen,      setIsMenuOpen]      = useState(false);
   const [isScrolled,      setIsScrolled]      = useState(false);
@@ -90,19 +90,19 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-[66px]">
 
-          {/* -- Logo -- */}
+          {/* ── Logo ── */}
           <Link to="/" className="flex items-center flex-shrink-0 group">
             <img
               src="/logezy_Logo.png"
-              alt="Logezy � Temporary Recruitment Software"
+              alt="Logezy — Temporary Recruitment Software"
               className="h-11 w-auto transition-transform duration-200 group-hover:scale-[1.02]"
             />
           </Link>
 
-          {/* -- Desktop Nav -- */}
+          {/* ── Desktop Nav ── */}
           <nav className="hidden lg:flex items-center gap-0.5" onMouseLeave={() => setActiveDropdown(null)}>
 
-            {/* -- Product dropdown -- */}
+            {/* ── Product dropdown ── */}
             <div className="relative" onMouseEnter={() => setActiveDropdown('product')}>
               <button className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeDropdown === 'product' || isActive('/product')
@@ -160,7 +160,7 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* -- Industries dropdown -- */}
+            {/* ── Industries dropdown ── */}
             <div className="relative" onMouseEnter={() => setActiveDropdown('industries')}>
               <button className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeDropdown === 'industries' || isActive('/industries')
@@ -204,7 +204,7 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* -- About -- */}
+            {/* ── About ── */}
             <Link to="/about" onMouseEnter={() => setActiveDropdown(null)}
               className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 isActive('/about') ? 'text-[#2396C6] bg-[#E8F5FB]/80' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
@@ -212,7 +212,7 @@ export default function Header() {
               About
             </Link>
 
-            {/* -- Resources dropdown -- */}
+            {/* ── Resources dropdown ── */}
             <div className="relative" onMouseEnter={() => setActiveDropdown('resources')}>
               <button className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeDropdown === 'resources' || isActive('/resources')
@@ -254,7 +254,7 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* -- Pricing / Contact -- */}
+            {/* ── Pricing / Contact ── */}
             {[
               { to: '/pricing', label: 'Pricing' },
               { to: '/contact', label: 'Contact' },
@@ -268,7 +268,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* -- Desktop CTA -- */}
+          {/* ── Desktop CTA ── */}
           <div className="hidden lg:flex items-center gap-2">
             <a
               href="https://accounts.logezy.co/login"
@@ -289,7 +289,7 @@ export default function Header() {
             </motion.div>
           </div>
 
-          {/* -- Mobile toggle -- */}
+          {/* ── Mobile toggle ── */}
           <motion.button
             whileTap={{ scale: 0.92 }}
             className="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors"
@@ -303,7 +303,7 @@ export default function Header() {
           </motion.button>
         </div>
 
-        {/* -- Mobile Menu -- */}
+        {/* ── Mobile Menu ── */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div

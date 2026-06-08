@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import {
   Target, Lightning, Heart, ArrowRight, CheckCircle,
   Users, Shield, TrendUp, Pulse, CalendarBlank, Heartbeat, Briefcase,
@@ -7,15 +7,15 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    DATA
---------------------------------------------- */
+───────────────────────────────────────────── */
 const pillars = [
   {
     icon: Target,
     title: 'Built for temp, not adapted for it',
     description:
-      'Most staffing software was built for permanent recruitment and patched to handle temp. Logezy is purpose-built for temporary staffing from day one � every feature, every workflow, every screen designed around how temp agencies actually operate.',
+      'Most staffing software was built for permanent recruitment and patched to handle temp. Logezy is purpose-built for temporary staffing from day one — every feature, every workflow, every screen designed around how temp agencies actually operate.',
     gradient: 'linear-gradient(135deg,#2396C6,#2396C6)',
     glow: 'rgba(91,108,249,0.15)',
   },
@@ -47,13 +47,13 @@ const handleRows = [
 
 const storyParagraphs = [
   'Temp recruitment is fast, complex, and unforgiving. Shifts change by the hour, compliance can\'t slip, and clients expect results yesterday.',
-  'We saw agencies held back � not by lack of talent, but by outdated workforce management software that was never built for the pace of temporary staffing. Spreadsheets were breaking under the pressure. Agencies were drowning in admin. Good recruiters were spending more time on paperwork than on people.',
-  'So we built Logezy. A platform designed from the ground up for the specific demands of temp recruitment � where shift scheduling, compliance management, and operational simplicity aren\'t optional extras. They\'re the whole point.',
+  'We saw agencies held back — not by lack of talent, but by outdated workforce management software that was never built for the pace of temporary staffing. Spreadsheets were breaking under the pressure. Agencies were drowning in admin. Good recruiters were spending more time on paperwork than on people.',
+  'So we built Logezy. A platform designed from the ground up for the specific demands of temp recruitment — where shift scheduling, compliance management, and operational simplicity aren\'t optional extras. They\'re the whole point.',
 ];
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    ANIMATION HELPERS
---------------------------------------------- */
+───────────────────────────────────────────── */
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 36 },
   whileInView: { opacity: 1, y: 0 },
@@ -61,9 +61,9 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    MINI DASHBOARD (hero visual)
---------------------------------------------- */
+───────────────────────────────────────────── */
 function MiniDashboard() {
   return (
     <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
@@ -107,7 +107,7 @@ function MiniDashboard() {
                   <p className="text-[8px] text-slate-400">{role}</p>
                 </div>
                 <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-full ${status === 'live' ? 'bg-emerald-100 text-emerald-600' : 'bg-[#E8F5FB] text-[#2396C6]'}`}>
-                  {status === 'live' ? '? Live' : 'Soon'}
+                  {status === 'live' ? '● Live' : 'Soon'}
                 </span>
               </div>
             ))}
@@ -118,16 +118,16 @@ function MiniDashboard() {
   );
 }
 
-/* ---------------------------------------------
+/* ─────────────────────────────────────────────
    PAGE
---------------------------------------------- */
+───────────────────────────────────────────── */
 export default function About() {
   return (
     <div className="bg-white overflow-hidden">
 
-      {/* --------------------------------------
+      {/* ══════════════════════════════════════
           HERO
-      -------------------------------------- */}
+      ══════════════════════════════════════ */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-[#EFF8F3]">
         {/* Decorative rings */}
         {[700, 920, 1140].map((sz, i) => (
@@ -195,7 +195,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Right � dashboard + floating chips */}
+            {/* Right — dashboard + floating chips */}
             <motion.div initial={{opacity:0,x:30}} animate={{opacity:1,x:0}} transition={{duration:0.7,delay:0.12,ease:[0.22,1,0.36,1]}}
               className="relative hidden lg:block" style={{height:420}}>
               <div className="absolute inset-0 pointer-events-none"
@@ -233,15 +233,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* --------------------------------------
+      {/* ══════════════════════════════════════
           OUR STORY
-      -------------------------------------- */}
+      ══════════════════════════════════════ */}
       <section className="py-28 bg-white relative overflow-hidden">
         <div style={{position:'absolute',right:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-start">
 
-            {/* Left � sticky label + accent */}
+            {/* Left — sticky label + accent */}
             <motion.div {...fadeUp(0)} className="lg:sticky lg:top-28">
               <div className="section-tag mb-6 inline-flex">Our Story</div>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-8" style={{letterSpacing:'-0.03em', lineHeight:1.25}}>
@@ -253,7 +253,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Right � paragraphs */}
+            {/* Right — paragraphs */}
             <div className="space-y-7 pt-2">
               {storyParagraphs.map((text, i) => (
                 <motion.p key={i} {...fadeUp(i * 0.1 + 0.1)}
@@ -276,9 +276,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* --------------------------------------
-          OUR MISSION � dark full-bleed
-      -------------------------------------- */}
+      {/* ══════════════════════════════════════
+          OUR MISSION — dark full-bleed
+      ══════════════════════════════════════ */}
       <section className="py-28 relative overflow-hidden"
         style={{background:'linear-gradient(160deg,#183963 0%,#183963 100%)'}}>
         {/* Glow */}
@@ -302,7 +302,7 @@ export default function About() {
           <motion.p {...fadeUp(0.16)}
             className="text-xl leading-relaxed max-w-2xl mx-auto"
             style={{color:'rgba(165,210,255,0.75)'}}>
-            To give every temp recruitment agency � regardless of size � the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
+            To give every temp recruitment agency — regardless of size — the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
           </motion.p>
 
           {/* 3 stats */}
@@ -310,7 +310,7 @@ export default function About() {
             {[
               {val:'600+', lbl:'UK Agencies'},
               {val:'80%',  lbl:'Less Admin'},
-              {val:'3�',   lbl:'Faster Fills'},
+              {val:'3×',   lbl:'Faster Fills'},
             ].map(({val,lbl},i) => (
               <div key={lbl} style={{borderRight: i<2 ? '1px solid rgba(255,255,255,0.10)' : 'none', paddingRight: i<2 ? 24 : 0}}>
                 <p style={{fontSize:32,fontWeight:900,color:'#fff',margin:0,letterSpacing:'-0.03em'}}>{val}</p>
@@ -321,9 +321,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* --------------------------------------
-          WHY LOGEZY � 3 PILLARS
-      -------------------------------------- */}
+      {/* ══════════════════════════════════════
+          WHY LOGEZY — 3 PILLARS
+      ══════════════════════════════════════ */}
       <section className="py-28 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -361,9 +361,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* --------------------------------------
-          WHAT WE HANDLE � comparison table
-      -------------------------------------- */}
+      {/* ══════════════════════════════════════
+          WHAT WE HANDLE — comparison table
+      ══════════════════════════════════════ */}
       <section className="py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -408,9 +408,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* --------------------------------------
+      {/* ══════════════════════════════════════
           WHO WE SERVE
-      -------------------------------------- */}
+      ══════════════════════════════════════ */}
       <section className="py-28 bg-[#F8FAFC] relative overflow-hidden">
         <div style={{position:'absolute',left:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -427,8 +427,8 @@ export default function About() {
                 Made for agencies of every size.
               </motion.h2>
               {[
-                "Whether you're a two-person agency placing your first 20 workers, or an established operation managing thousands of shifts a week � Logezy scales with you.",
-                "We work with temp recruitment agencies across healthcare, hospitality, and education � industries where getting the right person in the right place at the right time isn't just important. It's everything.",
+                "Whether you're a two-person agency placing your first 20 workers, or an established operation managing thousands of shifts a week — Logezy scales with you.",
+                "We work with temp recruitment agencies across healthcare, hospitality, and education — industries where getting the right person in the right place at the right time isn't just important. It's everything.",
               ].map((text,i) => (
                 <motion.p key={i} {...fadeUp(0.1 + i*0.1)}
                   className={`leading-relaxed ${i===0?'text-xl font-medium text-slate-700 mb-5':'text-lg text-slate-500'}`}>
@@ -437,7 +437,7 @@ export default function About() {
               ))}
             </div>
 
-            {/* Right � industry tiles */}
+            {/* Right — industry tiles */}
             <motion.div {...fadeUp(0.16)} className="grid gap-4">
               {[
                 { icon:Heartbeat, label:'Healthcare & Nursing', desc:'NMC / HCPC compliance, DBS tracking, CQC-ready audits.', color:'linear-gradient(135deg,#EF4444,#EC4899)', bg:'rgba(239,68,68,0.06)', border:'rgba(239,68,68,0.14)' },
@@ -463,9 +463,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* --------------------------------------
-          FINAL CTA � redesigned
-      -------------------------------------- */}
+      {/* ══════════════════════════════════════
+          FINAL CTA — redesigned
+      ══════════════════════════════════════ */}
       <section className="relative overflow-hidden py-24"
         style={{background:'linear-gradient(160deg,#183963 0%,#183963 50%,#183963 100%)'}}>
         {/* Glows */}
@@ -507,7 +507,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* 3 stat cards � no CQC */}
+          {/* 3 stat cards — no CQC */}
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
             transition={{duration:0.6,delay:0.15,ease:[0.22,1,0.36,1]}}
             style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16,maxWidth:700,margin:'0 auto'}}>

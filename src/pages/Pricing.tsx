@@ -1,11 +1,11 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Users, UserCircle } from '@phosphor-icons/react';
 
-/* -----------------------------------------------
+/* ═══════════════════════════════════════════════
    DATA
------------------------------------------------ */
+═══════════════════════════════════════════════ */
 const plans = [
   {
     name: 'Entry Level',
@@ -65,14 +65,14 @@ const features = [
   'Mobile App',
 ];
 
-/* -----------------------------------------------
+/* ═══════════════════════════════════════════════
    COMPONENT
------------------------------------------------ */
+═══════════════════════════════════════════════ */
 export default function Pricing() {
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg,#F8FAFF 0%,#FFFFFF 50%)' }}>
 
-      {/* -- HEADER -------------------------------- */}
+      {/* ── HEADER ──────────────────────────────── */}
       <section style={{ paddingTop: 72, paddingBottom: 48, textAlign: 'center', padding: '72px 24px 48px' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
           <div style={{
@@ -91,13 +91,13 @@ export default function Pricing() {
             </span>
           </h1>
           <p style={{ fontSize: 17, color: '#6B7280', lineHeight: 1.65, maxWidth: 480, margin: '0 auto' }}>
-            Simple, transparent pricing. All features included in every plan � just pick the size that fits your agency.
+            Simple, transparent pricing. All features included in every plan — just pick the size that fits your agency.
           </p>
-          <p style={{ fontSize: 13, color: '#9CA3AF', marginTop: 10 }}>Per month � Plus VAT</p>
+          <p style={{ fontSize: 13, color: '#9CA3AF', marginTop: 10 }}>Per month · Plus VAT</p>
         </motion.div>
       </section>
 
-      {/* -- CARDS --------------------------------- */}
+      {/* ── CARDS ───────────────────────────────── */}
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '0 20px 80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(260px,100%),1fr))', gap: 20, alignItems: 'start' }}>
         {plans.map((plan, i) => (
           <motion.div
@@ -144,7 +144,7 @@ export default function Pricing() {
                 {plan.name}
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4 }}>
-                <span style={{ fontSize: 18, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>�</span>
+                <span style={{ fontSize: 18, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>£</span>
                 <span style={{ fontSize: 56, fontWeight: 900, color: 'white', lineHeight: 1, letterSpacing: '-0.03em' }}>{plan.price}</span>
               </div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.70)', marginTop: 6, fontWeight: 500 }}>per month, plus VAT</div>
@@ -209,10 +209,10 @@ export default function Pricing() {
         ))}
       </section>
 
-      {/* -- FOOTER NOTE --------------------------- */}
+      {/* ── FOOTER NOTE ─────────────────────────── */}
       <div style={{ textAlign: 'center', paddingBottom: 60, paddingLeft: 24, paddingRight: 24 }}>
         <p style={{ fontSize: 14, color: '#9CA3AF' }}>
-          All plans include full onboarding support � Cancel anytime � No setup fees
+          All plans include full onboarding support · Cancel anytime · No setup fees
         </p>
       </div>
 

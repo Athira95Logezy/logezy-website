@@ -1,10 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { DeviceMobile, Bell, Clock, ArrowRight, Shield, CalendarBlank, FileText, ChatCircle, CheckCircle, MapPin } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import PhoneMockupUI from './PhoneMockupUI';
 import { motion } from 'framer-motion';
 
-/* -- Apple Logo SVG -- */
+/* ── Apple Logo SVG ── */
 function AppleLogo({ size = 22 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="white">
@@ -13,7 +13,7 @@ function AppleLogo({ size = 22 }: { size?: number }) {
   );
 }
 
-/* -- Google Play Logo SVG -- */
+/* ── Google Play Logo SVG ── */
 function PlayStoreLogo({ size = 22 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24">
@@ -26,12 +26,12 @@ function PlayStoreLogo({ size = 22 }: { size?: number }) {
 }
 
 const appFeatures = [
-  { icon: CalendarBlank, label: 'Shift Management', desc: 'No more missed messages or last-minute confusion. Workers see their shifts, confirm in seconds, and get reminders � all from their phone.', color: 'text-blue-400 bg-blue-400/15' },
+  { icon: CalendarBlank, label: 'Shift Management', desc: 'No more missed messages or last-minute confusion. Workers see their shifts, confirm in seconds, and get reminders — all from their phone.', color: 'text-blue-400 bg-blue-400/15' },
   { icon: Clock, label: 'Availability', desc: "Workers let you know when they're free, so you're always filling shifts with people who actually want to work. No more guessing, no more awkward calls.", color: 'text-emerald-400 bg-emerald-400/15' },
   { icon: Shield, label: 'Compliance', desc: "Keeping on top of worker documents doesn't have to feel like a full-time job. Workers upload what's needed at their own pace, and your team always knows exactly where things stand.", color: 'text-violet-400 bg-violet-400/15' },
-  { icon: FileText, label: 'Digital Timesheets', desc: 'Clocking in and getting paid should be the easy part. With digital timesheets, it is � no paperwork, no back-and-forth, just a smooth process for your agency and your workforce.', color: 'text-amber-400 bg-amber-400/15' },
-  { icon: Bell, label: 'Three-Way Notifications', desc: 'Everyone stays in the loop � your agency, your workers, and your clients. The right people get the right updates at the right time, without anyone having to chase.', color: 'text-rose-400 bg-rose-400/15' },
-  { icon: ChatCircle, label: 'Chat', desc: 'Sometimes a quick message makes all the difference. Workers can reach your team and your team can reach them � all in one place, right inside the app.', color: 'text-cyan-400 bg-cyan-400/15' },
+  { icon: FileText, label: 'Digital Timesheets', desc: 'Clocking in and getting paid should be the easy part. With digital timesheets, it is — no paperwork, no back-and-forth, just a smooth process for your agency and your workforce.', color: 'text-amber-400 bg-amber-400/15' },
+  { icon: Bell, label: 'Three-Way Notifications', desc: 'Everyone stays in the loop — your agency, your workers, and your clients. The right people get the right updates at the right time, without anyone having to chase.', color: 'text-rose-400 bg-rose-400/15' },
+  { icon: ChatCircle, label: 'Chat', desc: 'Sometimes a quick message makes all the difference. Workers can reach your team and your team can reach them — all in one place, right inside the app.', color: 'text-cyan-400 bg-cyan-400/15' },
 ];
 
 const containerVariants = {
@@ -62,7 +62,7 @@ export default function AppShowcase() {
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* LEFT � Phone Mockup */}
+          {/* LEFT — Phone Mockup */}
           <motion.div
             initial={{ opacity: 0, x: -40, scale: 0.96 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -123,7 +123,7 @@ export default function AppShowcase() {
             </div>
           </motion.div>
 
-          {/* RIGHT � Copy */}
+          {/* RIGHT — Copy */}
           <div className="order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -160,7 +160,7 @@ export default function AppShowcase() {
               </h2>
 
               <p className="text-lg leading-relaxed mb-8" style={{ color: 'rgba(165,210,255,0.85)' }}>
-                Give your temps a mobile experience that carries your brand � and keeps them engaged from first shift to last.
+                Give your temps a mobile experience that carries your brand — and keeps them engaged from first shift to last.
               </p>
             </motion.div>
 
