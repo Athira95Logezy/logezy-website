@@ -587,7 +587,7 @@ export default function Hero() {
         {/* Glow halo */}
         <div style={{ position: 'absolute', top: -120, left: '5%', right: '5%', height: 240, background: 'radial-gradient(ellipse, rgba(99,102,241,0.24) 0%, rgba(14,165,233,0.10) 48%, transparent 72%)', filter: 'blur(58px)', pointerEvents: 'none', zIndex: -1 }} />
 
-        <div style={{ maxWidth: 1380, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1380, margin: '0 auto', position: 'relative' }}>
           {/* perspective wrapper */}
           <div style={{ perspective: 1800, perspectiveOrigin: 'top center' }}>
             <motion.div style={{ rotateX: dashRotX, transformOrigin: 'top center', willChange: 'transform' }}>
@@ -609,6 +609,63 @@ export default function Hero() {
               </div>
             </motion.div>
           </div>
+
+          {/* ── Floating phone mockup ── */}
+          <motion.div
+            className="hidden lg:block"
+            initial={{ opacity: 0, x: 40, y: 20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: 0.8, duration: 1.0, ease: EASE }}
+            style={{ position: 'absolute', right: -24, top: -60, zIndex: 20, pointerEvents: 'none' }}
+          >
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              {/* Phone frame — dark titanium */}
+              <div style={{ position: 'relative', userSelect: 'none', width: 186, height: 400 }}>
+                {/* Left buttons */}
+                {[{ top: 74, h: 20 }, { top: 108, h: 38 }, { top: 156, h: 38 }].map((b, i) => (
+                  <div key={i} style={{ position: 'absolute', left: -3, top: b.top, width: 3, height: b.h,
+                    background: 'linear-gradient(to left,#5A5A5F,#8E8E93,#5A5A5F)',
+                    borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 4px rgba(0,0,0,0.45)' }} />
+                ))}
+                {/* Right power */}
+                <div style={{ position: 'absolute', right: -3, top: 116, width: 3, height: 52,
+                  background: 'linear-gradient(to right,#5A5A5F,#8E8E93,#5A5A5F)',
+                  borderRadius: '0 3px 3px 0', boxShadow: '1px 0 4px rgba(0,0,0,0.45)' }} />
+
+                {/* Frame body */}
+                <div style={{
+                  width: 186, height: 400, borderRadius: 36,
+                  background: 'linear-gradient(160deg,#2C2C2E 0%,#3A3A3C 30%,#2A2A2C 60%,#323234 100%)',
+                  padding: 3,
+                  boxShadow: [
+                    '0 40px 100px rgba(0,0,0,0.72)',
+                    '0 16px 40px rgba(0,0,0,0.45)',
+                    '0 0 0 0.5px rgba(255,255,255,0.14)',
+                    'inset 0 1px 0 rgba(255,255,255,0.18)',
+                  ].join(','),
+                }}>
+                  <div style={{ width: '100%', height: '100%', borderRadius: 34, background: '#000', overflow: 'hidden', position: 'relative' }}>
+                    <img src="/mobile_app_main_screen.jpeg" alt="Logezy Mobile App"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+                    {/* Dynamic Island */}
+                    <div style={{ position: 'absolute', top: 10, left: '50%', transform: 'translateX(-50%)',
+                      width: 76, height: 22, background: '#000', borderRadius: 12, zIndex: 10 }} />
+                    {/* Screen glare */}
+                    <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 20, borderRadius: 34,
+                      background: 'linear-gradient(145deg,rgba(255,255,255,0.07) 0%,transparent 40%)' }} />
+                  </div>
+                </div>
+
+                {/* Ambient glow */}
+                <div style={{ position: 'absolute', inset: -30, borderRadius: '50%',
+                  background: 'radial-gradient(ellipse,rgba(99,102,241,0.20) 0%,transparent 68%)',
+                  filter: 'blur(24px)', zIndex: -1, pointerEvents: 'none' }} />
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </motion.div>
 
