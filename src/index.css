@@ -15,7 +15,7 @@
 
     /* ── Font families ── */
     --font-heading: 'General Sans', system-ui, -apple-system, sans-serif;
-    --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+    --font-body:    'Poppins', system-ui, -apple-system, sans-serif;
 
     /* ── Fluid type scale (desktop) ── */
     --text-h1: clamp(2.5rem, 5vw, 4.5rem);       /* 40px → 72px */
