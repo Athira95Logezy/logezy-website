@@ -186,7 +186,7 @@ function MacBrowser({ src, alt }: { src: string; alt: string }) {
             <svg width="8" height="10" viewBox="0 0 8 10" fill="none">
               <path d="M4 0C2.34 0 1 1.34 1 3C1 5.33 4 10 4 10C4 10 7 5.33 7 3C7 1.34 5.66 0 4 0Z" fill="#999"/>
             </svg>
-            <span style={{ fontSize: 10, color: '#555', fontFamily: '-apple-system, sans-serif' }}>app.logezy.com/schedule</span>
+            <span style={{ fontSize: 10, color: '#555', fontFamily: 'var(--font-body)' }}>app.logezy.com/schedule</span>
           </div>
           {/* Actions */}
           <div style={{ display: 'flex', gap: 5, flexShrink: 0 }}>

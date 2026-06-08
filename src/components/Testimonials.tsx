@@ -317,7 +317,7 @@ export default function Testimonials() {
               <div style={{
                 fontSize: 11, fontWeight: 800, color: '#191919',
                 letterSpacing: '0.01em', marginBottom: 6,
-                fontFamily: 'system-ui, sans-serif',
+                fontFamily: 'var(--font-body)',
               }}>
                 ★ Trustpilot
               </div>

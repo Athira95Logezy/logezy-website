@@ -200,7 +200,7 @@ export default function IndustryPage() {
   const heroImg = HERO_IMAGES[cfg.slug];
 
   return (
-    <div style={{ minHeight:'100vh', background:'#fff', fontFamily:'-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif' }}>
+    <div style={{ minHeight:'100vh', background:'#fff', fontFamily:'var(--font-body)' }}>
 
       {/* ══════════════════════════════
           HERO

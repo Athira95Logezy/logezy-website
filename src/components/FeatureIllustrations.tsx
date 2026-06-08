@@ -11,7 +11,7 @@ const shell: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   gap: 9,
-  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  fontFamily: 'var(--font-body)',
 };
 const wCard: React.CSSProperties = {
   background: '#FFFFFF',
