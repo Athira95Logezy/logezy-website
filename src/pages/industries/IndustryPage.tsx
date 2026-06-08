@@ -49,7 +49,7 @@ const PAIN_SOLUTIONS: Record<string,{pain:string;fix:string}[]> = {
 const HERO_IMAGES: Record<string,string> = {
   healthcare: '/DASHBAORD_NEW.png',
   education:  '/schedule.png',
-  hospitality:'/Booking.jpeg',
+  hospitality:'/Avilability.jpeg',
 };
 
 interface FeatureItem { icon: React.ElementType; title: string; desc: string; linkTo?: string }
@@ -332,67 +332,138 @@ export default function IndustryPage() {
       </section>
 
       {/* ══════════════════════════════
-          PAIN → SOLUTION
+          CHALLENGE — redesigned
       ══════════════════════════════ */}
-      <section style={{ background:`linear-gradient(135deg,${NAVY} 0%,#0E2050 100%)`, padding:'80px 28px', position:'relative', overflow:'hidden' }}>
-        {/* Background pattern */}
-        <div style={{ position:'absolute',inset:0,pointerEvents:'none',opacity:0.04,
-          backgroundImage:'radial-gradient(rgba(255,255,255,1) 1px,transparent 1px)',
-          backgroundSize:'24px 24px' }} />
-        {/* Glow */}
-        <div style={{ position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',
-          width:700,height:400,borderRadius:'50%',
-          background:`radial-gradient(ellipse,${cfg.accent}22 0%,transparent 65%)`,
-          filter:'blur(60px)',pointerEvents:'none' }} />
+      <section style={{ position:'relative', overflow:'hidden', background:`linear-gradient(160deg,#060F28 0%,#0C1835 50%,#0E1F48 100%)` }}>
+        {/* Animated dot grid */}
+        <div style={{ position:'absolute',inset:0,pointerEvents:'none',
+          backgroundImage:'radial-gradient(rgba(255,255,255,0.045) 1px,transparent 1px)',
+          backgroundSize:'32px 32px' }} />
 
-        <div style={{ maxWidth:1200,margin:'0 auto',position:'relative',zIndex:1 }}>
-          <motion.div {...fade} style={{ textAlign:'center',marginBottom:56 }}>
-            <div style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'6px 18px',borderRadius:40,
-              background:'rgba(255,255,255,0.10)',border:'1px solid rgba(255,255,255,0.20)',marginBottom:20 }}>
-              <div style={{ width:6,height:6,borderRadius:'50%',background:cfg.accentMid }} />
-              <span style={{ fontSize:11,fontWeight:800,color:'rgba(255,255,255,0.90)',letterSpacing:'0.09em',textTransform:'uppercase' as const }}>The Challenge</span>
-            </div>
-            <h2 style={{ fontSize:'clamp(22px,3vw,40px)',fontWeight:900,color:'#fff',lineHeight:1.2,marginBottom:16,letterSpacing:'-0.02em' }}>
+        {/* Large accent glow blobs */}
+        <div style={{ position:'absolute',top:'-10%',right:'-5%',width:600,height:600,borderRadius:'50%',
+          background:`radial-gradient(circle,${cfg.accent}18 0%,transparent 65%)`,filter:'blur(80px)',pointerEvents:'none' }} />
+        <div style={{ position:'absolute',bottom:'-10%',left:'-5%',width:500,height:500,borderRadius:'50%',
+          background:'radial-gradient(circle,rgba(91,108,249,0.12) 0%,transparent 65%)',filter:'blur(80px)',pointerEvents:'none' }} />
+
+        {/* Top section — heading */}
+        <div style={{ maxWidth:1200,margin:'0 auto',padding:'88px 28px 0',position:'relative',zIndex:1 }}>
+          <motion.div initial={{ opacity:0,y:32 }} whileInView={{ opacity:1,y:0 }} viewport={{ once:true }} transition={{ duration:0.65 }}
+            style={{ display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',marginBottom:72 }}>
+
+            {/* Animated badge */}
+            <motion.div
+              initial={{ scale:0.8, opacity:0 }} whileInView={{ scale:1, opacity:1 }}
+              viewport={{ once:true }} transition={{ duration:0.5, type:'spring', stiffness:200 }}
+              style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'7px 20px',borderRadius:40,
+                background:`rgba(255,255,255,0.08)`,border:'1px solid rgba(255,255,255,0.16)',marginBottom:24 }}>
+              <motion.div style={{ width:7,height:7,borderRadius:'50%',background:cfg.accentMid }}
+                animate={{ scale:[1,1.6,1], opacity:[0.6,1,0.6] }}
+                transition={{ duration:1.6,repeat:Infinity }} />
+              <span style={{ fontSize:11,fontWeight:800,color:'rgba(255,255,255,0.85)',letterSpacing:'0.10em',textTransform:'uppercase' as const }}>The Challenge</span>
+            </motion.div>
+
+            <h2 style={{ fontSize:'clamp(24px,3.5vw,46px)',fontWeight:900,color:'#fff',lineHeight:1.15,
+              letterSpacing:'-0.025em',marginBottom:18,maxWidth:760 }}>
               {cfg.challengeHeading}
             </h2>
-            <p style={{ fontSize:16,color:'rgba(255,255,255,0.65)',lineHeight:1.85,maxWidth:700,margin:'0 auto' }}>
+            <p style={{ fontSize:17,color:'rgba(186,210,255,0.62)',lineHeight:1.85,maxWidth:680,margin:0 }}>
               {cfg.challengeText}
             </p>
           </motion.div>
 
-          {/* Pain → Fix grid */}
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2,1fr)', gap:16 }}>
+          {/* Before → After rows */}
+          <div style={{ display:'flex',flexDirection:'column',gap:0,marginBottom:0 }}>
             {pains.map((item,i) => (
               <motion.div key={i}
-                initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
-                viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.08 }}
-                style={{ background:'rgba(255,255,255,0.05)', backdropFilter:'blur(12px)',
-                  border:'1px solid rgba(255,255,255,0.10)', borderRadius:16, padding:'20px 22px',
-                  display:'grid', gridTemplateColumns:'1fr 1fr', gap:0 }}>
-                {/* Pain */}
-                <div style={{ paddingRight:16, borderRight:'1px solid rgba(255,255,255,0.10)' }}>
-                  <div style={{ display:'flex',alignItems:'flex-start',gap:8 }}>
-                    <div style={{ width:20,height:20,borderRadius:'50%',background:'rgba(239,68,68,0.20)',
-                      display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:1 }}>
-                      <XCircle weight="fill" style={{ width:12,height:12,color:'#F87171' }} />
-                    </div>
-                    <p style={{ fontSize:13,color:'rgba(255,255,255,0.60)',lineHeight:1.5,margin:0 }}>{item.pain}</p>
+                initial={{ opacity:0, x: i%2===0 ? -40 : 40 }}
+                whileInView={{ opacity:1, x:0 }}
+                viewport={{ once:true }}
+                transition={{ duration:0.6, delay:i*0.10, ease:[0.22,1,0.36,1] }}
+                style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 48px 1fr',
+                  gap:0, alignItems:'stretch',
+                  borderBottom: i < pains.length-1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                  padding:'28px 0' }}>
+
+                {/* ❌ Pain side */}
+                <motion.div
+                  whileHover={{ x:4 }} transition={{ type:'spring', stiffness:300 }}
+                  style={{ display:'flex',alignItems:'flex-start',gap:14,paddingRight: isMobile ? 0 : 24 }}>
+                  <div style={{ width:36,height:36,borderRadius:10,background:'rgba(239,68,68,0.15)',
+                    border:'1px solid rgba(239,68,68,0.30)',
+                    display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2 }}>
+                    <XCircle weight="fill" style={{ width:18,height:18,color:'#FCA5A5' }} />
                   </div>
-                </div>
-                {/* Fix */}
-                <div style={{ paddingLeft:16 }}>
-                  <div style={{ display:'flex',alignItems:'flex-start',gap:8 }}>
-                    <div style={{ width:20,height:20,borderRadius:'50%',background:`${cfg.accent}30`,
-                      display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:1 }}>
-                      <CheckCircle weight="fill" style={{ width:12,height:12,color:cfg.accentMid }} />
-                    </div>
-                    <p style={{ fontSize:13,color:'rgba(255,255,255,0.88)',lineHeight:1.5,margin:0,fontWeight:500 }}>{item.fix}</p>
+                  <div>
+                    <div style={{ fontSize:9.5,fontWeight:800,color:'rgba(252,165,165,0.70)',
+                      letterSpacing:'0.09em',textTransform:'uppercase' as const,marginBottom:5 }}>Before</div>
+                    <p style={{ fontSize:15,color:'rgba(255,255,255,0.55)',lineHeight:1.65,margin:0 }}>{item.pain}</p>
                   </div>
-                </div>
+                </motion.div>
+
+                {/* Arrow — hidden on mobile */}
+                {!isMobile && (
+                  <div style={{ display:'flex',alignItems:'center',justifyContent:'center',padding:'0 4px' }}>
+                    <motion.div
+                      animate={{ x:[-3,3,-3] }} transition={{ duration:1.8,repeat:Infinity,ease:'easeInOut',delay:i*0.2 }}
+                      style={{ width:32,height:32,borderRadius:'50%',
+                        background:`linear-gradient(135deg,${cfg.accent}50,${cfg.accentMid}50)`,
+                        border:`1px solid ${cfg.accent}60`,
+                        display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0 }}>
+                      <ArrowRight weight="bold" style={{ width:14,height:14,color:cfg.accentMid }} />
+                    </motion.div>
+                  </div>
+                )}
+
+                {/* ✅ Fix side */}
+                <motion.div
+                  whileHover={{ x: isMobile ? 0 : -4 }} transition={{ type:'spring', stiffness:300 }}
+                  style={{ display:'flex',alignItems:'flex-start',gap:14,paddingLeft: isMobile ? 0 : 24,
+                    borderLeft: isMobile ? 'none' : '1px solid rgba(255,255,255,0.06)',
+                    marginTop: isMobile ? 16 : 0 }}>
+                  <div style={{ width:36,height:36,borderRadius:10,
+                    background:`${cfg.accent}25`,border:`1px solid ${cfg.accent}50`,
+                    display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2,
+                    boxShadow:`0 0 16px ${cfg.accent}30` }}>
+                    <CheckCircle weight="fill" style={{ width:18,height:18,color:cfg.accentMid }} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize:9.5,fontWeight:800,color:cfg.accentMid,
+                      letterSpacing:'0.09em',textTransform:'uppercase' as const,marginBottom:5,opacity:0.85 }}>With Logezy</div>
+                    <p style={{ fontSize:15,color:'rgba(255,255,255,0.90)',lineHeight:1.65,margin:0,fontWeight:500 }}>{item.fix}</p>
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Bottom CTA strip */}
+        <motion.div
+          initial={{ opacity:0,y:24 }} whileInView={{ opacity:1,y:0 }}
+          viewport={{ once:true }} transition={{ duration:0.6, delay:0.3 }}
+          style={{ borderTop:'1px solid rgba(255,255,255,0.07)',
+            padding:'40px 28px 56px',
+            display:'flex',flexDirection: isMobile ? 'column' : 'row',
+            alignItems:'center',justifyContent:'space-between',gap:20,
+            maxWidth:1200,margin:'0 auto',position:'relative',zIndex:1 }}>
+          <div>
+            <p style={{ fontSize:18,fontWeight:800,color:'#fff',margin:'0 0 4px' }}>
+              Ready to solve these challenges?
+            </p>
+            <p style={{ fontSize:14,color:'rgba(186,210,255,0.55)',margin:0 }}>
+              See how Logezy fixes every one of these for your agency.
+            </p>
+          </div>
+          <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+            whileHover={{ scale:1.04,y:-2 }} whileTap={{ scale:0.97 }}
+            style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'13px 28px',borderRadius:12,
+              background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
+              fontSize:14,textDecoration:'none',flexShrink:0,
+              boxShadow:`0 10px 32px ${cfg.accent}45` }}>
+            Book a Free Demo <ArrowRight weight="bold" style={{ width:15,height:15 }} />
+          </motion.a>
+        </motion.div>
       </section>
 
       {/* ══════════════════════════════
