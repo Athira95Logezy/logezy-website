@@ -5,60 +5,67 @@ import { useWindowWidth } from '../hooks/useWindowWidth';
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /* ─────────────────────────────────────────────
-   SINGLE PHONE SHELL — wraps any screen image
+   PHONE SHELL — realistic iPhone 15 Pro (dark titanium)
 ───────────────────────────────────────────── */
 function PhoneShell({
   src, alt = 'App screen', scale = 1, style: outer = {},
 }: { src: string; alt?: string; scale?: number; style?: React.CSSProperties }) {
-  const W  = Math.round(272 * scale);
-  const H  = Math.round(588 * scale);
-  const R  = Math.round(46 * scale);
-  const Ri = Math.round(42 * scale);
+  const W  = Math.round(308 * scale);
+  const H  = Math.round(664 * scale);
+  const R  = Math.round(58 * scale);
+  const Ri = Math.round(54 * scale);
 
   return (
     <div style={{ position: 'relative', userSelect: 'none', width: W, height: H, flexShrink: 0, ...outer }}>
-      {/* Volume buttons */}
-      {[{ top: Math.round(96*scale),  h: Math.round(26*scale) },
-        { top: Math.round(136*scale), h: Math.round(48*scale) },
-        { top: Math.round(198*scale), h: Math.round(48*scale) }].map((b,i) => (
-        <div key={i} style={{ position:'absolute', left:-4, top:b.top, width:4, height:b.h,
-          background:'linear-gradient(to left,#C8C8CA,#E5E5E7,#C8C8CA)', borderRadius:'3px 0 0 3px',
-          boxShadow:'-1px 0 3px rgba(0,0,0,0.20)' }} />
-      ))}
-      {/* Power button */}
-      <div style={{ position:'absolute', right:-4, top:Math.round(156*scale), width:4, height:Math.round(68*scale),
-        background:'linear-gradient(to right,#C8C8CA,#E5E5E7,#C8C8CA)', borderRadius:'0 3px 3px 0',
-        boxShadow:'1px 0 3px rgba(0,0,0,0.20)' }} />
 
-      {/* Frame */}
+      {/* Left side buttons */}
+      <div style={{ position:'absolute', left:-4, top:Math.round(122*scale), width:4, height:Math.round(34*scale),
+        background:'linear-gradient(to left,#6E6E73,#9E9EA3,#6E6E73)', borderRadius:'3px 0 0 3px',
+        boxShadow:'-2px 0 5px rgba(0,0,0,0.45)' }} />
+      <div style={{ position:'absolute', left:-4, top:Math.round(178*scale), width:4, height:Math.round(62*scale),
+        background:'linear-gradient(to left,#6E6E73,#9E9EA3,#6E6E73)', borderRadius:'3px 0 0 3px',
+        boxShadow:'-2px 0 5px rgba(0,0,0,0.45)' }} />
+      <div style={{ position:'absolute', left:-4, top:Math.round(256*scale), width:4, height:Math.round(62*scale),
+        background:'linear-gradient(to left,#6E6E73,#9E9EA3,#6E6E73)', borderRadius:'3px 0 0 3px',
+        boxShadow:'-2px 0 5px rgba(0,0,0,0.45)' }} />
+      {/* Right power button */}
+      <div style={{ position:'absolute', right:-4, top:Math.round(192*scale), width:4, height:Math.round(84*scale),
+        background:'linear-gradient(to right,#6E6E73,#9E9EA3,#6E6E73)', borderRadius:'0 3px 3px 0',
+        boxShadow:'2px 0 5px rgba(0,0,0,0.45)' }} />
+
+      {/* Titanium frame */}
       <div style={{
         width: W, height: H, borderRadius: R,
-        background: 'linear-gradient(170deg,#F5F5F7 0%,#E8E8EA 25%,#D8D8DA 50%,#E2E2E4 75%,#F0F0F2 100%)',
+        background: 'linear-gradient(160deg,#2C2C2E 0%,#3A3A3C 22%,#2A2A2C 46%,#323234 72%,#2C2C2E 100%)',
         padding: Math.round(3*scale),
         boxShadow: [
-          '0 40px 100px rgba(0,0,0,0.52)',
-          '0 16px 40px rgba(0,0,0,0.28)',
-          '0 4px 14px rgba(0,0,0,0.16)',
-          '0 0 0 0.5px rgba(255,255,255,0.65)',
-          'inset 0 1px 0 rgba(255,255,255,0.88)',
-          'inset 0 -1px 0 rgba(0,0,0,0.07)',
+          '0 64px 150px rgba(0,0,0,0.80)',
+          '0 24px 60px rgba(0,0,0,0.50)',
+          '0 8px 20px rgba(0,0,0,0.30)',
+          '0 0 0 0.5px rgba(255,255,255,0.15)',
+          'inset 0 1px 0 rgba(255,255,255,0.20)',
+          'inset 0 -1px 0 rgba(0,0,0,0.30)',
         ].join(','),
+        position: 'relative',
       }}>
-        <div style={{ width:'100%', height:'100%', borderRadius:Ri, background:'#F2F2F2', overflow:'hidden', position:'relative' }}>
-          <img src={src} alt={alt} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center', display:'block' }} />
+        {/* Inner screen */}
+        <div style={{ width:'100%', height:'100%', borderRadius:Ri, background:'#000', overflow:'hidden', position:'relative' }}>
+          <img src={src} alt={alt}
+            style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center', display:'block' }} />
           {/* Dynamic Island */}
-          <div style={{ position:'absolute', top:Math.round(12*scale), left:'50%', transform:'translateX(-50%)',
-            width:Math.round(110*scale), height:Math.round(30*scale), background:'#000',
-            borderRadius:Math.round(18*scale), zIndex:10 }} />
-          {/* Screen glare */}
+          <div style={{ position:'absolute', top:Math.round(14*scale), left:'50%', transform:'translateX(-50%)',
+            width:Math.round(126*scale), height:Math.round(36*scale),
+            background:'#000', borderRadius:Math.round(20*scale), zIndex:10 }} />
+          {/* Specular glare top-left */}
           <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:20, borderRadius:Ri,
-            background:'linear-gradient(135deg,rgba(255,255,255,0.16) 0%,rgba(255,255,255,0.03) 28%,transparent 52%)' }} />
+            background:'linear-gradient(145deg,rgba(255,255,255,0.07) 0%,transparent 40%)' }} />
         </div>
       </div>
 
-      {/* Ambient glow below */}
-      <div style={{ position:'absolute', bottom:-28, left:'12%', right:'12%', height:36,
-        background:'rgba(56,189,248,0.18)', filter:'blur(20px)', borderRadius:'50%', zIndex:-1, pointerEvents:'none' }} />
+      {/* Cyan ambient glow */}
+      <div style={{ position:'absolute', inset:-44, borderRadius:'50%',
+        background:'radial-gradient(ellipse,rgba(56,189,248,0.18) 0%,transparent 68%)',
+        filter:'blur(32px)', zIndex:-1, pointerEvents:'none' }} />
     </div>
   );
 }
@@ -126,36 +133,12 @@ function DesktopMockup() {
       boxShadow: '0 0 0 1px rgba(255,255,255,0.14), 0 28px 80px rgba(0,0,0,0.60), 0 0 80px rgba(90,180,213,0.20)',
       transform: 'perspective(1600px) rotateY(-3deg) rotateX(1.5deg)',
       transformOrigin: 'center top',
-      display: 'flex',
-      flexDirection: 'column',
     }}>
-      {/* macOS Chrome bar — traffic lights + tab only, no URL bar */}
-      <div style={{ background: 'linear-gradient(180deg,#EBEBEB 0%,#E0E0E0 100%)', padding: '9px 14px 0', borderBottom: '1px solid #C8C8C8', flexShrink: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3 }}>
-          {/* Traffic lights */}
-          <div style={{ display: 'flex', gap: 5, alignItems: 'center', paddingBottom: 8, marginRight: 8 }}>
-            {['#FF5F57','#FEBC2E','#28C840'].map(c => (
-              <div key={c} style={{ width: 10, height: 10, borderRadius: '50%', background: c, boxShadow: 'inset 0 -1px 1px rgba(0,0,0,0.18)' }} />
-            ))}
-          </div>
-          {/* Active tab */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 14px 5px 10px', borderRadius: '7px 7px 0 0', background: '#fff', border: '1px solid #C8C8C8', borderBottom: '1px solid #fff' }}>
-            <div style={{ width: 11, height: 11, borderRadius: 3, background: 'linear-gradient(135deg,#1966AA,#2399CA)' }} />
-            <span style={{ fontSize: 9.5, fontWeight: 600, color: '#333' }}>Logezy — Schedule</span>
-            <div style={{ fontSize: 8, color: '#777', marginLeft: 4 }}>✕</div>
-          </div>
-          <div style={{ width: 22, height: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: '#aaa', paddingBottom: 2 }}>+</div>
-        </div>
-      </div>
-
-      {/* Full-bleed Availability screenshot */}
-      <div style={{ flex: 1, background: '#fff', lineHeight: 0 }}>
-        <img
-          src="/schedule.png"
-          alt="Logezy Schedule"
-          style={{ width: '100%', height: 'auto', display: 'block', maxHeight: 560, objectFit: 'cover', objectPosition: 'top' }}
-        />
-      </div>
+      <img
+        src="/schedule.png"
+        alt="Logezy Schedule"
+        style={{ width: '100%', height: 'auto', display: 'block' }}
+      />
     </div>
   );
 }
@@ -259,7 +242,7 @@ export default function AnimatedScheduleSection() {
             <motion.div
               initial={{ opacity:0, x:-28, y:20 }} whileInView={{ opacity:1, x:0, y:0 }}
               viewport={{ once:true }} transition={{ duration:0.72, delay:0.30, ease:EASE }}
-              style={{ flexShrink:0, marginTop:80, marginRight:-56, zIndex:8, position:'relative',
+              style={{ flexShrink:0, marginTop:40, marginRight:-56, zIndex:8, position:'relative',
                 filter:'drop-shadow(0 24px 60px rgba(0,0,0,0.45)) drop-shadow(0 0 40px rgba(0,212,255,0.18))',
               }}
             >
@@ -294,7 +277,7 @@ export default function AnimatedScheduleSection() {
       </div>
 
       {/* Bottom wave */}
-      <div style={{ position:'relative', zIndex:4, lineHeight:0, marginTop: isMobile ? 40 : 60 }}>
+      <div style={{ position:'relative', zIndex:4, lineHeight:0, marginTop: isMobile ? 8 : 12 }}>
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ width:'100%', height:120, display:'block' }}>
           <path d="M0,80 C180,30 360,100 540,65 C720,30 900,95 1080,60 C1260,25 1380,75 1440,70 L1440,120 L0,120 Z" fill="rgba(25,102,170,0.35)" />
           <path d="M0,90 C200,50 400,110 600,75 C800,40 1000,100 1200,68 C1320,48 1400,88 1440,82 L1440,120 L0,120 Z" fill="rgba(35,153,202,0.25)" />

@@ -49,7 +49,7 @@ const PAIN_SOLUTIONS: Record<string,{pain:string;fix:string}[]> = {
 const HERO_IMAGES: Record<string,string> = {
   healthcare: '/DASHBAORD_NEW.png',
   education:  '/schedule.png',
-  hospitality:'/Mobile_01.png',
+  hospitality:'/dashboard_v2.png',
 };
 
 interface FeatureItem { icon: React.ElementType; title: string; desc: string; linkTo?: string }
