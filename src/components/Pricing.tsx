@@ -1,4 +1,4 @@
-ï»¿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { CheckCircle, ArrowRight, Lightning, Buildings, Rocket } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -10,7 +10,7 @@ const plans = [
     monthly: 149,
     annual: 119,
     desc: 'Perfect for agencies just getting started with digital workforce management.',
-    iconColor: 'from-blue-500 to-blue-600',
+    iconColor: 'from-[#2396C6] to-[#2396C6]',
     features: [
       'Up to 50 workers',
       'Scheduling & rota builder',
@@ -105,14 +105,14 @@ export default function Pricing() {
             style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.10)' }}>
             <button
               className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                !annual ? 'bg-white text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.15)]' : 'text-blue-200/60 hover:text-white'
+                !annual ? 'bg-white text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.15)]' : 'text-[#A8D9EF]/60 hover:text-white'
               }`}
               onClick={() => setAnnual(false)}>
               Monthly
             </button>
             <button
               className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-2 ${
-                annual ? 'bg-white text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.15)]' : 'text-blue-200/60 hover:text-white'
+                annual ? 'bg-white text-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.15)]' : 'text-[#A8D9EF]/60 hover:text-white'
               }`}
               onClick={() => setAnnual(true)}>
               Annual
@@ -142,7 +142,7 @@ export default function Pricing() {
               {popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
                   <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-black px-5 py-1.5 rounded-full shadow-lg whitespace-nowrap shadow-orange-500/30">
-                    âœ¦ Most Popular
+                    ? Most Popular
                   </div>
                 </div>
               )}
@@ -160,27 +160,27 @@ export default function Pricing() {
                 </div>
 
                 <h3 className={`text-xl font-black mb-2 ${popular ? 'text-white' : 'text-white'}`}>{name}</h3>
-                <p className={`text-sm leading-relaxed mb-7 ${popular ? 'text-blue-100/80' : 'text-blue-200/55'}`}>{desc}</p>
+                <p className={`text-sm leading-relaxed mb-7 ${popular ? 'text-[#E8F5FB]/80' : 'text-[#A8D9EF]/55'}`}>{desc}</p>
 
                 {/* Price */}
                 {monthly ? (
                   <div className="mb-8">
                     <div className="flex items-end gap-1 mb-1">
                       <span className="text-5xl font-black text-white leading-none">
-                        Â£{annual ? annualPrice : monthly}
+                        £{annual ? annualPrice : monthly}
                       </span>
-                      <span className={`text-sm mb-1.5 ${popular ? 'text-blue-100/70' : 'text-blue-200/50'}`}>/mo</span>
+                      <span className={`text-sm mb-1.5 ${popular ? 'text-[#E8F5FB]/70' : 'text-[#A8D9EF]/50'}`}>/mo</span>
                     </div>
                     {annual && (
-                      <p className={`text-xs ${popular ? 'text-blue-100/60' : 'text-blue-300/40'}`}>
-                        Billed annually Â· Â£{(annualPrice! * 12).toLocaleString()}/year
+                      <p className={`text-xs ${popular ? 'text-[#E8F5FB]/60' : 'text-blue-300/40'}`}>
+                        Billed annually · £{(annualPrice! * 12).toLocaleString()}/year
                       </p>
                     )}
                   </div>
                 ) : (
                   <div className="mb-8">
                     <p className="text-3xl font-black text-white mb-1">Custom</p>
-                    <p className={`text-xs ${popular ? 'text-blue-100/60' : 'text-blue-300/40'}`}>Contact us for a tailored quote</p>
+                    <p className={`text-xs ${popular ? 'text-[#E8F5FB]/60' : 'text-blue-300/40'}`}>Contact us for a tailored quote</p>
                   </div>
                 )}
 
@@ -191,8 +191,8 @@ export default function Pricing() {
                 <ul className="space-y-3 mb-8 flex-1">
                   {features.map(f => (
                     <li key={f} className="flex items-center gap-2.5 text-sm">
-                      <CheckCircle weight="regular" className={`h-4 w-4 flex-shrink-0 ${popular ? 'text-blue-200' : 'text-blue-500/70'}`} />
-                      <span className={popular ? 'text-blue-50' : 'text-blue-100/75'}>{f}</span>
+                      <CheckCircle weight="regular" className={`h-4 w-4 flex-shrink-0 ${popular ? 'text-[#A8D9EF]' : 'text-[#2396C6]/70'}`} />
+                      <span className={popular ? 'text-[#E8F5FB]' : 'text-[#E8F5FB]/75'}>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -201,7 +201,7 @@ export default function Pricing() {
                 <Link to="/contact"
                   className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-bold text-sm transition-all duration-200 ${
                     popular
-                      ? 'bg-white text-blue-700 hover:bg-blue-50 shadow-[0_4px_16px_rgba(0,0,0,0.2)]'
+                      ? 'bg-white text-[#183963] hover:bg-[#E8F5FB] shadow-[0_4px_16px_rgba(0,0,0,0.2)]'
                       : 'text-white hover:bg-white/10 border border-white/15'
                   }`}>
                   {cta}
@@ -215,9 +215,9 @@ export default function Pricing() {
         {/* Footer note */}
         <p className="text-center text-sm mt-10 sr" style={{ color: 'rgba(147,197,253,0.80)' }}>
           All plans include a 10-day free trial. No credit card required.
-          <span className="mx-2">Â·</span>
+          <span className="mx-2">·</span>
           Cancel any time.
-          <span className="mx-2">Â·</span>
+          <span className="mx-2">·</span>
           <Link to="/contact" className="hover:underline font-medium" style={{ color: 'rgba(147,197,253,0.7)' }}>Talk to us</Link> if you're unsure which plan fits.
         </p>
       </div>

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Envelope, MapPin, Phone,
@@ -34,7 +34,7 @@ const links = {
 };
 
 const socials = [
-  { Icon: LinkedinLogo,  label: 'LinkedIn',  href: 'https://www.linkedin.com/company/logezy-resourcing/?viewAsMember=true', bg: 'bg-blue-50  hover:bg-blue-100',  text: 'text-blue-600',  border: 'border-blue-200'  },
+  { Icon: LinkedinLogo,  label: 'LinkedIn',  href: 'https://www.linkedin.com/company/logezy-resourcing/?viewAsMember=true', bg: 'bg-[#E8F5FB]  hover:bg-[#E8F5FB]',  text: 'text-[#2396C6]',  border: 'border-[#A8D9EF]'  },
   { Icon: InstagramLogo, label: 'Instagram', href: 'https://www.instagram.com/logezy_software/',                             bg: 'bg-pink-50  hover:bg-pink-100',  text: 'text-pink-500',  border: 'border-pink-200'  },
   { Icon: FacebookLogo,  label: 'Facebook',  href: 'https://www.facebook.com/logezy2018/',                                   bg: 'bg-sky-50   hover:bg-sky-100',   text: 'text-sky-600',   border: 'border-sky-200'   },
   { Icon: YoutubeLogo,   label: 'YouTube',   href: 'https://www.youtube.com/channel/UCm_aZWC64g-q1I0nfdYD_nw',              bg: 'bg-red-50   hover:bg-red-100',   text: 'text-red-500',   border: 'border-red-200'   },
@@ -54,11 +54,11 @@ export default function Footer() {
   return (
     <footer className="relative bg-white overflow-hidden">
 
-      {/* ── TOP RAINBOW STRIP ── */}
+      {/* -- TOP RAINBOW STRIP -- */}
       <div className="h-1 w-full"
-        style={{ background: 'linear-gradient(90deg, #1795C7 0%, #183765 35%, #6366F1 65%, #1795C7 100%)' }} />
+        style={{ background: 'linear-gradient(90deg, #2396C6 0%, #183765 35%, #2396C6 65%, #2396C6 100%)' }} />
 
-      {/* ── MAIN FOOTER ── */}
+      {/* -- MAIN FOOTER -- */}
       <div style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
 
@@ -108,17 +108,17 @@ export default function Footer() {
                         <a
                           href={item.to}
                           target="_blank" rel="noopener noreferrer"
-                          className="text-sm text-slate-500 hover:text-blue-600 transition-colors duration-150 flex items-center gap-1 group"
+                          className="text-sm text-slate-500 hover:text-[#2396C6] transition-colors duration-150 flex items-center gap-1 group"
                         >
-                          <ArrowRight weight="regular" className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-blue-500 transition-all duration-200" />
+                          <ArrowRight weight="regular" className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-[#2396C6] transition-all duration-200" />
                           {item.label}
                         </a>
                       ) : (
                         <Link
                           to={item.to}
-                          className="text-sm text-slate-500 hover:text-blue-600 transition-colors duration-150 flex items-center gap-1 group"
+                          className="text-sm text-slate-500 hover:text-[#2396C6] transition-colors duration-150 flex items-center gap-1 group"
                         >
-                          <ArrowRight weight="regular" className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-blue-500 transition-all duration-200" />
+                          <ArrowRight weight="regular" className="h-3 w-3 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 text-[#2396C6] transition-all duration-200" />
                           {item.label}
                         </Link>
                       )}
@@ -129,7 +129,7 @@ export default function Footer() {
             ))}
           </motion.div>
 
-          {/* ── CONTACT STRIP ── */}
+          {/* -- CONTACT STRIP -- */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -140,10 +140,10 @@ export default function Footer() {
             <a href="mailto:info@logezy.co.uk"
               className="flex items-center gap-2 group">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #1795C7, #183765)' }}>
+                style={{ background: 'linear-gradient(135deg, #2396C6, #183765)' }}>
                 <Envelope weight="regular" className="h-3 w-3 text-white" />
               </div>
-              <span className="text-sm text-slate-600 group-hover:text-blue-600 transition-colors font-medium">
+              <span className="text-sm text-slate-600 group-hover:text-[#2396C6] transition-colors font-medium">
                 info@logezy.co.uk
               </span>
             </a>
@@ -153,10 +153,10 @@ export default function Footer() {
             <a href="tel:03330062179"
               className="flex items-center gap-2 group">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #1795C7, #183765)' }}>
+                style={{ background: 'linear-gradient(135deg, #2396C6, #183765)' }}>
                 <Phone weight="regular" className="h-3 w-3 text-white" />
               </div>
-              <span className="text-sm text-slate-600 group-hover:text-blue-600 transition-colors font-medium">
+              <span className="text-sm text-slate-600 group-hover:text-[#2396C6] transition-colors font-medium">
                 (0333) 006-2179
               </span>
             </a>
@@ -165,7 +165,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #1795C7, #183765)' }}>
+                style={{ background: 'linear-gradient(135deg, #2396C6, #183765)' }}>
                 <MapPin weight="regular" className="h-3 w-3 text-white" />
               </div>
               <span className="text-sm text-slate-600">
@@ -177,12 +177,12 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── BOTTOM BAR ── */}
+      {/* -- BOTTOM BAR -- */}
       <div style={{ background: 'linear-gradient(90deg, #0C1640 0%, #183765 100%)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-xs" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              © {new Date().getFullYear()} Logezy Ltd. All rights reserved.
+              � {new Date().getFullYear()} Logezy Ltd. All rights reserved.
             </p>
             <div className="flex items-center">
               {['Privacy', 'Terms', 'Cookies', 'GDPR'].map((l, i, arr) => (
@@ -194,7 +194,7 @@ export default function Footer() {
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.40)')}>
                     {l}
                   </a>
-                  {i < arr.length - 1 && <span style={{ color: 'rgba(255,255,255,0.18)' }} className="text-xs">·</span>}
+                  {i < arr.length - 1 && <span style={{ color: 'rgba(255,255,255,0.18)' }} className="text-xs">�</span>}
                 </React.Fragment>
               ))}
             </div>

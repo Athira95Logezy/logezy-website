@@ -40,7 +40,7 @@ export function SchedulingIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Weekly Schedule</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Weekly Schedule</span>
         <div style={{ display:'flex', gap:5 }}>
           <div style={{ fontSize:8.5, color:'#64748B', background:'#F1F5F9', border:'1px solid #E2E8F0', padding:'3px 8px', borderRadius:5 }}>3–9 Feb 2025</div>
           <div style={{ fontSize:8.5, fontWeight:700, color:'#fff', background:c, padding:'3px 10px', borderRadius:5 }}>Publish</div>
@@ -89,7 +89,7 @@ export function TimesheetsIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Timesheet Approvals</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Timesheet Approvals</span>
         <Chip label="Week 6 — Feb 2025" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>
@@ -100,7 +100,7 @@ export function TimesheetsIll({ c }: { c: string }) {
           <motion.div key={w.n} initial={{ opacity:0, x:-12 }} animate={{ opacity:1, x:0 }} transition={{ delay:i*0.09, duration:0.3, ease:E }}
             style={{ display:'grid', gridTemplateColumns:'1fr 60px 80px', padding:'8px 12px', borderBottom:i<workers.length-1?'1px solid #F8FAFC':'none', alignItems:'center' }}>
             <div style={{ fontSize:10, fontWeight:600, color:'#1E293B' }}>{w.n}</div>
-            <div style={{ fontSize:10, fontWeight:700, color:'#0F172A' }}>{w.hrs}</div>
+            <div style={{ fontSize:10, fontWeight:700, color:'#183963' }}>{w.hrs}</div>
             <Chip label={w.status} color={statColor(w.status)} />
           </motion.div>
         ))}
@@ -120,7 +120,7 @@ export function ComplianceIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Compliance Dashboard</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Compliance Dashboard</span>
         <Chip label="Audit Ready" color={c} />
       </div>
       {/* Circular score */}
@@ -136,11 +136,11 @@ export function ComplianceIll({ c }: { c: string }) {
               style={{ transform:'rotate(-90deg)', transformOrigin:'center' }} />
           </svg>
           <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center' }}>
-            <span style={{ fontSize:14, fontWeight:900, color:'#0F172A', lineHeight:1 }}>98%</span>
+            <span style={{ fontSize:14, fontWeight:900, color:'#183963', lineHeight:1 }}>98%</span>
           </div>
         </div>
         <div>
-          <div style={{ fontSize:13, fontWeight:800, color:'#0F172A', marginBottom:3 }}>98.4% Compliant</div>
+          <div style={{ fontSize:13, fontWeight:800, color:'#183963', marginBottom:3 }}>98.4% Compliant</div>
           <div style={{ fontSize:10, color:'#64748B' }}>All workers checked · 0 overdue</div>
         </div>
       </div>
@@ -171,14 +171,14 @@ export function InvoicingIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Invoice Preview</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Invoice Preview</span>
         <Chip label="Auto-Generated" color={c} />
       </div>
       <div style={{ ...wCard, flex:1, padding:'14px 16px', position:'relative' }}>
         {/* Invoice header */}
         <div style={{ display:'flex', justifyContent:'space-between', marginBottom:12, paddingBottom:10, borderBottom:'1px solid #F1F5F9' }}>
           <div>
-            <div style={{ fontSize:10.5, fontWeight:800, color:'#0F172A' }}>INV-2025-0142</div>
+            <div style={{ fontSize:10.5, fontWeight:800, color:'#183963' }}>INV-2025-0142</div>
             <div style={{ fontSize:9, color:'#64748B', marginTop:2 }}>NHS Trust North London</div>
           </div>
           <div style={{ textAlign:'right' }}>
@@ -191,13 +191,13 @@ export function InvoicingIll({ c }: { c: string }) {
           <motion.div key={i} initial={{ opacity:0, y:6 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.2+i*0.14, duration:0.3, ease:E }}
             style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'7px 0', borderBottom:'1px solid #F8FAFC' }}>
             <span style={{ fontSize:9.5, color:'#475569', flex:1, paddingRight:12 }}>{l.desc}</span>
-            <span style={{ fontSize:10, fontWeight:700, color:'#0F172A', flexShrink:0 }}>{l.amt}</span>
+            <span style={{ fontSize:10, fontWeight:700, color:'#183963', flexShrink:0 }}>{l.amt}</span>
           </motion.div>
         ))}
         {/* Total */}
         <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.7 }}
           style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginTop:10, padding:'8px 10px', borderRadius:8, background:c+'0D', border:`1px solid ${c}25` }}>
-          <span style={{ fontSize:10.5, fontWeight:700, color:'#0F172A' }}>Total</span>
+          <span style={{ fontSize:10.5, fontWeight:700, color:'#183963' }}>Total</span>
           <span style={{ fontSize:14, fontWeight:900, color:c }}>£5,160</span>
         </motion.div>
         {/* PAID stamp */}
@@ -218,7 +218,7 @@ export function ReportsIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Agency Performance</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Agency Performance</span>
         <div style={{ display:'flex', gap:4 }}>
           {['Week','Month','Year'].map((p, i) => (
             <div key={p} style={{ fontSize:8.5, padding:'2px 8px', borderRadius:5, background:i===1?c:'#F1F5F9', color:i===1?'#fff':'#64748B', fontWeight:i===1?700:500 }}>{p}</div>
@@ -231,7 +231,7 @@ export function ReportsIll({ c }: { c: string }) {
           <motion.div key={k.label} initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }} transition={{ delay:i*0.1, duration:0.3, ease:E }}
             style={{ flex:1, ...wCard, padding:'8px 10px' }}>
             <div style={{ fontSize:8, color:'#94A3B8', fontWeight:600 }}>{k.label}</div>
-            <div style={{ fontSize:13, fontWeight:900, color:'#0F172A', margin:'2px 0' }}>{k.val}</div>
+            <div style={{ fontSize:13, fontWeight:900, color:'#183963', margin:'2px 0' }}>{k.val}</div>
             <div style={{ fontSize:8.5, fontWeight:700, color:'#059669' }}>{k.delta}</div>
           </motion.div>
         ))}
@@ -270,7 +270,7 @@ export function MobileAppIll({ c }: { c: string }) {
       {/* Phone frame */}
       <div style={{ width:190, background:'#1C2333', borderRadius:28, padding:'10px 8px', boxShadow:'0 20px 50px rgba(0,0,0,0.22)', position:'relative' }}>
         {/* Notch */}
-        <div style={{ width:60, height:8, background:'#0F172A', borderRadius:20, margin:'0 auto 8px' }} />
+        <div style={{ width:60, height:8, background:'#183963', borderRadius:20, margin:'0 auto 8px' }} />
         {/* Screen */}
         <div style={{ background:'#FFFFFF', borderRadius:20, overflow:'hidden' }}>
           {/* App header */}
@@ -283,7 +283,7 @@ export function MobileAppIll({ c }: { c: string }) {
             {shifts.map((s, i) => (
               <motion.div key={i} initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.3+i*0.12, duration:0.3, ease:E }}
                 style={{ background:'#F8FAFC', borderRadius:8, padding:'7px 9px', borderLeft:`3px solid ${s.status==='Confirmed'?c:'#F59E0B'}` }}>
-                <div style={{ fontSize:8.5, fontWeight:700, color:'#0F172A' }}>{s.title}</div>
+                <div style={{ fontSize:8.5, fontWeight:700, color:'#183963' }}>{s.title}</div>
                 <div style={{ fontSize:7.5, color:'#64748B', marginTop:2 }}>{s.time} · {s.date}</div>
               </motion.div>
             ))}
@@ -299,7 +299,7 @@ export function MobileAppIll({ c }: { c: string }) {
           <span style={{ fontSize:14 }}>📅</span>
         </div>
         <div>
-          <div style={{ fontSize:9.5, fontWeight:700, color:'#0F172A' }}>New shift available</div>
+          <div style={{ fontSize:9.5, fontWeight:700, color:'#183963' }}>New shift available</div>
           <div style={{ fontSize:8.5, color:'#64748B' }}>Tomorrow 08:00 · NHS Trust</div>
         </div>
       </motion.div>
@@ -310,9 +310,9 @@ export function MobileAppIll({ c }: { c: string }) {
 /* ── 7. GPS CLOCK-IN ────────────────────────────────────────────────────── */
 export function GpsIll({ c }: { c: string }) {
   return (
-    <div style={{ ...shell, position:'relative', overflow:'hidden', background:'linear-gradient(160deg, #EEF2FF 0%, #F8FAFC 100%)' }}>
+    <div style={{ ...shell, position:'relative', overflow:'hidden', background:'linear-gradient(160deg, #E8F5FB 0%, #F8FAFC 100%)' }}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>GPS Clock-In</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>GPS Clock-In</span>
         <motion.div animate={{ opacity:[1,0.4,1] }} transition={{ duration:2, repeat:Infinity }}
           style={{ display:'flex', alignItems:'center', gap:5, padding:'3px 9px', borderRadius:20, background:'rgba(239,68,68,0.10)', border:'1px solid rgba(239,68,68,0.25)' }}>
           <div style={{ width:6, height:6, borderRadius:'50%', background:'#EF4444' }} />
@@ -367,7 +367,7 @@ export function DbsIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>DBS Register</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>DBS Register</span>
         <Chip label="4 Active · 1 Expiring" color="#D97706" />
       </div>
       <div style={{ ...wCard, flex:1 }}>
@@ -403,7 +403,7 @@ export function RightToWorkIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Right to Work</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Right to Work</span>
         <Chip label="UKBA Compliant" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>
@@ -446,7 +446,7 @@ export function ShiftAlertsIll({ c }: { c: string }) {
       >
         🔔
       </motion.div>
-      <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>3 new alerts</span>
+      <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>3 new alerts</span>
       {/* Notification cards */}
       <div style={{ width:'100%', display:'flex', flexDirection:'column', gap:7 }}>
         {notifs.map((n, i) => (
@@ -476,7 +476,7 @@ export function DocumentsIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Document Vault</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Document Vault</span>
         <Chip label="128 files stored" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>
@@ -514,7 +514,7 @@ export function DocumentsIll({ c }: { c: string }) {
 
 /* ── 12. CANDIDATE MANAGEMENT ───────────────────────────────────────────── */
 export function CandidatesIll({ c }: { c: string }) {
-  const bgs = ['#5B6CF9','#10B981','#EC4899','#D97706'];
+  const bgs = ['#2396C6','#10B981','#EC4899','#D97706'];
   const candidates = [
     { init:'LP', name:'Lisa Patel',   role:'Registered Nurse',     rate:'£22/hr', avail:'Available',    tags:['NMC Reg','DBS'] },
     { init:'TA', name:'Tom Ahmed',    role:'Healthcare Support',   rate:'£14/hr', avail:'Part-time',    tags:['DBS','RTW'] },
@@ -523,7 +523,7 @@ export function CandidatesIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Candidate Pool</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Candidate Pool</span>
         <Chip label="312 active workers" color={c} />
       </div>
       <div style={{ display:'flex', flexDirection:'column', gap:7, flex:1 }}>
@@ -535,7 +535,7 @@ export function CandidatesIll({ c }: { c: string }) {
             </div>
             <div style={{ flex:1 }}>
               <div style={{ display:'flex', alignItems:'center', gap:7, marginBottom:3 }}>
-                <span style={{ fontSize:10.5, fontWeight:700, color:'#0F172A' }}>{cand.name}</span>
+                <span style={{ fontSize:10.5, fontWeight:700, color:'#183963' }}>{cand.name}</span>
                 <Chip label={cand.avail} color={cand.avail==='Available' ? '#059669' : '#D97706'} />
               </div>
               <div style={{ fontSize:9, color:'#64748B', marginBottom:4 }}>{cand.role} · {cand.rate}</div>
@@ -563,7 +563,7 @@ export function ClientPortalIll({ c }: { c: string }) {
       <div style={{ display:'flex', alignItems:'center', gap:8 }}>
         <div style={{ width:28, height:28, borderRadius:7, background:c, display:'flex', alignItems:'center', justifyContent:'center', fontSize:14 }}>🏥</div>
         <div>
-          <div style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>NHS Trust North London</div>
+          <div style={{ fontSize:11, fontWeight:800, color:'#183963' }}>NHS Trust North London</div>
           <div style={{ fontSize:9, color:'#64748B' }}>Client Portal · Feb 2025</div>
         </div>
       </div>
@@ -573,7 +573,7 @@ export function ClientPortalIll({ c }: { c: string }) {
             style={{ ...wCard, padding:'12px 12px', display:'flex', flexDirection:'column', gap:4 }}>
             <div style={{ fontSize:18 }}>{t.icon}</div>
             <div style={{ fontSize:9, color:'#94A3B8', fontWeight:600 }}>{t.label}</div>
-            <div style={{ fontSize:18, fontWeight:900, color:'#0F172A', lineHeight:1 }}>{t.val}</div>
+            <div style={{ fontSize:18, fontWeight:900, color:'#183963', lineHeight:1 }}>{t.val}</div>
             <div style={{ fontSize:8.5, fontWeight:700, color:c }}>{t.delta}</div>
           </motion.div>
         ))}
@@ -592,7 +592,7 @@ export function WorkerPortalIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>My Schedule</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>My Schedule</span>
         <Chip label="Feb 2025" color={c} />
       </div>
       {/* Mini calendar row */}
@@ -614,7 +614,7 @@ export function WorkerPortalIll({ c }: { c: string }) {
             style={{ ...wCard, padding:'9px 12px', display:'flex', alignItems:'center', gap:10, borderLeft:`3px solid ${s.status==='Confirmed'?c:'#F59E0B'}` }}>
             <div style={{ flex:1 }}>
               <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:3 }}>
-                <span style={{ fontSize:10, fontWeight:700, color:'#0F172A' }}>{s.title}</span>
+                <span style={{ fontSize:10, fontWeight:700, color:'#183963' }}>{s.title}</span>
                 <Chip label={s.status} color={s.status==='Confirmed' ? '#059669' : '#D97706'} />
               </div>
               <div style={{ fontSize:8.5, color:'#64748B' }}>{s.loc} · {s.date}</div>
@@ -639,7 +639,7 @@ export function PayrollIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Payroll Run — Feb 2025</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Payroll Run — Feb 2025</span>
         <Chip label="Ready to Export" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>
@@ -652,13 +652,13 @@ export function PayrollIll({ c }: { c: string }) {
             <div style={{ fontSize:9.5, fontWeight:600, color:'#1E293B' }}>{w.n}</div>
             <div style={{ fontSize:9, color:'#64748B' }}>{w.hrs}</div>
             <div style={{ fontSize:9, color:'#64748B' }}>£{w.rate}/h</div>
-            <div style={{ fontSize:10, fontWeight:700, color:'#0F172A' }}>{w.gross}</div>
+            <div style={{ fontSize:10, fontWeight:700, color:'#183963' }}>{w.gross}</div>
           </motion.div>
         ))}
       </div>
       <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.8 }}
         style={{ ...wCard, padding:'8px 12px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:10, fontWeight:700, color:'#0F172A' }}>Total Payroll</span>
+        <span style={{ fontSize:10, fontWeight:700, color:'#183963' }}>Total Payroll</span>
         <span style={{ fontSize:16, fontWeight:900, color:c }}>£3,532.00</span>
       </motion.div>
     </div>
@@ -678,7 +678,7 @@ export function AvailabilityIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Availability — Week 6</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Availability — Week 6</span>
         <Chip label="15 slots open" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>
@@ -719,7 +719,7 @@ export function AutoProcessingIll({ c }: { c: string }) {
   return (
     <div style={{ ...shell, justifyContent:'center' }}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:4 }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Automation Flow</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Automation Flow</span>
         <motion.div animate={{ opacity:[1,0.5,1] }} transition={{ duration:1.8, repeat:Infinity }}
           style={{ display:'flex', alignItems:'center', gap:5, padding:'3px 9px', borderRadius:20, background:c+'12', border:`1px solid ${c}28` }}>
           <div style={{ width:6, height:6, borderRadius:'50%', background:c }} />
@@ -736,7 +736,7 @@ export function AutoProcessingIll({ c }: { c: string }) {
                 {s.icon}
               </motion.div>
               <div style={{ flex:1, ...wCard, padding:'8px 12px' }}>
-                <div style={{ fontSize:10, fontWeight:700, color:'#0F172A' }}>{s.label}</div>
+                <div style={{ fontSize:10, fontWeight:700, color:'#183963' }}>{s.label}</div>
                 <div style={{ fontSize:8.5, color:'#64748B', marginTop:1 }}>{s.sub}</div>
               </div>
             </div>
@@ -767,7 +767,7 @@ export function AnalyticsIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#0F172A' }}>Agency Analytics</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Agency Analytics</span>
         <div style={{ display:'flex', gap:4 }}>
           {['7D','30D','3M'].map((p, i) => <div key={p} style={{ fontSize:8.5, padding:'2px 7px', borderRadius:5, background:i===1?c:'#F1F5F9', color:i===1?'#fff':'#64748B', fontWeight:i===1?700:500 }}>{p}</div>)}
         </div>
@@ -778,7 +778,7 @@ export function AnalyticsIll({ c }: { c: string }) {
           <motion.div key={k.label} initial={{ opacity:0, y:6 }} animate={{ opacity:1, y:0 }} transition={{ delay:i*0.1, duration:0.28, ease:E }}
             style={{ flex:1, ...wCard, padding:'9px 10px' }}>
             <div style={{ fontSize:8, color:'#94A3B8', fontWeight:600 }}>{k.label}</div>
-            <div style={{ fontSize:13, fontWeight:900, color:'#0F172A', margin:'2px 0' }}>{k.val}</div>
+            <div style={{ fontSize:13, fontWeight:900, color:'#183963', margin:'2px 0' }}>{k.val}</div>
             <div style={{ fontSize:8.5, fontWeight:700, color:'#059669' }}>↑ {k.delta}</div>
           </motion.div>
         ))}

@@ -22,7 +22,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 ════════════════════════════════════════════════ */
 function ShiftAnim() {
   const shifts = [
-    { init: 'SK', color: '#6366F1', bg: '#EEF2FF', name: 'Sarah Kent',   time: '08:00 – 16:00', unit: 'Ward 4A' },
+    { init: 'SK', color: '#2396C6', bg: '#E8F5FB', name: 'Sarah Kent',   time: '08:00 – 16:00', unit: 'Ward 4A' },
     { init: 'JM', color: '#10B981', bg: '#ECFDF5', name: 'James Murray', time: '14:00 – 22:00', unit: 'A&E'    },
     { init: 'EP', color: '#F59E0B', bg: '#FFFBEB', name: 'Emma Pearson', time: '22:00 – 08:00', unit: 'ICU'    },
   ];
@@ -38,12 +38,12 @@ function ShiftAnim() {
           style={{
             display: 'flex', alignItems: 'center', gap: 10,
             padding: '8px 11px', borderRadius: 11,
-            background: '#FFFFFF', border: '1px solid #EEF2FF',
+            background: '#FFFFFF', border: '1px solid #E8F5FB',
           }}
         >
           <div style={{ width: 28, height: 28, borderRadius: '50%', background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9.5, fontWeight: 800, color: s.color, flexShrink: 0 }}>{s.init}</div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ margin: 0, fontSize: 11, fontWeight: 700, color: '#0F172A' }}>{s.name}</p>
+            <p style={{ margin: 0, fontSize: 11, fontWeight: 700, color: '#183963' }}>{s.name}</p>
             <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8' }}>{s.time} · {s.unit}</p>
           </div>
           <motion.div
@@ -87,7 +87,7 @@ function AvailabilityAnim() {
           <div key={d} style={{ textAlign: 'center' }}>
             <p style={{ margin: '0 0 4px', fontSize: 9, fontWeight: 600, color: '#94A3B8' }}>{d}</p>
             <motion.div
-              animate={{ background: current[i] ? '#6366F1' : '#F1F5F9', scale: current[i] ? 1.08 : 1 }}
+              animate={{ background: current[i] ? '#2396C6' : '#F1F5F9', scale: current[i] ? 1.08 : 1 }}
               transition={{ duration: 0.38, ease: 'easeOut' }}
               style={{ height: 26, borderRadius: 7, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
@@ -189,7 +189,7 @@ function TimesheetAnim() {
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderRadius: 10, background: phase === 'done' ? '#ECFDF5' : '#F8FAFF', border: `1px solid ${phase === 'done' ? '#A7F3D0' : '#E2E8F0'}`, marginBottom: 8, transition: 'background 0.4s, border-color 0.4s' }}>
         <div>
           <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8', fontWeight: 600 }}>CLOCKED IN</p>
-          <p style={{ margin: 0, fontSize: 20, fontWeight: 900, color: '#0F172A', letterSpacing: '-0.04em', fontFamily: 'monospace' }}>{hh}:{mm}:{ss}</p>
+          <p style={{ margin: 0, fontSize: 20, fontWeight: 900, color: '#183963', letterSpacing: '-0.04em', fontFamily: 'monospace' }}>{hh}:{mm}:{ss}</p>
         </div>
         <AnimatePresence mode="wait">
           {phase === 'done' ? (
@@ -199,8 +199,8 @@ function TimesheetAnim() {
             <motion.div key="live" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 7, background: 'rgba(99,102,241,0.09)', border: '1px solid rgba(99,102,241,0.22)' }}>
               <motion.div animate={{ opacity: [1, 0.2, 1] }} transition={{ duration: 1.2, repeat: Infinity }}
-                style={{ width: 5, height: 5, borderRadius: '50%', background: '#6366F1' }} />
-              <span style={{ fontSize: 9.5, fontWeight: 700, color: '#6366F1' }}>LIVE</span>
+                style={{ width: 5, height: 5, borderRadius: '50%', background: '#2396C6' }} />
+              <span style={{ fontSize: 9.5, fontWeight: 700, color: '#2396C6' }}>LIVE</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -222,7 +222,7 @@ function TimesheetAnim() {
 function NotificationsAnim() {
   const notifs = [
     { who: 'Agency', icon: '🏢', msg: 'Shift covered — Sarah K. confirmed',      color: '#F97316', bg: '#FFF7ED', border: '#FED7AA' },
-    { who: 'Worker', icon: '📱', msg: 'Your shift at Ward 4A is confirmed ✓',     color: '#6366F1', bg: '#EEF2FF', border: '#C7D2FE' },
+    { who: 'Worker', icon: '📱', msg: 'Your shift at Ward 4A is confirmed ✓',     color: '#2396C6', bg: '#E8F5FB', border: '#A8D9EF' },
     { who: 'Client', icon: '🏥', msg: 'Staff arriving 08:00 — 1 worker placed',  color: '#0EA5E9', bg: '#F0F9FF', border: '#BAE6FD' },
   ];
   return (
@@ -366,7 +366,7 @@ function FeatureNode({ idx, color, icon: Icon, title, desc, anim }: FNProps) {
 
         {/* title */}
         <h3 style={{
-          fontSize: 20, fontWeight: 800, color: '#0F172A',
+          fontSize: 20, fontWeight: 800, color: '#183963',
           margin: '0 0 8px', letterSpacing: '-0.03em', lineHeight: 1.2,
         }}>{title}</h3>
 
@@ -423,7 +423,7 @@ export default function MobileAppFeatures() {
 
   const features: Omit<FNProps, 'idx'>[] = [
     {
-      color: '#6366F1', icon: CalendarBlank, tag: 'Most Used',
+      color: '#2396C6', icon: CalendarBlank, tag: 'Most Used',
       title: 'Shift Management',
       desc:  'Workers see their shifts, confirm in seconds, and get reminders — all from their phone. No more missed messages or last-minute confusion.',
       bullets: ['One-tap shift confirmation', 'Automated shift reminders', 'Shift swap requests'],
@@ -470,7 +470,7 @@ export default function MobileAppFeatures() {
   const bottomFeatures = features.slice(3, 6);
 
   const stats = [
-    { label: '98.7% compliance rate',      color: '#6366F1' },
+    { label: '98.7% compliance rate',      color: '#2396C6' },
     { label: '< 2 min shift confirmation',  color: '#10B981' },
     { label: 'Push · SMS · Email alerts',   color: '#0EA5E9' },
     { label: '99.9% uptime',                color: '#F97316' },
@@ -519,20 +519,20 @@ export default function MobileAppFeatures() {
               background: 'rgba(99,102,241,0.07)', border: '1px solid rgba(99,102,241,0.18)',
               marginBottom: 24,
             }}>
-              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#6366F1' }} />
-              <span style={{ fontSize: 11, fontWeight: 700, color: '#6366F1', letterSpacing: '0.10em', textTransform: 'uppercase' }}>App Features</span>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#2396C6' }} />
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#2396C6', letterSpacing: '0.10em', textTransform: 'uppercase' }}>App Features</span>
             </div>
 
             {/* H2 */}
             <h2 style={{
               fontSize: isMobile ? 'clamp(1.5rem, 6vw, 1.9rem)' : 'clamp(1.8rem, 2.8vw, 2.8rem)',
-              fontWeight: 900, color: '#0F172A',
+              fontWeight: 900, color: '#183963',
               letterSpacing: '-0.045em', lineHeight: 1.1, marginBottom: 18,
               overflowWrap: 'break-word',
             }}>
               Everything your workforce needs,{' '}
               <span style={{
-                color: '#6366F1', display: 'inline'}}>in one app.</span>
+                color: '#2396C6', display: 'inline'}}>in one app.</span>
             </h2>
 
             {/* subtitle */}
@@ -546,7 +546,7 @@ export default function MobileAppFeatures() {
                 display: 'inline-block',
                 padding: '13px 28px',
                 borderRadius: 100,
-                background: '#0F172A',
+                background: '#183963',
                 color: '#FFFFFF',
                 fontSize: 14,
                 fontWeight: 700,

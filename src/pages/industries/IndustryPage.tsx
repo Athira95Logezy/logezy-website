@@ -8,14 +8,14 @@ import {
   ChartBar, MapPin, ArrowUpRight,
 } from '@phosphor-icons/react';
 
-const NAVY = '#0C1835';
+const NAVY = '#183963';
 const fade = { initial:{opacity:0,y:24}, whileInView:{opacity:1,y:0} as const, viewport:{once:true}, transition:{duration:0.55} };
 
 /* ── Flat decorative pattern per feature title ── */
 const FEATURE_PATTERNS: Record<string, { dots: string[]; lines: boolean }> = {
   'Compliance Tracking':    { dots:['#34D399','#6EE7B7','#A7F3D0'], lines:true  },
   'Shift Scheduling':       { dots:['#60A5FA','#93C5FD','#BFDBFE'], lines:true  },
-  'Candidate App':          { dots:['#818CF8','#A5B4FC','#C7D2FE'], lines:false },
+  'Candidate App':          { dots:['#5AB4D5','#7ECAE3','#A8D9EF'], lines:false },
   'Digital Timesheets':     { dots:['#FBBF24','#FCD34D','#FDE68A'], lines:true  },
   'Client Portal':          { dots:['#38BDF8','#7DD3FC','#BAE6FD'], lines:false },
   'Fast Onboarding':        { dots:['#F472B6','#F9A8D4','#FBCFE8'], lines:true  },
@@ -191,7 +191,7 @@ export default function IndustryPage() {
   if (!cfg) return (
     <div style={{ minHeight:'60vh',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:16 }}>
       <div style={{ fontSize:48,fontWeight:900,color:'#E5E7EB' }}>404</div>
-      <Link to="/" style={{ color:'#5B6CF9',fontWeight:600,textDecoration:'none' }}>← Back to home</Link>
+      <Link to="/" style={{ color:'#2396C6',fontWeight:600,textDecoration:'none' }}>← Back to home</Link>
     </div>
   );
 
@@ -314,7 +314,7 @@ export default function IndustryPage() {
       {/* ══════════════════════════════
           CHALLENGE — redesigned
       ══════════════════════════════ */}
-      <section style={{ position:'relative', overflow:'hidden', background:`linear-gradient(160deg,#060F28 0%,#0C1835 50%,#0E1F48 100%)` }}>
+      <section style={{ position:'relative', overflow:'hidden', background:`linear-gradient(160deg,#183963 0%,#183963 50%,#183963 100%)` }}>
         {/* Animated dot grid */}
         <div style={{ position:'absolute',inset:0,pointerEvents:'none',
           backgroundImage:'radial-gradient(rgba(255,255,255,0.045) 1px,transparent 1px)',

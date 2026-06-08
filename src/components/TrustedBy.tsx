@@ -48,7 +48,7 @@ export default function TrustedBy() {
         <span style={{
           display: 'inline-flex', alignItems: 'center', gap: 7,
           fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
-          textTransform: 'uppercase', color: '#6366F1',
+          textTransform: 'uppercase', color: '#2396C6',
           userSelect: 'none',
         }}>
           <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'rgba(99,102,241,0.35)', borderRadius: 2 }} />

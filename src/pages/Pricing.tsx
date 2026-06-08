@@ -1,11 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Users, UserCircle } from '@phosphor-icons/react';
 
-/* ═══════════════════════════════════════════════
+/* -----------------------------------------------
    DATA
-═══════════════════════════════════════════════ */
+----------------------------------------------- */
 const plans = [
   {
     name: 'Entry Level',
@@ -35,10 +35,10 @@ const plans = [
     admins: '6 Admin Users',
     staff: 'Up to 400 Staff',
     featured: true,
-    gradient: 'linear-gradient(135deg,#5B6CF9 0%,#7C3AED 100%)',
-    accent: '#5B6CF9',
-    accentBg: '#EEF2FF',
-    accentLight: '#C7D2FE',
+    gradient: 'linear-gradient(135deg,#2396C6 0%,#7C3AED 100%)',
+    accent: '#2396C6',
+    accentBg: '#E8F5FB',
+    accentLight: '#A8D9EF',
   },
   {
     name: 'Large',
@@ -46,7 +46,7 @@ const plans = [
     admins: '9 Admin Users',
     staff: 'Up to 600 Staff',
     featured: false,
-    gradient: 'linear-gradient(135deg,#475569 0%,#0F172A 100%)',
+    gradient: 'linear-gradient(135deg,#475569 0%,#183963 100%)',
     accent: '#334155',
     accentBg: '#F8FAFC',
     accentLight: '#CBD5E1',
@@ -65,39 +65,39 @@ const features = [
   'Mobile App',
 ];
 
-/* ═══════════════════════════════════════════════
+/* -----------------------------------------------
    COMPONENT
-═══════════════════════════════════════════════ */
+----------------------------------------------- */
 export default function Pricing() {
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg,#F8FAFF 0%,#FFFFFF 50%)' }}>
 
-      {/* ── HEADER ──────────────────────────────── */}
+      {/* -- HEADER -------------------------------- */}
       <section style={{ paddingTop: 72, paddingBottom: 48, textAlign: 'center', padding: '72px 24px 48px' }}>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
-            background: '#EEF2FF', border: '1px solid #C7D2FE',
+            background: '#E8F5FB', border: '1px solid #A8D9EF',
             borderRadius: 30, padding: '5px 16px', marginBottom: 22,
           }}>
-            <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#5B6CF9' }} />
-            <span style={{ fontSize: 12, fontWeight: 700, color: '#5B6CF9', letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>Pricing</span>
+            <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#2396C6' }} />
+            <span style={{ fontSize: 12, fontWeight: 700, color: '#2396C6', letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>Pricing</span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(28px,4vw,52px)', fontWeight: 900, color: '#0C1835', lineHeight: 1.1, marginBottom: 14, letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontSize: 'clamp(28px,4vw,52px)', fontWeight: 900, color: '#183963', lineHeight: 1.1, marginBottom: 14, letterSpacing: '-0.02em' }}>
             Choose Your{' '}
-            <span style={{ color: '#5B6CF9', display: 'inline'}}>
+            <span style={{ color: '#2396C6', display: 'inline'}}>
               Subscription
             </span>
           </h1>
           <p style={{ fontSize: 17, color: '#6B7280', lineHeight: 1.65, maxWidth: 480, margin: '0 auto' }}>
-            Simple, transparent pricing. All features included in every plan — just pick the size that fits your agency.
+            Simple, transparent pricing. All features included in every plan � just pick the size that fits your agency.
           </p>
-          <p style={{ fontSize: 13, color: '#9CA3AF', marginTop: 10 }}>Per month · Plus VAT</p>
+          <p style={{ fontSize: 13, color: '#9CA3AF', marginTop: 10 }}>Per month � Plus VAT</p>
         </motion.div>
       </section>
 
-      {/* ── CARDS ───────────────────────────────── */}
+      {/* -- CARDS --------------------------------- */}
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '0 20px 80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(260px,100%),1fr))', gap: 20, alignItems: 'start' }}>
         {plans.map((plan, i) => (
           <motion.div
@@ -116,7 +116,7 @@ export default function Pricing() {
               transform: plan.featured ? 'scale(1.04)' : 'scale(1)',
               position: 'relative' as const,
               background: plan.featured
-                ? 'linear-gradient(160deg,#0C1835 0%,#0E2050 100%)'
+                ? 'linear-gradient(160deg,#183963 0%,#183963 100%)'
                 : 'white',
             }}
           >
@@ -124,7 +124,7 @@ export default function Pricing() {
             {plan.featured && (
               <div style={{
                 position: 'absolute' as const, top: 0, left: '50%', transform: 'translateX(-50%)',
-                background: 'linear-gradient(135deg,#5B6CF9,#7C3AED)',
+                background: 'linear-gradient(135deg,#2396C6,#7C3AED)',
                 color: 'white', fontSize: 11, fontWeight: 800,
                 padding: '5px 18px', borderRadius: '0 0 12px 12px',
                 letterSpacing: '0.06em', textTransform: 'uppercase' as const,
@@ -144,7 +144,7 @@ export default function Pricing() {
                 {plan.name}
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4 }}>
-                <span style={{ fontSize: 18, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>£</span>
+                <span style={{ fontSize: 18, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>�</span>
                 <span style={{ fontSize: 56, fontWeight: 900, color: 'white', lineHeight: 1, letterSpacing: '-0.03em' }}>{plan.price}</span>
               </div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.70)', marginTop: 6, fontWeight: 500 }}>per month, plus VAT</div>
@@ -163,11 +163,11 @@ export default function Pricing() {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
                   <UserCircle weight="regular" style={{ width: 18, height: 18, color: plan.featured ? 'rgba(255,255,255,0.7)' : plan.accent, flexShrink: 0 }} />
-                  <span style={{ fontSize: 14, fontWeight: 700, color: plan.featured ? 'white' : '#0C1835' }}>{plan.admins}</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: plan.featured ? 'white' : '#183963' }}>{plan.admins}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <Users weight="regular" style={{ width: 18, height: 18, color: plan.featured ? 'rgba(255,255,255,0.7)' : plan.accent, flexShrink: 0 }} />
-                  <span style={{ fontSize: 14, fontWeight: 700, color: plan.featured ? 'white' : '#0C1835' }}>{plan.staff}</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: plan.featured ? 'white' : '#183963' }}>{plan.staff}</span>
                 </div>
               </div>
 
@@ -177,7 +177,7 @@ export default function Pricing() {
                   <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <CheckCircle
                       weight="regular"
-                      style={{ width: 18, height: 18, color: plan.featured ? '#818CF8' : plan.accent, flexShrink: 0 }}
+                      style={{ width: 18, height: 18, color: plan.featured ? '#5AB4D5' : plan.accent, flexShrink: 0 }}
                     />
                     <span style={{ fontSize: 14, color: plan.featured ? 'rgba(255,255,255,0.80)' : '#374151', fontWeight: 500 }}>{f}</span>
                   </div>
@@ -193,7 +193,7 @@ export default function Pricing() {
                     padding: '13px 24px', borderRadius: 12, textDecoration: 'none',
                     fontSize: 15, fontWeight: 700,
                     background: plan.featured
-                      ? 'linear-gradient(135deg,#5B6CF9,#7C3AED)'
+                      ? 'linear-gradient(135deg,#2396C6,#7C3AED)'
                       : plan.gradient,
                     color: 'white',
                     boxShadow: plan.featured
@@ -209,10 +209,10 @@ export default function Pricing() {
         ))}
       </section>
 
-      {/* ── FOOTER NOTE ─────────────────────────── */}
+      {/* -- FOOTER NOTE --------------------------- */}
       <div style={{ textAlign: 'center', paddingBottom: 60, paddingLeft: 24, paddingRight: 24 }}>
         <p style={{ fontSize: 14, color: '#9CA3AF' }}>
-          All plans include full onboarding support · Cancel anytime · No setup fees
+          All plans include full onboarding support � Cancel anytime � No setup fees
         </p>
       </div>
 

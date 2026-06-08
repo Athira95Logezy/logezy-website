@@ -89,7 +89,7 @@ const rightReviews: Review[] = [
     text: 'We started using Logezy back in 2018. Since then, no other recruitment software has matched its features and the team\'s dedication to their clients.',
   },
   {
-    name: 'IGM Premium Care', initial: 'I', color: '#6366F1', stars: 5,
+    name: 'IGM Premium Care', initial: 'I', color: '#2396C6', stars: 5,
     company: 'Care Provider', date: 'Jun 2021',
     title: 'I definitely recommend Logezy',
     text: 'I definitely recommend Logezy. Khushali and her team helped us tremendously. Our workflow has improved significantly and everything runs more smoothly now.',
@@ -101,7 +101,7 @@ const rightReviews: Review[] = [
     text: 'The team at Logezy have been exceptional throughout our time working with them. Their responsiveness and ongoing support has been outstanding.',
   },
   {
-    name: 'Richard', initial: 'R', color: '#6366F1', stars: 5,
+    name: 'Richard', initial: 'R', color: '#2396C6', stars: 5,
     company: 'UK Business', date: 'Aug 2025',
     title: 'Brilliant service from start to finish',
     text: 'Brilliant service from start to finish. Professional, responsive and delivered exactly what we needed. Could not be happier with the results.',
@@ -159,7 +159,7 @@ function ReviewCard({ r }: { r: Review }) {
 
       {/* title */}
       <h4 style={{
-        fontSize: 13.5, fontWeight: 700, color: '#0F172A',
+        fontSize: 13.5, fontWeight: 700, color: '#183963',
         margin: '10px 0 7px', letterSpacing: '-0.01em', lineHeight: 1.3,
       }}>
         {r.title}
@@ -185,7 +185,7 @@ function ReviewCard({ r }: { r: Review }) {
           {r.initial}
         </div>
         <div style={{ minWidth: 0 }}>
-          <p style={{ fontSize: 12.5, fontWeight: 700, color: '#0F172A', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.name}</p>
+          <p style={{ fontSize: 12.5, fontWeight: 700, color: '#183963', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.name}</p>
           <p style={{ fontSize: 11, color: '#94A3B8', margin: 0 }}>{r.company}</p>
         </div>
         <span style={{ marginLeft: 'auto', fontSize: 10.5, color: '#CBD5E1', whiteSpace: 'nowrap' }}>{r.date}</span>
@@ -264,7 +264,7 @@ export default function Testimonials() {
 
           <h2 style={{
             fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-            fontWeight: 900, color: '#0F172A',
+            fontWeight: 900, color: '#183963',
             letterSpacing: '-0.045em', lineHeight: 1.1,
             margin: 0,
           }}>
@@ -353,7 +353,7 @@ export default function Testimonials() {
             {/* featured quote card */}
             <div style={{
               width: '100%',
-              background: 'linear-gradient(135deg, #1795C7 0%, #6366F1 100%)',
+              background: 'linear-gradient(135deg, #2396C6 0%, #2396C6 100%)',
               borderRadius: 22,
               padding: '26px 26px 22px',
               boxShadow: '0 8px 40px rgba(99,102,241,0.32)',
@@ -410,7 +410,7 @@ export default function Testimonials() {
                 marginTop: 20,
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '12px 28px', borderRadius: 100, textDecoration: 'none',
-                background: 'linear-gradient(135deg, #1795C7 0%, #6366F1 100%)',
+                background: 'linear-gradient(135deg, #2396C6 0%, #2396C6 100%)',
                 color: '#fff', fontSize: 13.5, fontWeight: 700,
                 boxShadow: '0 4px 20px rgba(99,102,241,0.30)',
               }}

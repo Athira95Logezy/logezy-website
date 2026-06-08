@@ -136,7 +136,7 @@ function IndustryCard({ card, index }: { card: Card; index: number }) {
 
       {/* ── label ── */}
       <h3 style={{
-        fontSize: 16.5, fontWeight: 800, color: '#0F172A',
+        fontSize: 16.5, fontWeight: 800, color: '#183963',
         letterSpacing: '-0.025em', lineHeight: 1.25,
         marginBottom: 10,
       }}>
@@ -230,10 +230,10 @@ export default function IndustrySolutions() {
                 border: '1px solid rgba(99,102,241,0.18)',
                 marginBottom: 22,
               }}>
-                <Buildings weight="regular" size={13} style={{ color: '#6366F1' }} />
+                <Buildings weight="regular" size={13} style={{ color: '#2396C6' }} />
                 <span style={{
                   fontSize: 10.5, fontWeight: 800,
-                  color: '#6366F1', letterSpacing: '0.11em',
+                  color: '#2396C6', letterSpacing: '0.11em',
                   textTransform: 'uppercase' as const,
                 }}>Industry Solutions</span>
               </div>
@@ -241,7 +241,7 @@ export default function IndustrySolutions() {
               {/* heading + underline accent */}
               <h2 style={{
                 fontSize: 'clamp(2rem, 3vw, 2.8rem)',
-                fontWeight: 900, color: '#0F172A',
+                fontWeight: 900, color: '#183963',
                 letterSpacing: '-0.045em', lineHeight: 1.1,
                 marginBottom: 22,
               }}>
@@ -277,7 +277,7 @@ export default function IndustrySolutions() {
 
               {/* interest link */}
               <p style={{
-                fontSize: 14, color: '#6366F1',
+                fontSize: 14, color: '#2396C6',
                 fontWeight: 600, marginBottom: 36,
               }}>
                 Interested? Let's explore your sector →

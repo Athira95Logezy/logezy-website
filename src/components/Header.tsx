@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   List, X, ArrowRight, CaretDown,
@@ -8,23 +8,23 @@ import {
 } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    NAV DATA
-───────────────────────────────────────────── */
+--------------------------------------------- */
 const productLinks = [
   { icon: CalendarBlank, label: 'Scheduling',               desc: 'Drag-and-drop rota builder',     color: 'text-violet-600 bg-violet-50', to: '/product/scheduling'       },
   { icon: Clock,         label: 'Availability',             desc: 'Live workforce availability',     color: 'text-teal-600 bg-teal-50',     to: '/product/availability'      },
   { icon: Users,         label: 'Candidate & Client Mgmt',  desc: 'All your people in one place',    color: 'text-pink-600 bg-pink-50',     to: '/product/candidate-client'  },
   { icon: Shield,        label: 'Compliance',               desc: 'CQC & GDPR ready',                color: 'text-amber-600 bg-amber-50',   to: '/product/compliance'        },
   { icon: FileText,      label: 'Digital Timesheets',       desc: 'GPS-verified attendance',         color: 'text-emerald-600 bg-emerald-50',to: '/product/timesheets'       },
-  { icon: Receipt,       label: 'Invoicing',                desc: 'Auto-generate on approval',       color: 'text-blue-600 bg-blue-50',     to: '/product/invoicing'         },
+  { icon: Receipt,       label: 'Invoicing',                desc: 'Auto-generate on approval',       color: 'text-[#2396C6] bg-[#E8F5FB]',     to: '/product/invoicing'         },
   { icon: Briefcase,     label: 'Recruitment Portal',       desc: 'Hire faster, smarter',            color: 'text-orange-600 bg-orange-50', to: '/product/recruitment'       },
   { icon: Buildings,     label: 'Client Portal',            desc: 'Self-serve for your clients',     color: 'text-cyan-600 bg-cyan-50',     to: '/product/client-portal'     },
-  { icon: DeviceMobile,  label: 'Candidate Mobile App',     desc: 'iOS & Android',                   color: 'text-indigo-600 bg-indigo-50', to: '/product/mobile-app'        },
+  { icon: DeviceMobile,  label: 'Candidate Mobile App',     desc: 'iOS & Android',                   color: 'text-[#2396C6] bg-[#E8F5FB]', to: '/product/mobile-app'        },
 ];
 
 const resourceLinks = [
-  { icon: Newspaper, label: 'Blog',         desc: 'Insights for UK staffing agencies', color: 'text-indigo-600 bg-indigo-50', to: '/resources/blog'          },
+  { icon: Newspaper, label: 'Blog',         desc: 'Insights for UK staffing agencies', color: 'text-[#2396C6] bg-[#E8F5FB]', to: '/resources/blog'          },
   { icon: ChartBar,  label: 'Case Studies', desc: 'Real agencies, real results',        color: 'text-emerald-600 bg-emerald-50', to: '/resources/case-studies' },
 ];
 
@@ -34,9 +34,9 @@ const industryLinks = [
   { icon: ForkKnife,  label: 'Hospitality',          desc: 'Hotels, events & catering',       color: 'text-amber-600 bg-amber-50',   to: '/industries/hospitality' },
 ];
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    ANIMATION VARIANTS
-───────────────────────────────────────────── */
+--------------------------------------------- */
 const dropdownVariants = {
   hidden: { opacity: 0, scale: 0.96, y: -6 },
   show:   { opacity: 1, scale: 1,    y:  0, transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } },
@@ -54,9 +54,9 @@ const mobileLinkVariants = {
   show:   (i: number) => ({ opacity: 1, x: 0, transition: { delay: i * 0.04, duration: 0.22 } }),
 };
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    HEADER
-───────────────────────────────────────────── */
+--------------------------------------------- */
 export default function Header() {
   const [isMenuOpen,      setIsMenuOpen]      = useState(false);
   const [isScrolled,      setIsScrolled]      = useState(false);
@@ -90,30 +90,30 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-[66px]">
 
-          {/* ── Logo ── */}
+          {/* -- Logo -- */}
           <Link to="/" className="flex items-center flex-shrink-0 group">
             <img
               src="/logezy_Logo.png"
-              alt="Logezy — Temporary Recruitment Software"
+              alt="Logezy � Temporary Recruitment Software"
               className="h-11 w-auto transition-transform duration-200 group-hover:scale-[1.02]"
             />
           </Link>
 
-          {/* ── Desktop Nav ── */}
+          {/* -- Desktop Nav -- */}
           <nav className="hidden lg:flex items-center gap-0.5" onMouseLeave={() => setActiveDropdown(null)}>
 
-            {/* ── Product dropdown ── */}
+            {/* -- Product dropdown -- */}
             <div className="relative" onMouseEnter={() => setActiveDropdown('product')}>
               <button className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeDropdown === 'product' || isActive('/product')
-                  ? 'text-blue-600 bg-blue-50/80'
+                  ? 'text-[#2396C6] bg-[#E8F5FB]/80'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}>
                 Product
                 <motion.span
                   animate={{ rotate: activeDropdown === 'product' ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className={`inline-flex ${activeDropdown === 'product' ? 'text-blue-500' : 'text-slate-400'}`}
+                  className={`inline-flex ${activeDropdown === 'product' ? 'text-[#2396C6]' : 'text-slate-400'}`}
                 >
                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </motion.span>
@@ -141,7 +141,7 @@ export default function Header() {
                             <Icon weight="regular" className="h-3.5 w-3.5" />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-xs font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight truncate">{label}</p>
+                            <p className="text-xs font-semibold text-slate-800 group-hover:text-[#2396C6] transition-colors leading-tight truncate">{label}</p>
                             <p className="text-[10px] text-slate-400 mt-0.5 truncate">{desc}</p>
                           </div>
                         </Link>
@@ -151,7 +151,7 @@ export default function Header() {
                     {/* Footer row */}
                     <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between px-1">
                       <p className="text-xs text-slate-400">All features included in every plan</p>
-                      <Link to="/features" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+                      <Link to="/features" className="text-xs font-semibold text-[#2396C6] hover:text-[#183963] flex items-center gap-1">
                         View all features <ArrowRight weight="regular" className="h-3 w-3" />
                       </Link>
                     </div>
@@ -160,18 +160,18 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* ── Industries dropdown ── */}
+            {/* -- Industries dropdown -- */}
             <div className="relative" onMouseEnter={() => setActiveDropdown('industries')}>
               <button className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeDropdown === 'industries' || isActive('/industries')
-                  ? 'text-blue-600 bg-blue-50/80'
+                  ? 'text-[#2396C6] bg-[#E8F5FB]/80'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}>
                 Industries
                 <motion.span
                   animate={{ rotate: activeDropdown === 'industries' ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className={`inline-flex ${activeDropdown === 'industries' ? 'text-blue-500' : 'text-slate-400'}`}
+                  className={`inline-flex ${activeDropdown === 'industries' ? 'text-[#2396C6]' : 'text-slate-400'}`}
                 >
                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </motion.span>
@@ -194,7 +194,7 @@ export default function Header() {
                           <Icon weight="regular" className="h-4 w-4" />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{label}</p>
+                          <p className="text-sm font-semibold text-slate-800 group-hover:text-[#2396C6] transition-colors leading-tight">{label}</p>
                           <p className="text-xs text-slate-400 mt-0.5">{desc}</p>
                         </div>
                       </Link>
@@ -204,26 +204,26 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* ── About ── */}
+            {/* -- About -- */}
             <Link to="/about" onMouseEnter={() => setActiveDropdown(null)}
               className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
-                isActive('/about') ? 'text-blue-600 bg-blue-50/80' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                isActive('/about') ? 'text-[#2396C6] bg-[#E8F5FB]/80' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}>
               About
             </Link>
 
-            {/* ── Resources dropdown ── */}
+            {/* -- Resources dropdown -- */}
             <div className="relative" onMouseEnter={() => setActiveDropdown('resources')}>
               <button className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
                 activeDropdown === 'resources' || isActive('/resources')
-                  ? 'text-blue-600 bg-blue-50/80'
+                  ? 'text-[#2396C6] bg-[#E8F5FB]/80'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}>
                 Resources
                 <motion.span
                   animate={{ rotate: activeDropdown === 'resources' ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className={`inline-flex ${activeDropdown === 'resources' ? 'text-blue-500' : 'text-slate-400'}`}
+                  className={`inline-flex ${activeDropdown === 'resources' ? 'text-[#2396C6]' : 'text-slate-400'}`}
                 >
                   <CaretDown weight="regular" className="h-3.5 w-3.5" />
                 </motion.span>
@@ -244,7 +244,7 @@ export default function Header() {
                           <Icon weight="regular" className="h-4 w-4" />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{label}</p>
+                          <p className="text-sm font-semibold text-slate-800 group-hover:text-[#2396C6] transition-colors leading-tight">{label}</p>
                           <p className="text-xs text-slate-400 mt-0.5">{desc}</p>
                         </div>
                       </Link>
@@ -254,21 +254,21 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* ── Pricing / Contact ── */}
+            {/* -- Pricing / Contact -- */}
             {[
               { to: '/pricing', label: 'Pricing' },
               { to: '/contact', label: 'Contact' },
             ].map(link => (
               <Link key={link.to} to={link.to} onMouseEnter={() => setActiveDropdown(null)}
                 className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
-                  isActive(link.to) ? 'text-blue-600 bg-blue-50/80' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                  isActive(link.to) ? 'text-[#2396C6] bg-[#E8F5FB]/80' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}>
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* ── Desktop CTA ── */}
+          {/* -- Desktop CTA -- */}
           <div className="hidden lg:flex items-center gap-2">
             <a
               href="https://accounts.logezy.co/login"
@@ -281,7 +281,7 @@ export default function Header() {
               <a
                 href="https://booking.logezy.co/#/67044000000025008"
                 target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)] hover:shadow-[0_4px_16px_rgba(23,149,199,0.45)] transition-all duration-200"
+                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#2396C6] to-[#183963] hover:from-[#2396C6] hover:to-[#2396C6] text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)] hover:shadow-[0_4px_16px_rgba(23,149,199,0.45)] transition-all duration-200"
               >
                 Book a Demo
                 <ArrowRight weight="regular" className="h-3.5 w-3.5" />
@@ -289,7 +289,7 @@ export default function Header() {
             </motion.div>
           </div>
 
-          {/* ── Mobile toggle ── */}
+          {/* -- Mobile toggle -- */}
           <motion.button
             whileTap={{ scale: 0.92 }}
             className="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors"
@@ -303,7 +303,7 @@ export default function Header() {
           </motion.button>
         </div>
 
-        {/* ── Mobile Menu ── */}
+        {/* -- Mobile Menu -- */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -364,7 +364,7 @@ export default function Header() {
                   <motion.div key={link.to} custom={productLinks.length + industryLinks.length + resourceLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
                     <Link to={link.to}
                       className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                        isActive(link.to) ? 'text-blue-600 bg-blue-50' : 'text-slate-700 hover:bg-slate-50'
+                        isActive(link.to) ? 'text-[#2396C6] bg-[#E8F5FB]' : 'text-slate-700 hover:bg-slate-50'
                       }`}>
                       {link.label}
                     </Link>
@@ -384,7 +384,7 @@ export default function Header() {
                     <a
                       href="https://booking.logezy.co/#/67044000000025008"
                       target="_blank" rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold py-3 px-5 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)]"
+                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#2396C6] to-[#183963] text-white text-sm font-semibold py-3 px-5 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)]"
                     >
                       Book a Demo
                       <ArrowRight weight="regular" className="h-4 w-4" />

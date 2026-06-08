@@ -1,13 +1,13 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChartBar, Shield, CalendarBlank, Coins } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    FLOATING STAT WIDGETS
-───────────────────────────────────────────── */
+--------------------------------------------- */
 function StatWidget({ delay, style, children }: { delay: number; style: React.CSSProperties; children: React.ReactNode }) {
   return (
     <motion.div
@@ -31,9 +31,9 @@ function StatWidget({ delay, style, children }: { delay: number; style: React.CS
   );
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    DASHBOARD REVEAL SECTION
-───────────────────────────────────────────── */
+--------------------------------------------- */
 export default function DashboardReveal() {
   return (
     <section style={{
@@ -43,7 +43,7 @@ export default function DashboardReveal() {
       padding: '72px 0 112px',
     }}>
 
-      {/* ── Neon glow layers ── */}
+      {/* -- Neon glow layers -- */}
       <div style={{
         position: 'absolute', top: 0, left: '20%', right: '20%', height: '50%',
         background: 'radial-gradient(ellipse, rgba(99,102,241,0.16) 0%, rgba(6,182,212,0.08) 50%, transparent 75%)',
@@ -62,7 +62,7 @@ export default function DashboardReveal() {
 
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 clamp(16px, 4vw, 40px)', position: 'relative', zIndex: 1 }}>
 
-        {/* ── Section header ── */}
+        {/* -- Section header -- */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function DashboardReveal() {
             fontSize: 16, lineHeight: 1.72, color: 'rgba(255,255,255,0.40)',
             maxWidth: 520, margin: '0 auto 28px',
           }}>
-            One real-time command centre for shifts, compliance, timesheets, and payroll — everything your agency needs, always up to date.
+            One real-time command centre for shifts, compliance, timesheets, and payroll � everything your agency needs, always up to date.
           </p>
 
           <motion.div
@@ -110,7 +110,7 @@ export default function DashboardReveal() {
               <Link to="/contact" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '11px 24px', borderRadius: 12, textDecoration: 'none',
-                background: 'linear-gradient(135deg, #6366F1 0%, #06B6D4 100%)',
+                background: 'linear-gradient(135deg, #2396C6 0%, #06B6D4 100%)',
                 color: '#fff', fontSize: 13.5, fontWeight: 700,
                 boxShadow: '0 0 24px rgba(99,102,241,0.38)',
               }}>
@@ -130,7 +130,7 @@ export default function DashboardReveal() {
           </motion.div>
         </motion.div>
 
-        {/* ── Dashboard image block ── */}
+        {/* -- Dashboard image block -- */}
         <motion.div
           initial={{ opacity: 0, y: 56, scale: 0.96 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -159,7 +159,7 @@ export default function DashboardReveal() {
             ].join(', '),
           }}>
 
-            {/* ── Chrome bar ── */}
+            {/* -- Chrome bar -- */}
             <div style={{
               background: 'rgba(4, 9, 24, 0.98)',
               borderBottom: '1px solid rgba(255,255,255,0.07)',
@@ -188,7 +188,7 @@ export default function DashboardReveal() {
               </div>
             </div>
 
-            {/* ── Dashboard screenshot ── */}
+            {/* -- Dashboard screenshot -- */}
             <div style={{ position: 'relative' }}>
               {/* Subtle bottom fade */}
               <div style={{
@@ -198,13 +198,13 @@ export default function DashboardReveal() {
               }} />
               <img
                 src="/dashboard.png"
-                alt="Logezy Dashboard — full agency overview"
+                alt="Logezy Dashboard � full agency overview"
                 style={{ width: '100%', display: 'block', maxHeight: '65vh', objectFit: 'cover', objectPosition: 'top' }}
               />
             </div>
           </div>
 
-          {/* ── Floating stat widget — top-left ── */}
+          {/* -- Floating stat widget � top-left -- */}
           <StatWidget delay={0.55} style={{
             top: 56, left: -18,
             padding: '12px 16px',
@@ -212,7 +212,7 @@ export default function DashboardReveal() {
             boxShadow: '0 8px 36px rgba(99,102,241,0.22), 0 0 0 1px rgba(99,102,241,0.08)',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg, #6366F1, #818CF8)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 14px rgba(99,102,241,0.40)' }}>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg, #2396C6, #5AB4D5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 14px rgba(99,102,241,0.40)' }}>
                 <CalendarBlank weight="regular" style={{ width: 17, height: 17, color: '#fff' }} />
               </div>
               <div>
@@ -224,12 +224,12 @@ export default function DashboardReveal() {
               <motion.div
                 initial={{ width: '0%' }} whileInView={{ width: '78%' }}
                 viewport={{ once: true }} transition={{ delay: 0.9, duration: 0.9, ease: 'easeOut' }}
-                style={{ height: '100%', borderRadius: 99, background: 'linear-gradient(90deg, #6366F1, #818CF8)', boxShadow: '0 0 8px rgba(99,102,241,0.55)' }}
+                style={{ height: '100%', borderRadius: 99, background: 'linear-gradient(90deg, #2396C6, #5AB4D5)', boxShadow: '0 0 8px rgba(99,102,241,0.55)' }}
               />
             </div>
           </StatWidget>
 
-          {/* ── Floating stat widget — top-right ── */}
+          {/* -- Floating stat widget � top-right -- */}
           <StatWidget delay={0.65} style={{
             top: 56, right: -18,
             padding: '12px 16px',
@@ -252,7 +252,7 @@ export default function DashboardReveal() {
             </div>
           </StatWidget>
 
-          {/* ── Floating stat widget — bottom-left ── */}
+          {/* -- Floating stat widget � bottom-left -- */}
           <StatWidget delay={0.75} style={{
             bottom: 48, left: -18,
             padding: '10px 16px',
@@ -264,12 +264,12 @@ export default function DashboardReveal() {
               <ChartBar weight="regular" style={{ width: 16, height: 16, color: '#fff' }} />
             </div>
             <div>
-              <div style={{ fontSize: 12.5, fontWeight: 800, color: '#F1F5F9', lineHeight: 1.2 }}>£124,800</div>
-              <div style={{ fontSize: 9.5, color: 'rgba(6,182,212,0.75)', fontWeight: 600, marginTop: 2 }}>Revenue This Month ↑12%</div>
+              <div style={{ fontSize: 12.5, fontWeight: 800, color: '#F1F5F9', lineHeight: 1.2 }}>�124,800</div>
+              <div style={{ fontSize: 9.5, color: 'rgba(6,182,212,0.75)', fontWeight: 600, marginTop: 2 }}>Revenue This Month ?12%</div>
             </div>
           </StatWidget>
 
-          {/* ── Floating stat widget — bottom-right ── */}
+          {/* -- Floating stat widget � bottom-right -- */}
           <StatWidget delay={0.80} style={{
             bottom: 48, right: -18,
             padding: '10px 16px',
@@ -282,13 +282,13 @@ export default function DashboardReveal() {
             </div>
             <div>
               <div style={{ fontSize: 12.5, fontWeight: 800, color: '#F1F5F9', lineHeight: 1.2 }}>47 / 52</div>
-              <div style={{ fontSize: 9.5, color: 'rgba(251,191,36,0.75)', fontWeight: 600, marginTop: 2 }}>Shifts Filled · 94% Rate</div>
+              <div style={{ fontSize: 9.5, color: 'rgba(251,191,36,0.75)', fontWeight: 600, marginTop: 2 }}>Shifts Filled � 94% Rate</div>
             </div>
           </StatWidget>
         </motion.div>
       </div>
 
-      {/* ── Bottom gradient transition to TrustedBy ── */}
+      {/* -- Bottom gradient transition to TrustedBy -- */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: 2,
         background: 'linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.20) 30%, rgba(6,182,212,0.16) 70%, transparent 100%)',

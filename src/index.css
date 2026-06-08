@@ -10,15 +10,15 @@
 
 @layer base {
   :root {
-    --gradient-color: #5B6CF9;
-    --sparkles-color: #818CF8;
+    --gradient-color: #2396C6;
+    --sparkles-color: #5AB4D5;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background-color: #FFFFFF;
-    color: #0F172A;
+    color: #183963;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -29,11 +29,11 @@
 
   .gradient-text {
     display: inline;
-    color: #1795C7;
+    color: #2396C6;
   }
   .gradient-text-static {
     display: inline;
-    color: #1795C7;
+    color: #2396C6;
   }
 
   .glass {
@@ -164,7 +164,7 @@
     border-radius: 100px;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #1795C7;
+    color: #2396C6;
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
@@ -230,12 +230,12 @@
     border: 1.5px solid #E2E8F0;
     border-radius: 10px;
     font-size: 0.9375rem;
-    color: #0F172A;
+    color: #183963;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     outline: none;
   }
   .input-field:focus {
-    border-color: #1795C7;
+    border-color: #2396C6;
     box-shadow: 0 0 0 4px rgba(23,149,199,0.1);
   }
   .input-field::placeholder { color: #94A3B8; }
@@ -294,7 +294,7 @@
   .faq-item:hover { background: #F8FAFC; }
 
   .pricing-popular {
-    background: linear-gradient(135deg, #183765 0%, #1795C7 100%);
+    background: linear-gradient(135deg, #183765 0%, #2396C6 100%);
     border-color: transparent;
     transform: scale(1.03);
   }
@@ -375,7 +375,7 @@
     inset: -1px;
     border-radius: 15px;
     padding: 1px;
-    background: linear-gradient(135deg, #1795C7, #183765);
+    background: linear-gradient(135deg, #2396C6, #183765);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -400,7 +400,7 @@
     border-radius: 100px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #1795C7;
+    color: #2396C6;
   }
 
   .section-divider {
@@ -414,7 +414,7 @@
     align-items: center;
     gap: 8px;
     padding: 12px 26px;
-    background: linear-gradient(135deg, #183765 0%, #1795C7 50%, #1795C7 100%);
+    background: linear-gradient(135deg, #183765 0%, #2396C6 50%, #2396C6 100%);
     color: white;
     border-radius: 12px;
     font-weight: 700;
@@ -477,7 +477,7 @@
   }
 
   .pricing-card-popular {
-    background: linear-gradient(145deg, #183765 0%, #1795C7 40%, #1795C7 100%);
+    background: linear-gradient(145deg, #183765 0%, #2396C6 40%, #2396C6 100%);
     border: 1px solid rgba(23,149,199,0.5);
     transform: scale(1.03);
     box-shadow: 0 20px 60px rgba(23,149,199,0.4), 0 8px 24px rgba(23,149,199,0.25), 0 0 0 1px rgba(255,255,255,0.1);
@@ -620,7 +620,7 @@
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #F1F5F9; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #1795C7, #183765);
+  background: linear-gradient(to bottom, #2396C6, #183765);
   border-radius: 3px;
 }
 
@@ -630,7 +630,7 @@
   position: fixed;
   top: 0; left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #183765, #1795C7, #183765);
+  background: linear-gradient(90deg, #183765, #2396C6, #183765);
   z-index: 9999;
   transition: width 0.05s linear;
   border-radius: 0 2px 2px 0;

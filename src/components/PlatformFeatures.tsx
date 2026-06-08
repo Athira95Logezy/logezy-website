@@ -151,7 +151,7 @@ function PreviewCard({ feature }: { feature: typeof features[0] }) {
           <feature.icon size={20} color="#fff" strokeWidth={2} />
         </div>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>{feature.title}</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#183963' }}>{feature.title}</div>
           <div style={{ fontSize: 11, color: feature.color, fontWeight: 600 }}>{feature.tagline}</div>
         </div>
       </div>
@@ -249,7 +249,7 @@ export default function PlatformFeatures() {
           <h2 style={{
             fontSize: 'clamp(2rem, 3.2vw, 3.2rem)',
             fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1.08,
-            color: '#0F172A', margin: '0 0 18px',
+            color: '#183963', margin: '0 0 18px',
           }}>
             Built for UK staffing agencies{' '}
             <span style={{
@@ -325,7 +325,7 @@ export default function PlatformFeatures() {
                     <div style={{ flex: 1 }}>
                       <div style={{
                         fontSize: 15, fontWeight: 800,
-                        color: isOpen ? '#0F172A' : '#334155',
+                        color: isOpen ? '#183963' : '#334155',
                         letterSpacing: '-0.02em',
                         transition: 'color 0.2s',
                       }}>

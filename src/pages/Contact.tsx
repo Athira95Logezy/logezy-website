@@ -1,16 +1,16 @@
-ï»¿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Envelope, Phone, MapPin, Clock, Chat, Users, ArrowRight, CaretDown } from '@phosphor-icons/react';
 
 const contactMethods = [
   { icon: Envelope, title: 'Email us', value: 'info@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500' },
-  { icon: Phone, title: 'Call us', value: '(0333) 006-2179', description: 'Monâ€“Fri, 9amâ€“6pm GMT.', gradient: 'from-emerald-400 to-green-500' },
+  { icon: Phone, title: 'Call us', value: '(0333) 006-2179', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500' },
   { icon: Chat, title: 'Live chat', value: 'Available in-app', description: '24/7 support for active customers.', gradient: 'from-indigo-400 to-violet-500' },
   { icon: MapPin, title: 'Visit us', value: 'Derby, DE1 1NN', description: 'Office 108, The Old Courthouse, 18-22 St Peter\'s Churchyard', gradient: 'from-violet-400 to-purple-500' },
 ];
 
 const faqs = [
-  { q: 'How long does onboarding take?', a: 'Most agencies are fully set up and live within 2â€“3 business days. Our onboarding team guides you every step of the way.' },
+  { q: 'How long does onboarding take?', a: 'Most agencies are fully set up and live within 2–3 business days. Our onboarding team guides you every step of the way.' },
   { q: 'Is there a free trial available?', a: 'Yes! We offer a 14-day free trial with full access to all features. No credit card required.' },
   { q: 'Can I migrate data from my current system?', a: 'Absolutely. We support data imports from most major homecare platforms and provide migration assistance at no extra cost.' },
   { q: 'Is Logezy CQC compliant?', a: "Yes. Logezy is built with CQC standards at its core, including geo-locked shift verification, full audit trails, and automated compliance reports." },
@@ -174,7 +174,7 @@ export default function Contact() {
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
               <div className="bento-card p-7 relative overflow-hidden"
-                style={{ background: 'linear-gradient(135deg, #0F172A, #1E1B4B)' }}>
+                style={{ background: 'linear-gradient(135deg, #183963, #183963)' }}>
                 <div className="absolute inset-0 pointer-events-none"
                   style={{ background: 'radial-gradient(ellipse at 100% 0%, rgba(14,165,233,0.15) 0%, transparent 60%)' }} />
                 <div className="relative">
@@ -207,7 +207,7 @@ export default function Contact() {
                   <h3 className="font-semibold text-slate-900">Support Hours</h3>
                 </div>
                 <div className="space-y-2 text-sm text-slate-500">
-                  {[['Mon â€“ Fri', '9am â€“ 6pm GMT'], ['Weekends', '10am â€“ 4pm GMT'], ['Live Chat', '24/7']].map(([k, v]) => (
+                  {[['Mon – Fri', '9am – 6pm GMT'], ['Weekends', '10am – 4pm GMT'], ['Live Chat', '24/7']].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span>{k}</span>
                       <span className={`font-medium ${k === 'Live Chat' ? 'text-emerald-600' : 'text-slate-700'}`}>{v}</span>
@@ -317,7 +317,7 @@ export default function Contact() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0F172A, #1E1B4B)' }}>
+      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #183963, #183963)' }}>
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(14,165,233,0.12) 0%, transparent 60%)' }} />
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -1,20 +1,20 @@
-﻿/**
- * Hero.tsx — Premium SaaS hero with scroll-driven card-merge animation
+/**
+ * Hero.tsx � Premium SaaS hero with scroll-driven card-merge animation
  *
  * Layout
- * ──────
- * • Gradient bg · dot grid
- * • LEFT  cards (4, 252 px wide, 14 px gaps): TimesheetsHeader · TimesheetsDonut · TimesheetsStats · ShiftMiniAM
- * • RIGHT cards (4, 252 px wide, 14 px gaps): BirthdayCard · ShiftMiniJK · WorkerStatCard · CandidatesCard
- * • LEFT  outer edge  calc(50% - 656px)  ←→  RIGHT outer edge calc(50% + 656px)  [perfect mirror]
- * • CENTER: badge → H1 → subtitle → CTAs → social proof
- * • DASHBOARD: full-width image, no browser chrome — perspective tilt
- * • LOGOS: trusted-by marquee blended directly below dashboard
+ * ------
+ * � Gradient bg � dot grid
+ * � LEFT  cards (4, 252 px wide, 14 px gaps): TimesheetsHeader � TimesheetsDonut � TimesheetsStats � ShiftMiniAM
+ * � RIGHT cards (4, 252 px wide, 14 px gaps): BirthdayCard � ShiftMiniJK � WorkerStatCard � CandidatesCard
+ * � LEFT  outer edge  calc(50% - 656px)  ??  RIGHT outer edge calc(50% + 656px)  [perfect mirror]
+ * � CENTER: badge ? H1 ? subtitle ? CTAs ? social proof
+ * � DASHBOARD: full-width image, no browser chrome � perspective tilt
+ * � LOGOS: trusted-by marquee blended directly below dashboard
  *
  * Scroll-merge animation (via useScroll spring):
- *   0.14 → 0.70  Each card flies individually to its dashboard widget position
- *   0.40 → 0.70  Cards fade + scale down
- *   0.22 → 0.76  Dashboard rotateX eases 13° → 5°
+ *   0.14 ? 0.70  Each card flies individually to its dashboard widget position
+ *   0.40 ? 0.70  Cards fade + scale down
+ *   0.22 ? 0.76  Dashboard rotateX eases 13� ? 5�
  */
 
 import React, { useRef, useState, useCallback } from 'react';
@@ -26,11 +26,11 @@ import {
 import { Link } from 'react-router-dom';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const I = '#6366F1';
+const I = '#2396C6';
 
-/* ─────────────────────────────────────────────────
+/* -------------------------------------------------
    LOGO DATA (for inline trusted-by strip)
-───────────────────────────────────────────────── */
+------------------------------------------------- */
 const logos = [
   { src: '/medsolve.png',                 alt: 'Medsolve'      },
   { src: '/ansacare_logo.webp',           alt: 'Ansacare'      },
@@ -46,9 +46,9 @@ const LOGO_GAP = 40;
 const TRACK_W  = (LOGO_W + LOGO_GAP) * logos.length;
 const tripled  = [...logos, ...logos, ...logos];
 
-/* ─────────────────────────────────────────────────
+/* -------------------------------------------------
    SHARED CARD SHELL
-───────────────────────────────────────────────── */
+------------------------------------------------- */
 const CardWrap = ({
   width, children, style,
 }: { width: number; children: React.ReactNode; style?: React.CSSProperties }) => (
@@ -71,14 +71,14 @@ const IB = ({ bg, children }: { bg: string; children: React.ReactNode }) => (
   </div>
 );
 
-/* ══════════════════════════════════════════════════
-   TIMESHEETS — SPLIT INTO 3 FLOATING PIECES
+/* --------------------------------------------------
+   TIMESHEETS � SPLIT INTO 3 FLOATING PIECES
    Piece 1: Header (icon + title + date badge)
    Piece 2: Donut  (circle chart + legend)
    Piece 3: Stats  (4 colored tiles)
-══════════════════════════════════════════════════ */
+-------------------------------------------------- */
 
-/** Piece 1 — compact header pill */
+/** Piece 1 � compact header pill */
 function TimesheetsHeaderCard() {
   return (
     <CardWrap width={252}>
@@ -88,31 +88,31 @@ function TimesheetsHeaderCard() {
             <Clock weight="regular" size={17} color="#06B6D4" />
           </div>
           <div>
-            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#0F172A', lineHeight: 1.2 }}>Timesheets</p>
+            <p style={{ margin: 0, fontSize: 13, fontWeight: 700, color: '#183963', lineHeight: 1.2 }}>Timesheets</p>
             <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8', marginTop: 2, lineHeight: 1.3 }}>Your Time, Your Transparency.</p>
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#EEF2FF', padding: '5px 9px', borderRadius: 8, flexShrink: 0 }}>
-          <CalendarBlank weight="regular" size={10} color="#6366F1" />
-          <span style={{ fontSize: 9.5, color: '#6366F1', fontWeight: 700, whiteSpace: 'nowrap' as const }}>May 18th</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, background: '#E8F5FB', padding: '5px 9px', borderRadius: 8, flexShrink: 0 }}>
+          <CalendarBlank weight="regular" size={10} color="#2396C6" />
+          <span style={{ fontSize: 9.5, color: '#2396C6', fontWeight: 700, whiteSpace: 'nowrap' as const }}>May 18th</span>
         </div>
       </div>
     </CardWrap>
   );
 }
 
-/** Piece 2 — donut chart card */
+/** Piece 2 � donut chart card */
 function TimesheetsDonutCard() {
   const r = 37, sw = 14;
   const circ = 2 * Math.PI * r;
   const segs = [
     { pct: 0.12, color: '#06B6D4', startAngle: -90                   },  // teal  (top)
-    { pct: 0.51, color: '#818CF8', startAngle: -90 + 43.2            },  // purple
+    { pct: 0.51, color: '#5AB4D5', startAngle: -90 + 43.2            },  // purple
     { pct: 0.37, color: '#FB923C', startAngle: -90 + 43.2 + 183.6   },  // orange
   ];
   const legend = [
     { color: '#06B6D4', label: 'Invoiced' },
-    { color: '#818CF8', label: 'Pending'  },
+    { color: '#5AB4D5', label: 'Pending'  },
     { color: '#FB923C', label: 'Approved' },
   ];
   return (
@@ -131,7 +131,7 @@ function TimesheetsDonutCard() {
             ))}
           </svg>
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: 21, fontWeight: 900, color: '#0F172A', letterSpacing: '-0.04em', lineHeight: 1 }}>100%</span>
+            <span style={{ fontSize: 21, fontWeight: 900, color: '#183963', letterSpacing: '-0.04em', lineHeight: 1 }}>100%</span>
             <span style={{ fontSize: 8, color: '#94A3B8', marginTop: 2, fontWeight: 600 }}>utilised</span>
           </div>
         </div>
@@ -149,10 +149,10 @@ function TimesheetsDonutCard() {
   );
 }
 
-/** Piece 3 — stats row card */
+/** Piece 3 � stats row card */
 function TimesheetsStatsCard() {
   const stats = [
-    { val: '95.5', label: 'Total',    bg: '#EEF2FF', color: '#6366F1' },
+    { val: '95.5', label: 'Total',    bg: '#E8F5FB', color: '#2396C6' },
     { val: '71.5', label: 'Pending',  bg: '#FFF7ED', color: '#F97316' },
     { val: '0',    label: 'Approved', bg: '#F0FDF4', color: '#16A34A' },
     { val: '24',   label: 'Invoiced', bg: '#E0F9FF', color: '#06B6D4' },
@@ -171,19 +171,19 @@ function TimesheetsStatsCard() {
   );
 }
 
-/* ══════════════════════════════════════════════════
-   UPCOMING BIRTHDAYS CARD  (right · top)
-══════════════════════════════════════════════════ */
+/* --------------------------------------------------
+   UPCOMING BIRTHDAYS CARD  (right � top)
+-------------------------------------------------- */
 function BirthdayCard() {
   return (
     <CardWrap width={252}>
       <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 9 }}>
-        <IB bg="#EEF2FF"><Gift weight="regular" size={16} color="#6366F1" /></IB>
-        <span style={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>Upcoming Birthdays</span>
+        <IB bg="#E8F5FB"><Gift weight="regular" size={16} color="#2396C6" /></IB>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#183963' }}>Upcoming Birthdays</span>
       </div>
       <div style={{ height: 1, background: '#F1F5F9' }} />
       <div style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 11 }}>
-        {/* Avatar — photo-style with gradient fallback */}
+        {/* Avatar � photo-style with gradient fallback */}
         <div style={{
           width: 38, height: 38, borderRadius: '50%', flexShrink: 0,
           background: 'linear-gradient(135deg, #FBBF24 0%, #F87171 60%, #F472B6 100%)',
@@ -193,22 +193,22 @@ function BirthdayCard() {
           boxShadow: '0 2px 8px rgba(248,113,113,0.28)',
         }}>AM</div>
         <div>
-          <p style={{ margin: 0, fontSize: 12.5, fontWeight: 700, color: '#0F172A' }}>Amy Mitchell</p>
+          <p style={{ margin: 0, fontSize: 12.5, fontWeight: 700, color: '#183963' }}>Amy Mitchell</p>
           <p style={{ margin: 0, fontSize: 10.5, color: '#94A3B8', marginTop: 2 }}>VIV1CA83</p>
         </div>
       </div>
       <div style={{ height: 1, background: '#F8FAFC', margin: '0 14px' }} />
       <div style={{ padding: '9px 14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontSize: 12, color: '#6366F1', fontWeight: 600 }}>View all</span>
-        <span style={{ color: '#6366F1', fontSize: 14, fontWeight: 700 }}>→</span>
+        <span style={{ fontSize: 12, color: '#2396C6', fontWeight: 600 }}>View all</span>
+        <span style={{ color: '#2396C6', fontSize: 14, fontWeight: 700 }}>?</span>
       </div>
     </CardWrap>
   );
 }
 
-/* ══════════════════════════════════════════════════
-   SHIFT MINI CARDS  (left · mid + lower)
-══════════════════════════════════════════════════ */
+/* --------------------------------------------------
+   SHIFT MINI CARDS  (left � mid + lower)
+-------------------------------------------------- */
 interface ShiftMiniProps {
   initials: string; avatarBg: string; avatarColor: string;
   name: string; role: string;
@@ -228,7 +228,7 @@ function ShiftMiniCard({ initials, avatarBg, avatarColor, name, role, status, st
               fontSize: 9.5, fontWeight: 800, color: avatarColor, flexShrink: 0,
             }}>{initials}</div>
             <div>
-              <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: '#0F172A' }}>{name}</p>
+              <p style={{ margin: 0, fontSize: 12, fontWeight: 700, color: '#183963' }}>{name}</p>
               <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8' }}>{role}</p>
             </div>
           </div>
@@ -264,13 +264,13 @@ function ShiftMiniJK() {
     initials="JK" avatarBg="rgba(153,246,228,0.60)" avatarColor="#0D9488"
     name="Jake Kennedy" role="Senior Carer"
     status="Invoiced" statusBg="#CCFBF1" statusColor="#0D9488"
-    date="Tue, May 19th" time="08:00 AM – 08:00 PM" location="NHS Ward B, London"
+    date="Tue, May 19th" time="08:00 AM � 08:00 PM" location="NHS Ward B, London"
   />;
 }
 
-/* ══════════════════════════════════════════════════
-   CANDIDATES CARD  (right · lower-mid)  252px full card
-══════════════════════════════════════════════════ */
+/* --------------------------------------------------
+   CANDIDATES CARD  (right � lower-mid)  252px full card
+-------------------------------------------------- */
 function CandidatesCard() {
   return (
     <CardWrap width={252} style={{ padding: '13px 15px' }}>
@@ -281,11 +281,11 @@ function CandidatesCard() {
           </div>
           <div>
             <p style={{ margin: 0, fontSize: 9.5, fontWeight: 700, color: '#64748B', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Candidates</p>
-            <p style={{ margin: '2px 0 0', fontSize: 26, fontWeight: 900, color: '#0F172A', letterSpacing: '-0.04em', lineHeight: 1 }}>71</p>
+            <p style={{ margin: '2px 0 0', fontSize: 26, fontWeight: 900, color: '#183963', letterSpacing: '-0.04em', lineHeight: 1 }}>71</p>
           </div>
         </div>
         <div style={{ textAlign: 'right' as const }}>
-          <span style={{ display: 'block', fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '3px 8px', borderRadius: 9, marginBottom: 4 }}>↑ 4.1%</span>
+          <span style={{ display: 'block', fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '3px 8px', borderRadius: 9, marginBottom: 4 }}>? 4.1%</span>
           <span style={{ fontSize: 9, color: '#94A3B8', fontWeight: 500 }}>this month</span>
         </div>
       </div>
@@ -293,9 +293,9 @@ function CandidatesCard() {
   );
 }
 
-/* ══════════════════════════════════════════════════
-   SCHEDULE MINI CARD  (right · top)  252px
-══════════════════════════════════════════════════ */
+/* --------------------------------------------------
+   SCHEDULE MINI CARD  (right � top)  252px
+-------------------------------------------------- */
 function ScheduleMiniCard() {
   const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const dates = [18,19,20,21,22,23,24];
@@ -304,15 +304,15 @@ function ScheduleMiniCard() {
       {/* Header */}
       <div style={{ padding:'10px 13px 8px', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
         <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-          <div style={{ width:28, height:28, borderRadius:8, background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-            <CalendarBlank weight="regular" size={13} color="#6366F1" />
+          <div style={{ width:28, height:28, borderRadius:8, background:'#E8F5FB', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+            <CalendarBlank weight="regular" size={13} color="#2396C6" />
           </div>
           <div>
-            <p style={{ margin:0, fontSize:12, fontWeight:700, color:'#0F172A', lineHeight:1.2 }}>Schedule</p>
+            <p style={{ margin:0, fontSize:12, fontWeight:700, color:'#183963', lineHeight:1.2 }}>Schedule</p>
             <p style={{ margin:0, fontSize:8.5, color:'#94A3B8', marginTop:1 }}>May 2026</p>
           </div>
         </div>
-        <span style={{ fontSize:8, fontWeight:700, color:'#6366F1', background:'#EEF2FF', padding:'2px 7px', borderRadius:6 }}>Week</span>
+        <span style={{ fontSize:8, fontWeight:700, color:'#2396C6', background:'#E8F5FB', padding:'2px 7px', borderRadius:6 }}>Week</span>
       </div>
       <div style={{ height:1, background:'#F1F5F9' }} />
       {/* Compact calendar strip */}
@@ -327,7 +327,7 @@ function ScheduleMiniCard() {
               <div key={d} style={{
                 textAlign:'center' as const, fontSize:9.5, fontWeight: active?800:600,
                 padding:'3px 0', borderRadius:6,
-                background: active ? '#6366F1' : 'transparent',
+                background: active ? '#2396C6' : 'transparent',
                 color: active ? '#fff' : i>=5 ? '#F97316' : '#374151',
               }}>{d}</div>
             );
@@ -337,7 +337,7 @@ function ScheduleMiniCard() {
         <div style={{ display:'grid', gridTemplateColumns:'repeat(7,1fr)', gap:1, marginTop:2 }}>
           {dates.map((d) => (
             <div key={d} style={{ display:'flex', justifyContent:'center' }}>
-              {d===21 && <div style={{ width:3, height:3, borderRadius:'50%', background:'#6366F1' }} />}
+              {d===21 && <div style={{ width:3, height:3, borderRadius:'50%', background:'#2396C6' }} />}
               {(d===19||d===23) && <div style={{ width:3, height:3, borderRadius:'50%', background:'#10B981' }} />}
             </div>
           ))}
@@ -347,9 +347,9 @@ function ScheduleMiniCard() {
   );
 }
 
-/* ══════════════════════════════════════════════════
+/* --------------------------------------------------
    PHONE FLOATING MICRO-CARDS
-══════════════════════════════════════════════════ */
+-------------------------------------------------- */
 function ShiftConfirmedCard() {
   return (
     <div style={{ background:'#fff', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 32px rgba(0,0,0,0.12),0 0 0 1px rgba(0,0,0,0.05)', display:'flex', alignItems:'center', gap:10, minWidth:200 }}>
@@ -357,8 +357,8 @@ function ShiftConfirmedCard() {
         <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
       <div>
-        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#0F172A', lineHeight:1.2 }}>Shift Confirmed ✓</p>
-        <p style={{ margin:0, fontSize:9, color:'#10B981', marginTop:2 }}>NHS Ward B · 07:00–19:00</p>
+        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#183963', lineHeight:1.2 }}>Shift Confirmed ?</p>
+        <p style={{ margin:0, fontSize:9, color:'#10B981', marginTop:2 }}>NHS Ward B � 07:00�19:00</p>
       </div>
     </div>
   );
@@ -370,17 +370,17 @@ function AvailabilityCard() {
   return (
     <div style={{ background:'#fff', borderRadius:14, padding:'10px 14px', boxShadow:'0 8px 32px rgba(0,0,0,0.12),0 0 0 1px rgba(0,0,0,0.05)', minWidth:190 }}>
       <div style={{ display:'flex', alignItems:'center', gap:7, marginBottom:8 }}>
-        <div style={{ width:28, height:28, borderRadius:8, background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-          <Clock weight="regular" size={13} color="#6366F1" />
+        <div style={{ width:28, height:28, borderRadius:8, background:'#E8F5FB', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+          <Clock weight="regular" size={13} color="#2396C6" />
         </div>
-        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#0F172A' }}>Availability</p>
+        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#183963' }}>Availability</p>
       </div>
       <div style={{ display:'flex', gap:4 }}>
         {days.map((d,i) => (
           <div key={i} style={{ display:'flex', flexDirection:'column' as const, alignItems:'center', gap:3 }}>
             <span style={{ fontSize:7, fontWeight:700, color:'#94A3B8' }}>{d}</span>
             <div style={{ width:16, height:16, borderRadius:5,
-              background: avail[i] ? '#6366F1' : '#F1F5F9',
+              background: avail[i] ? '#2396C6' : '#F1F5F9',
               display:'flex', alignItems:'center', justifyContent:'center' }}>
               {avail[i] && <svg width={8} height={8} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>}
             </div>
@@ -398,31 +398,31 @@ function SignedTimesheetCard() {
         <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       </div>
       <div>
-        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#0F172A', lineHeight:1.2 }}>Signed Timesheet</p>
-        <p style={{ margin:0, fontSize:9, color:'#F97316', marginTop:2 }}>32h 15m · Week May 19</p>
+        <p style={{ margin:0, fontSize:11, fontWeight:800, color:'#183963', lineHeight:1.2 }}>Signed Timesheet</p>
+        <p style={{ margin:0, fontSize:9, color:'#F97316', marginTop:2 }}>32h 15m � Week May 19</p>
       </div>
     </div>
   );
 }
 
-/* ══════════════════════════════════════════════════
-   SHIFT FILL RATE CARD  (right · lower)  252px
-══════════════════════════════════════════════════ */
+/* --------------------------------------------------
+   SHIFT FILL RATE CARD  (right � lower)  252px
+-------------------------------------------------- */
 function WorkerStatCard() {
   return (
     <CardWrap width={252} style={{ padding: '13px 15px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
         <span style={{ fontSize: 10.5, fontWeight: 700, color: '#64748B', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Fill Rate</span>
-        <span style={{ fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '2px 7px', borderRadius: 9 }}>↑ 3.2%</span>
+        <span style={{ fontSize: 9.5, fontWeight: 700, color: '#10B981', background: '#ECFDF5', padding: '2px 7px', borderRadius: 9 }}>? 3.2%</span>
       </div>
-      <p style={{ margin: '0 0 9px', fontSize: 27, fontWeight: 900, color: '#0F172A', letterSpacing: '-0.03em', lineHeight: 1 }}>94%</p>
+      <p style={{ margin: '0 0 9px', fontSize: 27, fontWeight: 900, color: '#183963', letterSpacing: '-0.03em', lineHeight: 1 }}>94%</p>
       <div style={{ height: 5.5, borderRadius: 3, background: '#F1F5F9', marginBottom: 9 }}>
-        <div style={{ width: '94%', height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #6366F1, #818CF8)' }} />
+        <div style={{ width: '94%', height: '100%', borderRadius: 3, background: 'linear-gradient(90deg, #2396C6, #5AB4D5)' }} />
       </div>
       <div style={{ display: 'flex', gap: 20 }}>
         {[{ n: '347', l: 'Workers' }, { n: '89', l: 'Active' }].map(({ n, l }) => (
           <div key={l}>
-            <p style={{ margin: 0, fontSize: 15, fontWeight: 800, color: '#0F172A' }}>{n}</p>
+            <p style={{ margin: 0, fontSize: 15, fontWeight: 800, color: '#183963' }}>{n}</p>
             <p style={{ margin: 0, fontSize: 9.5, color: '#94A3B8' }}>{l}</p>
           </div>
         ))}
@@ -431,9 +431,9 @@ function WorkerStatCard() {
   );
 }
 
-/* ══════════════════════════════════════════════════
+/* --------------------------------------------------
    FLOATING CARD WRAPPER  (entrance + bob)
-══════════════════════════════════════════════════ */
+-------------------------------------------------- */
 interface FP {
   delay: number; fromX: number;
   floatY: number; floatDur: number; floatDelay: number;
@@ -459,9 +459,9 @@ function FC({ delay, fromX, floatY, floatDur, floatDelay, rotate, children }: FP
   );
 }
 
-/* ══════════════════════════════════════════════════
+/* --------------------------------------------------
    HERO
-══════════════════════════════════════════════════ */
+-------------------------------------------------- */
 export default function Hero() {
   const sRef = useRef<HTMLElement>(null);
   const [m, setM] = useState({ x: 0, y: 0 });
@@ -472,17 +472,17 @@ export default function Hero() {
   }, []);
   const onOut = useCallback(() => setM({ x: 0, y: 0 }), []);
 
-  /* ── scroll spring ── */
+  /* -- scroll spring -- */
   const { scrollYProgress } = useScroll({ target: sRef, offset: ['start start', 'end start'] });
   const sp = useSpring(scrollYProgress, { stiffness: 95, damping: 26, restDelta: 0.001 });
 
   const PHASE: [number, number] = [0.14, 0.70];
 
   /*
-   *  Scroll-merge vectors — each card flies toward its nearest dashboard widget
+   *  Scroll-merge vectors � each card flies toward its nearest dashboard widget
    *
-   *  LEFT  group  (Timesheets + ShiftMiniAM)  → merge right/down into dashboard
-   *  RIGHT group  (Birthday + ShiftJK + WorkerStat + Candidates) → merge left/down
+   *  LEFT  group  (Timesheets + ShiftMiniAM)  ? merge right/down into dashboard
+   *  RIGHT group  (Birthday + ShiftJK + WorkerStat + Candidates) ? merge left/down
    *
    *  sbX/sbY  Timesheets pieces (all 3 share same vector)
    *  coX/coY  ShiftMiniAM
@@ -526,21 +526,21 @@ export default function Hero() {
       ref={sRef}
       onMouseMove={onMove}
       onMouseLeave={onOut}
-      style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(148deg, #EEF2FF 0%, #FAFBFF 46%, #F0F9FF 100%)' }}
+      style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(148deg, #E8F5FB 0%, #FAFBFF 46%, #F0F9FF 100%)' }}
     >
-      {/* ── Background blobs ── */}
+      {/* -- Background blobs -- */}
       <div style={{ position: 'absolute', top: '-20%', right: '-14%', width: '58%', height: '70%', background: 'radial-gradient(ellipse, rgba(99,102,241,0.16) 0%, rgba(14,165,233,0.07) 44%, transparent 70%)', filter: 'blur(88px)', zIndex: 0, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: '-12%', left: '-12%', width: '52%', height: '58%', background: 'radial-gradient(ellipse, rgba(99,102,241,0.11) 0%, rgba(16,185,129,0.06) 50%, transparent 70%)', filter: 'blur(84px)', zIndex: 0, pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translateX(-50%)', width: '40%', height: '35%', background: 'radial-gradient(ellipse, rgba(139,92,246,0.07) 0%, transparent 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }} />
       {/* Dot grid */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none', backgroundImage: 'radial-gradient(circle, rgba(99,102,241,0.11) 1px, transparent 1px)', backgroundSize: '28px 28px', maskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 90% 80% at 50% 30%, black 10%, transparent 100%)' }} />
 
-      {/* ════════════════════════════════════════════════════════
-          FLOATING CARDS — balanced 4 + 4 layout
-          ─────────────────────────────────────────────────────
+      {/* --------------------------------------------------------
+          FLOATING CARDS � balanced 4 + 4 layout
+          -----------------------------------------------------
           All cards: 252 px wide  (DonutCard: 210 px, same left edge)
-          LEFT  outer edge → calc(50% - 656px)
-          RIGHT outer edge → calc(50% + 656px)   ← perfect mirror
+          LEFT  outer edge ? calc(50% - 656px)
+          RIGHT outer edge ? calc(50% + 656px)   ? perfect mirror
           Vertical gap between every card: 14 px (consistent)
 
           LEFT stack (Timesheets group):                  h    ends
@@ -554,9 +554,9 @@ export default function Hero() {
             ShiftMiniJK           top 257                88   345
             WorkerStatCard        top 359               120   479
             CandidatesCard        top 493                62   555
-      ════════════════════════════════════════════════════════ */}
+      -------------------------------------------------------- */}
 
-      {/* ── LEFT · Piece 1 — Timesheets Header ── */}
+      {/* -- LEFT � Piece 1 � Timesheets Header -- */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 70, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(18, 10)}>
           <FC delay={0.50} fromX={-52} floatY={-8} floatDur={4.8} floatDelay={0.6} rotate={0.30}>
@@ -566,7 +566,7 @@ export default function Hero() {
       </motion.div>
 
 
-      {/* ── LEFT · Piece 3 — Stats tiles ── */}
+      {/* -- LEFT � Piece 3 � Stats tiles -- */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 220, zIndex: 8, x: sbX, y: sbY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(16, 9)}>
           <FC delay={0.70} fromX={-44} floatY={-7} floatDur={5.2} floatDelay={1.0} rotate={0.20}>
@@ -575,7 +575,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── LEFT · Shift Mini AM ── */}
+      {/* -- LEFT � Shift Mini AM -- */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% - 656px)', top: 300, zIndex: 8, x: coX, y: coY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(14, 8)}>
           <FC delay={0.80} fromX={-36} floatY={-8} floatDur={5.0} floatDelay={1.4} rotate={-0.30}>
@@ -584,7 +584,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── RIGHT · Schedule mini card ── */}
+      {/* -- RIGHT � Schedule mini card -- */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 70, zIndex: 8, x: wsX, y: wsY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-18, 11)}>
           <FC delay={0.55} fromX={56} floatY={-10} floatDur={4.8} floatDelay={0.5} rotate={-0.35}>
@@ -593,7 +593,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── RIGHT · Shift Mini JK ── */}
+      {/* -- RIGHT � Shift Mini JK -- */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 220, zIndex: 8, x: caX, y: caY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-14, 8)}>
           <FC delay={0.65} fromX={44} floatY={-9} floatDur={4.6} floatDelay={1.0} rotate={0.30}>
@@ -602,7 +602,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── RIGHT · Candidates ── */}
+      {/* -- RIGHT � Candidates -- */}
       <motion.div className="hidden xl:block" style={{ position: 'absolute', left: 'calc(50% + 404px)', top: 330, zIndex: 8, x: buX, y: buY, scale: cardSc, opacity: cardOp, pointerEvents: 'none' }}>
         <div style={mp(-9, 6)}>
           <FC delay={0.85} fromX={28} floatY={-6} floatDur={4.4} floatDelay={1.6} rotate={0.20}>
@@ -611,9 +611,9 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ════════════════════════════════════
+      {/* ------------------------------------
           CENTER CONTENT
-      ════════════════════════════════════ */}
+      ------------------------------------ */}
       <motion.div style={{ y: cy, opacity: cop, position: 'relative', zIndex: 10 }}>
         <div style={{ paddingTop: 108 }}>
           <div style={{ textAlign: 'center', maxWidth: 660, margin: '0 auto', padding: '0 28px 60px' }}>
@@ -625,7 +625,7 @@ export default function Hero() {
               transition={{ delay: 0.06, duration: 0.65, ease: EASE }}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 24, padding: '5px 16px 5px 7px', borderRadius: 100, background: 'rgba(99,102,241,0.07)', border: '1px solid rgba(99,102,241,0.24)', boxShadow: '0 2px 22px rgba(99,102,241,0.12)' }}
             >
-              <span style={{ fontSize: 9, fontWeight: 800, padding: '2px 10px', borderRadius: 20, background: `linear-gradient(135deg, ${I} 0%, #818CF8 100%)`, color: '#fff', letterSpacing: '0.08em' }}>NEW</span>
+              <span style={{ fontSize: 9, fontWeight: 800, padding: '2px 10px', borderRadius: 20, background: `linear-gradient(135deg, ${I} 0%, #5AB4D5 100%)`, color: '#fff', letterSpacing: '0.08em' }}>NEW</span>
               <span style={{ fontSize: 12, color: '#64748B', fontWeight: 500 }}>Built for UK temp staffing agencies</span>
             </motion.div>
 
@@ -634,10 +634,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.14, duration: 0.92, ease: EASE }}
-              style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.85rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.048em', color: '#0F172A', margin: '0 0 18px' }}
+              style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.85rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.048em', color: '#183963', margin: '0 0 18px' }}
             >
               The smarter way to{' '}
-              <span style={{ color: '#6366F1', display: 'inline'}}>
+              <span style={{ color: '#2396C6', display: 'inline'}}>
                 run your agency.
               </span>
             </motion.h1>
@@ -649,7 +649,7 @@ export default function Hero() {
               transition={{ delay: 0.22, duration: 0.86, ease: EASE }}
               style={{ fontSize: 'clamp(14px, 1.5vw, 17px)', lineHeight: 1.80, color: '#64748B', maxWidth: 490, margin: '0 auto 32px' }}
             >
-              Scheduling, compliance, timesheets &amp; payroll — all in one platform designed for UK staffing agencies.
+              Scheduling, compliance, timesheets &amp; payroll � all in one platform designed for UK staffing agencies.
             </motion.p>
 
             {/* CTAs */}
@@ -660,7 +660,7 @@ export default function Hero() {
               style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 28 }}
             >
               <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 420, damping: 22 }}>
-                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 30px', borderRadius: 14, textDecoration: 'none', background: `linear-gradient(135deg, ${I} 0%, #818CF8 100%)`, color: '#fff', fontSize: 14.5, fontWeight: 700, boxShadow: `0 6px 30px rgba(99,102,241,0.42), 0 2px 8px rgba(99,102,241,0.22)` }}>
+                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 30px', borderRadius: 14, textDecoration: 'none', background: `linear-gradient(135deg, ${I} 0%, #5AB4D5 100%)`, color: '#fff', fontSize: 14.5, fontWeight: 700, boxShadow: `0 6px 30px rgba(99,102,241,0.42), 0 2px 8px rgba(99,102,241,0.22)` }}>
                   Start Free Trial <ArrowRight weight="regular" style={{ width: 15, height: 15 }} />
                 </a>
               </motion.div>
@@ -683,19 +683,19 @@ export default function Hero() {
                 <span style={{ marginLeft: 5, fontSize: 12.5, color: '#1E293B', fontWeight: 700 }}>4.9 / 5</span>
               </div>
               <div style={{ width: 1, height: 14, background: '#E2E8F0' }} />
-              <span style={{ fontSize: 12, color: '#64748B' }}><span style={{ fontWeight: 700, color: '#0F172A' }}>600+</span> UK agencies</span>
+              <span style={{ fontSize: 12, color: '#64748B' }}><span style={{ fontWeight: 700, color: '#183963' }}>600+</span> UK agencies</span>
               <div style={{ width: 1, height: 14, background: '#E2E8F0' }} />
-              <span style={{ fontSize: 12, color: '#64748B' }}><span style={{ fontWeight: 700, color: '#0F172A' }}>98.7%</span> compliance rate</span>
+              <span style={{ fontSize: 12, color: '#64748B' }}><span style={{ fontWeight: 700, color: '#183963' }}>98.7%</span> compliance rate</span>
             </motion.div>
           </div>
         </div>
       </motion.div>
 
-      {/* ════════════════════════════════════
-          DASHBOARD — no browser chrome
+      {/* ------------------------------------
+          DASHBOARD � no browser chrome
           Just the screenshot with top rounded corners
           + perspective tilt that eases on scroll
-      ════════════════════════════════════ */}
+      ------------------------------------ */}
       <motion.div
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
@@ -728,7 +728,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Floating phone mockup — matches dashboard border style ── */}
+          {/* -- Floating phone mockup � matches dashboard border style -- */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity: 0, x: 40, y: 20 }}
@@ -740,7 +740,7 @@ export default function Hero() {
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
             >
-              {/* Phone container — same indigo border/shadow as dashboard */}
+              {/* Phone container � same indigo border/shadow as dashboard */}
               <div style={{
                 position: 'relative',
                 userSelect: 'none',
@@ -754,7 +754,7 @@ export default function Hero() {
                   '0 30px 80px rgba(0,0,0,0.22)',
                 ].join(', '),
               }}>
-                {/* Side buttons — subtle, same colour tone as frame */}
+                {/* Side buttons � subtle, same colour tone as frame */}
                 <div style={{ position:'absolute', left:-3, top:96, width:3, height:28,
                   background:'rgba(99,102,241,0.35)', borderRadius:'3px 0 0 3px' }} />
                 <div style={{ position:'absolute', left:-3, top:138, width:3, height:52,
@@ -791,7 +791,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── Agency Chat card — right of phone, compact ── */}
+          {/* -- Agency Chat card � right of phone, compact -- */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, x:30 }} animate={{ opacity:1, x:0 }}
@@ -801,7 +801,7 @@ export default function Hero() {
             <motion.div animate={{ y:[0,-7,0] }} transition={{ duration:4.2, repeat:Infinity, ease:'easeInOut', delay:0.5 }}>
               <div style={{ background:'#fff', borderRadius:14, overflow:'hidden', boxShadow:'0 8px 28px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05)', width:170 }}>
                 {/* Header */}
-                <div style={{ background:'linear-gradient(135deg,#6366F1,#818CF8)', padding:'9px 11px', display:'flex', alignItems:'center', gap:8 }}>
+                <div style={{ background:'linear-gradient(135deg,#2396C6,#5AB4D5)', padding:'9px 11px', display:'flex', alignItems:'center', gap:8 }}>
                   <div style={{ width:24, height:24, borderRadius:'50%', background:'rgba(255,255,255,0.20)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
                     <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                   </div>
@@ -816,16 +816,16 @@ export default function Hero() {
                 {/* 2 compact messages */}
                 <div style={{ padding:'8px 10px', display:'flex', flexDirection:'column' as const, gap:6 }}>
                   <div style={{ display:'flex', alignItems:'flex-end', gap:5 }}>
-                    <div style={{ width:18, height:18, borderRadius:'50%', background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:6.5, fontWeight:800, color:'#6366F1', flexShrink:0 }}>AG</div>
+                    <div style={{ width:18, height:18, borderRadius:'50%', background:'#E8F5FB', display:'flex', alignItems:'center', justifyContent:'center', fontSize:6.5, fontWeight:800, color:'#2396C6', flexShrink:0 }}>AG</div>
                     <div style={{ background:'#F1F5F9', borderRadius:'9px 9px 9px 2px', padding:'5px 8px' }}>
-                      <p style={{ margin:0, fontSize:8.5, color:'#334155', lineHeight:1.3 }}>Shift docs ready 📋</p>
+                      <p style={{ margin:0, fontSize:8.5, color:'#334155', lineHeight:1.3 }}>Shift docs ready ??</p>
                       <p style={{ margin:'2px 0 0', fontSize:6.5, color:'#94A3B8' }}>09:41</p>
                     </div>
                   </div>
                   <div style={{ display:'flex', justifyContent:'flex-end' }}>
-                    <div style={{ background:'linear-gradient(135deg,#6366F1,#818CF8)', borderRadius:'9px 9px 2px 9px', padding:'5px 8px' }}>
-                      <p style={{ margin:0, fontSize:8.5, color:'#fff', lineHeight:1.3 }}>Thanks! 👍</p>
-                      <p style={{ margin:'2px 0 0', fontSize:6.5, color:'rgba(255,255,255,0.65)', textAlign:'right' as const }}>✓✓</p>
+                    <div style={{ background:'linear-gradient(135deg,#2396C6,#5AB4D5)', borderRadius:'9px 9px 2px 9px', padding:'5px 8px' }}>
+                      <p style={{ margin:0, fontSize:8.5, color:'#fff', lineHeight:1.3 }}>Thanks! ??</p>
+                      <p style={{ margin:'2px 0 0', fontSize:6.5, color:'rgba(255,255,255,0.65)', textAlign:'right' as const }}>??</p>
                     </div>
                   </div>
                 </div>
@@ -833,7 +833,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── Shift Confirmed card — left of phone ── */}
+          {/* -- Shift Confirmed card � left of phone -- */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
@@ -845,7 +845,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── Availability card — left-lower of phone ── */}
+          {/* -- Availability card � left-lower of phone -- */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
@@ -857,7 +857,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── Signed Timesheet card — bottom of phone ── */}
+          {/* -- Signed Timesheet card � bottom of phone -- */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
@@ -871,10 +871,10 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ════════════════════════════════════
-          TRUSTED BY — blended directly below dashboard
-          No background change, no border — same hero gradient
-      ════════════════════════════════════ */}
+      {/* ------------------------------------
+          TRUSTED BY � blended directly below dashboard
+          No background change, no border � same hero gradient
+      ------------------------------------ */}
       <div style={{ position: 'relative', zIndex: 6, padding: '44px 0 52px', overflow: 'hidden' }}>
 
         {/* Ambient glow */}
@@ -882,8 +882,8 @@ export default function Hero() {
 
         {/* Marquee */}
         <div style={{ position: 'relative', overflow: 'hidden' }}>
-          {/* Left fade — matches hero gradient start */}
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 130, background: 'linear-gradient(90deg, #EEF2FF 0%, transparent 100%)', zIndex: 2, pointerEvents: 'none' }} />
+          {/* Left fade � matches hero gradient start */}
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 130, background: 'linear-gradient(90deg, #E8F5FB 0%, transparent 100%)', zIndex: 2, pointerEvents: 'none' }} />
           {/* Right fade */}
           <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 130, background: 'linear-gradient(-90deg, #F0F9FF 0%, transparent 100%)', zIndex: 2, pointerEvents: 'none' }} />
 

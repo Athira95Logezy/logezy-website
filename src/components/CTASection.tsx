@@ -1,4 +1,4 @@
-ï»¿import React from 'react';
+import React from 'react';
 import { ArrowRight, CheckCircle, Lightning } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -17,7 +17,7 @@ export default function CTASection() {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden"
-          style={{ background: 'linear-gradient(135deg, #183765 0%, #1795C7 55%, #0d2a4d 100%)' }}>
+          style={{ background: 'linear-gradient(135deg, #183765 0%, #2396C6 55%, #0d2a4d 100%)' }}>
 
           {/* Noise texture overlay */}
           <div className="absolute inset-0 pointer-events-none"
@@ -55,7 +55,7 @@ export default function CTASection() {
               style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)' }}
             >
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-              Free 10-day trial Â· No commitment
+              Free 10-day trial · No commitment
             </motion.div>
 
             {/* Headline */}
@@ -77,9 +77,9 @@ export default function CTASection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.18 }}
-              className="text-xl text-blue-100/80 leading-relaxed mb-10 max-w-2xl mx-auto"
+              className="text-xl text-[#E8F5FB]/80 leading-relaxed mb-10 max-w-2xl mx-auto"
             >
-              Join the growing number of recruitment agencies using Logezy to automate their staffing operations, reduce admin, and place more workers â€” faster.
+              Join the growing number of recruitment agencies using Logezy to automate their staffing operations, reduce admin, and place more workers — faster.
             </motion.p>
 
             {/* CTAs */}
@@ -94,7 +94,7 @@ export default function CTASection() {
                 <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white font-bold text-base px-8 py-4 rounded-full"
                   style={{
-                    background: 'linear-gradient(135deg, #1795C7 0%, #183765 100%)',
+                    background: 'linear-gradient(135deg, #2396C6 0%, #183765 100%)',
                     boxShadow: '0 8px 32px rgba(23,149,199,0.45), 0 2px 8px rgba(0,0,0,0.2)',
                     textDecoration: 'none',
                   }}>
@@ -104,7 +104,7 @@ export default function CTASection() {
               </motion.div>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white font-semibold text-base px-8 py-4 rounded-full hover:bg-blue-50 transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
+                  className="inline-flex items-center gap-2 bg-white font-semibold text-base px-8 py-4 rounded-full hover:bg-[#E8F5FB] transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
                   style={{ color: '#183765', border: '2px solid rgba(255,255,255,0.9)', textDecoration: 'none' }}>
                   Book a demo
                 </a>

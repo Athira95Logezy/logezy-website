@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {
   CalendarBlank, Clock, Users, Shield, FileText, Receipt,
   DeviceMobile, Briefcase, Buildings, ArrowRight, CheckCircle,
@@ -6,25 +6,25 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-/* ═══════════════════════════════════════════
+/* -------------------------------------------
    SCREEN MOCKUPS
-═══════════════════════════════════════════ */
+------------------------------------------- */
 
 function SchedulingScreen() {
   const days = ['Mon','Tue','Wed','Thu','Fri'];
   const workers = ['S. Mitchell','J. Okafor','P. Sharma','T. Edwards'];
   const shifts = [
-    ['7–3pm','3–11pm','Off','7–3pm','3–11pm'],
-    ['Off','7–3pm','7–3pm','Off','7–3pm'],
-    ['3–11pm','Off','3–11pm','7–3pm','Off'],
-    ['7–3pm','7–3pm','Off','3–11pm','7–3pm'],
+    ['7�3pm','3�11pm','Off','7�3pm','3�11pm'],
+    ['Off','7�3pm','7�3pm','Off','7�3pm'],
+    ['3�11pm','Off','3�11pm','7�3pm','Off'],
+    ['7�3pm','7�3pm','Off','3�11pm','7�3pm'],
   ];
-  const colors = ['bg-indigo-100 text-indigo-700','bg-violet-100 text-violet-700','bg-blue-100 text-blue-700','bg-cyan-100 text-cyan-700'];
+  const colors = ['bg-[#E8F5FB] text-[#183963]','bg-violet-100 text-violet-700','bg-[#E8F5FB] text-[#183963]','bg-cyan-100 text-cyan-700'];
   return (
     <div className="bg-white rounded-b-xl p-4 space-y-3">
       <div className="flex items-center justify-between">
         <p className="text-xs font-bold text-slate-800">Week 20 Rota</p>
-        <span className="text-[10px] bg-indigo-100 text-indigo-700 font-bold px-2 py-0.5 rounded-full">Auto-generated</span>
+        <span className="text-[10px] bg-[#E8F5FB] text-[#183963] font-bold px-2 py-0.5 rounded-full">Auto-generated</span>
       </div>
       <div className="grid" style={{ gridTemplateColumns:'80px repeat(5,1fr)', gap:3 }}>
         <div className="text-[8px] text-slate-400 py-1 font-semibold">Worker</div>
@@ -63,7 +63,7 @@ function AvailabilityScreen() {
           <React.Fragment key={name}>
             <div className="text-[8px] font-semibold text-slate-700 py-1.5 flex items-center">{name}</div>
             {avail.map((a,i) => (
-              <div key={i} className={`h-6 rounded flex items-center justify-center text-[7px] font-bold ${a?'bg-teal-100 text-teal-700':'bg-slate-50 text-slate-300'}`}>{a?'✓':'—'}</div>
+              <div key={i} className={`h-6 rounded flex items-center justify-center text-[7px] font-bold ${a?'bg-teal-100 text-teal-700':'bg-slate-50 text-slate-300'}`}>{a?'?':'�'}</div>
             ))}
           </React.Fragment>
         ))}
@@ -102,7 +102,7 @@ function CandidateClientScreen() {
             <div className="flex items-center gap-1.5">
               <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${dbs==='Valid'?'bg-emerald-100 text-emerald-700':'bg-amber-100 text-amber-700'}`}>DBS</span>
               <span className="text-[7px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">RTW</span>
-              <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='Active'?'bg-blue-100 text-blue-700':'bg-amber-100 text-amber-700'}`}>{score}%</span>
+              <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='Active'?'bg-[#E8F5FB] text-[#183963]':'bg-amber-100 text-amber-700'}`}>{score}%</span>
             </div>
           </div>
         ))}
@@ -120,7 +120,7 @@ function ComplianceScreen() {
       <div className="grid grid-cols-2 gap-2">
         {[
           { label:'Overall Score', value:'98.7%', color:'text-emerald-600' },
-          { label:'DBS Current',   value:'312/312',color:'text-blue-600'   },
+          { label:'DBS Current',   value:'312/312',color:'text-[#2396C6]'   },
           { label:'Training Done', value:'96.2%', color:'text-violet-600'  },
           { label:'Audits Passed', value:'47/47', color:'text-amber-600'   },
         ].map(({ label, value, color }) => (
@@ -142,8 +142,8 @@ function ComplianceScreen() {
               <p className="text-[9px] font-semibold text-slate-700">{item}</p>
               <p className="text-[8px] text-slate-400">{date}</p>
             </div>
-            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='pass'?'bg-emerald-100 text-emerald-700':'bg-blue-100 text-blue-700'}`}>
-              {status==='pass'?'✓ Pass':'● Live'}
+            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='pass'?'bg-emerald-100 text-emerald-700':'bg-[#E8F5FB] text-[#183963]'}`}>
+              {status==='pass'?'? Pass':'? Live'}
             </span>
           </div>
         ))}
@@ -156,8 +156,8 @@ function TimesheetsScreen() {
   return (
     <div className="bg-white rounded-b-xl p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-bold text-slate-800">Timesheets — Week 20</p>
-        <span className="text-[10px] bg-blue-100 text-blue-700 font-bold px-2 py-0.5 rounded-full">3 pending</span>
+        <p className="text-xs font-bold text-slate-800">Timesheets � Week 20</p>
+        <span className="text-[10px] bg-[#E8F5FB] text-[#183963] font-bold px-2 py-0.5 rounded-full">3 pending</span>
       </div>
       <div className="grid grid-cols-3 gap-2 mb-1">
         {[
@@ -172,18 +172,18 @@ function TimesheetsScreen() {
         ))}
       </div>
       {[
-        { name:'Sarah Mitchell', hours:'37.5h', clocked:'07:00–15:30', gps:'✓ GPS', status:'Approved' },
-        { name:'James Okafor',   hours:'42h',   clocked:'15:00–23:00', gps:'✓ GPS', status:'Approved' },
-        { name:'Priya Sharma',   hours:'35h',   clocked:'07:00–15:00', gps:'Pending',status:'Pending'  },
+        { name:'Sarah Mitchell', hours:'37.5h', clocked:'07:00�15:30', gps:'? GPS', status:'Approved' },
+        { name:'James Okafor',   hours:'42h',   clocked:'15:00�23:00', gps:'? GPS', status:'Approved' },
+        { name:'Priya Sharma',   hours:'35h',   clocked:'07:00�15:00', gps:'Pending',status:'Pending'  },
       ].map(({ name, hours, clocked, gps, status }) => (
         <div key={name} className="flex items-center justify-between py-1.5 border-b border-slate-100 last:border-0">
           <div>
             <p className="text-[9px] font-semibold text-slate-700">{name}</p>
-            <p className="text-[8px] text-slate-400">{clocked} · {hours}</p>
+            <p className="text-[8px] text-slate-400">{clocked} � {hours}</p>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${gps==='✓ GPS'?'bg-emerald-100 text-emerald-700':'bg-amber-100 text-amber-700'}`}>{gps}</span>
-            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='Approved'?'bg-blue-100 text-blue-700':'bg-amber-100 text-amber-700'}`}>{status}</span>
+            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${gps==='? GPS'?'bg-emerald-100 text-emerald-700':'bg-amber-100 text-amber-700'}`}>{gps}</span>
+            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='Approved'?'bg-[#E8F5FB] text-[#183963]':'bg-amber-100 text-amber-700'}`}>{status}</span>
           </div>
         </div>
       ))}
@@ -195,14 +195,14 @@ function InvoicingScreen() {
   return (
     <div className="bg-white rounded-b-xl p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-bold text-slate-800">Invoices — May 2026</p>
-        <span className="text-[10px] bg-violet-100 text-violet-700 font-bold px-2 py-0.5 rounded-full">£186k total</span>
+        <p className="text-xs font-bold text-slate-800">Invoices � May 2026</p>
+        <span className="text-[10px] bg-violet-100 text-violet-700 font-bold px-2 py-0.5 rounded-full">�186k total</span>
       </div>
       <div className="grid grid-cols-3 gap-2">
         {[
-          { label:'Paid',    value:'£142k', color:'text-emerald-600' },
-          { label:'Sent',    value:'£31k',  color:'text-blue-600'    },
-          { label:'Overdue', value:'£13k',  color:'text-red-500'     },
+          { label:'Paid',    value:'�142k', color:'text-emerald-600' },
+          { label:'Sent',    value:'�31k',  color:'text-[#2396C6]'    },
+          { label:'Overdue', value:'�13k',  color:'text-red-500'     },
         ].map(({ label, value, color }) => (
           <div key={label} className="bg-slate-50 rounded-lg p-2 text-center border border-slate-100">
             <p className={`text-sm font-black ${color}`}>{value}</p>
@@ -211,10 +211,10 @@ function InvoicingScreen() {
         ))}
       </div>
       {[
-        { client:'NHS Trust A',   inv:'INV-2406', amount:'£28,400', status:'Paid'    },
-        { client:'Care UK Ltd',   inv:'INV-2407', amount:'£14,200', status:'Sent'    },
-        { client:'Bupa Homes',    inv:'INV-2408', amount:'£9,600',  status:'Overdue' },
-        { client:'HC-One Group',  inv:'INV-2409', amount:'£11,800', status:'Paid'    },
+        { client:'NHS Trust A',   inv:'INV-2406', amount:'�28,400', status:'Paid'    },
+        { client:'Care UK Ltd',   inv:'INV-2407', amount:'�14,200', status:'Sent'    },
+        { client:'Bupa Homes',    inv:'INV-2408', amount:'�9,600',  status:'Overdue' },
+        { client:'HC-One Group',  inv:'INV-2409', amount:'�11,800', status:'Paid'    },
       ].map(({ client, inv, amount, status }) => (
         <div key={inv} className="flex items-center justify-between py-1.5 border-b border-slate-100 last:border-0">
           <div>
@@ -223,7 +223,7 @@ function InvoicingScreen() {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-[9px] font-bold text-slate-800">{amount}</span>
-            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='Paid'?'bg-emerald-100 text-emerald-700':status==='Sent'?'bg-blue-100 text-blue-700':'bg-red-100 text-red-600'}`}>{status}</span>
+            <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${status==='Paid'?'bg-emerald-100 text-emerald-700':status==='Sent'?'bg-[#E8F5FB] text-[#183963]':'bg-red-100 text-red-600'}`}>{status}</span>
           </div>
         </div>
       ))}
@@ -236,12 +236,12 @@ function MobileAppScreen() {
     <div style={{ background:'#0D1829', borderRadius:'0 0 20px 20px', padding:'16px 12px', minHeight:220 }}>
       <div style={{ textAlign:'center', marginBottom:16 }}>
         <p style={{ color:'rgba(255,255,255,0.55)', fontSize:9, marginBottom:4 }}>LOGEZY</p>
-        <p style={{ color:'#fff', fontWeight:800, fontSize:12 }}>Good morning, Sarah 👋</p>
+        <p style={{ color:'#fff', fontWeight:800, fontSize:12 }}>Good morning, Sarah ??</p>
         <p style={{ color:'rgba(165,210,255,0.65)', fontSize:9, marginTop:2 }}>3 shifts this week</p>
       </div>
       {[
-        { label:'NHS Ward B',     time:'Today · 7:00–15:00',   status:'Confirmed', c:'#10B981' },
-        { label:'Royal Hospital', time:'Tomorrow · 7:00–15:00', status:'Upcoming',  c:'#1795C7' },
+        { label:'NHS Ward B',     time:'Today � 7:00�15:00',   status:'Confirmed', c:'#10B981' },
+        { label:'Royal Hospital', time:'Tomorrow � 7:00�15:00', status:'Upcoming',  c:'#2396C6' },
       ].map(({ label, time, status, c }) => (
         <div key={label} style={{ background:'rgba(255,255,255,0.07)', borderRadius:10, padding:'8px 10px', marginBottom:8, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <div>
@@ -251,8 +251,8 @@ function MobileAppScreen() {
           <span style={{ background:`${c}20`, color:c, fontWeight:700, fontSize:8, padding:'3px 8px', borderRadius:20 }}>{status}</span>
         </div>
       ))}
-      <div style={{ background:'linear-gradient(135deg,#5B6CF9,#1795C7)', borderRadius:10, padding:'9px', textAlign:'center', marginTop:4 }}>
-        <p style={{ color:'#fff', fontWeight:800, fontSize:10 }}>📍 Clock In</p>
+      <div style={{ background:'linear-gradient(135deg,#2396C6,#2396C6)', borderRadius:10, padding:'9px', textAlign:'center', marginTop:4 }}>
+        <p style={{ color:'#fff', fontWeight:800, fontSize:10 }}>?? Clock In</p>
       </div>
     </div>
   );
@@ -268,7 +268,7 @@ function RecruitmentScreen() {
       <div className="grid grid-cols-4 gap-1.5">
         {[
           { stage:'Applied',  count:12, color:'from-slate-400 to-slate-500' },
-          { stage:'Screened', count:8,  color:'from-blue-500 to-blue-700'   },
+          { stage:'Screened', count:8,  color:'from-[#2396C6] to-[#183963]'   },
           { stage:'Interview',count:4,  color:'from-violet-500 to-violet-700'},
           { stage:'Offer',    count:2,  color:'from-emerald-500 to-emerald-700'},
         ].map(({ stage, count, color }) => (
@@ -304,7 +304,7 @@ function ClientPortalScreen() {
   return (
     <div className="bg-white rounded-b-xl p-4 space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-bold text-slate-800">Client Portal — NHS Trust A</p>
+        <p className="text-xs font-bold text-slate-800">Client Portal � NHS Trust A</p>
         <span className="text-[10px] bg-cyan-100 text-cyan-700 font-bold px-2 py-0.5 rounded-full">Live</span>
       </div>
       <div className="grid grid-cols-3 gap-2">
@@ -322,17 +322,17 @@ function ClientPortalScreen() {
       <div className="space-y-1.5">
         <p className="text-[9px] font-semibold text-slate-500">Today's Workforce</p>
         {[
-          { name:'Sarah Mitchell', ward:'Ward B — Nurse',         time:'07:00–15:00', live:true  },
-          { name:'James Okafor',   ward:'ICU — Support Worker',   time:'15:00–23:00', live:false },
-          { name:'Priya Sharma',   ward:'A&E — Healthcare Asst',  time:'07:00–15:00', live:true  },
+          { name:'Sarah Mitchell', ward:'Ward B � Nurse',         time:'07:00�15:00', live:true  },
+          { name:'James Okafor',   ward:'ICU � Support Worker',   time:'15:00�23:00', live:false },
+          { name:'Priya Sharma',   ward:'A&E � Healthcare Asst',  time:'07:00�15:00', live:true  },
         ].map(({ name, ward, time, live }) => (
           <div key={name} className="flex items-center justify-between py-1.5 border-b border-slate-100 last:border-0">
             <div>
               <p className="text-[9px] font-semibold text-slate-700">{name}</p>
-              <p className="text-[8px] text-slate-400">{ward} · {time}</p>
+              <p className="text-[8px] text-slate-400">{ward} � {time}</p>
             </div>
             <span className={`text-[7px] font-bold px-1.5 py-0.5 rounded-full ${live?'bg-emerald-100 text-emerald-700':'bg-slate-100 text-slate-500'}`}>
-              {live?'● Live':'Soon'}
+              {live?'? Live':'Soon'}
             </span>
           </div>
         ))}
@@ -341,28 +341,28 @@ function ClientPortalScreen() {
   );
 }
 
-/* ═══════════════════════════════════════════
+/* -------------------------------------------
    FEATURE DATA
-═══════════════════════════════════════════ */
+------------------------------------------- */
 
 const categories = [
   {
     id: 'workforce',
     num: '01',
     label: 'Workforce',
-    desc: 'Schedule your team, track availability, and manage every candidate and client — from one screen.',
-    accentColor: '#5B6CF9',
+    desc: 'Schedule your team, track availability, and manage every candidate and client � from one screen.',
+    accentColor: '#2396C6',
     accentBg: 'rgba(91,108,249,0.06)',
-    borderColor: '#5B6CF9',
+    borderColor: '#2396C6',
     features: [
       {
         icon: CalendarBlank,
         title: 'Scheduling',
         subtitle: 'Drag-and-drop rota builder',
-        gradient: 'linear-gradient(135deg,#5B6CF9,#8B5CF6)',
+        gradient: 'linear-gradient(135deg,#2396C6,#8B5CF6)',
         glow: 'rgba(91,108,249,0.18)',
-        tagBg: 'rgba(91,108,249,0.08)', tagColor: '#5B6CF9',
-        desc: 'Stop spending hours building rotas manually. Build, edit and publish your full weekly rota in minutes — with real-time visibility of who is scheduled, where, and when.',
+        tagBg: 'rgba(91,108,249,0.08)', tagColor: '#2396C6',
+        desc: 'Stop spending hours building rotas manually. Build, edit and publish your full weekly rota in minutes � with real-time visibility of who is scheduled, where, and when.',
         points: [
           'Drag-and-drop rota builder with live conflict detection',
           'Auto-fill shifts by skills, availability & location',
@@ -380,7 +380,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#0891B2,#06B6D4)',
         glow: 'rgba(8,145,178,0.18)',
         tagBg: 'rgba(8,145,178,0.08)', tagColor: '#0891B2',
-        desc: 'Know exactly who is free before you start scheduling. Workers submit their availability through the app — giving your team a live view of workforce capacity at all times.',
+        desc: 'Know exactly who is free before you start scheduling. Workers submit their availability through the app � giving your team a live view of workforce capacity at all times.',
         points: [
           'Workers set recurring or one-off availability via mobile app',
           'Live availability calendar across your entire workforce',
@@ -398,7 +398,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#DB2777,#F43F5E)',
         glow: 'rgba(219,39,119,0.18)',
         tagBg: 'rgba(219,39,119,0.08)', tagColor: '#DB2777',
-        desc: 'Manage your entire workforce and client base from one unified platform. Full candidate profiles, client accounts, placement history — all connected and always up to date.',
+        desc: 'Manage your entire workforce and client base from one unified platform. Full candidate profiles, client accounts, placement history � all connected and always up to date.',
         points: [
           'Complete candidate profiles with live compliance status',
           'Client accounts with contacts, sites and preferences',
@@ -415,7 +415,7 @@ const categories = [
     id: 'compliance',
     num: '02',
     label: 'Compliance & Payroll',
-    desc: 'Stay audit-ready, pay your workers accurately, and invoice clients automatically — without the admin.',
+    desc: 'Stay audit-ready, pay your workers accurately, and invoice clients automatically � without the admin.',
     accentColor: '#059669',
     accentBg: 'rgba(5,150,105,0.06)',
     borderColor: '#059669',
@@ -427,7 +427,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#D97706,#F59E0B)',
         glow: 'rgba(217,119,6,0.18)',
         tagBg: 'rgba(217,119,6,0.08)', tagColor: '#D97706',
-        desc: 'Built with CQC standards at its core. Automated DBS tracking, right-to-work checks, training expiry alerts, and comprehensive audit trails mean you\'re always ready for inspection — without extra admin.',
+        desc: 'Built with CQC standards at its core. Automated DBS tracking, right-to-work checks, training expiry alerts, and comprehensive audit trails mean you\'re always ready for inspection � without extra admin.',
         points: [
           'Automated DBS and right-to-work document tracking',
           'Training expiry alerts sent automatically to workers & managers',
@@ -442,10 +442,10 @@ const categories = [
         icon: FileText,
         title: 'Digital Timesheets',
         subtitle: 'GPS-verified, one-click approved',
-        gradient: 'linear-gradient(135deg,#2563EB,#1795C7)',
+        gradient: 'linear-gradient(135deg,#2563EB,#2396C6)',
         glow: 'rgba(37,99,235,0.18)',
         tagBg: 'rgba(37,99,235,0.08)', tagColor: '#2563EB',
-        desc: 'Workers clock in and out via the mobile app with GPS verification — you always know who was where and when. No paper, no chasing, no errors.',
+        desc: 'Workers clock in and out via the mobile app with GPS verification � you always know who was where and when. No paper, no chasing, no errors.',
         points: [
           'GPS-locked clock in/out on the mobile app',
           'Workers and clients both sign off shifts digitally',
@@ -463,11 +463,11 @@ const categories = [
         gradient: 'linear-gradient(135deg,#7C3AED,#A855F7)',
         glow: 'rgba(124,58,237,0.18)',
         tagBg: 'rgba(124,58,237,0.08)', tagColor: '#7C3AED',
-        desc: 'Generate accurate client invoices automatically the moment timesheets are approved. No manual data entry, no delays — just faster payments for your agency.',
+        desc: 'Generate accurate client invoices automatically the moment timesheets are approved. No manual data entry, no delays � just faster payments for your agency.',
         points: [
           'Invoices auto-generated when timesheets are approved',
           'Branded invoice templates per client account',
-          'Multi-rate support — charge rates, pay rates and margins',
+          'Multi-rate support � charge rates, pay rates and margins',
           'Real-time invoice status: sent, viewed, paid or overdue',
           'Bulk invoice export for your accounts team',
         ],
@@ -480,21 +480,21 @@ const categories = [
     id: 'portals',
     num: '03',
     label: 'Portals & Communication',
-    desc: 'Keep workers, clients and your team connected — with purpose-built portals and a branded mobile app.',
-    accentColor: '#1795C7',
+    desc: 'Keep workers, clients and your team connected � with purpose-built portals and a branded mobile app.',
+    accentColor: '#2396C6',
     accentBg: 'rgba(23,149,199,0.06)',
-    borderColor: '#1795C7',
+    borderColor: '#2396C6',
     features: [
       {
         icon: DeviceMobile,
         title: 'Candidate Mobile App',
         subtitle: 'iOS & Android',
-        gradient: 'linear-gradient(135deg,#4F46E5,#1795C7)',
+        gradient: 'linear-gradient(135deg,#2396C6,#2396C6)',
         glow: 'rgba(79,70,229,0.18)',
-        tagBg: 'rgba(79,70,229,0.08)', tagColor: '#4F46E5',
-        desc: 'Give your temps a mobile experience that carries your brand. Workers see their shifts, confirm bookings, submit timesheets, upload documents, and clock in — all from the Logezy app.',
+        tagBg: 'rgba(79,70,229,0.08)', tagColor: '#2396C6',
+        desc: 'Give your temps a mobile experience that carries your brand. Workers see their shifts, confirm bookings, submit timesheets, upload documents, and clock in � all from the Logezy app.',
         points: [
-          'Available on iOS and Android — free to download',
+          'Available on iOS and Android � free to download',
           'Push notifications for new shifts, changes and approvals',
           'In-app document upload for compliance documents',
           'Digital timesheet submission and e-signatures',
@@ -517,7 +517,7 @@ const categories = [
           'Automated candidate scoring and screening workflows',
           'Digital document collection with e-signature support',
           'Right-to-work and DBS check automation',
-          'One-click onboarding — app download to first shift',
+          'One-click onboarding � app download to first shift',
         ],
         Screen: RecruitmentScreen,
         reverse: true,
@@ -533,7 +533,7 @@ const categories = [
         desc: 'Give your clients real-time visibility into their workforce without flooding your inbox. A branded self-serve portal where clients can view rotas, approve timesheets, and raise requirements.',
         points: [
           'Branded client-facing portal with your agency logo',
-          'Live rota visibility — clients see who is booked and when',
+          'Live rota visibility � clients see who is booked and when',
           'Digital timesheet approval directly from the client side',
           'Clients can raise new shift requirements directly in the portal',
           'Automated weekly reports sent to client contacts',
@@ -546,9 +546,9 @@ const categories = [
   },
 ];
 
-/* ═══════════════════════════════════════════
+/* -------------------------------------------
    SCREEN MOCKUP WRAPPER
-═══════════════════════════════════════════ */
+------------------------------------------- */
 function FeatureMockup({ feature }: { feature: typeof categories[0]['features'][0] }) {
   const isMobile = (feature as typeof categories[2]['features'][0]).isMobile;
   const Screen = feature.Screen;
@@ -616,15 +616,15 @@ function FeatureMockup({ feature }: { feature: typeof categories[0]['features'][
         fontSize:10, fontWeight:700, color:'#334155',
       }}>
         <span style={{ width:7, height:7, borderRadius:'50%', background:'#10B981', display:'inline-block', boxShadow:'0 0 0 3px rgba(16,185,129,0.20)' }}/>
-        Live · syncing
+        Live � syncing
       </div>
     </div>
   );
 }
 
-/* ═══════════════════════════════════════════
+/* -------------------------------------------
    PAGE
-═══════════════════════════════════════════ */
+------------------------------------------- */
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 32 },
   whileInView: { opacity: 1, y: 0 },
@@ -636,9 +636,9 @@ export default function FeaturesPage() {
   return (
     <div className="bg-white">
 
-      {/* ══════════════════════
+      {/* ----------------------
           HERO
-      ══════════════════════ */}
+      ---------------------- */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-[#F8FAFC]">
         <div style={{ position:'absolute', top:0, right:0, width:700, height:700, borderRadius:'50%', background:'radial-gradient(circle,rgba(91,108,249,0.08) 0%,transparent 65%)', transform:'translate(20%,-30%)', pointerEvents:'none' }}/>
         <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(23,149,199,0.07) 1px,transparent 1px)', backgroundSize:'32px 32px', pointerEvents:'none', opacity:0.5 }}/>
@@ -646,24 +646,24 @@ export default function FeaturesPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeUp(0)}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-7 text-xs font-bold"
-              style={{ background:'rgba(91,108,249,0.10)', border:'1px solid rgba(91,108,249,0.22)', color:'#5B6CF9' }}>
-              <span style={{ width:6, height:6, borderRadius:'50%', background:'#5B6CF9', display:'inline-block' }}/>
+              style={{ background:'rgba(91,108,249,0.10)', border:'1px solid rgba(91,108,249,0.22)', color:'#2396C6' }}>
+              <span style={{ width:6, height:6, borderRadius:'50%', background:'#2396C6', display:'inline-block' }}/>
               Platform Features
             </div>
           </motion.div>
 
           <motion.h1 {...fadeUp(0.08)}
             className="font-black leading-[1.06] mb-6"
-            style={{ fontSize:'clamp(2.4rem,5vw,4rem)', letterSpacing:'-0.03em', color:'#0C2138' }}>
+            style={{ fontSize:'clamp(2.4rem,5vw,4rem)', letterSpacing:'-0.03em', color:'#183963' }}>
             Everything your agency needs.{' '}
-            <span style={{ color: '#1795C7', display: 'inline'}}>
+            <span style={{ color: '#2396C6', display: 'inline'}}>
               Nothing it doesn't.
             </span>
           </motion.h1>
 
           <motion.p {...fadeUp(0.14)}
             className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-12">
-            9 features across 3 categories — built specifically for temp recruitment agencies.
+            9 features across 3 categories � built specifically for temp recruitment agencies.
           </motion.p>
 
           {/* 3 category overview cards */}
@@ -674,7 +674,7 @@ export default function FeaturesPage() {
                 <div className="flex items-center gap-2 mb-3">
                   <div style={{ width:8, height:8, borderRadius:'50%', background:cat.accentColor }}/>
                   <span style={{ fontSize:11, fontWeight:800, color:cat.accentColor, letterSpacing:'0.04em' }}>
-                    {cat.num} — {cat.label.toUpperCase()}
+                    {cat.num} � {cat.label.toUpperCase()}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
@@ -695,9 +695,9 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* ══════════════════════
+      {/* ----------------------
           FEATURE CATEGORIES
-      ══════════════════════ */}
+      ---------------------- */}
       {categories.map((cat) => (
         <div key={cat.id}>
 
@@ -712,7 +712,7 @@ export default function FeaturesPage() {
                   <p style={{ fontSize:11, fontWeight:800, color:cat.accentColor, letterSpacing:'0.08em', textTransform:'uppercase', marginBottom:4 }}>
                     Category {cat.num}
                   </p>
-                  <h2 style={{ fontSize:'clamp(1.8rem,3.5vw,2.8rem)', fontWeight:900, letterSpacing:'-0.025em', color:'#0C2138', margin:'0 0 6px' }}>
+                  <h2 style={{ fontSize:'clamp(1.8rem,3.5vw,2.8rem)', fontWeight:900, letterSpacing:'-0.025em', color:'#183963', margin:'0 0 6px' }}>
                     {cat.label}
                   </h2>
                   <p style={{ color:'rgba(12,33,56,0.52)', fontSize:16, lineHeight:1.55, maxWidth:540 }}>
@@ -740,7 +740,7 @@ export default function FeaturesPage() {
                         {f.subtitle}
                       </div>
 
-                      <h3 style={{ fontSize:'clamp(1.8rem,3vw,2.6rem)', fontWeight:900, letterSpacing:'-0.025em', color:'#0C2138', marginBottom:16, lineHeight:1.1 }}>
+                      <h3 style={{ fontSize:'clamp(1.8rem,3vw,2.6rem)', fontWeight:900, letterSpacing:'-0.025em', color:'#183963', marginBottom:16, lineHeight:1.1 }}>
                         {f.title}
                       </h3>
                       <p style={{ color:'rgba(12,33,56,0.52)', fontSize:17, lineHeight:1.68, marginBottom:28 }}>
@@ -788,9 +788,9 @@ export default function FeaturesPage() {
         </div>
       ))}
 
-      {/* ══════════════════════
+      {/* ----------------------
           HOW IT WORKS
-      ══════════════════════ */}
+      ---------------------- */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -801,14 +801,14 @@ export default function FeaturesPage() {
               className="text-4xl sm:text-5xl font-black text-slate-900"
               style={{ letterSpacing:'-0.025em' }}>
               Simple to start,{' '}
-              <span style={{ color: '#1795C7', display: 'inline'}}>
+              <span style={{ color: '#2396C6', display: 'inline'}}>
                 powerful to scale.
               </span>
             </motion.h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { num:'01', title:'Quick setup',          desc:'Import your team and clients in minutes using our guided onboarding wizard — no technical knowledge needed.' },
+              { num:'01', title:'Quick setup',          desc:'Import your team and clients in minutes using our guided onboarding wizard � no technical knowledge needed.' },
               { num:'02', title:'Configure & customise', desc:'Tailor workflows, shift templates, and permission levels to match exactly how your agency operates.' },
               { num:'03', title:'Launch & grow',         desc:'Go live with confidence. Our UK-based support team is with you every step of the way as you scale.' },
             ].map((step, i) => (
@@ -817,7 +817,7 @@ export default function FeaturesPage() {
                 transition={{ type:'spring', stiffness:280, damping:22 }}
                 className="bg-white rounded-3xl p-8"
                 style={{ border:'1px solid #E2E8F0', boxShadow:'0 4px 16px rgba(0,0,0,0.04)' }}>
-                <p style={{ fontSize:48, fontWeight:900, color:'#5B6CF9', lineHeight:1, marginBottom:16 }}>
+                <p style={{ fontSize:48, fontWeight:900, color:'#2396C6', lineHeight:1, marginBottom:16 }}>
                   {step.num}
                 </p>
                 <h3 className="text-lg font-black text-slate-900 mb-2">{step.title}</h3>
@@ -828,11 +828,11 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      {/* ══════════════════════
+      {/* ----------------------
           FINAL CTA
-      ══════════════════════ */}
+      ---------------------- */}
       <section className="py-24 relative overflow-hidden"
-        style={{ background:'linear-gradient(135deg,#0F172A 0%,#1E1B4B 100%)' }}>
+        style={{ background:'linear-gradient(135deg,#183963 0%,#183963 100%)' }}>
         <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at 50% 0%,rgba(23,149,199,0.16) 0%,transparent 60%)', pointerEvents:'none' }}/>
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeUp(0)}>
@@ -848,7 +848,7 @@ export default function FeaturesPage() {
                 <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                   display:'inline-flex', alignItems:'center', gap:8,
                   padding:'14px 28px', borderRadius:100, fontSize:15, fontWeight:700,
-                  color:'#fff', background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
+                  color:'#fff', background:'linear-gradient(135deg,#2396C6,#2396C6)',
                   boxShadow:'0 4px 24px rgba(91,108,249,0.40)', textDecoration:'none',
                 }}>
                   Book a Demo <ArrowRight weight="regular" style={{ width:16, height:16 }}/>

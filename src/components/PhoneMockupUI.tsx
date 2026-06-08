@@ -28,7 +28,7 @@ export default function PhoneMockupUI() {
 
       {/* Phone body */}
       <div className="relative w-full h-full rounded-[44px] overflow-hidden border-[5px] border-slate-800"
-        style={{ background: '#0F172A', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08)' }}>
+        style={{ background: '#183963', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.08)' }}>
 
         {/* Physical buttons */}
         <div className="absolute -left-1.5 top-24 w-1 h-8 bg-slate-700 rounded-l-full" />

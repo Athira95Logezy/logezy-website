@@ -1,4 +1,4 @@
-ï»¿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { CaretDown, Question, ArrowRight, ChatCircle } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: 'Can Logezy handle compliance tracking for temporary workers?',
-    a: 'Yes. Logezy automatically tracks right-to-work documents, DBS certificates, and expiring certifications across your workforce â€” so your agency stays audit-ready without the manual chasing.',
+    a: 'Yes. Logezy automatically tracks right-to-work documents, DBS certificates, and expiring certifications across your workforce — so your agency stays audit-ready without the manual chasing.',
   },
   {
     q: 'How does the digital timesheet process work?',
@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: 'Is there a mobile app for temporary workers?',
-    a: 'Yes â€” a fully branded candidate app for your agency. Workers manage availability, view shifts, submit timesheets, and chat with your team all in one place.',
+    a: 'Yes — a fully branded candidate app for your agency. Workers manage availability, view shifts, submit timesheets, and chat with your team all in one place.',
   },
   {
     q: 'How quickly can we get set up?',
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: 'Can we try Logezy before committing?',
-    a: 'Yes. Start a free 10-day trial â€” no credit card required â€” or book a demo and we\'ll walk you through everything.',
+    a: 'Yes. Start a free 10-day trial — no credit card required — or book a demo and we\'ll walk you through everything.',
   },
 ];
 
@@ -73,7 +73,7 @@ export default function FAQ() {
 
         <div className="grid lg:grid-cols-5 gap-16 items-start">
 
-          {/* Left column â€” sticky heading */}
+          {/* Left column — sticky heading */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,22 +95,22 @@ export default function FAQ() {
 
             {/* CTA card */}
             <div className="rounded-2xl border p-6" style={{ background: '#fff', borderColor: 'rgba(99,102,241,0.18)' }}>
-              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
-                <ChatCircle weight="regular" className="h-5 w-5 text-blue-600" />
+              <div className="w-10 h-10 rounded-xl bg-[#E8F5FB] flex items-center justify-center mb-4">
+                <ChatCircle weight="regular" className="h-5 w-5 text-[#2396C6]" />
               </div>
               <h3 className="text-base font-bold text-slate-900 mb-2">Still have questions?</h3>
               <p className="text-sm text-slate-500 mb-4 leading-relaxed">
                 Our team is happy to walk you through the platform and answer any questions.
               </p>
               <Link to="/contact"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 group">
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#2396C6] hover:text-[#183963] group">
                 Chat with us
                 <ArrowRight weight="regular" className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </div>
           </motion.div>
 
-          {/* Right column â€” accordion */}
+          {/* Right column — accordion */}
           <motion.div
             variants={listVariants}
             initial="hidden"
@@ -123,7 +123,7 @@ export default function FAQ() {
                 <motion.div key={i} variants={listItemVariants}
                   className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                     open === i
-                      ? 'border-blue-200 bg-blue-50/50 shadow-[0_2px_16px_rgba(23,149,199,0.08)]'
+                      ? 'border-[#A8D9EF] bg-[#E8F5FB]/50 shadow-[0_2px_16px_rgba(23,149,199,0.08)]'
                       : 'border-slate-200 bg-white hover:border-slate-300'
                   }`}>
                   <button
@@ -131,12 +131,12 @@ export default function FAQ() {
                     onClick={() => setOpen(open === i ? null : i)}
                   >
                     <span className={`text-[15px] font-semibold leading-snug transition-colors ${
-                      open === i ? 'text-blue-700' : 'text-slate-800'
+                      open === i ? 'text-[#183963]' : 'text-slate-800'
                     }`}>
                       {q}
                     </span>
                     <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-                      open === i ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'
+                      open === i ? 'bg-[#2396C6] text-white' : 'bg-slate-100 text-slate-400'
                     }`}>
                       <motion.span
                         animate={{ rotate: open === i ? 180 : 0 }}

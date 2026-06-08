@@ -337,7 +337,7 @@ export default function MobileAppShowcase() {
       {/* Headline */}
       <h2 style={{ fontSize: 'clamp(1.9rem,3.2vw,3.2rem)', fontWeight: 900, color: '#FFFFFF', letterSpacing: '-0.03em', lineHeight: 1.07, marginBottom: 16, textAlign: isMobile ? 'center' : 'left' }}>
         Your workforce,{' '}
-        <span style={{ display: 'inline', background: 'linear-gradient(90deg,#38BDF8 0%,#818CF8 55%,#C084FC 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+        <span style={{ display: 'inline', background: 'linear-gradient(90deg,#38BDF8 0%,#5AB4D5 55%,#C084FC 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
           always connected.
         </span>
         <br />
@@ -369,7 +369,7 @@ export default function MobileAppShowcase() {
       </div>
 
       <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 14, textDecoration: 'none', background: 'linear-gradient(135deg,#1795C7 0%,#5B6CF9 100%)', color: '#fff', fontWeight: 700, fontSize: 14, boxShadow: '0 10px 32px rgba(56,189,248,0.28), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.16)', alignSelf: isMobile ? 'center' : 'flex-start', letterSpacing: '-0.01em' }}>
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 14, textDecoration: 'none', background: 'linear-gradient(135deg,#2396C6 0%,#2396C6 100%)', color: '#fff', fontWeight: 700, fontSize: 14, boxShadow: '0 10px 32px rgba(56,189,248,0.28), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.16)', alignSelf: isMobile ? 'center' : 'flex-start', letterSpacing: '-0.01em' }}>
         Get your branded app
         <ArrowRight weight="bold" style={{ width: 14, height: 14 }} />
       </a>
@@ -378,7 +378,7 @@ export default function MobileAppShowcase() {
 
   return (
     <section ref={sectionRef} style={{
-      background: 'linear-gradient(160deg,#060F28 0%,#091530 40%,#0A1A38 100%)',
+      background: 'linear-gradient(160deg,#183963 0%,#091530 40%,#0A1A38 100%)',
       padding: isMobile ? '56px 20px 64px' : isTablet ? '64px 28px 72px' : '72px 0 80px',
       position: 'relative', overflow: 'hidden',
     }}>
@@ -425,7 +425,7 @@ export default function MobileAppShowcase() {
             <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 8 }}>
               <GlowNode color="#38BDF8" size={8} />
               <GlowConnector length={40} />
-              <GlowNode color="#818CF8" size={8} />
+              <GlowNode color="#5AB4D5" size={8} />
               <div style={{ width: 10 }} />
               <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}>
                 <NotifStream />
@@ -463,7 +463,7 @@ export default function MobileAppShowcase() {
             <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 6 }}>
               <GlowNode color="#38BDF8" size={7} />
               <GlowConnector length={28} />
-              <GlowNode color="#818CF8" size={7} />
+              <GlowNode color="#5AB4D5" size={7} />
               <div style={{ width: 8 }} />
               <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.35 }}>
                 <NotifStream compact />
@@ -494,7 +494,7 @@ export default function MobileAppShowcase() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <GlowNode color="#38BDF8" size={6} />
             <GlowConnector length={20} />
-            <GlowNode color="#818CF8" size={6} />
+            <GlowNode color="#5AB4D5" size={6} />
           </div>
 
           {/* 2-col notif grid */}

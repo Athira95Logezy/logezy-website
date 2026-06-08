@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {
   Target, Lightning, Heart, ArrowRight, CheckCircle,
   Users, Shield, TrendUp, Pulse, CalendarBlank, Heartbeat, Briefcase,
@@ -7,16 +7,16 @@ import {
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    DATA
-───────────────────────────────────────────── */
+--------------------------------------------- */
 const pillars = [
   {
     icon: Target,
     title: 'Built for temp, not adapted for it',
     description:
-      'Most staffing software was built for permanent recruitment and patched to handle temp. Logezy is purpose-built for temporary staffing from day one — every feature, every workflow, every screen designed around how temp agencies actually operate.',
-    gradient: 'linear-gradient(135deg,#5B6CF9,#1795C7)',
+      'Most staffing software was built for permanent recruitment and patched to handle temp. Logezy is purpose-built for temporary staffing from day one � every feature, every workflow, every screen designed around how temp agencies actually operate.',
+    gradient: 'linear-gradient(135deg,#2396C6,#2396C6)',
     glow: 'rgba(91,108,249,0.15)',
   },
   {
@@ -47,13 +47,13 @@ const handleRows = [
 
 const storyParagraphs = [
   'Temp recruitment is fast, complex, and unforgiving. Shifts change by the hour, compliance can\'t slip, and clients expect results yesterday.',
-  'We saw agencies held back — not by lack of talent, but by outdated workforce management software that was never built for the pace of temporary staffing. Spreadsheets were breaking under the pressure. Agencies were drowning in admin. Good recruiters were spending more time on paperwork than on people.',
-  'So we built Logezy. A platform designed from the ground up for the specific demands of temp recruitment — where shift scheduling, compliance management, and operational simplicity aren\'t optional extras. They\'re the whole point.',
+  'We saw agencies held back � not by lack of talent, but by outdated workforce management software that was never built for the pace of temporary staffing. Spreadsheets were breaking under the pressure. Agencies were drowning in admin. Good recruiters were spending more time on paperwork than on people.',
+  'So we built Logezy. A platform designed from the ground up for the specific demands of temp recruitment � where shift scheduling, compliance management, and operational simplicity aren\'t optional extras. They\'re the whole point.',
 ];
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    ANIMATION HELPERS
-───────────────────────────────────────────── */
+--------------------------------------------- */
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 36 },
   whileInView: { opacity: 1, y: 0 },
@@ -61,9 +61,9 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    MINI DASHBOARD (hero visual)
-───────────────────────────────────────────── */
+--------------------------------------------- */
 function MiniDashboard() {
   return (
     <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
@@ -78,14 +78,14 @@ function MiniDashboard() {
           {[true,false,false,false].map((active, i) => (
             <div key={i} className="w-6 h-6 rounded-lg flex items-center justify-center"
               style={{ background: active ? 'rgba(23,149,199,0.2)' : 'transparent' }}>
-              <div className="w-3 h-3 rounded-sm" style={{ background: active ? '#1795C7' : '#475569' }} />
+              <div className="w-3 h-3 rounded-sm" style={{ background: active ? '#2396C6' : '#475569' }} />
             </div>
           ))}
         </div>
         <div className="flex-1 p-3 space-y-2.5">
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label:'Staff Scheduled', value:'1,284', color:'from-blue-500 to-blue-700' },
+              { label:'Staff Scheduled', value:'1,284', color:'from-[#2396C6] to-[#183963]' },
               { label:'Compliance',      value:'98.7%', color:'from-emerald-500 to-teal-600' },
               { label:'Open Shifts',     value:'12',    color:'from-amber-500 to-orange-500' },
             ].map(({ label, value, color }) => (
@@ -106,8 +106,8 @@ function MiniDashboard() {
                   <p className="text-[9px] font-semibold text-slate-700">{name}</p>
                   <p className="text-[8px] text-slate-400">{role}</p>
                 </div>
-                <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-full ${status === 'live' ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600'}`}>
-                  {status === 'live' ? '● Live' : 'Soon'}
+                <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded-full ${status === 'live' ? 'bg-emerald-100 text-emerald-600' : 'bg-[#E8F5FB] text-[#2396C6]'}`}>
+                  {status === 'live' ? '? Live' : 'Soon'}
                 </span>
               </div>
             ))}
@@ -118,16 +118,16 @@ function MiniDashboard() {
   );
 }
 
-/* ─────────────────────────────────────────────
+/* ---------------------------------------------
    PAGE
-───────────────────────────────────────────── */
+--------------------------------------------- */
 export default function About() {
   return (
     <div className="bg-white overflow-hidden">
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           HERO
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-[#EFF8F3]">
         {/* Decorative rings */}
         {[700, 920, 1140].map((sz, i) => (
@@ -153,16 +153,16 @@ export default function About() {
             <motion.div initial={{opacity:0,x:-30}} animate={{opacity:1,x:0}} transition={{duration:0.7,ease:[0.22,1,0.36,1]}}>
               {/* Tag */}
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-7 text-xs font-bold"
-                style={{ background:'rgba(23,149,199,0.10)', border:'1px solid rgba(23,149,199,0.22)', color:'#1795C7' }}>
-                <span style={{ width:6,height:6,borderRadius:'50%',background:'#1795C7',display:'inline-block' }}/>
+                style={{ background:'rgba(23,149,199,0.10)', border:'1px solid rgba(23,149,199,0.22)', color:'#2396C6' }}>
+                <span style={{ width:6,height:6,borderRadius:'50%',background:'#2396C6',display:'inline-block' }}/>
                 About Logezy
               </div>
 
               <h1 className="font-black leading-[1.06] mb-6"
-                style={{ fontSize:'clamp(2.4rem,4vw,3.6rem)', letterSpacing:'-0.03em', color:'#0C2138' }}>
+                style={{ fontSize:'clamp(2.4rem,4vw,3.6rem)', letterSpacing:'-0.03em', color:'#183963' }}>
                 We built what temp agencies{' '}
                 <span style={{
-                  color: '#1795C7', display: 'inline'}}>
+                  color: '#2396C6', display: 'inline'}}>
                   actually needed.
                 </span>
               </h1>
@@ -176,7 +176,7 @@ export default function About() {
                   <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     padding:'14px 28px', borderRadius:100, fontSize:14, fontWeight:700,
-                    color:'#fff', background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
+                    color:'#fff', background:'linear-gradient(135deg,#2396C6,#2396C6)',
                     boxShadow:'0 4px 24px rgba(91,108,249,0.38)', textDecoration:'none',
                   }}>
                     Book a Demo <ArrowRight weight="regular" style={{width:15,height:15}}/>
@@ -186,7 +186,7 @@ export default function About() {
                   <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     padding:'14px 28px', borderRadius:100, fontSize:14, fontWeight:600,
-                    color:'#0C2138', background:'transparent',
+                    color:'#183963', background:'transparent',
                     border:'2px solid rgba(12,33,56,0.20)', textDecoration:'none',
                   }}>
                     Start Free Trial
@@ -195,7 +195,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Right — dashboard + floating chips */}
+            {/* Right � dashboard + floating chips */}
             <motion.div initial={{opacity:0,x:30}} animate={{opacity:1,x:0}} transition={{duration:0.7,delay:0.12,ease:[0.22,1,0.36,1]}}
               className="relative hidden lg:block" style={{height:420}}>
               <div className="absolute inset-0 pointer-events-none"
@@ -207,11 +207,11 @@ export default function About() {
               <motion.div animate={{y:[0,-6,0]}} transition={{duration:4,repeat:Infinity,ease:'easeInOut'}}
                 className="absolute z-10" style={{left:'2%',bottom:'6%'}}>
                 <div style={{display:'inline-flex',alignItems:'center',gap:10,padding:'10px 14px',borderRadius:14,background:'rgba(255,255,255,0.90)',border:'1px solid rgba(91,108,249,0.20)',backdropFilter:'blur(16px)',boxShadow:'0 8px 24px rgba(91,108,249,0.12)'}}>
-                  <div style={{width:32,height:32,borderRadius:9,background:'linear-gradient(135deg,#5B6CF9,#1795C7)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+                  <div style={{width:32,height:32,borderRadius:9,background:'linear-gradient(135deg,#2396C6,#2396C6)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
                     <Users weight="regular" style={{width:15,height:15,color:'#fff'}}/>
                   </div>
                   <div>
-                    <p style={{fontSize:14,fontWeight:800,color:'#0C2138',margin:0,lineHeight:1.1}}>600+</p>
+                    <p style={{fontSize:14,fontWeight:800,color:'#183963',margin:0,lineHeight:1.1}}>600+</p>
                     <p style={{fontSize:10,color:'rgba(12,33,56,0.45)',margin:'2px 0 0',lineHeight:1}}>Active Agencies</p>
                   </div>
                 </div>
@@ -223,7 +223,7 @@ export default function About() {
                     <Shield weight="regular" style={{width:15,height:15,color:'#fff'}}/>
                   </div>
                   <div>
-                    <p style={{fontSize:14,fontWeight:800,color:'#0C2138',margin:0,lineHeight:1.1}}>100%</p>
+                    <p style={{fontSize:14,fontWeight:800,color:'#183963',margin:0,lineHeight:1.1}}>100%</p>
                     <p style={{fontSize:10,color:'rgba(12,33,56,0.45)',margin:'2px 0 0',lineHeight:1}}>CQC Compliance</p>
                   </div>
                 </div>
@@ -233,15 +233,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           OUR STORY
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section className="py-28 bg-white relative overflow-hidden">
         <div style={{position:'absolute',right:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-start">
 
-            {/* Left — sticky label + accent */}
+            {/* Left � sticky label + accent */}
             <motion.div {...fadeUp(0)} className="lg:sticky lg:top-28">
               <div className="section-tag mb-6 inline-flex">Our Story</div>
               <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-8" style={{letterSpacing:'-0.03em', lineHeight:1.25}}>
@@ -253,7 +253,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Right — paragraphs */}
+            {/* Right � paragraphs */}
             <div className="space-y-7 pt-2">
               {storyParagraphs.map((text, i) => (
                 <motion.p key={i} {...fadeUp(i * 0.1 + 0.1)}
@@ -276,18 +276,18 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          OUR MISSION — dark full-bleed
-      ══════════════════════════════════════ */}
+      {/* --------------------------------------
+          OUR MISSION � dark full-bleed
+      -------------------------------------- */}
       <section className="py-28 relative overflow-hidden"
-        style={{background:'linear-gradient(160deg,#0C1835 0%,#0E2050 100%)'}}>
+        style={{background:'linear-gradient(160deg,#183963 0%,#183963 100%)'}}>
         {/* Glow */}
         <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:800,height:600,background:'radial-gradient(ellipse,rgba(23,149,199,0.18) 0%,transparent 65%)',filter:'blur(60px)',pointerEvents:'none'}}/>
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeUp(0)}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-xs font-bold"
               style={{background:'rgba(23,149,199,0.15)',border:'1px solid rgba(23,149,199,0.30)',color:'#A8D8EE'}}>
-              <span style={{width:6,height:6,borderRadius:'50%',background:'#1795C7',display:'inline-block'}}/>
+              <span style={{width:6,height:6,borderRadius:'50%',background:'#2396C6',display:'inline-block'}}/>
               Our Mission
             </div>
           </motion.div>
@@ -295,14 +295,14 @@ export default function About() {
             className="font-black leading-[1.08] mb-8 text-white"
             style={{fontSize:'clamp(2.4rem,5vw,4rem)',letterSpacing:'-0.03em'}}>
             Our mission is{' '}
-            <span style={{color: '#1795C7', display: 'inline'}}>
+            <span style={{color: '#2396C6', display: 'inline'}}>
               simple.
             </span>
           </motion.h2>
           <motion.p {...fadeUp(0.16)}
             className="text-xl leading-relaxed max-w-2xl mx-auto"
             style={{color:'rgba(165,210,255,0.75)'}}>
-            To give every temp recruitment agency — regardless of size — the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
+            To give every temp recruitment agency � regardless of size � the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
           </motion.p>
 
           {/* 3 stats */}
@@ -310,7 +310,7 @@ export default function About() {
             {[
               {val:'600+', lbl:'UK Agencies'},
               {val:'80%',  lbl:'Less Admin'},
-              {val:'3×',   lbl:'Faster Fills'},
+              {val:'3�',   lbl:'Faster Fills'},
             ].map(({val,lbl},i) => (
               <div key={lbl} style={{borderRight: i<2 ? '1px solid rgba(255,255,255,0.10)' : 'none', paddingRight: i<2 ? 24 : 0}}>
                 <p style={{fontSize:32,fontWeight:900,color:'#fff',margin:0,letterSpacing:'-0.03em'}}>{val}</p>
@@ -321,9 +321,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          WHY LOGEZY — 3 PILLARS
-      ══════════════════════════════════════ */}
+      {/* --------------------------------------
+          WHY LOGEZY � 3 PILLARS
+      -------------------------------------- */}
       <section className="py-28 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -361,9 +361,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          WHAT WE HANDLE — comparison table
-      ══════════════════════════════════════ */}
+      {/* --------------------------------------
+          WHAT WE HANDLE � comparison table
+      -------------------------------------- */}
       <section className="py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -382,7 +382,7 @@ export default function About() {
             className="rounded-2xl overflow-hidden"
             style={{border:'1px solid #E2E8F0',boxShadow:'0 8px 40px rgba(0,0,0,0.07)'}}>
             {/* Header */}
-            <div className="grid grid-cols-2" style={{background:'linear-gradient(135deg,#0C1835,#0E2050)'}}>
+            <div className="grid grid-cols-2" style={{background:'linear-gradient(135deg,#183963,#183963)'}}>
               <div className="px-4 sm:px-7 py-4 sm:py-5 text-xs sm:text-sm font-bold text-white/70 border-r border-white/10">What used to take hours</div>
               <div className="px-4 sm:px-7 py-4 sm:py-5 text-xs sm:text-sm font-bold text-white">With Logezy</div>
             </div>
@@ -391,7 +391,7 @@ export default function About() {
               <motion.div key={task}
                 initial={{opacity:0,x:-20}} whileInView={{opacity:1,x:0}}
                 viewport={{once:true}} transition={{duration:0.4,delay:i*0.07}}
-                className={`grid grid-cols-2 group transition-colors ${i%2===0?'bg-white':'bg-slate-50/50'} hover:bg-blue-50/40`}>
+                className={`grid grid-cols-2 group transition-colors ${i%2===0?'bg-white':'bg-slate-50/50'} hover:bg-[#E8F5FB]/40`}>
                 <div className="px-4 sm:px-7 py-4 sm:py-5 text-xs sm:text-sm text-slate-600 border-r border-slate-100 flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-slate-300 flex-shrink-0"/>
                   {task}
@@ -408,9 +408,9 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           WHO WE SERVE
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section className="py-28 bg-[#F8FAFC] relative overflow-hidden">
         <div style={{position:'absolute',left:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -427,8 +427,8 @@ export default function About() {
                 Made for agencies of every size.
               </motion.h2>
               {[
-                "Whether you're a two-person agency placing your first 20 workers, or an established operation managing thousands of shifts a week — Logezy scales with you.",
-                "We work with temp recruitment agencies across healthcare, hospitality, and education — industries where getting the right person in the right place at the right time isn't just important. It's everything.",
+                "Whether you're a two-person agency placing your first 20 workers, or an established operation managing thousands of shifts a week � Logezy scales with you.",
+                "We work with temp recruitment agencies across healthcare, hospitality, and education � industries where getting the right person in the right place at the right time isn't just important. It's everything.",
               ].map((text,i) => (
                 <motion.p key={i} {...fadeUp(0.1 + i*0.1)}
                   className={`leading-relaxed ${i===0?'text-xl font-medium text-slate-700 mb-5':'text-lg text-slate-500'}`}>
@@ -437,11 +437,11 @@ export default function About() {
               ))}
             </div>
 
-            {/* Right — industry tiles */}
+            {/* Right � industry tiles */}
             <motion.div {...fadeUp(0.16)} className="grid gap-4">
               {[
                 { icon:Heartbeat, label:'Healthcare & Nursing', desc:'NMC / HCPC compliance, DBS tracking, CQC-ready audits.', color:'linear-gradient(135deg,#EF4444,#EC4899)', bg:'rgba(239,68,68,0.06)', border:'rgba(239,68,68,0.14)' },
-                { icon:GraduationCap, label:'Education', desc:'Supply teachers, TAs, same-day placements, AWR-compliant payroll.', color:'linear-gradient(135deg,#8B5CF6,#6366F1)', bg:'rgba(139,92,246,0.06)', border:'rgba(139,92,246,0.14)' },
+                { icon:GraduationCap, label:'Education', desc:'Supply teachers, TAs, same-day placements, AWR-compliant payroll.', color:'linear-gradient(135deg,#8B5CF6,#2396C6)', bg:'rgba(139,92,246,0.06)', border:'rgba(139,92,246,0.14)' },
                 { icon:Briefcase, label:'Hospitality', desc:'Multi-venue scheduling, last-minute fill, seasonal demand.', color:'linear-gradient(135deg,#D97706,#F59E0B)', bg:'rgba(217,119,6,0.06)', border:'rgba(217,119,6,0.14)' },
               ].map(({icon:Icon,label,desc,color,bg,border}) => (
                 <motion.div key={label}
@@ -463,11 +463,11 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          FINAL CTA — redesigned
-      ══════════════════════════════════════ */}
+      {/* --------------------------------------
+          FINAL CTA � redesigned
+      -------------------------------------- */}
       <section className="relative overflow-hidden py-24"
-        style={{background:'linear-gradient(160deg,#0C1835 0%,#0F172A 50%,#1E1B4B 100%)'}}>
+        style={{background:'linear-gradient(160deg,#183963 0%,#183963 50%,#183963 100%)'}}>
         {/* Glows */}
         <div style={{position:'absolute',top:0,left:'50%',transform:'translateX(-50%)',width:900,height:400,background:'radial-gradient(ellipse at 50% 0%,rgba(23,149,199,0.14) 0%,transparent 60%)',filter:'blur(48px)',pointerEvents:'none'}}/>
         <div style={{position:'absolute',bottom:0,right:0,width:480,height:480,borderRadius:'50%',background:'radial-gradient(circle,rgba(139,92,246,0.10) 0%,transparent 65%)',transform:'translate(30%,30%)',pointerEvents:'none'}}/>
@@ -493,7 +493,7 @@ export default function About() {
               <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                 whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}
                 style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 32px',borderRadius:100,
-                  fontSize:15,fontWeight:800,color:'#fff',background:'linear-gradient(135deg,#5B6CF9,#1795C7)',
+                  fontSize:15,fontWeight:800,color:'#fff',background:'linear-gradient(135deg,#2396C6,#2396C6)',
                   boxShadow:'0 8px 28px rgba(91,108,249,0.42)',textDecoration:'none'}}>
                 Start Free Trial <ArrowRight weight="bold" style={{width:15,height:15}}/>
               </motion.a>
@@ -507,12 +507,12 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* 3 stat cards — no CQC */}
+          {/* 3 stat cards � no CQC */}
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
             transition={{duration:0.6,delay:0.15,ease:[0.22,1,0.36,1]}}
             style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16,maxWidth:700,margin:'0 auto'}}>
             {[
-              { icon:Users,   label:'UK Agencies',  value:'600+', g:'linear-gradient(135deg,#5B6CF9,#1795C7)', glow:'rgba(91,108,249,0.22)'  },
+              { icon:Users,   label:'UK Agencies',  value:'600+', g:'linear-gradient(135deg,#2396C6,#2396C6)', glow:'rgba(91,108,249,0.22)'  },
               { icon:TrendUp, label:'Admin Saved',   value:'80%',  g:'linear-gradient(135deg,#8B5CF6,#A855F7)', glow:'rgba(139,92,246,0.22)' },
               { icon:Pulse,   label:'App Uptime',    value:'99.9%',g:'linear-gradient(135deg,#D97706,#F59E0B)', glow:'rgba(217,119,6,0.22)'  },
             ].map(({icon:Icon,label,value,g,glow}) => (
