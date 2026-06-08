@@ -4,7 +4,7 @@ import {
   List, X, ArrowRight, CaretDown,
   CalendarBlank, Clock, Users, Shield, FileText, Receipt,
   Briefcase, Buildings, DeviceMobile,
-  Heartbeat, BookOpen, ForkKnife,
+  Heartbeat, BookOpen, ForkKnife, Newspaper, ChartBar,
 } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -21,6 +21,11 @@ const productLinks = [
   { icon: Briefcase,     label: 'Recruitment Portal',       desc: 'Hire faster, smarter',            color: 'text-orange-600 bg-orange-50', to: '/product/recruitment'       },
   { icon: Buildings,     label: 'Client Portal',            desc: 'Self-serve for your clients',     color: 'text-cyan-600 bg-cyan-50',     to: '/product/client-portal'     },
   { icon: DeviceMobile,  label: 'Candidate Mobile App',     desc: 'iOS & Android',                   color: 'text-indigo-600 bg-indigo-50', to: '/product/mobile-app'        },
+];
+
+const resourceLinks = [
+  { icon: Newspaper, label: 'Blog',         desc: 'Insights for UK staffing agencies', color: 'text-indigo-600 bg-indigo-50', to: '/resources/blog'          },
+  { icon: ChartBar,  label: 'Case Studies', desc: 'Real agencies, real results',        color: 'text-emerald-600 bg-emerald-50', to: '/resources/case-studies' },
 ];
 
 const industryLinks = [
@@ -199,23 +204,65 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* ── Flat links ── */}
+            {/* ── About ── */}
+            <Link to="/about" onMouseEnter={() => setActiveDropdown(null)}
+              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                isActive('/about') ? 'text-blue-600 bg-blue-50/80' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+              }`}>
+              About
+            </Link>
+
+            {/* ── Resources dropdown ── */}
+            <div className="relative" onMouseEnter={() => setActiveDropdown('resources')}>
+              <button className={`flex items-center gap-1 px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                activeDropdown === 'resources' || isActive('/resources')
+                  ? 'text-blue-600 bg-blue-50/80'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+              }`}>
+                Resources
+                <motion.span
+                  animate={{ rotate: activeDropdown === 'resources' ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  className={`inline-flex ${activeDropdown === 'resources' ? 'text-blue-500' : 'text-slate-400'}`}
+                >
+                  <CaretDown weight="regular" className="h-3.5 w-3.5" />
+                </motion.span>
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === 'resources' && (
+                  <motion.div
+                    variants={dropdownVariants}
+                    initial="hidden" animate="show" exit="exit"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-2xl border border-slate-200/70 p-2"
+                    style={{ boxShadow: '0 24px 64px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.05)' }}
+                  >
+                    {resourceLinks.map(({ icon: Icon, label, desc, color, to }) => (
+                      <Link key={label} to={to}
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors group">
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${color} group-hover:scale-110 transition-transform duration-200`}>
+                          <Icon weight="regular" className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{label}</p>
+                          <p className="text-xs text-slate-400 mt-0.5">{desc}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* ── Pricing / Contact ── */}
             {[
-              { to: '/about',     label: 'About'     },
-              { to: '/resources', label: 'Resources' },
-              { to: '/pricing',   label: 'Pricing'   },
-              { to: '/contact',   label: 'Contact'   },
+              { to: '/pricing', label: 'Pricing' },
+              { to: '/contact', label: 'Contact' },
             ].map(link => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onMouseEnter={() => setActiveDropdown(null)}
+              <Link key={link.to} to={link.to} onMouseEnter={() => setActiveDropdown(null)}
                 className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
-                  isActive(link.to)
-                    ? 'text-blue-600 bg-blue-50/80'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                }`}
-              >
+                  isActive(link.to) ? 'text-blue-600 bg-blue-50/80' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}>
                 {link.label}
               </Link>
             ))}
@@ -294,21 +341,31 @@ export default function Header() {
                   </motion.div>
                 ))}
 
+                {/* Resources group */}
+                <p className="px-4 pt-3 pb-0.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Resources</p>
+                {resourceLinks.map(({ icon: Icon, label, color, to }, i) => (
+                  <motion.div key={to} custom={productLinks.length + industryLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
+                    <Link to={to} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
+                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
+                        <Icon weight="regular" className="h-3.5 w-3.5" />
+                      </div>
+                      {label}
+                    </Link>
+                  </motion.div>
+                ))}
+
                 {/* Flat links */}
                 <p className="px-4 pt-3 pb-0.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Company</p>
                 {[
-                  { to: '/about',     label: 'About'     },
-                  { to: '/resources', label: 'Resources' },
-                  { to: '/pricing',   label: 'Pricing'   },
-                  { to: '/contact',   label: 'Contact'   },
+                  { to: '/about',   label: 'About'   },
+                  { to: '/pricing', label: 'Pricing' },
+                  { to: '/contact', label: 'Contact' },
                 ].map((link, i) => (
-                  <motion.div key={link.to} custom={productLinks.length + industryLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
-                    <Link
-                      to={link.to}
+                  <motion.div key={link.to} custom={productLinks.length + industryLinks.length + resourceLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
+                    <Link to={link.to}
                       className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                         isActive(link.to) ? 'text-blue-600 bg-blue-50' : 'text-slate-700 hover:bg-slate-50'
-                      }`}
-                    >
+                      }`}>
                       {link.label}
                     </Link>
                   </motion.div>
