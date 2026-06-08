@@ -73,7 +73,7 @@ export default function Footer() {
             {/* Brand col */}
             <motion.div variants={itemVariants} className="col-span-2 md:col-span-4">
               <Link to="/" className="inline-flex mb-4">
-                <img src="/logezy_Logo.jpg" alt="Logezy" className="h-10 w-auto" />
+                <img src="/logezy_Logo.png" alt="Logezy" className="h-10 w-auto" />
               </Link>
               <p className="text-sm leading-relaxed text-slate-500 mb-5 max-w-[260px]">
                 The UK's leading workforce management platform for staffing &amp; healthcare agencies.
