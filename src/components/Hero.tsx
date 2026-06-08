@@ -791,6 +791,71 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
+          {/* ── Agency Chat card — right of phone ── */}
+          <motion.div
+            className="hidden lg:block"
+            initial={{ opacity:0, x:30 }} animate={{ opacity:1, x:0 }}
+            transition={{ delay:1.1, duration:0.8, ease:EASE }}
+            style={{ position:'absolute', right:-268, top:-20, zIndex:22, pointerEvents:'none' }}
+          >
+            <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:4.2, repeat:Infinity, ease:'easeInOut', delay:0.5 }}>
+              <div style={{
+                background:'#fff',
+                borderRadius:18,
+                overflow:'hidden',
+                boxShadow:'0 12px 40px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.05)',
+                width:210,
+              }}>
+                {/* Chat header */}
+                <div style={{ background:'linear-gradient(135deg,#6366F1,#818CF8)', padding:'12px 14px', display:'flex', alignItems:'center', gap:10 }}>
+                  <div style={{ width:32, height:32, borderRadius:'50%', background:'rgba(255,255,255,0.20)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                    <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div>
+                    <p style={{ margin:0, fontSize:11.5, fontWeight:800, color:'#fff', lineHeight:1.2 }}>Agency Chat</p>
+                    <div style={{ display:'flex', alignItems:'center', gap:4, marginTop:2 }}>
+                      <div style={{ width:5, height:5, borderRadius:'50%', background:'#4ADE80' }} />
+                      <span style={{ fontSize:8.5, color:'rgba(255,255,255,0.80)', fontWeight:600 }}>Online</span>
+                    </div>
+                  </div>
+                </div>
+                {/* Messages */}
+                <div style={{ padding:'10px 12px', display:'flex', flexDirection:'column' as const, gap:8 }}>
+                  {/* Incoming */}
+                  <div style={{ display:'flex', alignItems:'flex-end', gap:6 }}>
+                    <div style={{ width:22, height:22, borderRadius:'50%', background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:8, fontWeight:800, color:'#6366F1', flexShrink:0 }}>AG</div>
+                    <div style={{ background:'#F1F5F9', borderRadius:'12px 12px 12px 3px', padding:'7px 10px', maxWidth:130 }}>
+                      <p style={{ margin:0, fontSize:10, color:'#334155', lineHeight:1.4 }}>Your shift docs are ready for review 📋</p>
+                      <p style={{ margin:'3px 0 0', fontSize:7.5, color:'#94A3B8' }}>09:41</p>
+                    </div>
+                  </div>
+                  {/* Outgoing */}
+                  <div style={{ display:'flex', justifyContent:'flex-end' }}>
+                    <div style={{ background:'linear-gradient(135deg,#6366F1,#818CF8)', borderRadius:'12px 12px 3px 12px', padding:'7px 10px', maxWidth:130 }}>
+                      <p style={{ margin:0, fontSize:10, color:'#fff', lineHeight:1.4 }}>Thanks! I'll check now 👍</p>
+                      <p style={{ margin:'3px 0 0', fontSize:7.5, color:'rgba(255,255,255,0.65)', textAlign:'right' as const }}>09:42 ✓✓</p>
+                    </div>
+                  </div>
+                  {/* Incoming 2 */}
+                  <div style={{ display:'flex', alignItems:'flex-end', gap:6 }}>
+                    <div style={{ width:22, height:22, borderRadius:'50%', background:'#EEF2FF', display:'flex', alignItems:'center', justifyContent:'center', fontSize:8, fontWeight:800, color:'#6366F1', flexShrink:0 }}>AG</div>
+                    <div style={{ background:'#F1F5F9', borderRadius:'12px 12px 12px 3px', padding:'7px 10px', maxWidth:130 }}>
+                      <p style={{ margin:0, fontSize:10, color:'#334155', lineHeight:1.4 }}>New vacancy: Band 6 Nurse 🏥</p>
+                      <p style={{ margin:'3px 0 0', fontSize:7.5, color:'#94A3B8' }}>now</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Input bar */}
+                <div style={{ borderTop:'1px solid #F1F5F9', padding:'8px 12px', display:'flex', alignItems:'center', gap:8 }}>
+                  <div style={{ flex:1, background:'#F8FAFC', borderRadius:20, padding:'5px 10px', fontSize:9.5, color:'#94A3B8' }}>Type a message…</div>
+                  <div style={{ width:24, height:24, borderRadius:'50%', background:'linear-gradient(135deg,#6366F1,#818CF8)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                    <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
           {/* ── Shift Confirmed card — left of phone ── */}
           <motion.div
             className="hidden lg:block"
