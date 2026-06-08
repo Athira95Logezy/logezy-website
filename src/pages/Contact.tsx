@@ -207,7 +207,7 @@ export default function Contact() {
                   <h3 className="font-semibold text-slate-900">Support Hours</h3>
                 </div>
                 <div className="space-y-2 text-sm text-slate-500">
-                  {[['Mon – Fri', '9am – 6pm GMT'], ['Weekends', '10am – 4pm GMT'], ['Live Chat', '24/7']].map(([k, v]) => (
+                  {[['Mon – Fri', '9am – 6pm GMT'], ['Live Chat', '24/7']].map(([k, v]) => (
                     <div key={k} className="flex justify-between">
                       <span>{k}</span>
                       <span className={`font-medium ${k === 'Live Chat' ? 'text-emerald-600' : 'text-slate-700'}`}>{v}</span>
