@@ -104,7 +104,7 @@ function AvailabilityAnim() {
       >
         <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 6px #10B98180' }} />
         <span style={{ fontSize: 10.5, fontWeight: 700, color: '#065F46' }}>
-          <motion.span key={count} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>{count} days</motion.span>{' '}available — staff matched
+          <motion.span key={count} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>{count} days</motion.span>{' '}available, staff matched
         </span>
       </motion.div>
     </div>

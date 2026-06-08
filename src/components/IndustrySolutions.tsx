@@ -272,7 +272,7 @@ export default function IndustrySolutions() {
                 fontSize: 15.5, color: '#64748B',
                 lineHeight: 1.78, marginBottom: 24,
               }}>
-                We've built Logezy to handle the complexity of UK staffing agencies — helping teams reduce admin, stay compliant, and fill shifts faster across every sector.
+                We've built Logezy to handle the complexity of UK staffing agencies, helping teams reduce admin, stay compliant, and fill shifts faster across every sector.
               </p>
 
               {/* interest link */}

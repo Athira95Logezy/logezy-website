@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: 'Is there a mobile app for temporary workers?',
-    a: 'Yes — a fully branded candidate app for your agency. Workers manage availability, view shifts, submit timesheets, and chat with your team all in one place.',
+    a: 'Yes, a fully branded candidate app for your agency. Workers manage availability, view shifts, submit timesheets, and chat with your team all in one place.',
   },
   {
     q: 'How quickly can we get set up?',
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: 'Can we try Logezy before committing?',
-    a: 'Yes. Start a free 10-day trial — no credit card required — or book a demo and we\'ll walk you through everything.',
+    a: 'Yes. Start a free 10-day trial with no credit card required, or book a demo and we\'ll walk you through everything.',
   },
 ];
 

@@ -15,7 +15,7 @@ const pillars = [
     icon: Target,
     title: 'Built for temp, not adapted for it',
     description:
-      'Most staffing software was built for permanent recruitment and patched to handle temp. Logezy is purpose-built for temporary staffing from day one — every feature, every workflow, every screen designed around how temp agencies actually operate.',
+      'Most staffing software was built for permanent recruitment and patched to handle temp. Logezy is purpose-built for temporary staffing from day one, every feature, every workflow, every screen designed around how temp agencies actually operate.',
     gradient: 'linear-gradient(135deg,#2396C6,#2396C6)',
     glow: 'rgba(91,108,249,0.15)',
   },
@@ -302,7 +302,7 @@ export default function About() {
           <motion.p {...fadeUp(0.16)}
             className="text-xl leading-relaxed max-w-2xl mx-auto"
             style={{color:'rgba(165,210,255,0.75)'}}>
-            To give every temp recruitment agency — regardless of size — the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
+            To give every temp recruitment agency, regardless of size — the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
           </motion.p>
 
           {/* 3 stats */}
@@ -507,7 +507,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* 3 stat cards — no CQC */}
+          {/* 3 stat cards. No CQC */}
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
             transition={{duration:0.6,delay:0.15,ease:[0.22,1,0.36,1]}}
             style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16,maxWidth:700,margin:'0 auto'}}>

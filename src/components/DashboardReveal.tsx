@@ -98,7 +98,7 @@ export default function DashboardReveal() {
             fontSize: 16, lineHeight: 1.72, color: 'rgba(255,255,255,0.40)',
             maxWidth: 520, margin: '0 auto 28px',
           }}>
-            One real-time command centre for shifts, compliance, timesheets, and payroll — everything your agency needs, always up to date.
+            One real-time Command centre for shifts, compliance, timesheets, and payroll. Everything your agency needs, always up to date.
           </p>
 
           <motion.div
@@ -198,7 +198,7 @@ export default function DashboardReveal() {
               }} />
               <img
                 src="/dashboard.png"
-                alt="Logezy Dashboard — full agency overview"
+                alt="Logezy Dashboard, full agency overview"
                 style={{ width: '100%', display: 'block', maxHeight: '65vh', objectFit: 'cover', objectPosition: 'top' }}
               />
             </div>

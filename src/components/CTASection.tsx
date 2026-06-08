@@ -79,7 +79,7 @@ export default function CTASection() {
               transition={{ duration: 0.6, delay: 0.18 }}
               className="text-xl text-[#E8F5FB]/80 leading-relaxed mb-10 max-w-2xl mx-auto"
             >
-              Join the growing number of recruitment agencies using Logezy to automate their staffing operations, reduce admin, and place more workers — faster.
+              Join the growing number of recruitment agencies using Logezy to automate their staffing operations, reduce admin, and place more workers, faster.
             </motion.p>
 
             {/* CTAs */}

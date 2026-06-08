@@ -82,7 +82,7 @@ const pages: IndustryConfig[] = [
     features:[
       { icon:Shield,       title:'Compliance Tracking',     desc:'Every document, every expiry — automatically monitored. Right-to-work, DBS, NMC pins, training qualifications. Stored, tracked, and flagged before they lapse.', linkTo:'/product/compliance' },
       { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Fill nursing shifts faster with live availability and role matching. See who\'s qualified, available, and near the location before you pick up the phone.', linkTo:'/product/scheduling' },
-      { icon:DeviceMobile, title:'Candidate App',           desc:'A fully branded app your nurses actually use. Workers manage availability, confirm shifts, submit timesheets, and upload compliance documents — all from their phone.', linkTo:'/product/mobile-app' },
+      { icon:DeviceMobile, title:'Candidate App',           desc:'A fully branded app your nurses actually use. Workers manage availability, confirm shifts, submit timesheets, and upload compliance documents, all from their phone.', linkTo:'/product/mobile-app' },
       { icon:FileText,     title:'Digital Timesheets',      desc:'Submitted from their phone. Approved in one click. GPS-verified, e-signed, tamper-proof records that feed straight into payroll and invoicing.', linkTo:'/product/timesheets' },
       { icon:Buildings,    title:'Client Portal',           desc:'Give care homes and NHS trusts live shift visibility. Clients can see who\'s booked, approve timesheets, and access invoices — without calling your team.', linkTo:'/product/client-portal' },
       { icon:ClipboardText,title:'Fast Onboarding',         desc:'Get nurses placement-ready in hours, not days. A fully digital recruitment portal collects documents, forms, and compliance paperwork before their first shift.', linkTo:'/product/recruitment' },
@@ -96,14 +96,14 @@ const pages: IndustryConfig[] = [
     heroBg:'linear-gradient(135deg,#F5F3FF 0%,#EFF6FF 60%,#FFFFFF 100%)',
     title:'Education',
     tagline:'The right teachers. The right checks. Ready when schools need them.',
-    heroDesc:'Schools can\'t wait. Supplying teaching staff requires fast turnaround, airtight safeguarding compliance, and reliable workers who show up — every time. Logezy gives education agencies the tools to move faster, stay fully compliant, and build the reputation that keeps schools coming back.',
+    heroDesc:'Schools can\'t wait. Supplying teaching staff requires fast turnaround, airtight safeguarding compliance, and reliable workers who show up, every time. Logezy gives education agencies the tools to move faster, stay fully compliant, and build the reputation that keeps schools coming back.',
     heroStats:[
       { value:'100%', label:'Safeguarding audit-ready', icon: Shield },
       { value:'3×',   label:'Faster placements',        icon: ArrowUpRight },
       { value:'0',    label:'Compliance gaps',          icon: CheckCircle },
     ],
     challengeHeading:"One safeguarding gap. One no-show. Schools call your competitor.",
-    challengeText:'Supplying teaching staff requires fast turnaround, airtight safeguarding compliance, and reliable workers who show up. Managing all of that manually — across multiple schools and a constantly changing candidate pool — puts enormous pressure on your team. One unverified qualification, one teacher who doesn\'t show — and the school is calling someone else. Logezy keeps you ahead.',
+    challengeText:'Supplying teaching staff requires fast turnaround, airtight safeguarding compliance, and reliable workers who show up. Managing all of that manually — across multiple schools and a constantly changing candidate pool — puts enormous pressure on your team. One unverified qualification, one teacher who doesn\'t show and the school is calling someone else. Logezy keeps you ahead.',
     featuresHeading:'Everything your education agency needs to place faster and protect every school.',
     features:[
       { icon:Shield,       title:'Compliance Tracking',     desc:'DBS certificates, safeguarding checks, and teaching qualifications — all monitored automatically. Every candidate arrives at school with the right checks in place.', linkTo:'/product/compliance' },
@@ -129,15 +129,15 @@ const pages: IndustryConfig[] = [
       { value:'100%', label:'Shift fill rate',         icon: CalendarBlank },
     ],
     challengeHeading:"Hospitality never slows down. Your staffing operation can't either.",
-    challengeText:'Events overrun, bookings spike, and clients need cover with hours to spare. Workers cancel last minute, shifts go unfilled, and clients lose confidence. Logezy gives you the speed, visibility, and communication tools to stay ahead of every situation — and keep every client covered, every time.',
+    challengeText:'Events overrun, bookings spike, and clients need cover with hours to spare. Workers cancel last minute, shifts go unfilled, and clients lose confidence. Logezy gives you the speed, visibility, and communication tools to stay ahead of every situation and keep every client covered, every time.',
     featuresHeading:'Everything your hospitality agency needs to fill every shift — fast.',
     features:[
       { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Build and fill hospitality shifts in minutes with live availability and role matching. See who\'s free, qualified, and nearby — before you start calling.', linkTo:'/product/scheduling' },
-      { icon:Bell,         title:'Three-Way Notifications', desc:'Workers get shift updates across push, SMS, and email simultaneously — so no-shows become rare and last-minute cancellations get covered before your client notices.', linkTo:'/product/mobile-app' },
+      { icon:Bell,         title:'Three-Way Notifications', desc:'Workers get shift updates across push, SMS, and email simultaneously, so no-shows become rare and last-minute cancellations get covered before your client notices.', linkTo:'/product/mobile-app' },
       { icon:DeviceMobile, title:'Candidate App',           desc:'Workers manage availability, confirm shifts, and submit timesheets from their phone. Your team spends less time on calls and more time filling shifts that matter.', linkTo:'/product/mobile-app' },
       { icon:FileText,     title:'Digital Timesheets',      desc:'End the paper timesheet chaos at the end of every event. Workers submit digitally, managers approve in one click, and payroll is ready the same day.', linkTo:'/product/timesheets' },
       { icon:ClipboardText,title:'Fast Onboarding',         desc:'Get new hospitality workers registered, compliant, and placement-ready fast. A structured digital flow means your candidate pool grows without the admin overhead.', linkTo:'/product/recruitment' },
-      { icon:Buildings,    title:'Client Portal',           desc:'Give hotels, venues, and catering clients their own live dashboard — shift coverage, worker profiles, timesheets, and invoices — all in one place.', linkTo:'/product/client-portal' },
+      { icon:Buildings,    title:'Client Portal',           desc:'Give hotels, venues, and catering clients their own live dashboard — shift coverage, worker profiles, timesheets, and invoices, all in one place.', linkTo:'/product/client-portal' },
     ],
     quote:'"We\'re placing more workers in less time and the team isn\'t drowning in calls anymore."',
     quoteAuthor:'Hospitality Staffing Agency Director, UK',
@@ -555,7 +555,7 @@ export default function IndustryPage() {
               Your workers stay connected — from their pocket.
             </h2>
             <p style={{ fontSize:15.5,color:'#6B7280',lineHeight:1.85,marginBottom:32,maxWidth:460 }}>
-              A fully branded mobile app your workers actually want to use. Accept shifts, submit timesheets, upload documents, and stay compliant — all from their phone on iOS or Android.
+              A fully branded mobile app your workers actually want to use. Accept shifts, submit timesheets, upload documents, and stay compliant, all from their phone on iOS or Android.
             </p>
             <div style={{ display:'flex',flexDirection:'column',gap:12 }}>
               {['Accept & manage shifts in real time','GPS-verified clock in/out','Upload compliance documents','Receive push, SMS, and email notifications','Submit digital timesheets with e-signature'].map((item,i) => (

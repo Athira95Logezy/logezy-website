@@ -634,7 +634,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.14, duration: 0.92, ease: EASE }}
-              style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.85rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.048em', color: '#183963', margin: '0 0 18px' }}
+              style={{ fontSize: 'clamp(2.1rem, 5.2vw, 3.85rem)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.048em', color: '#183963', margin: '0 0 18px', textTransform: 'uppercase' as const }}
             >
               The smarter way to{' '}
               <span style={{ color: '#2396C6', display: 'inline'}}>
@@ -649,7 +649,7 @@ export default function Hero() {
               transition={{ delay: 0.22, duration: 0.86, ease: EASE }}
               style={{ fontSize: 'clamp(14px, 1.5vw, 17px)', lineHeight: 1.80, color: '#64748B', maxWidth: 490, margin: '0 auto 32px' }}
             >
-              Scheduling, compliance, timesheets &amp; payroll — all in one platform designed for UK staffing agencies.
+              Scheduling, compliance, timesheets and payroll, all in one platform designed for UK staffing agencies.
             </motion.p>
 
             {/* CTAs */}

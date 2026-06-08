@@ -91,7 +91,7 @@ export default function Pricing() {
             </span>
           </h1>
           <p style={{ fontSize: 17, color: '#6B7280', lineHeight: 1.65, maxWidth: 480, margin: '0 auto' }}>
-            Simple, transparent pricing. All features included in every plan — just pick the size that fits your agency.
+            Simple, transparent pricing. All features included in every plan. Just pick the size that fits your agency.
           </p>
           <p style={{ fontSize: 13, color: '#9CA3AF', marginTop: 10 }}>Per month · Plus VAT</p>
         </motion.div>

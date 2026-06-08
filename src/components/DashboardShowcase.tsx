@@ -210,7 +210,7 @@ function MacBrowser({ src, alt }: { src: string; alt: string }) {
             minWidth: 140,
           }}>
             <div style={{ width: 13, height: 13, borderRadius: 4, background: 'linear-gradient(135deg, #1966AA, #2399CA)', flexShrink: 0 }} />
-            <span style={{ fontSize: 10, fontWeight: 600, color: '#333', whiteSpace: 'nowrap', flex: 1 }}>Logezy — Schedule</span>
+            <span style={{ fontSize: 10, fontWeight: 600, color: '#333', whiteSpace: 'nowrap', flex: 1 }}>Logezy Schedule</span>
             <div style={{ width: 14, height: 14, borderRadius: '50%', background: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: '#777' }}>✕</div>
           </div>
           <div style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: '#aaa', paddingBottom: 2 }}>+</div>
@@ -335,7 +335,7 @@ export default function DashboardShowcase() {
           </h2>
 
           <p style={{ fontSize: 16, color: 'rgba(186,230,255,0.62)', lineHeight: 1.75, maxWidth: 520, margin: '0 auto 32px' }}>
-            Fill shifts instantly, stay compliant, and manage your entire workforce — from scheduling to invoicing — in one platform.
+            Fill shifts instantly, stay compliant, and manage your entire workforce from scheduling to invoicing, in one platform.
           </p>
 
           {/* Stats strip */}

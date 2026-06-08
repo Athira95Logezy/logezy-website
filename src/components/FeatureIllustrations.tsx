@@ -90,7 +90,7 @@ export function TimesheetsIll({ c }: { c: string }) {
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
         <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Timesheet Approvals</span>
-        <Chip label="Week 6 — Feb 2025" color={c} />
+        <Chip label="Week 6, Feb 2025" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 60px 80px', borderBottom:'1px solid #F1F5F9', background:'#FAFBFD', padding:'6px 12px' }}>
@@ -164,9 +164,9 @@ export function ComplianceIll({ c }: { c: string }) {
 /* ── 4. INVOICING ───────────────────────────────────────────────────────── */
 export function InvoicingIll({ c }: { c: string }) {
   const lines = [
-    { desc:'Nursing Staff — Week 5 (12 shifts)', amt:'£2,880' },
-    { desc:'Healthcare Support — Week 5 (8 shifts)', amt:'£1,440' },
-    { desc:'Emergency Cover — 3 nights', amt:'£840' },
+    { desc:'Nursing Staff, Week 5 (12 shifts)', amt:'£2,880' },
+    { desc:'Healthcare Support, Week 5 (8 shifts)', amt:'£1,440' },
+    { desc:'Emergency Cover, 3 nights', amt:'£840' },
   ];
   return (
     <div style={shell}>
@@ -261,8 +261,8 @@ export function ReportsIll({ c }: { c: string }) {
 /* ── 6. MOBILE APP ──────────────────────────────────────────────────────── */
 export function MobileAppIll({ c }: { c: string }) {
   const shifts = [
-    { title:'Day Shift — NHS North', time:'09:00–17:00', date:'Mon 3 Feb', status:'Confirmed' },
-    { title:'Night Cover — Care Home', time:'20:00–08:00', date:'Tue 4 Feb', status:'Pending'  },
+    { title:'Day Shift, NHS North', time:'09:00–17:00', date:'Mon 3 Feb', status:'Confirmed' },
+    { title:'Night Cover, Care Home', time:'20:00–08:00', date:'Tue 4 Feb', status:'Pending'  },
     { title:'Weekend Support', time:'08:00–16:00', date:'Sat 8 Feb', status:'Confirmed' },
   ];
   return (
@@ -348,7 +348,7 @@ export function GpsIll({ c }: { c: string }) {
       {/* Verified chip */}
       <motion.div initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.9 }}
         style={{ display:'flex', gap:8 }}>
-        <Chip label="✓ Clock-In Verified — 09:02am" color={c} />
+        <Chip label="✓ Clock-In Verified at 09:02am" color={c} />
         <Chip label="51.5074° N, 0.1278° W" color="#64748B" />
       </motion.div>
     </div>
@@ -639,7 +639,7 @@ export function PayrollIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Payroll Run — Feb 2025</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Payroll Run, Feb 2025</span>
         <Chip label="Ready to Export" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>
@@ -678,7 +678,7 @@ export function AvailabilityIll({ c }: { c: string }) {
   return (
     <div style={shell}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
-        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Availability — Week 6</span>
+        <span style={{ fontSize:11, fontWeight:800, color:'#183963' }}>Availability, Week 6</span>
         <Chip label="15 slots open" color={c} />
       </div>
       <div style={{ ...wCard, flex:1 }}>

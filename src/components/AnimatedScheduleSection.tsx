@@ -217,7 +217,7 @@ export default function AnimatedScheduleSection() {
             <span style={{ color:'#00D4FF' }}>in one place.</span>
           </h2>
           <p style={{ fontSize:16, color:'rgba(255,255,255,0.65)', lineHeight:1.72, maxWidth:500, margin:'0 auto 24px' }}>
-            Manage schedules, workers, compliance and bookings — all from a single connected platform.
+            Manage schedules, workers, compliance and bookings from a single connected platform.
           </p>
           <div style={{ display:'flex', justifyContent:'center', gap:6, flexWrap:'wrap' as const }}>
             {[

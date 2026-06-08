@@ -161,7 +161,7 @@ function NotificationsScreen() {
   const notifs = [
     { icon: '📋', title: 'New shift available', body: 'Band 5 RN · Wed 28 May · NHS Trusts', time: '2m ago', dot: '#38BDF8' },
     { icon: '✅', title: 'Timesheet approved', body: 'Week ending 24 May · £612.00 paid', time: '1h ago', dot: '#10B981' },
-    { icon: '⚠️', title: 'Document expiring', body: 'Moving & Handling — 14 days left', time: '3h ago', dot: '#F59E0B' },
+    { icon: '⚠️', title: 'Document expiring', body: 'Moving and Handling, 14 days left', time: '3h ago', dot: '#F59E0B' },
     { icon: '💬', title: 'Message from Agency', body: '"Can you cover Saturday night?"', time: 'Yesterday', dot: '#5AB4D5' },
     { icon: '🏥', title: 'Shift reminder', body: 'Tomorrow 07:00 · Primcura Care, London', time: 'Yesterday', dot: '#C084FC' },
   ];
@@ -244,7 +244,7 @@ const SCENES = [
     color: '#10B981',
     badge: 'Availability',
     headline: 'Know who\'s free\nbefore you ask.',
-    body: 'Workers set their availability in real time. You fill shifts with people who actually want to work — no guessing, no awkward calls.',
+    body: 'Workers set their availability in real time. You fill shifts with people who actually want to work. No guessing, no awkward calls.',
     stat: { value: '94%', label: 'fill rate achieved' },
     screen: AvailabilityScreen,
   },
@@ -284,7 +284,7 @@ const SCENES = [
     color: '#5AB4D5',
     badge: 'In-App Chat',
     headline: 'One message,\nshift sorted.',
-    body: "Direct, compliant messaging between agency and worker — right inside the app. Everything logged, nothing lost in personal inboxes.",
+    body: "Direct, compliant messaging between agency and worker, right inside the app. Everything logged, nothing lost in personal inboxes.",
     stat: { value: '< 2 min', label: 'avg response time' },
     screen: ChatScreen,
   },

@@ -437,10 +437,10 @@ const pages: PageConfig[] = [
       heading: 'What You Get',
       items: [
         { icon: Eye, title: 'Availability at a glance', desc: "See exactly who's free before you assign a shift. Logezy surfaces live worker availability so your team always schedules from accurate, up-to-date information." },
-        { icon: MapPin, title: 'Role and location matching', desc: 'Filter workers by job role and location when filling a shift — so you\'re always placing someone who\'s qualified and able to get there.' },
+        { icon: MapPin, title: 'Role and location matching', desc: 'Filter workers by job role and location when filling a shift, so you\'re always placing someone who\'s qualified and able to get there.' },
         { icon: Bell, title: 'Instant shift notifications', desc: 'The moment a shift is assigned and published, workers are notified directly on their phone. No delays, no missed messages.' },
         { icon: ChartBar, title: 'Real-time schedule visibility', desc: "Your whole team works from the same live view. No conflicting spreadsheets, no double bookings, no confusion over who is placed where." },
-        { icon: Clock, title: 'Automated shift reminders', desc: 'Workers receive automatic reminders ahead of every shift — reducing no-shows and keeping your clients covered without manual follow-up.' },
+        { icon: Clock, title: 'Automated shift reminders', desc: 'Workers receive automatic reminders ahead of every shift, reducing no-shows and keeping your clients covered without manual follow-up.' },
         { icon: Lightning, title: 'Last-minute cover made easier', desc: 'When someone drops out, your team can quickly identify available, qualified workers and get the shift reassigned — fast.' },
       ],
     }],
@@ -463,9 +463,9 @@ const pages: PageConfig[] = [
       heading: 'What You Get',
       items: [
         { icon: DeviceMobile, title: 'Worker-managed availability', desc: 'Temps update their own availability through the app at any time. Your team always works from current, accurate information — not what someone told you last week.' },
-        { icon: Users, title: 'Live visibility across your workforce', desc: 'See availability across your entire temp workforce in one place. No spreadsheets, no availability forms, no chasing — just a clear, real-time picture of who\'s ready to work.' },
+        { icon: Users, title: 'Live visibility across your workforce', desc: 'See availability across your entire temp workforce in one place. No spreadsheets, no availability forms, no chasing. Just a clear, real-time picture of who\'s ready to work.' },
         { icon: Lightning, title: 'Fewer calls, faster placements', desc: 'When availability is always up to date, your consultants spend less time on the phone and more time placing workers. Shifts get filled faster and with the right people.' },
-        { icon: CalendarBlank, title: 'Better scheduling decisions', desc: "Availability feeds directly into Logezy's scheduling tools — so when your team is filling a shift, they're already working from an accurate picture of who can take it." },
+        { icon: CalendarBlank, title: 'Better scheduling decisions', desc: "Availability feeds directly into Logezy's scheduling tools, so when your team is filling a shift, they're already working from an accurate picture of who can take it." },
       ],
     }],
     Mockup: AvailabilityMockup,
@@ -488,7 +488,7 @@ const pages: PageConfig[] = [
       items: [
         { icon: Users, title: 'Centralised candidate records', desc: 'Every worker profile in one place — documents, availability, shift history, timesheets, and compliance status all connected and always current.' },
         { icon: Buildings, title: 'Centralised client accounts', desc: 'A complete view of every client — active bookings, coverage levels, billing history, and compliance reporting — without manually compiling data from multiple sources.' },
-        { icon: Shield, title: 'Automated compliance flagging', desc: "Logezy automatically flags expiring documents and incomplete records across your candidate base — so your team stays on top of compliance without manual checking." },
+        { icon: Shield, title: 'Automated compliance flagging', desc: "Logezy automatically flags expiring documents and incomplete records across your candidate base, so your team stays on top of compliance without manual checking." },
         { icon: FileText, title: 'Shift and timesheet history', desc: 'Every shift worked and every timesheet submitted is linked to the relevant candidate and client record — giving your team a full, accurate history at any point.' },
         { icon: ChartLine, title: 'Proactive client reporting', desc: 'Share live compliance and coverage data with clients directly from Logezy — positioning your agency as a transparent, professional operation that clients want to keep.' },
       ],
@@ -503,16 +503,16 @@ const pages: PageConfig[] = [
     heroBg: 'linear-gradient(135deg,#FFFBEB 0%,#F0FDF4 60%,#FFFFFF 100%)',
     title: 'Compliance',
     tagline: 'Stay audit-ready. Without the stress.',
-    heroDesc: "Compliance is one of the highest-risk areas of running a temp recruitment agency. One expired document, one missed right-to-work check, one lapsed DBS certificate — and your agency is exposed. Logezy gives your agency a centralised, automated compliance management system that keeps every worker's documentation tracked, current, and audit-ready at all times.",
+    heroDesc: "Compliance is one of the highest-risk areas of running a temp recruitment agency. One expired document, one missed right-to-work check, one lapsed DBS certificate and your agency is exposed. Logezy gives your agency a centralised, automated compliance management system that keeps every worker's documentation tracked, current, and audit-ready at all times.",
     sectionTitle: 'Compliance Management Built for Temp Agencies',
     sectionSubtitle: 'Every document. Every worker. Always on top of it.',
-    sectionIntro: "Logezy stores and tracks all worker compliance documents in one centralised place — right-to-work documents, DBS certificates, visas, training qualifications, professional licences, and any other documentation your agency or clients require. When something is approaching expiry, Logezy sends automated reminders — to your team and to the worker — so nothing lapses unnoticed.",
+    sectionIntro: "Logezy stores and tracks all worker compliance documents in one centralised place — right-to-work documents, DBS certificates, visas, training qualifications, professional licences, and any other documentation your agency or clients require. When something is approaching expiry, Logezy sends automated reminders — to your team and to the worker, so nothing lapses unnoticed.",
     ctaLine: 'Compliance sorted. Every worker. Every shift.',
     groups: [{
       heading: 'What You Get',
       items: [
         { icon: FolderSimple, title: 'Centralised document storage', desc: "Every compliance document for every worker — stored, organised, and accessible in one place. No more searching through email attachments or chasing physical paperwork." },
-        { icon: Clock, title: 'Automated expiry tracking', desc: 'Logezy tracks expiry dates across your entire workforce and sends automated alerts before documents lapse — so your team stays ahead of compliance without manual monitoring.' },
+        { icon: Clock, title: 'Automated expiry tracking', desc: 'Logezy tracks expiry dates across your entire workforce and sends automated alerts before documents lapse, so your team stays ahead of compliance without manual monitoring.' },
         { icon: DeviceMobile, title: 'Worker self-upload via mobile app', desc: "Workers upload their own compliance documents directly through the Logezy candidate app. Records stay current in real time and your team spends less time chasing." },
         { icon: FileText, title: 'Covers all document types', desc: 'Right-to-work checks, DBS certificates, visas, training qualifications, professional licences — Logezy handles every document type your agency requires, fully configurable to your needs.' },
         { icon: Shield, title: 'Audit-ready at all times', desc: 'Every document is stored, timestamped, and accessible at any point. When a client requests compliance evidence, your agency has everything it needs — immediately.' },
@@ -564,7 +564,7 @@ const pages: PageConfig[] = [
       heading: 'What You Get',
       items: [
         { icon: Receipt, title: 'Single-click invoice generation', desc: 'Once timesheets are approved, invoices are generated with one click — itemised, accurate, and ready to send to your client immediately.' },
-        { icon: ChartBar, title: 'Automatic payroll reporting', desc: 'Every invoice is accompanied by a payroll report calculated from the same approved timesheet data — so worker payments are always accurate and ready to process.' },
+        { icon: ChartBar, title: 'Automatic payroll reporting', desc: 'Every invoice is accompanied by a payroll report calculated from the same approved timesheet data, so worker payments are always accurate and ready to process.' },
         { icon: Percent, title: 'Variable rate support', desc: 'Different job roles, different clients, different rates — Logezy handles it all automatically. Every invoice reflects the correct figures without manual calculation.' },
         { icon: List, title: 'Itemised billing', desc: 'Every invoice is clearly itemised by shift, worker, and rate — giving clients full transparency over what they\'re being charged and why.' },
         { icon: Lightning, title: 'Faster payment cycles', desc: 'Invoices go out faster, with fewer errors and zero manual preparation. The result is a cleaner billing process, fewer payment delays, and better cash flow.' },
@@ -595,9 +595,9 @@ const pages: PageConfig[] = [
           { icon: Clock, title: 'Availability', desc: "Workers update their availability directly from the app whenever it changes — giving your team an accurate, live view of who's free when scheduling shifts." },
           { icon: FileText, title: 'Digital Timesheets', desc: "Workers submit timesheets digitally through the app with e-signature functionality — creating a verified, timestamped record that feeds straight into your approval and payroll process." },
           { icon: Shield, title: 'Compliance', desc: "Workers upload compliance documents — right-to-work checks, DBS certificates, training qualifications, and more — directly from their phone. Records stay current in real time." },
-          { icon: Bell, title: 'Three-Way Notifications', desc: "Workers receive shift updates, booking confirmations, and compliance reminders across push notifications, SMS, and email simultaneously — so important messages are never missed." },
-          { icon: ChatCircle, title: 'In-App Chat', desc: "Workers message your team directly through the app and receive responses in real time. Every conversation is tracked in one place — no personal phone numbers, no lost WhatsApp messages." },
-          { icon: Users, title: 'Refer a Friend', desc: "Workers refer friends and contacts to your agency directly from the app — helping you grow your candidate pool organically through your existing workforce." },
+          { icon: Bell, title: 'Three-Way Notifications', desc: "Workers receive shift updates, booking confirmations, and compliance reminders across push notifications, SMS, and email simultaneously, so important messages are never missed." },
+          { icon: ChatCircle, title: 'In-App Chat', desc: "Workers message your team directly through the app and receive responses in real time. Every conversation is tracked in one place. No personal phone numbers, no lost WhatsApp messages." },
+          { icon: Users, title: 'Refer a Friend', desc: "Workers refer friends and contacts to your agency directly from the app, helping you grow your candidate pool organically through your existing workforce." },
         ],
       },
       {
@@ -605,7 +605,7 @@ const pages: PageConfig[] = [
         items: [
           { icon: Phone, title: 'Fewer calls and messages to handle', desc: "When workers can manage their own shifts, availability, timesheets, and documents through the app, the volume of inbound queries your team handles drops significantly." },
           { icon: Star, title: 'Better worker engagement', desc: "A professional, branded app experience keeps workers connected to your agency. Workers who feel well-managed are more likely to accept shifts, stay on your books, and refer others." },
-          { icon: Buildings, title: 'A stronger agency brand', desc: "A fully branded app signals to workers — and to clients — that your agency is modern, organised, and serious about the experience it delivers." },
+          { icon: Buildings, title: 'A stronger agency brand', desc: "A fully branded app signals to workers and to clients — that your agency is modern, organised, and serious about the experience it delivers." },
           { icon: CheckCircle, title: 'Reduced no-shows', desc: "Three-way notifications across push, SMS, and email mean workers never miss a shift update — keeping no-show rates low and your clients covered." },
         ],
       },
@@ -620,7 +620,7 @@ const pages: PageConfig[] = [
     heroBg: 'linear-gradient(135deg,#ECFEFF 0%,#F0FDF4 60%,#FFFFFF 100%)',
     title: 'Recruitment Portal',
     tagline: 'From registration to ready to work. Faster than ever.',
-    heroDesc: "In temp recruitment, speed-to-placement directly drives revenue. Every day a candidate spends waiting to be onboarded is a day they could be filling a shift — and a day your agency isn't billing. Manual onboarding slows everything down, creates inconsistency, and puts unnecessary pressure on your team.",
+    heroDesc: "In temp recruitment, speed-to-placement directly drives revenue. Every day a candidate spends waiting to be onboarded is a day they could be filling a shift and a day your agency isn't billing. Manual onboarding slows everything down, creates inconsistency, and puts unnecessary pressure on your team.",
     sectionTitle: 'Digital Onboarding Built for Temp Recruitment',
     sectionSubtitle: 'Everything candidates need to complete. In one place.',
     sectionIntro: "The Logezy recruitment portal gives every candidate a dedicated online onboarding flow — where they complete the entire process digitally, before their first shift. Identity documents, compliance paperwork, required forms, and any pre-start materials are all handled through the portal. Every candidate goes through the same structured process — consistently, professionally, and at a pace that gets them placement-ready fast.",
@@ -629,8 +629,8 @@ const pages: PageConfig[] = [
       heading: 'What You Get',
       items: [
         { icon: ClipboardText, title: 'Full digital onboarding', desc: "Candidates complete their entire onboarding journey online — uploading documents, filling out forms, and submitting pre-start materials — without setting foot in your office." },
-        { icon: Timer, title: 'Reduce time to placement', desc: "With a faster, more organised onboarding process, candidates are cleared and ready to work sooner — so your agency starts filling shifts and billing faster." },
-        { icon: Shield, title: 'Compliance built in from day one', desc: "Document collection is built into the onboarding flow — so candidates arrive fully compliant before their first shift, and your agency is protected from day one." },
+        { icon: Timer, title: 'Reduce time to placement', desc: "With a faster, more organised onboarding process, candidates are cleared and ready to work sooner, so your agency starts filling shifts and billing faster." },
+        { icon: Shield, title: 'Compliance built in from day one', desc: "Document collection is built into the onboarding flow, so candidates arrive fully compliant before their first shift, and your agency is protected from day one." },
         { icon: Users, title: 'Free up your team', desc: "A structured digital portal means your admins spend less time manually collecting information and more time doing what actually grows the business — placing workers." },
       ],
     }],
@@ -654,9 +654,9 @@ const pages: PageConfig[] = [
         heading: 'What Your Clients Get',
         items: [
           { icon: Eye, title: 'Live shift visibility', desc: "Clients can see confirmed bookings, shift coverage, and worker assignments in real time — without calling your agency to find out who's turning up tomorrow." },
-          { icon: CalendarBlank, title: 'Direct shift requests', desc: "Clients submit shift requests directly through the portal. Your team receives them instantly and can assign available workers in real time — reducing the time between request and confirmation." },
+          { icon: CalendarBlank, title: 'Direct shift requests', desc: "Clients submit shift requests directly through the portal. Your team receives them instantly and can assign available workers in real time, reducing the time between request and confirmation." },
           { icon: CheckCircle, title: 'Timesheet approvals', desc: "Clients can review and approve worker timesheets directly through the portal — giving them control over what gets signed off before invoices are generated." },
-          { icon: Receipt, title: 'Invoice access', desc: "Every invoice generated by your agency is available to the client through the portal at any time — no more chasing, no more email attachments, no more delays." },
+          { icon: Receipt, title: 'Invoice access', desc: "Every invoice generated by your agency is available to the client through the portal at any time. No more chasing, no more email attachments, no more delays." },
         ],
       },
       {
@@ -872,7 +872,7 @@ export default function ProductPage() {
               {cfg.ctaLine}
             </h2>
             <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7, marginBottom: 36 }}>
-              Book a free demo and see how Logezy helps temp recruitment agencies work smarter — without the manual effort.
+              Book a free demo and see how Logezy helps temp recruitment agencies work smarter, without the manual effort.
             </p>
             <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' as const }}>
               <motion.a
