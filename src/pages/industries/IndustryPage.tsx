@@ -11,16 +11,16 @@ import {
 const NAVY = '#0C1835';
 const fade = { initial:{opacity:0,y:24}, whileInView:{opacity:1,y:0} as const, viewport:{once:true}, transition:{duration:0.55} };
 
-/* ── Feature image mapping ── */
-const FEATURE_IMAGES: Record<string, string> = {
-  'Compliance Tracking':    '/Documents.jpeg',
-  'Shift Scheduling':       '/Avilability.jpeg',
-  'Candidate App':          '/mobile_app_main_screen.jpeg',
-  'Digital Timesheets':     '/Timesheet.jpeg',
-  'Client Portal':          '/DASHBAORD_NEW.png',
-  'Fast Onboarding':        '/Job_location.jpeg',
-  'Three-Way Notifications':'/notification.jpeg',
-  'Reports & Analytics':    '/reports.png',
+/* ── Flat decorative pattern per feature title ── */
+const FEATURE_PATTERNS: Record<string, { dots: string[]; lines: boolean }> = {
+  'Compliance Tracking':    { dots:['#34D399','#6EE7B7','#A7F3D0'], lines:true  },
+  'Shift Scheduling':       { dots:['#60A5FA','#93C5FD','#BFDBFE'], lines:true  },
+  'Candidate App':          { dots:['#818CF8','#A5B4FC','#C7D2FE'], lines:false },
+  'Digital Timesheets':     { dots:['#FBBF24','#FCD34D','#FDE68A'], lines:true  },
+  'Client Portal':          { dots:['#38BDF8','#7DD3FC','#BAE6FD'], lines:false },
+  'Fast Onboarding':        { dots:['#F472B6','#F9A8D4','#FBCFE8'], lines:true  },
+  'Three-Way Notifications':{ dots:['#FB923C','#FDBA74','#FED7AA'], lines:false },
+  'Reports & Analytics':    { dots:['#A78BFA','#C4B5FD','#DDD6FE'], lines:true  },
 };
 
 /* ── Pain point → solution pairs per industry ── */
@@ -411,43 +411,73 @@ export default function IndustryPage() {
             </h2>
           </motion.div>
 
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit,minmax(340px,1fr))', gap:24 }}>
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit,minmax(300px,1fr))', gap:24 }}>
             {cfg.features.map((f,i) => {
-              const imgSrc = FEATURE_IMAGES[f.title];
+              const pat = FEATURE_PATTERNS[f.title] || { dots:[cfg.accent,'#ccc','#eee'], lines:false };
               return (
                 <motion.div key={i}
                   initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }}
                   viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.07 }}
-                  whileHover={{ y:-4, boxShadow:'0 16px 48px rgba(0,0,0,0.12)' }}
+                  whileHover={{ y:-5, boxShadow:'0 20px 52px rgba(0,0,0,0.11)' }}
                   style={{ background:'#fff', borderRadius:20, overflow:'hidden',
                     border:'1px solid #E5E7EB', boxShadow:'0 4px 20px rgba(0,0,0,0.05)',
-                    transition:'box-shadow 0.25s,transform 0.25s', display:'flex', flexDirection:'column' }}>
-                  {/* Screenshot preview */}
-                  {imgSrc && (
-                    <div style={{ position:'relative', overflow:'hidden', height:180, background:cfg.accentBg }}>
-                      <img src={imgSrc} alt={f.title}
-                        style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top', display:'block',
-                          transition:'transform 0.4s ease' }} />
-                      {/* Gradient overlay */}
-                      <div style={{ position:'absolute',inset:0,
-                        background:`linear-gradient(to bottom,transparent 40%,${cfg.accentBg}CC 100%)` }} />
-                      {/* Icon badge */}
-                      <div style={{ position:'absolute',bottom:12,left:14,
-                        width:36,height:36,borderRadius:10,background:cfg.accent,
-                        display:'flex',alignItems:'center',justifyContent:'center',
-                        boxShadow:`0 4px 14px ${cfg.accent}55` }}>
-                        <f.icon weight="fill" style={{ width:18,height:18,color:'#fff' }} />
-                      </div>
+                    transition:'box-shadow 0.28s,transform 0.28s', display:'flex', flexDirection:'column' }}>
+
+                  {/* ── Flat illustration header ── */}
+                  <div style={{ position:'relative', height:130, overflow:'hidden',
+                    background:`linear-gradient(135deg,${pat.dots[2]}55 0%,${pat.dots[1]}33 60%,${pat.dots[0]}22 100%)` }}>
+
+                    {/* Decorative circles */}
+                    <div style={{ position:'absolute', top:-20, right:-20, width:100, height:100, borderRadius:'50%',
+                      background:`${pat.dots[0]}22`, border:`2px solid ${pat.dots[0]}33` }} />
+                    <div style={{ position:'absolute', bottom:-30, right:40, width:70, height:70, borderRadius:'50%',
+                      background:`${pat.dots[1]}28`, border:`2px solid ${pat.dots[1]}40` }} />
+                    <div style={{ position:'absolute', top:10, right:60, width:36, height:36, borderRadius:'50%',
+                      background:`${pat.dots[2]}50` }} />
+
+                    {/* Decorative dashes / lines */}
+                    {pat.lines && (
+                      <>
+                        <div style={{ position:'absolute', bottom:22, left:80, width:50, height:3, borderRadius:3,
+                          background:`${pat.dots[0]}55` }} />
+                        <div style={{ position:'absolute', bottom:32, left:90, width:30, height:3, borderRadius:3,
+                          background:`${pat.dots[1]}55` }} />
+                        <div style={{ position:'absolute', bottom:12, left:70, width:70, height:3, borderRadius:3,
+                          background:`${pat.dots[0]}33` }} />
+                      </>
+                    )}
+
+                    {/* Small floating dots */}
+                    {[{t:18,l:110,s:6},{t:55,l:140,s:4},{t:80,l:120,s:5},{t:30,l:160,s:3}].map((d,di)=>(
+                      <div key={di} style={{ position:'absolute', top:d.t, left:d.l, width:d.s, height:d.s,
+                        borderRadius:'50%', background:`${pat.dots[di%3]}88` }} />
+                    ))}
+
+                    {/* Large centred icon */}
+                    <div style={{ position:'absolute', left:24, top:'50%', transform:'translateY(-50%)',
+                      width:60, height:60, borderRadius:18,
+                      background:'#fff',
+                      boxShadow:`0 8px 28px ${pat.dots[0]}44, 0 2px 8px rgba(0,0,0,0.08)`,
+                      display:'flex', alignItems:'center', justifyContent:'center' }}>
+                      <f.icon weight="fill" style={{ width:28, height:28, color:pat.dots[0] }} />
                     </div>
-                  )}
-                  {/* Content */}
+
+                    {/* Number badge */}
+                    <div style={{ position:'absolute', top:12, left:12, width:22, height:22, borderRadius:7,
+                      background:pat.dots[0], display:'flex', alignItems:'center', justifyContent:'center',
+                      fontSize:10, fontWeight:900, color:'#fff', boxShadow:`0 3px 10px ${pat.dots[0]}66` }}>
+                      {i+1}
+                    </div>
+                  </div>
+
+                  {/* ── Content ── */}
                   <div style={{ padding:'20px 22px 22px', flex:1, display:'flex', flexDirection:'column' }}>
-                    <div style={{ fontSize:16,fontWeight:800,color:NAVY,marginBottom:8 }}>{f.title}</div>
-                    <div style={{ fontSize:14,color:'#6B7280',lineHeight:1.7,flex:1 }}>{f.desc}</div>
+                    <div style={{ fontSize:16, fontWeight:800, color:NAVY, marginBottom:8 }}>{f.title}</div>
+                    <div style={{ fontSize:14, color:'#6B7280', lineHeight:1.72, flex:1 }}>{f.desc}</div>
                     {f.linkTo && (
-                      <Link to={f.linkTo} style={{ marginTop:16,fontSize:13,fontWeight:700,color:cfg.accent,
-                        textDecoration:'none',display:'inline-flex',alignItems:'center',gap:5 }}>
-                        Learn more <ArrowRight weight="bold" style={{ width:13,height:13 }} />
+                      <Link to={f.linkTo} style={{ marginTop:16, fontSize:13, fontWeight:700, color:cfg.accent,
+                        textDecoration:'none', display:'inline-flex', alignItems:'center', gap:5 }}>
+                        Learn more <ArrowRight weight="bold" style={{ width:13, height:13 }} />
                       </Link>
                     )}
                   </div>
