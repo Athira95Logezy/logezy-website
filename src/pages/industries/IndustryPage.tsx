@@ -150,26 +150,6 @@ function AppScreenshot({ src, alt, accent }: { src:string; alt:string; accent:st
     <div style={{ position:'relative', borderRadius:20, overflow:'hidden',
       boxShadow:`0 32px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06), 0 0 60px ${accent}18`,
     }}>
-      {/* Browser chrome */}
-      <div style={{ background:'linear-gradient(180deg,#F0F0F0,#E6E6E6)', padding:'10px 14px 0', borderBottom:'1px solid #D8D8D8' }}>
-        <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:8 }}>
-          <div style={{ display:'flex', gap:4 }}>
-            {['#FF5F57','#FEBC2E','#28C840'].map(c=>(
-              <div key={c} style={{ width:9,height:9,borderRadius:'50%',background:c }} />
-            ))}
-          </div>
-          <div style={{ flex:1,height:20,borderRadius:5,background:'rgba(255,255,255,0.90)',border:'1px solid #C8C8C8',display:'flex',alignItems:'center',paddingLeft:8 }}>
-            <div style={{ width:3,height:3,borderRadius:'50%',background:'#28C840',marginRight:5 }} />
-            <span style={{ fontSize:8,color:'#666' }}>app.logezy.co</span>
-          </div>
-        </div>
-        <div style={{ display:'flex',gap:2 }}>
-          <div style={{ padding:'4px 12px 4px 8px',borderRadius:'6px 6px 0 0',background:'#fff',border:'1px solid #C8C8C8',borderBottom:'1px solid #fff',display:'flex',alignItems:'center',gap:5 }}>
-            <div style={{ width:9,height:9,borderRadius:2,background:`linear-gradient(135deg,#1966AA,#2399CA)` }} />
-            <span style={{ fontSize:8,fontWeight:600,color:'#444' }}>Logezy</span>
-          </div>
-        </div>
-      </div>
       <img src={src} alt={alt} style={{ width:'100%',height:'auto',display:'block' }} />
     </div>
   );
