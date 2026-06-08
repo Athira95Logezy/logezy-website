@@ -154,16 +154,16 @@ export default function AnimatedScheduleSection() {
 
   return (
     <section style={{
-      background: 'linear-gradient(180deg,#EEF6FF 0%,#F5F9FF 40%,#FFFFFF 100%)',
+      background: 'linear-gradient(135deg,#183765 0%,#1966AA 40%,#2E8FBF 70%,#5AB4D5 100%)',
       padding: isMobile ? '64px 20px 0' : '96px 0 0',
       overflow: 'hidden',
       position: 'relative',
     }}>
       {/* Subtle dot grid */}
-      <div style={{ position:'absolute', inset:0, pointerEvents:'none', opacity:0.5, backgroundImage:'radial-gradient(circle,rgba(35,150,198,0.12) 1px,transparent 1px)', backgroundSize:'32px 32px' }} />
+      <div style={{ position:'absolute', inset:0, pointerEvents:'none', opacity:0.04, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'28px 28px' }} />
 
       {/* Top-center glow */}
-      <div style={{ position:'absolute', top:0, left:'50%', transform:'translateX(-50%)', width:1000, height:400, background:'radial-gradient(ellipse,rgba(35,150,198,0.10) 0%,transparent 65%)', filter:'blur(60px)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', top:0, left:'50%', transform:'translateX(-50%)', width:1000, height:400, background:'radial-gradient(ellipse,rgba(90,180,213,0.22) 0%,transparent 65%)', filter:'blur(60px)', pointerEvents:'none' }} />
 
       <div style={{ position:'relative', zIndex:3, maxWidth:1440, margin:'0 auto', padding: isMobile ? '0' : '0 40px' }}>
 
@@ -173,32 +173,32 @@ export default function AnimatedScheduleSection() {
           viewport={{ once:true }} transition={{ duration:0.65, ease:EASE }}
           style={{ textAlign:'center', marginBottom: isMobile ? 40 : 60 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:7, padding:'5px 16px', borderRadius:100, marginBottom:18, background:'rgba(35,150,198,0.08)', border:'1px solid rgba(35,150,198,0.22)' }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:7, padding:'5px 16px', borderRadius:100, marginBottom:18, background:'rgba(255,255,255,0.15)', border:'1px solid rgba(255,255,255,0.30)' }}>
             <motion.div
-              style={{ width:6, height:6, borderRadius:'50%', background:'#2396C6' }}
+              style={{ width:6, height:6, borderRadius:'50%', background:'#00D4FF' }}
               animate={{ opacity:[1,0.3,1], scale:[1,1.5,1] }}
               transition={{ duration:1.6, repeat:Infinity }}
             />
-            <span style={{ fontSize:11, fontWeight:800, color:'#2396C6', letterSpacing:'0.10em', textTransform:'uppercase' as const }}>Live Workflow</span>
+            <span style={{ fontSize:11, fontWeight:800, color:'#fff', letterSpacing:'0.10em', textTransform:'uppercase' as const }}>Live Workflow</span>
           </div>
 
-          <h2 style={{ fontSize:'clamp(1.9rem,3.5vw,3rem)', fontWeight:900, color:'#183963', letterSpacing:'-0.03em', lineHeight:1.1, margin:'0 0 14px', fontFamily:'var(--font-heading)' }}>
-            Schedule thicts, manage workers, track{' '}
-            <span style={{ color:'#2396C6' }}>compliance</span>,<br />
+          <h2 style={{ fontSize:'clamp(1.9rem,3.5vw,3rem)', fontWeight:900, color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, margin:'0 0 14px', fontFamily:'var(--font-heading)' }}>
+            Schedule shifts, manage workers, track{' '}
+            <span style={{ color:'#00D4FF' }}>compliance</span>,<br />
             and communicate instantly across desktop and mobile.
           </h2>
 
           {/* Step pills */}
           <div style={{ display:'flex', justifyContent:'center', gap:8, flexWrap:'wrap' as const, marginTop:20 }}>
             {[
-              { n:'1', label:'Post shifts instantly', color:'#EF4444', bg:'#FEE2E2' },
-              { n:'2', label:'Notify workers',        color:'#2396C6', bg:'#E8F5FB' },
-              { n:'3', label:'Track compliance',      color:'#8B5CF6', bg:'#EDE9FE' },
-              { n:'4', label:'Get confirmations',     color:'#10B981', bg:'#D1FAE5' },
+              { n:'1', label:'Post shifts instantly', color:'#FF6B6B' },
+              { n:'2', label:'Notify workers',        color:'#00D4FF' },
+              { n:'3', label:'Track compliance',      color:'#C084FC' },
+              { n:'4', label:'Get confirmations',     color:'#34D399' },
             ].map(s => (
-              <div key={s.n} style={{ display:'inline-flex', alignItems:'center', gap:7, padding:'6px 14px', borderRadius:100, background:s.bg, border:`1px solid ${s.color}30` }}>
-                <div style={{ width:18,height:18,borderRadius:'50%',background:s.color,display:'flex',alignItems:'center',justifyContent:'center',fontSize:9,fontWeight:900,color:'#fff' }}>{s.n}</div>
-                <span style={{ fontSize:12, fontWeight:600, color:s.color }}>{s.label}</span>
+              <div key={s.n} style={{ display:'inline-flex', alignItems:'center', gap:7, padding:'6px 14px', borderRadius:100, background:'rgba(255,255,255,0.12)', border:`1px solid rgba(255,255,255,0.22)` }}>
+                <div style={{ width:18,height:18,borderRadius:'50%',background:'rgba(255,255,255,0.18)',border:`1px solid ${s.color}80`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:9,fontWeight:900,color:s.color }}>{s.n}</div>
+                <span style={{ fontSize:12, fontWeight:600, color:'rgba(255,255,255,0.90)' }}>{s.label}</span>
               </div>
             ))}
           </div>
@@ -314,10 +314,10 @@ export default function AnimatedScheduleSection() {
 
       {/* Bottom wave */}
       <div style={{ position:'relative', zIndex:4, lineHeight:0, marginTop: isMobile ? 40 : 16 }}>
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style={{ width:'100%', height:100, display:'block' }}>
-          <path d="M0,60 C360,100 1080,20 1440,60 L1440,100 L0,100 Z" fill="rgba(35,150,198,0.08)" />
-          <path d="M0,72 C480,100 960,40 1440,72 L1440,100 L0,100 Z" fill="rgba(35,150,198,0.06)" />
-          <path d="M0,84 C240,100 720,60 1440,84 L1440,100 L0,100 Z" fill="#fff" />
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ width:'100%', height:120, display:'block' }}>
+          <path d="M0,80 C180,30 360,100 540,65 C720,30 900,95 1080,60 C1260,25 1380,75 1440,70 L1440,120 L0,120 Z" fill="rgba(25,102,170,0.35)" />
+          <path d="M0,90 C200,50 400,110 600,75 C800,40 1000,100 1200,68 C1320,48 1400,88 1440,82 L1440,120 L0,120 Z" fill="rgba(35,153,202,0.25)" />
+          <path d="M0,100 C240,55 480,115 720,80 C960,45 1200,105 1440,88 L1440,120 L0,120 Z" fill="#F7F6FF" />
         </svg>
       </div>
     </section>
