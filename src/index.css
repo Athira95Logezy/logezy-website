@@ -18,14 +18,14 @@
     --font-body:    'Poppins', system-ui, -apple-system, sans-serif;
 
     /* ── Fluid type scale (desktop) ── */
-    --text-h1: clamp(2.5rem, 5vw, 4.5rem);       /* 40px → 72px */
-    --text-h2: clamp(2rem, 4vw, 3.5rem);          /* 32px → 56px */
-    --text-h3: clamp(1.5rem, 2.8vw, 2.5rem);      /* 24px → 40px */
-    --text-h4: clamp(1.125rem, 2vw, 1.75rem);     /* 18px → 28px */
-    --text-body-lg: clamp(1.0625rem, 1.3vw, 1.2rem); /* 17px → 19px */
-    --text-body:    1.0625rem;                    /* 17px */
-    --text-sm:      1rem;                         /* 16px */
-    --text-xs:      0.9375rem;                    /* 15px */
+    --text-h1: clamp(2.5rem, 5vw, 4.5rem);        /* 40px → 72px */
+    --text-h2: clamp(2rem, 4vw, 3.5rem);           /* 32px → 56px */
+    --text-h3: clamp(1.5rem, 2.8vw, 2.5rem);       /* 24px → 40px */
+    --text-h4: clamp(1.125rem, 2vw, 1.75rem);      /* 18px → 28px */
+    --text-body-lg: clamp(1.125rem, 1.4vw, 1.25rem); /* 18px → 20px */
+    --text-body:    1.125rem;                      /* 18px */
+    --text-sm:      1.0625rem;                     /* 17px — nav & buttons */
+    --text-xs:      1rem;                          /* 16px — small labels */
 
     /* ── Line heights ── */
     --lh-h1:   1.05;
