@@ -45,7 +45,7 @@ export default function BlogList() {
       ════════════════════════════════ */}
       <div style={{
         background: 'linear-gradient(140deg,#0B1E3D 0%,#173462 60%,#1A5EA0 100%)',
-        padding: '72px 48px 60px',
+        padding: '120px 48px 72px',
       }}>
         <div style={{ maxWidth: 1300, margin: '0 auto' }}>
           <motion.div
