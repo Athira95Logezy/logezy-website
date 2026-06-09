@@ -24,7 +24,7 @@ export const caseStudies: CaseStudy[] = [
     category: 'Agency Guide',
     readTime: '8 min read',
     date: 'June 2025',
-    coverImage: '/DASHBAORD_NEW.png',
+    coverImage: '/resources/logezy-eBook_img.jpg',
     pdfFile: '/resources/logezy-guide-staffing-agency.pdf',
     excerpt: 'Everything you need to run a high-performing staffing agency — from building your candidate database and managing compliance, to automating schedules, timesheets and invoicing with Logezy.',
     stats: [
