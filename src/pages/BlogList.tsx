@@ -1,189 +1,191 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Newspaper, Clock } from '@phosphor-icons/react';
+import { ArrowRight, ArrowUpRight } from '@phosphor-icons/react';
 import { blogs } from '../data/blogs';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const categoryColor: Record<string, { bg: string; text: string; dot: string }> = {
-  Healthcare:    { bg: '#FEF2F2', text: '#BE123C', dot: '#F43F5E' },
-  Technology:    { bg: '#EFF6FF', text: '#1D4ED8', dot: '#3B82F6' },
-  'Agency Tips': { bg: '#F0FDF4', text: '#15803D', dot: '#22C55E' },
+const categoryColor: Record<string, { bg: string; text: string }> = {
+  Healthcare:    { bg: '#FEF2F2', text: '#BE123C' },
+  Technology:    { bg: '#EFF6FF', text: '#1D4ED8' },
+  'Agency Tips': { bg: '#F0FDF4', text: '#15803D' },
 };
 
-function CategoryPill({ cat }: { cat: string }) {
-  const c = categoryColor[cat] ?? { bg: '#F1F5F9', text: '#475569', dot: '#94A3B8' };
-  return (
-    <span style={{ display:'inline-flex', alignItems:'center', gap:5, padding:'4px 11px', borderRadius:20, background:c.bg, fontSize:11, fontWeight:700, color:c.text, letterSpacing:'0.03em' }}>
-      <span style={{ width:5, height:5, borderRadius:'50%', background:c.dot, display:'inline-block' }} />
-      {cat}
-    </span>
-  );
-}
+const allCategories = ['Healthcare', 'Technology', 'Agency Tips', 'Compliance', 'Timesheets', 'Workforce', 'Scheduling', 'Recruitment'];
 
 export default function BlogList() {
-  const [featured, ...rest] = blogs;
+  const [post1, post2, post3] = blogs;
 
   return (
-    <div style={{ background:'#F8FAFC', minHeight:'100vh' }}>
+    <div style={{ background: '#F8FAFC', minHeight: '100vh', paddingBottom: 80 }}>
 
-      {/* ── Hero ── */}
-      <div style={{ background:'linear-gradient(135deg,#183765 0%,#1966AA 50%,#2396C6 100%)', padding:'80px 24px 64px', position:'relative', overflow:'hidden' }}>
-        <div style={{ position:'absolute', inset:0, opacity:0.04, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none' }} />
-        <div style={{ maxWidth:800, margin:'0 auto', textAlign:'center', position:'relative', zIndex:1 }}>
-          <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.55, ease:EASE }}>
-            <div style={{ display:'inline-flex', alignItems:'center', gap:7, padding:'5px 14px', borderRadius:100, background:'rgba(255,255,255,0.15)', border:'1px solid rgba(255,255,255,0.28)', marginBottom:20 }}>
-              <Newspaper weight="regular" style={{ width:13, height:13, color:'#fff' }} />
-              <span style={{ fontSize:11, fontWeight:800, color:'#fff', letterSpacing:'0.10em', textTransform:'uppercase' as const }}>Logezy Blog</span>
-            </div>
-            <h1 style={{ fontSize:'clamp(2rem,4vw,3rem)', fontWeight:900, color:'#fff', letterSpacing:'-0.03em', lineHeight:1.08, margin:'0 0 16px', fontFamily:'var(--font-heading)' }}>
-              Insights for UK Staffing Agencies
-            </h1>
-            <p style={{ fontSize:17, color:'rgba(255,255,255,0.78)', lineHeight:1.65, maxWidth:560, margin:'0 auto', fontFamily:'var(--font-body)' }}>
-              Practical guides, industry trends, and product tips to help your agency work smarter.
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
-      <div style={{ maxWidth:1140, margin:'0 auto', padding:'60px 24px 80px' }}>
-
-        {/* ── Featured post ── */}
-        <motion.div
-          initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }} transition={{ duration:0.60, ease:EASE }}
+      {/* ── Page header ── */}
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '52px 24px 36px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <motion.h1
+          initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: EASE }}
+          style={{ fontSize: 'clamp(2.4rem,5vw,3.8rem)', fontWeight: 900, color: '#0F172A', letterSpacing: '-0.04em', lineHeight: 1, fontFamily: 'var(--font-heading)', margin: 0 }}
         >
-          <p style={{ fontSize:11, fontWeight:800, color:'#2396C6', letterSpacing:'0.10em', textTransform:'uppercase' as const, marginBottom:16 }}>Featured</p>
-          <Link to={`/resources/blog/${featured.slug}`} style={{ textDecoration:'none', display:'block' }}>
-            <div
-              style={{
-                background:'#fff', borderRadius:20, overflow:'hidden',
-                border:'1px solid rgba(35,150,198,0.12)',
-                boxShadow:'0 4px 32px rgba(24,57,99,0.08)',
-                display:'grid', gridTemplateColumns:'1fr 1fr',
-                transition:'box-shadow 0.2s, transform 0.2s',
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow='0 16px 56px rgba(35,150,198,0.18)'; (e.currentTarget as HTMLElement).style.transform='translateY(-3px)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow='0 4px 32px rgba(24,57,99,0.08)'; (e.currentTarget as HTMLElement).style.transform='translateY(0)'; }}
-            >
-              {/* Left: content */}
-              <div style={{ padding:'44px 48px', display:'flex', flexDirection:'column', justifyContent:'center' }}>
-                <div style={{ display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' as const, marginBottom:20 }}>
-                  <CategoryPill cat={featured.category} />
-                  <span style={{ fontSize:11, color:'#94A3B8', display:'flex', alignItems:'center', gap:4 }}>
-                    <Clock weight="regular" style={{ width:12, height:12 }} />{featured.readTime}
-                  </span>
-                  <span style={{ fontSize:11, color:'#CBD5E1' }}>·</span>
-                  <span style={{ fontSize:11, color:'#94A3B8' }}>{featured.date}</span>
-                </div>
-                <h2 style={{ fontSize:'clamp(1.3rem,2vw,1.65rem)', fontWeight:800, color:'#0F172A', lineHeight:1.22, margin:'0 0 16px', fontFamily:'var(--font-heading)', letterSpacing:'-0.02em' }}>{featured.title}</h2>
-                <p style={{ fontSize:15, color:'#64748B', lineHeight:1.7, margin:'0 0 28px', fontFamily:'var(--font-body)' }}>{featured.excerpt}</p>
-                <span style={{ display:'inline-flex', alignItems:'center', gap:6, fontSize:14, fontWeight:700, color:'#2396C6' }}>
-                  Read article <ArrowRight weight="regular" style={{ width:14, height:14 }} />
-                </span>
-              </div>
-              {/* Right: cover image */}
-              <div style={{ position:'relative', overflow:'hidden', minHeight:320 }}>
-                <img
-                  src={featured.coverImage}
-                  alt={featured.title}
-                  style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center', display:'block', transition:'transform 0.4s ease' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform='scale(1.04)'; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform='scale(1)'; }}
-                />
-                {/* overlay gradient for polish */}
-                <div style={{ position:'absolute', inset:0, background:'linear-gradient(to right,rgba(255,255,255,0.08),transparent)', pointerEvents:'none' }} />
-                {/* category badge overlay */}
-                <div style={{ position:'absolute', top:16, right:16 }}>
-                  <CategoryPill cat={featured.category} />
-                </div>
-              </div>
-            </div>
+          BLOG
+        </motion.h1>
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, ease: EASE }}>
+          <Link to="/resources/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', borderRadius: 10, background: '#fff', border: '1.5px solid #E2E8F0', fontSize: 13, fontWeight: 700, color: '#0F172A', textDecoration: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
+            Read Our Blog <ArrowRight weight="regular" style={{ width: 14, height: 14 }} />
           </Link>
         </motion.div>
+      </div>
 
-        {/* ── Rest of posts ── */}
-        <div style={{ marginTop:52 }}>
-          <p style={{ fontSize:11, fontWeight:800, color:'#94A3B8', letterSpacing:'0.10em', textTransform:'uppercase' as const, marginBottom:24 }}>More articles</p>
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(320px,1fr))', gap:24 }}>
-            {rest.map((post, i) => (
-              <motion.div
-                key={post.slug}
-                initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
-                viewport={{ once:true }} transition={{ duration:0.50, delay:i * 0.10, ease:EASE }}
+      {/* ── Bento grid ── */}
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 2.2fr 1.6fr', gridTemplateRows: 'auto auto', gap: 14 }}>
+
+          {/* ── CELL 1: Large left hero card ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, ease: EASE }}
+            style={{ gridRow: '1 / 3' }}
+          >
+            <Link to={`/resources/blog/${post1.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+              <div style={{
+                borderRadius: 20, overflow: 'hidden', position: 'relative', height: '100%', minHeight: 540,
+                boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.012)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 16px 48px rgba(0,0,0,0.18)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(0,0,0,0.10)'; }}
               >
-                <Link to={`/resources/blog/${post.slug}`} style={{ textDecoration:'none', display:'block', height:'100%' }}>
-                  <div
-                    style={{
-                      background:'#fff', borderRadius:18, overflow:'hidden',
-                      border:'1px solid rgba(0,0,0,0.06)',
-                      boxShadow:'0 2px 16px rgba(24,57,99,0.06)',
-                      height:'100%', display:'flex', flexDirection:'column',
-                      transition:'box-shadow 0.2s, transform 0.2s',
-                    }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow='0 12px 40px rgba(35,150,198,0.16)'; (e.currentTarget as HTMLElement).style.transform='translateY(-3px)'; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow='0 2px 16px rgba(24,57,99,0.06)'; (e.currentTarget as HTMLElement).style.transform='translateY(0)'; }}
-                  >
-                    {/* Cover image */}
-                    <div style={{ height:200, overflow:'hidden', position:'relative', flexShrink:0 }}>
-                      <img
-                        src={post.coverImage}
-                        alt={post.title}
-                        style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center', display:'block', transition:'transform 0.4s ease' }}
-                        onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform='scale(1.05)'; }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform='scale(1)'; }}
-                      />
-                      {/* Gradient overlay */}
-                      <div style={{ position:'absolute', inset:0, background:'linear-gradient(to top,rgba(15,23,42,0.35) 0%,transparent 60%)', pointerEvents:'none' }} />
-                      {/* Category badge */}
-                      <div style={{ position:'absolute', top:12, left:14 }}>
-                        <CategoryPill cat={post.category} />
-                      </div>
-                    </div>
-                    {/* Card body */}
-                    <div style={{ padding:'22px 24px 26px', flex:1, display:'flex', flexDirection:'column' }}>
-                      <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:12 }}>
-                        <span style={{ fontSize:11, color:'#94A3B8', display:'flex', alignItems:'center', gap:4 }}>
-                          <Clock weight="regular" style={{ width:11, height:11 }} />{post.readTime}
-                        </span>
-                        <span style={{ fontSize:11, color:'#E2E8F0' }}>·</span>
-                        <span style={{ fontSize:11, color:'#94A3B8' }}>{post.date}</span>
-                      </div>
-                      <h3 style={{ fontSize:17, fontWeight:800, color:'#0F172A', lineHeight:1.3, margin:'0 0 10px', fontFamily:'var(--font-heading)', letterSpacing:'-0.01em' }}>{post.title}</h3>
-                      <p style={{ fontSize:13.5, color:'#64748B', lineHeight:1.65, margin:'0 0 20px', flex:1, fontFamily:'var(--font-body)' }}>{post.excerpt}</p>
-                      <span style={{ display:'inline-flex', alignItems:'center', gap:5, fontSize:13, fontWeight:700, color:'#2396C6' }}>
-                        Read article <ArrowRight weight="regular" style={{ width:13, height:13 }} />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                <img src={post1.coverImage} alt={post1.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block', position: 'absolute', inset: 0 }} />
+                {/* gradient overlay */}
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.28) 50%, transparent 80%)' }} />
+                {/* top meta */}
+                <div style={{ position: 'absolute', top: 18, left: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>Category . {post1.category}</span>
+                  <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.50)' }}>|</span>
+                  <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.60)' }}>{post1.date}</span>
+                </div>
+                {/* bottom content */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0 24px 28px' }}>
+                  <h2 style={{ fontSize: 'clamp(1.5rem,2.2vw,2rem)', fontWeight: 900, color: '#fff', lineHeight: 1.15, margin: 0, fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
+                    {post1.title}
+                  </h2>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
 
-        {/* ── Bottom CTA ── */}
-        <motion.div
-          initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }} transition={{ duration:0.55, ease:EASE }}
-          style={{ marginTop:72, background:'linear-gradient(135deg,#183765 0%,#1966AA 50%,#2396C6 100%)', borderRadius:20, padding:'48px 40px', textAlign:'center', position:'relative', overflow:'hidden' }}
-        >
-          <div style={{ position:'absolute', inset:0, opacity:0.05, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'22px 22px', pointerEvents:'none' }} />
-          <div style={{ position:'relative', zIndex:1 }}>
-            <h2 style={{ fontSize:'clamp(1.5rem,3vw,2rem)', fontWeight:900, color:'#fff', letterSpacing:'-0.02em', margin:'0 0 12px', fontFamily:'var(--font-heading)' }}>Ready to see Logezy in action?</h2>
-            <p style={{ fontSize:16, color:'rgba(255,255,255,0.75)', marginBottom:28, fontFamily:'var(--font-body)' }}>Book a free demo and see how Logezy helps your agency work smarter.</p>
-            <a
-              href="https://calendly.com/logezy/demo"
-              target="_blank" rel="noreferrer"
-              style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'13px 28px', borderRadius:12, background:'#fff', color:'#183963', fontSize:15, fontWeight:800, textDecoration:'none', boxShadow:'0 4px 14px rgba(0,0,0,0.12)' }}
-            >
-              Book a Free Demo <ArrowRight weight="regular" style={{ width:16, height:16 }} />
+          {/* ── CELL 2: Centre featured article ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.08, ease: EASE }}
+          >
+            <Link to={`/resources/blog/${post2.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+              <div style={{
+                background: '#E8F5D0', borderRadius: 20, padding: '28px 30px 32px', height: '100%', position: 'relative',
+                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+              }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 36px rgba(0,0,0,0.12)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(0,0,0,0.06)'; }}
+              >
+                {/* top row */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#4B5563' }}>Category . {post2.category}</span>
+                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#0F172A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <ArrowUpRight weight="bold" style={{ width: 14, height: 14, color: '#fff' }} />
+                  </div>
+                </div>
+                <h2 style={{ fontSize: 'clamp(1.5rem,2.2vw,2.1rem)', fontWeight: 900, color: '#0F172A', lineHeight: 1.1, margin: '0 0 16px', fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
+                  {post2.title}
+                </h2>
+                <p style={{ fontSize: 13.5, color: '#4B5563', lineHeight: 1.70, margin: '0 0 24px', fontFamily: 'var(--font-body)' }}>
+                  {post2.excerpt.slice(0, 160)}... <span style={{ fontWeight: 700, color: '#0F172A' }}>More</span>
+                </p>
+                {/* related links */}
+                {blogs.filter(b => b.slug !== post2.slug).slice(0, 2).map((rel) => (
+                  <div key={rel.slug} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', borderTop: '1.5px solid rgba(0,0,0,0.10)' }}>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: '#0F172A', textTransform: 'uppercase', letterSpacing: '0.01em', lineHeight: 1.3 }}>{rel.title.slice(0, 52)}{rel.title.length > 52 ? '...' : ''}</span>
+                    <ArrowRight weight="bold" style={{ width: 14, height: 14, color: '#0F172A', flexShrink: 0, marginLeft: 8 }} />
+                  </div>
+                ))}
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* ── CELL 3: Top-right small card ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.14, ease: EASE }}
+          >
+            <Link to={`/resources/blog/${post3.slug}`} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
+              <div style={{
+                background: '#C5BFED', borderRadius: 20, overflow: 'hidden', height: '100%', minHeight: 260, position: 'relative',
+                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+              }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 36px rgba(0,0,0,0.14)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 12px rgba(0,0,0,0.06)'; }}
+              >
+                <img src={post3.coverImage} alt={post3.title} style={{ width: '100%', height: '60%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+                <div style={{ padding: '14px 18px' }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: '#4B5563' }}>Hot . {post3.date}</span>
+                  <h3 style={{ fontSize: 'clamp(0.95rem,1.4vw,1.15rem)', fontWeight: 900, color: '#0F172A', lineHeight: 1.2, margin: '6px 0 0', fontFamily: 'var(--font-heading)', textTransform: 'uppercase', letterSpacing: '-0.01em' }}>
+                    {post3.title.slice(0, 60)}{post3.title.length > 60 ? '...' : ''}
+                  </h3>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* ── CELL 4: Bottom-right categories ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.20, ease: EASE }}
+          >
+            <div style={{ background: '#EDE9FE', borderRadius: 20, padding: '22px 22px 20px', height: '100%' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20 }}>
+                {allCategories.map((cat, i) => (
+                  <span key={cat} style={{
+                    padding: '6px 13px', borderRadius: 20, fontSize: 12, fontWeight: 700, cursor: 'default',
+                    background: i % 3 === 0 ? '#183963' : i % 3 === 1 ? '#2396C6' : '#fff',
+                    color: i % 3 === 2 ? '#0F172A' : '#fff',
+                    border: i % 3 === 2 ? '1.5px solid #E2E8F0' : 'none',
+                  }}>
+                    {cat}
+                  </span>
+                ))}
+              </div>
+              <Link to="/resources/blog" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', textDecoration: 'none' }}>
+                <span style={{ fontSize: 13, fontWeight: 800, color: '#0F172A' }}>View All Categories</span>
+                <div style={{ width: 34, height: 34, borderRadius: '50%', background: '#0F172A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <ArrowRight weight="bold" style={{ width: 14, height: 14, color: '#fff' }} />
+                </div>
+              </Link>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+
+      {/* ── Bottom CTA ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.55, ease: EASE }}
+        style={{ maxWidth: 1240, margin: '40px auto 0', padding: '0 24px' }}
+      >
+        <div style={{ background: 'linear-gradient(135deg,#183765 0%,#1966AA 50%,#2396C6 100%)', borderRadius: 20, padding: '44px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize: '22px 22px', pointerEvents: 'none' }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <h2 style={{ fontSize: 'clamp(1.5rem,3vw,2rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.02em', margin: '0 0 10px', fontFamily: 'var(--font-heading)' }}>Ready to see Logezy in action?</h2>
+            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', marginBottom: 24, fontFamily: 'var(--font-body)' }}>Book a free demo and see how Logezy helps your agency work smarter.</p>
+            <a href="https://calendly.com/logezy/demo" target="_blank" rel="noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 26px', borderRadius: 12, background: '#fff', color: '#183963', fontSize: 14, fontWeight: 800, textDecoration: 'none' }}>
+              Book a Free Demo <ArrowRight weight="regular" style={{ width: 15, height: 15 }} />
             </a>
           </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
-      </div>
     </div>
   );
 }
