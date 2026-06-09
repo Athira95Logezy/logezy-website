@@ -130,10 +130,10 @@ export default function BlogList() {
                       onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(0)'; el.style.boxShadow = '0 2px 14px rgba(0,0,0,0.07)'; }}
                     >
                       {/* ── Thumbnail image — fixed 220px ── */}
-                      <div style={{ height: 220, overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative' }}>
+                      <div style={{ height: 300, overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
                           src={post.coverImage} alt={post.title}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center', display: 'block' }}
                         />
                         {/* Category pill floating on image bottom-left */}
                         <div style={{ position: 'absolute', bottom: 14, left: 14 }}>
