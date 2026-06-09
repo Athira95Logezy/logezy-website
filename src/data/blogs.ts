@@ -23,7 +23,7 @@ export const blogs: BlogPost[] = [
     excerpt: 'From workforce shortages and scheduling difficulties to compliance requirements and employee burnout — managing healthcare staff has become increasingly complex. Here is how technology changes that.',
     category: 'Healthcare',
     readTime: '4 min read',
-    date: 'May 2025',
+    date: 'Jun 03, 2025',
     coverImage: '/blog/blog-healthcare-staffing.png',
     sections: [
       {
@@ -61,7 +61,7 @@ export const blogs: BlogPost[] = [
     excerpt: 'A branded mobile app is no longer a nice-to-have — it is a competitive advantage. Improve communication, enhance candidate experience, and strengthen your brand in a digital-first recruitment market.',
     category: 'Technology',
     readTime: '3 min read',
-    date: 'May 2025',
+    date: 'Jun 10, 2025',
     coverImage: '/blog/blog-branded-mobile-app.jpeg',
     sections: [
       {
@@ -103,7 +103,7 @@ export const blogs: BlogPost[] = [
     excerpt: 'Recruitment agencies lose dozens of hours every week to manual scheduling, chasing availability, and fixing rota errors. Here is how switching to smart scheduling software gives that time back.',
     category: 'Agency Tips',
     readTime: '5 min read',
-    date: 'June 2025',
+    date: 'Jun 18, 2025',
     coverImage: '/blog/blog-agency-admin-time.png',
     sections: [
       {
