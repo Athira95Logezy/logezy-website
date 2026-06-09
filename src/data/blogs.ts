@@ -62,7 +62,7 @@ export const blogs: BlogPost[] = [
     category: 'Technology',
     readTime: '3 min read',
     date: 'Jun 10, 2025',
-    coverImage: '/blog/blog-branded-mobile-app.jpeg',
+    coverImage: '/blog/blog-branded-mobile-app.jpg',
     sections: [
       {
         body: 'The recruitment industry is evolving rapidly, and agencies need smarter ways to connect with candidates, workers, and clients. A branded mobile app helps recruitment agencies streamline operations, improve communication, and strengthen their brand presence.',
@@ -104,7 +104,7 @@ export const blogs: BlogPost[] = [
     category: 'Agency Tips',
     readTime: '5 min read',
     date: 'Jun 18, 2025',
-    coverImage: '/blog/blog-agency-admin-time.png',
+    coverImage: '/blog/blog-agency-admin-time.jpg',
     sections: [
       {
         body: "For most temp recruitment agencies, the admin never stops. Coordinating availability, building weekly rotas, chasing confirmations, fixing last-minute gaps — it all adds up. Many consultants spend more time on scheduling admin than they do on revenue-generating activity. The good news is that smart scheduling software can change that completely.",
