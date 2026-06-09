@@ -11,6 +11,8 @@ import Contact from './pages/Contact';
 import Resources from './pages/Resources';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
+import CaseStudiesList from './pages/CaseStudiesList';
+import CaseStudyDetail from './pages/CaseStudyDetail';
 import Pricing from './pages/Pricing';
 import ProductPage from './pages/product/ProductPage';
 import IndustryPage from './pages/industries/IndustryPage';
@@ -36,6 +38,8 @@ function App() {
         <Route path="/resources" element={<Resources />} />
         <Route path="/resources/blog" element={<BlogList />} />
         <Route path="/resources/blog/:slug" element={<BlogPost />} />
+        <Route path="/resources/case-studies" element={<CaseStudiesList />} />
+        <Route path="/resources/case-studies/:slug" element={<CaseStudyDetail />} />
         <Route path="/pricing" element={<Pricing />} />
         {/* Product sub-pages */}
         <Route path="/product/:slug" element={<ProductPage />} />
