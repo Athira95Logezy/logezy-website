@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 ───────────────────────────────────────────── */
 const logos = [
   { src: '/medsolve.png',                 alt: 'Medsolve'       },
-  { src: '/ansacare_logo.webp',           alt: 'Ansacare'       },
-  { src: '/jayco_logo.png',               alt: 'Jayco'          },
+  { src: '/ansacare_logo.png',           alt: 'Ansacare'       },
+  { src: '/jayco_logo.png',               alt: 'Jayco',          bg: '#114450' },
   { src: '/primcura_healthcare_logo.png', alt: 'Primcura'       },
   { src: '/Leadcare_logo.png',            alt: 'Leadcare'       },
   { src: '/annicare_uk.png',              alt: 'Annicare UK'    },
@@ -96,6 +96,14 @@ export default function TrustedBy() {
                 width: LOGO_SLOT,
               }}
             >
+              <div style={logo.alt === 'Jayco' ? {
+                background: '#114450',
+                borderRadius: 12,
+                padding: '8px 14px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              } : {}}>
               <img
                 src={logo.src}
                 alt={logo.alt}
@@ -105,7 +113,7 @@ export default function TrustedBy() {
                   maxWidth: LOGO_SLOT,
                   objectFit: 'contain',
                   opacity: 1,
-                  filter: 'none',
+                  filter: logo.alt === 'Ocean' ? 'invert(76%) sepia(51%) saturate(416%) hue-rotate(148deg) brightness(98%) contrast(89%)' : 'none',
                   userSelect: 'none',
                   pointerEvents: 'none',
                   transition: 'opacity 0.2s, transform 0.2s',
@@ -113,6 +121,7 @@ export default function TrustedBy() {
                 } as React.CSSProperties}
                 draggable={false}
               />
+              </div>
             </div>
           ))}
         </motion.div>
