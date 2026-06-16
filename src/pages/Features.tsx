@@ -350,7 +350,7 @@ const categories = [
     id: 'workforce',
     num: '01',
     label: 'Workforce',
-    desc: 'Schedule your team, track availability, and manage every candidate and client — from one screen.',
+    desc: 'Schedule your team, track availability, and manage every candidate and client from a single screen.',
     accentColor: '#2396C6',
     accentBg: 'rgba(91,108,249,0.06)',
     borderColor: '#2396C6',
@@ -362,7 +362,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#2396C6,#8B5CF6)',
         glow: 'rgba(91,108,249,0.18)',
         tagBg: 'rgba(91,108,249,0.08)', tagColor: '#2396C6',
-        desc: 'Stop spending hours building rotas manually. Build, edit and publish your full weekly rota in minutes — with real-time visibility of who is scheduled, where, and when.',
+        desc: 'Stop spending hours building rotas manually. Build, edit and publish your full weekly rota in minutes, with real-time visibility of who is scheduled, where, and when.',
         points: [
           'Drag-and-drop rota builder with live conflict detection',
           'Auto-fill shifts by skills, availability & location',
@@ -380,7 +380,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#0891B2,#06B6D4)',
         glow: 'rgba(8,145,178,0.18)',
         tagBg: 'rgba(8,145,178,0.08)', tagColor: '#0891B2',
-        desc: 'Know exactly who is free before you start scheduling. Workers submit their availability through the app — giving your team a live view of workforce capacity at all times.',
+        desc: 'Know exactly who is free before you start scheduling. Workers submit their availability through the app, giving your team a live view of workforce capacity at all times.',
         points: [
           'Workers set recurring or one-off availability via mobile app',
           'Live availability calendar across your entire workforce',
@@ -398,7 +398,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#DB2777,#F43F5E)',
         glow: 'rgba(219,39,119,0.18)',
         tagBg: 'rgba(219,39,119,0.08)', tagColor: '#DB2777',
-        desc: 'Manage your entire workforce and client base from one unified platform. Full candidate profiles, client accounts, placement history — all connected and always up to date.',
+        desc: 'Manage your entire workforce and client base from one unified platform. Full candidate profiles, client accounts, and placement history, all connected and always up to date.',
         points: [
           'Complete candidate profiles with live compliance status',
           'Client accounts with contacts, sites and preferences',
@@ -415,7 +415,7 @@ const categories = [
     id: 'compliance',
     num: '02',
     label: 'Compliance & Payroll',
-    desc: 'Stay audit-ready, pay your workers accurately, and invoice clients automatically — without the admin.',
+    desc: 'Stay audit-ready, pay your workers accurately, and invoice clients automatically. No extra admin required.',
     accentColor: '#059669',
     accentBg: 'rgba(5,150,105,0.06)',
     borderColor: '#059669',
@@ -427,7 +427,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#D97706,#F59E0B)',
         glow: 'rgba(217,119,6,0.18)',
         tagBg: 'rgba(217,119,6,0.08)', tagColor: '#D97706',
-        desc: 'Built with CQC standards at its core. Automated DBS tracking, right-to-work checks, training expiry alerts, and comprehensive audit trails mean you\'re always ready for inspection — without extra admin.',
+        desc: 'Built with CQC standards at its core. Automated DBS tracking, right-to-work checks, training expiry alerts, and comprehensive audit trails keep you ready for inspection at any time.',
         points: [
           'Automated DBS and right-to-work document tracking',
           'Training expiry alerts sent automatically to workers & managers',
@@ -445,7 +445,7 @@ const categories = [
         gradient: 'linear-gradient(135deg,#2563EB,#2396C6)',
         glow: 'rgba(37,99,235,0.18)',
         tagBg: 'rgba(37,99,235,0.08)', tagColor: '#2563EB',
-        desc: 'Workers clock in and out via the mobile app with GPS verification — you always know who was where and when. No paper, no chasing, no errors.',
+        desc: 'Workers clock in and out via the mobile app with GPS verification. You always know who was where and when. No paper, no chasing, no errors.',
         points: [
           'GPS-locked clock in/out on the mobile app',
           'Workers and clients both sign off shifts digitally',
@@ -463,11 +463,11 @@ const categories = [
         gradient: 'linear-gradient(135deg,#7C3AED,#A855F7)',
         glow: 'rgba(124,58,237,0.18)',
         tagBg: 'rgba(124,58,237,0.08)', tagColor: '#7C3AED',
-        desc: 'Generate accurate client invoices automatically the moment timesheets are approved. No manual data entry, no delays — just faster payments for your agency.',
+        desc: 'Generate accurate client invoices automatically the moment timesheets are approved. No manual data entry, no delays. Just faster payments for your agency.',
         points: [
           'Invoices auto-generated when timesheets are approved',
           'Branded invoice templates per client account',
-          'Multi-rate support — charge rates, pay rates and margins',
+          'Multi-rate support: charge rates, pay rates and margins',
           'Real-time invoice status: sent, viewed, paid or overdue',
           'Bulk invoice export for your accounts team',
         ],
@@ -480,7 +480,7 @@ const categories = [
     id: 'portals',
     num: '03',
     label: 'Portals & Communication',
-    desc: 'Keep workers, clients and your team connected — with purpose-built portals and a branded mobile app.',
+    desc: 'Keep workers, clients and your team connected with purpose-built portals and a branded mobile app.',
     accentColor: '#2396C6',
     accentBg: 'rgba(23,149,199,0.06)',
     borderColor: '#2396C6',
@@ -492,9 +492,9 @@ const categories = [
         gradient: 'linear-gradient(135deg,#2396C6,#2396C6)',
         glow: 'rgba(79,70,229,0.18)',
         tagBg: 'rgba(79,70,229,0.08)', tagColor: '#2396C6',
-        desc: 'Give your temps a mobile experience that carries your brand. Workers see their shifts, confirm bookings, submit timesheets, upload documents, and clock in — all from the Logezy app.',
+        desc: 'Give your temps a mobile experience that carries your brand. Workers see their shifts, confirm bookings, submit timesheets, upload documents, and clock in, all from the Logezy app.',
         points: [
-          'Available on iOS and Android — free to download',
+          'Available on iOS and Android, free to download',
           'Push notifications for new shifts, changes and approvals',
           'In-app document upload for compliance documents',
           'Digital timesheet submission and e-signatures',
@@ -517,7 +517,7 @@ const categories = [
           'Automated candidate scoring and screening workflows',
           'Digital document collection with e-signature support',
           'Right-to-work and DBS check automation',
-          'One-click onboarding — app download to first shift',
+          'One-click onboarding from app download to first shift',
         ],
         Screen: RecruitmentScreen,
         reverse: true,
@@ -533,7 +533,7 @@ const categories = [
         desc: 'Give your clients real-time visibility into their workforce without flooding your inbox. A branded self-serve portal where clients can view rotas, approve timesheets, and raise requirements.',
         points: [
           'Branded client-facing portal with your agency logo',
-          'Live rota visibility — clients see who is booked and when',
+          'Live rota visibility so clients can see who is booked and when',
           'Digital timesheet approval directly from the client side',
           'Clients can raise new shift requirements directly in the portal',
           'Automated weekly reports sent to client contacts',
@@ -663,7 +663,7 @@ export default function FeaturesPage() {
 
           <motion.p {...fadeUp(0.14)}
             className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-12">
-            9 features across 3 categories — built specifically for temp recruitment agencies.
+            9 features across 3 categories, built specifically for temp recruitment agencies.
           </motion.p>
 
           {/* 3 category overview cards */}
@@ -791,7 +791,7 @@ export default function FeaturesPage() {
       {/* ══════════════════════
           HOW IT WORKS
       ══════════════════════ */}
-      <section className="py-24 bg-white">
+      <section className="py-14 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <motion.div {...fadeUp(0)}>
@@ -808,7 +808,7 @@ export default function FeaturesPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { num:'01', title:'Quick setup',          desc:'Import your team and clients in minutes using our guided onboarding wizard — no technical knowledge needed.' },
+              { num:'01', title:'Quick setup',          desc:'Import your team and clients in minutes using our guided onboarding wizard. No technical knowledge needed.' },
               { num:'02', title:'Configure & customise', desc:'Tailor workflows, shift templates, and permission levels to match exactly how your agency operates.' },
               { num:'03', title:'Launch & grow',         desc:'Go live with confidence. Our UK-based support team is with you every step of the way as you scale.' },
             ].map((step, i) => (
@@ -831,7 +831,7 @@ export default function FeaturesPage() {
       {/* ══════════════════════
           FINAL CTA
       ══════════════════════ */}
-      <section className="py-24 relative overflow-hidden"
+      <section className="py-14 lg:py-24 relative overflow-hidden"
         style={{ background:'linear-gradient(135deg,#183963 0%,#183963 100%)' }}>
         <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at 50% 0%,rgba(23,149,199,0.16) 0%,transparent 60%)', pointerEvents:'none' }}/>
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -861,7 +861,7 @@ export default function FeaturesPage() {
                   color:'rgba(255,255,255,0.80)', background:'rgba(255,255,255,0.08)',
                   border:'1.5px solid rgba(255,255,255,0.16)', textDecoration:'none',
                 }}>
-                  Start Free Trial
+                  Book a Free Trial Now
                 </a>
               </motion.div>
             </div>

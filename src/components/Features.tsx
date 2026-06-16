@@ -496,10 +496,10 @@ export default function Features() {
             fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1.08,
             color: '#183963', margin: '0 0 14px',
           }}>
-            Everything your agency needs{' '}
+            One Platform.{' '}
             <span style={{
               color: '#2396C6', display: 'inline'}}>
-              in one place.
+              Total Workforce Control.
             </span>
           </h2>
 

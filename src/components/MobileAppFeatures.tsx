@@ -425,21 +425,21 @@ export default function MobileAppFeatures() {
     {
       color: '#2396C6', icon: CalendarBlank, tag: 'Most Used',
       title: 'Shift Management',
-      desc:  'Workers see their shifts, confirm in seconds, and get reminders — all from their phone. No more missed messages or last-minute confusion.',
+      desc:  'Workers see their shifts, confirm in seconds, and get reminders right from their phone. No more missed messages or last-minute confusion.',
       bullets: ['One-tap shift confirmation', 'Automated shift reminders', 'Shift swap requests'],
       anim:    <ShiftAnim />,
     },
     {
       color: '#10B981', icon: Clock, tag: 'Time Saver',
       title: 'Availability',
-      desc:  "Workers share when they're free so you fill shifts with people who actually want to work — every time.",
+      desc:  "Workers share when they're free so you always fill shifts with people who actually want to work.",
       bullets: ['Weekly availability picker', 'Smart staff matching', 'Auto-fill open shifts'],
       anim:    <AvailabilityAnim />,
     },
     {
       color: '#8B5CF6', icon: Shield, tag: 'CQC Ready',
       title: 'Compliance',
-      desc:  'Workers upload documents, your team tracks everything. CQC-ready from day one — no chasing, no guesswork.',
+      desc:  'Workers upload documents, your team tracks everything. CQC-ready from day one with no chasing and no guesswork.',
       bullets: ['Document expiry alerts', 'Auto-renewal reminders', 'Audit-ready records'],
       anim:    <ComplianceAnim />,
     },
@@ -453,14 +453,14 @@ export default function MobileAppFeatures() {
     {
       color: '#F97316', icon: Bell, tag: 'Real-Time', live: true,
       title: '3-Way Notifications',
-      desc:  'Agency, workers and clients all get the right updates instantly — push, SMS or email. Everyone stays in the loop, automatically.',
+      desc:  'Agency, workers and clients all get the right updates instantly via push, SMS or email. Everyone stays in the loop, automatically.',
       bullets: ['Push + SMS + email alerts', 'Read receipts built-in', 'No-show auto-alerts'],
       anim:    <NotificationsAnim />,
     },
     {
       color: '#0EA5E9', icon: ChatCircle, tag: 'Built-In',
       title: 'In-App Chat',
-      desc:  'Workers reach your team and your team reaches them — all in one place, right inside the app. Every message is logged, searchable, and nothing ever gets lost.',
+      desc:  'Workers reach your team and your team reaches them, all in one place, right inside the app. Every message is logged, searchable, and nothing ever gets lost.',
       bullets: ['Group & direct messaging', 'Full searchable history', 'Works within Logezy'],
       anim:    <ChatAnim />,
     },
@@ -537,7 +537,7 @@ export default function MobileAppFeatures() {
 
             {/* subtitle */}
             <p style={{ fontSize: 15.5, color: '#64748B', lineHeight: 1.8, marginBottom: 32, maxWidth: 340 }}>
-              Six powerful features that keep your workforce engaged, compliant and earning — with zero friction.
+              Six powerful features that keep your workforce engaged, compliant and earning with zero friction.
             </p>
 
             {/* CTA */}

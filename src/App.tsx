@@ -18,8 +18,8 @@ import ProductPage from './pages/product/ProductPage';
 import IndustryPage from './pages/industries/IndustryPage';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  React.useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, key } = useLocation();
+  React.useEffect(() => { window.scrollTo(0, 0); }, [pathname, key]);
   return null;
 }
 

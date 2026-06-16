@@ -52,13 +52,13 @@ export const blogs: BlogPost[] = [
     ],
     cta: {
       heading: 'Ready to simplify healthcare staffing?',
-      body: "Healthcare staffing challenges continue to evolve, but the right technology can make workforce management simpler and more efficient. With Logezy, healthcare providers can confidently manage their workforce and focus on what matters most — exceptional patient care.",
+      body: "Healthcare staffing challenges continue to evolve, but the right technology can make workforce management simpler and more efficient. With Logezy, healthcare providers can confidently manage their workforce and focus on what matters most: exceptional patient care.",
     },
   },
   {
     slug: 'branded-mobile-app-recruitment',
     title: 'Why Your Recruitment Agency Needs a Branded Mobile App',
-    excerpt: 'A branded mobile app is no longer a nice-to-have — it is a competitive advantage. Improve communication, enhance candidate experience, and strengthen your brand in a digital-first recruitment market.',
+    excerpt: 'A branded mobile app is no longer optional. It is a competitive advantage. Improve communication, enhance candidate experience, and strengthen your brand in a digital-first recruitment market.',
     category: 'Technology',
     readTime: '3 min read',
     date: 'Jun 10, 2025',
@@ -94,7 +94,7 @@ export const blogs: BlogPost[] = [
     ],
     cta: {
       heading: 'Give your agency a competitive edge',
-      body: "A branded mobile app is no longer a nice-to-have — it's a competitive advantage. It improves communication, enhances candidate experience, strengthens your brand, and helps your agency grow faster in a digital-first recruitment market.",
+      body: "A branded mobile app is no longer optional. It is a competitive advantage that improves communication, enhances candidate experience, strengthens your brand, and helps your agency grow faster in a digital-first recruitment market.",
     },
   },
   {
@@ -107,7 +107,7 @@ export const blogs: BlogPost[] = [
     coverImage: '/blog/blog-agency-admin-time.jpg',
     sections: [
       {
-        body: "For most temp recruitment agencies, the admin never stops. Coordinating availability, building weekly rotas, chasing confirmations, fixing last-minute gaps — it all adds up. Many consultants spend more time on scheduling admin than they do on revenue-generating activity. The good news is that smart scheduling software can change that completely.",
+        body: "For most temp recruitment agencies, the admin never stops. Coordinating availability, building weekly rotas, chasing confirmations, fixing last-minute gaps. It all adds up. Many consultants spend more time on scheduling admin than they do on revenue-generating activity. The good news is that smart scheduling software can change that completely.",
       },
       {
         heading: 'The Hidden Cost of Manual Scheduling',
@@ -136,7 +136,7 @@ export const blogs: BlogPost[] = [
     ],
     cta: {
       heading: 'See how much admin time Logezy can save your agency',
-      body: "Logezy brings scheduling, availability, compliance, timesheets, and communication into one connected platform — so your team spends less time on admin and more time growing the business. Book a free demo and see the difference.",
+      body: "Logezy brings scheduling, availability, compliance, timesheets, and communication into one connected platform, so your team spends less time on admin and more time growing the business. Book a free demo and see the difference.",
     },
   },
 ];

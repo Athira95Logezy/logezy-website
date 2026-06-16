@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Envelope, MapPin, Phone,
+  Envelope, MapPin, Phone, WhatsappLogo,
   FacebookLogo, LinkedinLogo, InstagramLogo, YoutubeLogo,
   ArrowRight, Shield, Star, Lightning, CheckCircle,
   ArrowUpRight,
@@ -150,14 +150,27 @@ export default function Footer() {
 
             <span className="hidden sm:block w-px h-4 bg-slate-200" />
 
-            <a href="tel:03330062179"
+            <a href="tel:03301279604"
               className="flex items-center gap-2 group">
               <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
                 style={{ background: 'linear-gradient(135deg, #2396C6, #183765)' }}>
                 <Phone weight="regular" className="h-3 w-3 text-white" />
               </div>
               <span className="text-sm text-slate-600 group-hover:text-[#2396C6] transition-colors font-medium">
-                (0333) 006-2179
+                0330 127 9604
+              </span>
+            </a>
+
+            <span className="hidden sm:block w-px h-4 bg-slate-200" />
+
+            <a href="https://wa.me/447393132453" target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-2 group">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}>
+                <WhatsappLogo weight="fill" className="h-3 w-3 text-white" />
+              </div>
+              <span className="text-sm text-slate-600 group-hover:text-green-600 transition-colors font-medium">
+                +44 7393 132453
               </span>
             </a>
 

@@ -44,9 +44,9 @@ const dropdownVariants = {
 };
 
 const mobileMenuVariants = {
-  hidden: { opacity: 0, height: 0 },
-  show:   { opacity: 1, height: 'auto', transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } },
-  exit:   { opacity: 0, height: 0,      transition: { duration: 0.18 } },
+  hidden: { opacity: 0, y: -8 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } },
+  exit:   { opacity: 0, y: -8, transition: { duration: 0.16 } },
 };
 
 const mobileLinkVariants = {
@@ -135,7 +135,7 @@ export default function Header() {
                     {/* 3-column grid for 9 items */}
                     <div className="grid grid-cols-3 gap-1">
                       {productLinks.map(({ icon: Icon, label, desc, color, to }) => (
-                        <Link key={label} to={to}
+                        <Link key={label} to={to} onClick={() => window.scrollTo(0, 0)}
                           className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group">
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${color} group-hover:scale-110 transition-transform duration-200`}>
                             <Icon weight="regular" className="h-3.5 w-3.5" />
@@ -311,15 +311,26 @@ export default function Header() {
               initial="hidden"
               animate="show"
               exit="exit"
-              className="lg:hidden overflow-hidden border-t border-slate-100 bg-white"
+              className="lg:hidden"
+              style={{
+                position: 'fixed',
+                top: 66,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                overflowY: 'auto',
+                background: '#fff',
+                borderTop: '1px solid #f1f5f9',
+                zIndex: 49,
+              }}
             >
-              <nav className="flex flex-col gap-1 px-1 py-4">
+              <nav className="flex flex-col gap-1 px-1 py-4 pb-8">
 
                 {/* Product group */}
                 <p className="px-4 pt-1 pb-0.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Product</p>
                 {productLinks.map(({ icon: Icon, label, color, to }, i) => (
                   <motion.div key={to} custom={i} variants={mobileLinkVariants} initial="hidden" animate="show">
-                    <Link to={to} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
+                    <Link to={to} onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
                       <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
                         <Icon weight="regular" className="h-3.5 w-3.5" />
                       </div>

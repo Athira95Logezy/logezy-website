@@ -65,7 +65,7 @@ const cards = [
     id: 'schools',
     icon: Users,
     label: 'Schools & Academies',
-    desc: 'Same-day cover teachers with DBS and safeguarding automation built in.',
+    desc: 'Quickly source cover teachers with DBS and safeguarding checks built in.',
     color: '#8B5CF6',
     light: '#F5F3FF',
     blob: 'rgba(139,92,246,0.08)',

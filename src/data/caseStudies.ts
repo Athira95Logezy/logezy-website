@@ -26,7 +26,7 @@ export const caseStudies: CaseStudy[] = [
     date: 'June 2025',
     coverImage: '/resources/logezy-eBook_img.jpg',
     pdfFile: '/resources/logezy-guide-staffing-agency.pdf',
-    excerpt: 'Everything you need to run a high-performing staffing agency — from building your candidate database and managing compliance, to automating schedules, timesheets and invoicing with Logezy.',
+    excerpt: 'Everything you need to run a high-performing staffing agency, from building your candidate database and managing compliance, to automating schedules, timesheets and invoicing with Logezy.',
     stats: [
       { value: '60%', label: 'Less admin time' },
       { value: '24/7', label: 'Real-time visibility' },
@@ -55,7 +55,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         heading: 'Business Objectives Every Agency Must Hit',
-        body: 'The most successful staffing agencies share three core operational capabilities. First, a large, well-maintained candidate database with up-to-date skills, qualifications and availability data. Second, the ability to quickly meet client needs at short notice — if you cannot fill a shift fast, clients will go to a competitor. Third, efficient schedule management that avoids errors, double bookings and gaps.',
+        body: 'The most successful staffing agencies share three core operational capabilities. First, a large, well-maintained candidate database with up-to-date skills, qualifications and availability data. Second, the ability to quickly meet client needs at short notice. If you cannot fill a shift fast, clients will go to a competitor. Third, efficient schedule management that avoids errors, double bookings and gaps.',
       },
       {
         heading: 'Compliance and Documentation',

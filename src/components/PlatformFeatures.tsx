@@ -19,7 +19,7 @@ const features = [
     colorLight: 'rgba(124,58,237,0.10)',
     colorBorder: 'rgba(124,58,237,0.20)',
     grad: 'linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%)',
-    desc: 'Auto-match workers to shifts by skills, availability, and location. Fill your rota in minutes, not hours — with smart conflict detection built in.',
+    desc: 'Auto-match workers to shifts by skills, availability, and location. Fill your rota in minutes, not hours, with smart conflict detection built in.',
     bullets: [
       { icon: Clock, text: 'Real-time availability matching' },
       { icon: Users, text: 'Skills-based worker suggestions' },
@@ -69,7 +69,7 @@ const features = [
     colorLight: 'rgba(217,119,6,0.10)',
     colorBorder: 'rgba(217,119,6,0.20)',
     grad: 'linear-gradient(135deg, #D97706 0%, #F59E0B 100%)',
-    desc: 'Real-time dashboards across vacancies, timesheets, and invoices — every metric in one view, with exportable reports at a click.',
+    desc: 'Real-time dashboards across vacancies, timesheets, and invoices. Every metric in one view, with exportable reports at a click.',
     bullets: [
       { icon: BarChart3, text: 'Live revenue & placement stats' },
       { icon: FileCheck, text: 'Timesheet approval tracking' },
@@ -94,7 +94,7 @@ const features = [
     colorLight: 'rgba(3,105,161,0.10)',
     colorBorder: 'rgba(3,105,161,0.20)',
     grad: 'linear-gradient(135deg, #0369A1 0%, #0EA5E9 100%)',
-    desc: 'Workers clock in via GPS, submit timesheets, and update their availability from anywhere. Managers approve on the go — no desktop needed.',
+    desc: 'Workers clock in via GPS, submit timesheets, and update their availability from anywhere. Managers approve on the go with no desktop required.',
     bullets: [
       { icon: Smartphone, text: 'GPS clock-in & clock-out' },
       { icon: FileCheck, text: 'Mobile timesheet submission' },
@@ -258,7 +258,7 @@ export default function PlatformFeatures() {
             </span>
           </h2>
           <p style={{ fontSize: 16.5, lineHeight: 1.72, color: '#64748B', margin: '0 auto', maxWidth: 560 }}>
-            Every feature in Logezy is purpose-built for temp staffing — from first booking to final invoice.
+            Every feature in Logezy is purpose-built for temp staffing, from first booking to final invoice.
           </p>
         </motion.div>
 

@@ -519,7 +519,7 @@ export default function ShowcaseCarousel() {
   return (
     <section style={{
       background: 'linear-gradient(160deg, #080E2A 0%, #0C1640 50%, #080E2A 100%)',
-      padding: isMobile ? '60px 16px 72px' : '100px 48px 120px',
+      padding: isMobile ? '60px 20px 72px' : '100px 48px 120px',
       position: 'relative',
       overflow: 'hidden',
     }}>
@@ -561,7 +561,7 @@ export default function ShowcaseCarousel() {
             </span>
           </h2>
           <p style={{ fontSize: 15, color: 'rgba(186,230,255,0.55)', lineHeight: 1.7, maxWidth: 480, margin: '0 auto' }}>
-            A real-world scenario — from sick call to shift covered — all inside Logezy.
+            A real-world scenario: from sick call to shift covered, all inside Logezy.
           </p>
         </motion.div>
 

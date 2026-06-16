@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
@@ -70,21 +70,21 @@ const pages: IndustryConfig[] = [
     heroBg:'linear-gradient(135deg,#FFF1F2 0%,#FDF2F8 60%,#FFFFFF 100%)',
     title:'Healthcare & Nursing',
     tagline:'Compliant workers. Shifts filled faster. Zero admin chaos.',
-    heroDesc:'Right-to-work checks, DBS certificates, NMC pins, shift cover at midnight — nursing agencies carry more compliance weight than almost any other sector. Logezy takes that weight off your team with a single platform built for healthcare staffing.',
+    heroDesc:'Right-to-work checks, DBS certificates, NMC pins, shift cover at midnight. Nursing agencies carry more compliance weight than almost any other sector. Logezy takes that weight off your team with a single platform built for healthcare staffing.',
     heroStats:[
       { value:'98.7%', label:'Avg compliance score', icon: Shield },
       { value:'312',   label:'DBS records tracked',  icon: ClipboardText },
       { value:'94%',   label:'Shift fill rate',       icon: CalendarBlank },
     ],
     challengeHeading:"One lapsed document. One missed check. Your agency is exposed.",
-    challengeText:'Nursing recruitment carries more compliance risk than almost any other sector. Right-to-work checks, DBS certificates, NMC pins, mandatory training — all tracked manually, across spreadsheets that were never designed for this. Logezy gives nursing and healthcare agencies a single, centralised platform to manage compliance, scheduling, timesheets, and client communication — without the risk, the chaos, or the manual effort.',
+    challengeText:'Nursing recruitment carries more compliance risk than almost any other sector. Right-to-work checks, DBS certificates, NMC pins, mandatory training: all tracked manually, across spreadsheets that were never designed for this. Logezy gives nursing and healthcare agencies a single, centralised platform to manage compliance, scheduling, timesheets, and client communication, without the risk, the chaos, or the manual effort.',
     featuresHeading:'Everything your nursing agency needs to stay compliant and keep every shift filled.',
     features:[
-      { icon:Shield,       title:'Compliance Tracking',     desc:'Every document, every expiry — automatically monitored. Right-to-work, DBS, NMC pins, training qualifications. Stored, tracked, and flagged before they lapse.', linkTo:'/product/compliance' },
+      { icon:Shield,       title:'Compliance Tracking',     desc:'Every document and every expiry is automatically monitored. Right-to-work, DBS, NMC pins, training qualifications. Stored, tracked, and flagged before they lapse.', linkTo:'/product/compliance' },
       { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Fill nursing shifts faster with live availability and role matching. See who\'s qualified, available, and near the location before you pick up the phone.', linkTo:'/product/scheduling' },
       { icon:DeviceMobile, title:'Candidate App',           desc:'A fully branded app your nurses actually use. Workers manage availability, confirm shifts, submit timesheets, and upload compliance documents, all from their phone.', linkTo:'/product/mobile-app' },
       { icon:FileText,     title:'Digital Timesheets',      desc:'Submitted from their phone. Approved in one click. GPS-verified, e-signed, tamper-proof records that feed straight into payroll and invoicing.', linkTo:'/product/timesheets' },
-      { icon:Buildings,    title:'Client Portal',           desc:'Give care homes and NHS trusts live shift visibility. Clients can see who\'s booked, approve timesheets, and access invoices — without calling your team.', linkTo:'/product/client-portal' },
+      { icon:Buildings,    title:'Client Portal',           desc:'Give care homes and NHS trusts live shift visibility. Clients can see who\'s booked, approve timesheets, and access invoices without calling your team.', linkTo:'/product/client-portal' },
       { icon:ClipboardText,title:'Fast Onboarding',         desc:'Get nurses placement-ready in hours, not days. A fully digital recruitment portal collects documents, forms, and compliance paperwork before their first shift.', linkTo:'/product/recruitment' },
     ],
     quote:'"Compliance used to be our biggest risk. Now it runs itself."',
@@ -103,13 +103,13 @@ const pages: IndustryConfig[] = [
       { value:'0',    label:'Compliance gaps',          icon: CheckCircle },
     ],
     challengeHeading:"One safeguarding gap. One no-show. Schools call your competitor.",
-    challengeText:'Supplying teaching staff requires fast turnaround, airtight safeguarding compliance, and reliable workers who show up. Managing all of that manually — across multiple schools and a constantly changing candidate pool — puts enormous pressure on your team. One unverified qualification, one teacher who doesn\'t show and the school is calling someone else. Logezy keeps you ahead.',
+    challengeText:'Supplying teaching staff requires fast turnaround, airtight safeguarding compliance, and reliable workers who show up. Managing all of that manually, across multiple schools and a constantly changing candidate pool, puts enormous pressure on your team. One unverified qualification, one teacher who doesn\'t show and the school is calling someone else. Logezy keeps you ahead.',
     featuresHeading:'Everything your education agency needs to place faster and protect every school.',
     features:[
-      { icon:Shield,       title:'Compliance Tracking',     desc:'DBS certificates, safeguarding checks, and teaching qualifications — all monitored automatically. Every candidate arrives at school with the right checks in place.', linkTo:'/product/compliance' },
-      { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Place teachers and support staff faster with smart scheduling tools. Live availability, role matching, and instant notifications mean cover is confirmed — fast.', linkTo:'/product/scheduling' },
+      { icon:Shield,       title:'Compliance Tracking',     desc:'DBS certificates, safeguarding checks, and teaching qualifications are all monitored automatically. Every candidate arrives at school with the right checks in place.', linkTo:'/product/compliance' },
+      { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Place teachers and support staff faster with smart scheduling tools. Live availability, role matching, and instant notifications mean cover is confirmed quickly.', linkTo:'/product/scheduling' },
       { icon:DeviceMobile, title:'Candidate App',           desc:'Teachers manage their own availability, shifts, and documents from their phone. Less chasing for your team. More control for your candidates.', linkTo:'/product/mobile-app' },
-      { icon:FileText,     title:'Digital Timesheets',      desc:'No more paper timesheets sent home at the end of the week. Workers submit digitally with e-signature — ready for payroll the same day.', linkTo:'/product/timesheets' },
+      { icon:FileText,     title:'Digital Timesheets',      desc:'No more paper timesheets sent home at the end of the week. Workers submit digitally with e-signature and records are ready for payroll the same day.', linkTo:'/product/timesheets' },
       { icon:Buildings,    title:'Client Portal',           desc:'Give schools direct visibility over bookings, staff profiles, and invoices. Fewer calls. Better relationships. Contracts that renew themselves.', linkTo:'/product/client-portal' },
       { icon:ClipboardText,title:'Fast Onboarding',         desc:'Get new candidates through compliance and placement-ready before term starts. A structured digital onboarding flow means no candidate falls through the cracks.', linkTo:'/product/recruitment' },
     ],
@@ -130,14 +130,14 @@ const pages: IndustryConfig[] = [
     ],
     challengeHeading:"Hospitality never slows down. Your staffing operation can't either.",
     challengeText:'Events overrun, bookings spike, and clients need cover with hours to spare. Workers cancel last minute, shifts go unfilled, and clients lose confidence. Logezy gives you the speed, visibility, and communication tools to stay ahead of every situation and keep every client covered, every time.',
-    featuresHeading:'Everything your hospitality agency needs to fill every shift — fast.',
+    featuresHeading:'Everything your hospitality agency needs to fill every shift quickly.',
     features:[
-      { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Build and fill hospitality shifts in minutes with live availability and role matching. See who\'s free, qualified, and nearby — before you start calling.', linkTo:'/product/scheduling' },
+      { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Build and fill hospitality shifts in minutes with live availability and role matching. See who\'s free, qualified, and nearby before you start calling.', linkTo:'/product/scheduling' },
       { icon:Bell,         title:'Three-Way Notifications', desc:'Workers get shift updates across push, SMS, and email simultaneously, so no-shows become rare and last-minute cancellations get covered before your client notices.', linkTo:'/product/mobile-app' },
       { icon:DeviceMobile, title:'Candidate App',           desc:'Workers manage availability, confirm shifts, and submit timesheets from their phone. Your team spends less time on calls and more time filling shifts that matter.', linkTo:'/product/mobile-app' },
       { icon:FileText,     title:'Digital Timesheets',      desc:'End the paper timesheet chaos at the end of every event. Workers submit digitally, managers approve in one click, and payroll is ready the same day.', linkTo:'/product/timesheets' },
       { icon:ClipboardText,title:'Fast Onboarding',         desc:'Get new hospitality workers registered, compliant, and placement-ready fast. A structured digital flow means your candidate pool grows without the admin overhead.', linkTo:'/product/recruitment' },
-      { icon:Buildings,    title:'Client Portal',           desc:'Give hotels, venues, and catering clients their own live dashboard — shift coverage, worker profiles, timesheets, and invoices, all in one place.', linkTo:'/product/client-portal' },
+      { icon:Buildings,    title:'Client Portal',           desc:'Give hotels, venues, and catering clients their own live dashboard. Shift coverage, worker profiles, timesheets, and invoices, all in one place.', linkTo:'/product/client-portal' },
     ],
     quote:'"We\'re placing more workers in less time and the team isn\'t drowning in calls anymore."',
     quoteAuthor:'Hospitality Staffing Agency Director, UK',
@@ -180,6 +180,131 @@ function StatBadge({ value, label, icon: Icon, accent, accentBg, delay=0 }:
   );
 }
 
+/* ═══════════════════════════════ FEATURE CARD ══════════════════════════════ */
+function FeatureCard({ f, i, accent }: { f: any; i: number; accent: string }) {
+  const pat = FEATURE_PATTERNS[f.title] || { dots:[accent,'#ccc','#eee'], lines:false };
+  return (
+    <motion.div
+      initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }}
+      viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.07 }}
+      whileHover={{ y:-5, boxShadow:'0 20px 52px rgba(0,0,0,0.11)' }}
+      style={{ background:'#fff', borderRadius:20, overflow:'hidden',
+        border:'1px solid #E5E7EB', boxShadow:'0 4px 20px rgba(0,0,0,0.05)',
+        transition:'box-shadow 0.28s,transform 0.28s', display:'flex', flexDirection:'column' }}>
+
+      <div style={{ position:'relative', height:130, overflow:'hidden',
+        background:`linear-gradient(135deg,${pat.dots[2]}55 0%,${pat.dots[1]}33 60%,${pat.dots[0]}22 100%)` }}>
+        <div style={{ position:'absolute', top:-20, right:-20, width:100, height:100, borderRadius:'50%',
+          background:`${pat.dots[0]}22`, border:`2px solid ${pat.dots[0]}33` }} />
+        <div style={{ position:'absolute', bottom:-30, right:40, width:70, height:70, borderRadius:'50%',
+          background:`${pat.dots[1]}28`, border:`2px solid ${pat.dots[1]}40` }} />
+        <div style={{ position:'absolute', top:10, right:60, width:36, height:36, borderRadius:'50%',
+          background:`${pat.dots[2]}50` }} />
+        {pat.lines && (
+          <>
+            <div style={{ position:'absolute', bottom:22, left:80, width:50, height:3, borderRadius:3,
+              background:`${pat.dots[0]}55` }} />
+            <div style={{ position:'absolute', bottom:32, left:90, width:30, height:3, borderRadius:3,
+              background:`${pat.dots[1]}55` }} />
+            <div style={{ position:'absolute', bottom:12, left:70, width:70, height:3, borderRadius:3,
+              background:`${pat.dots[0]}33` }} />
+          </>
+        )}
+        {[{t:18,l:110,s:6},{t:55,l:140,s:4},{t:80,l:120,s:5},{t:30,l:160,s:3}].map((d,di)=>(
+          <div key={di} style={{ position:'absolute', top:d.t, left:d.l, width:d.s, height:d.s,
+            borderRadius:'50%', background:`${pat.dots[di%3]}88` }} />
+        ))}
+        <div style={{ position:'absolute', left:24, top:'50%', transform:'translateY(-50%)',
+          width:60, height:60, borderRadius:18, background:'#fff',
+          boxShadow:`0 8px 28px ${pat.dots[0]}44, 0 2px 8px rgba(0,0,0,0.08)`,
+          display:'flex', alignItems:'center', justifyContent:'center' }}>
+          <f.icon weight="fill" style={{ width:28, height:28, color:pat.dots[0] }} />
+        </div>
+        <div style={{ position:'absolute', top:12, left:12, width:22, height:22, borderRadius:7,
+          background:pat.dots[0], display:'flex', alignItems:'center', justifyContent:'center',
+          fontSize:10, fontWeight:900, color:'#fff', boxShadow:`0 3px 10px ${pat.dots[0]}66` }}>
+          {i+1}
+        </div>
+      </div>
+
+      <div style={{ padding:'20px 22px 22px', flex:1, display:'flex', flexDirection:'column' }}>
+        <div style={{ fontSize:16, fontWeight:800, color:NAVY, marginBottom:8 }}>{f.title}</div>
+        <div style={{ fontSize:14, color:'#6B7280', lineHeight:1.72, flex:1 }}>{f.desc}</div>
+        {f.linkTo && (
+          <Link to={f.linkTo} style={{ marginTop:16, fontSize:13, fontWeight:700, color:accent,
+            textDecoration:'none', display:'inline-flex', alignItems:'center', gap:5 }}>
+            Learn more <ArrowRight weight="bold" style={{ width:13, height:13 }} />
+          </Link>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+/* ══════════════════════════════ FEATURE CAROUSEL ════════════════════════════ */
+function FeatureCarousel({ features, accent }: { features: any[]; accent: string }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const idx = Math.round(el.scrollLeft / el.clientWidth);
+    setActiveIndex(idx);
+  }, []);
+
+  const scrollTo = (idx: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollTo({ left: idx * el.clientWidth, behavior: 'smooth' });
+    setActiveIndex(idx);
+  };
+
+  return (
+    <div>
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        style={{
+          display: 'flex',
+          overflowX: 'auto',
+          scrollSnapType: 'x mandatory',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+          gap: 0,
+          borderRadius: 20,
+        }}
+      >
+        {features.map((f, i) => (
+          <div key={i} style={{ flex: '0 0 100%', scrollSnapAlign: 'start', padding: '0 4px' }}>
+            <FeatureCard f={f} i={i} accent={accent} />
+          </div>
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div style={{ display:'flex', justifyContent:'center', gap:8, marginTop:20 }}>
+        {features.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollTo(i)}
+            style={{
+              width: activeIndex === i ? 24 : 8,
+              height: 8,
+              borderRadius: 4,
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              background: activeIndex === i ? accent : '#D1D5DB',
+              transition: 'width 0.25s, background 0.25s',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════ MAIN ═══════════════════════════════════ */
 export default function IndustryPage() {
   const { slug } = useParams<{ slug:string }>();
@@ -205,7 +330,7 @@ export default function IndustryPage() {
       {/* ══════════════════════════════
           HERO
       ══════════════════════════════ */}
-      <section style={{ background:cfg.heroBg, paddingTop:88, paddingBottom:0, overflow:'hidden', position:'relative' }}>
+      <section style={{ background:cfg.heroBg, paddingTop: isMobile ? 64 : 88, paddingBottom:0, overflow:'hidden', position:'relative' }}>
         {/* Subtle dot grid */}
         <div style={{ position:'absolute',inset:0,pointerEvents:'none',opacity:0.4,
           backgroundImage:'radial-gradient(circle,rgba(0,0,0,0.08) 1px,transparent 1px)',
@@ -265,7 +390,7 @@ export default function IndustryPage() {
                 style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:12,
                   background:'#fff',color:NAVY,fontWeight:700,fontSize:15,textDecoration:'none',
                   border:'1.5px solid #E5E7EB',boxShadow:'0 4px 14px rgba(0,0,0,0.07)' }}>
-                Start Free Trial
+                Book a Free Trial Now
               </motion.a>
             </div>
 
@@ -327,7 +452,7 @@ export default function IndustryPage() {
           background:'radial-gradient(circle,rgba(91,108,249,0.12) 0%,transparent 65%)',filter:'blur(80px)',pointerEvents:'none' }} />
 
         {/* Top section — heading */}
-        <div style={{ maxWidth:1200,margin:'0 auto',padding:'88px 28px 0',position:'relative',zIndex:1 }}>
+        <div style={{ maxWidth:1200,margin:'0 auto',padding: isMobile ? '56px 20px 0' : '88px 28px 0',position:'relative',zIndex:1 }}>
           <motion.div initial={{ opacity:0,y:32 }} whileInView={{ opacity:1,y:0 }} viewport={{ once:true }} transition={{ duration:0.65 }}
             style={{ display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',marginBottom:72 }}>
 
@@ -449,7 +574,7 @@ export default function IndustryPage() {
       {/* ══════════════════════════════
           FEATURES — with screenshots
       ══════════════════════════════ */}
-      <section style={{ background:'#F8FAFC', padding:'88px 28px' }}>
+      <section style={{ background:'#F8FAFC', padding: isMobile ? '56px 20px' : '88px 28px' }}>
         <div style={{ maxWidth:1280, margin:'0 auto' }}>
           <motion.div {...fade} style={{ textAlign:'center', marginBottom:56 }}>
             <div style={{ display:'inline-flex',alignItems:'center',gap:8,background:cfg.accentBg,
@@ -462,87 +587,22 @@ export default function IndustryPage() {
             </h2>
           </motion.div>
 
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit,minmax(300px,1fr))', gap:24 }}>
-            {cfg.features.map((f,i) => {
-              const pat = FEATURE_PATTERNS[f.title] || { dots:[cfg.accent,'#ccc','#eee'], lines:false };
-              return (
-                <motion.div key={i}
-                  initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }}
-                  viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.07 }}
-                  whileHover={{ y:-5, boxShadow:'0 20px 52px rgba(0,0,0,0.11)' }}
-                  style={{ background:'#fff', borderRadius:20, overflow:'hidden',
-                    border:'1px solid #E5E7EB', boxShadow:'0 4px 20px rgba(0,0,0,0.05)',
-                    transition:'box-shadow 0.28s,transform 0.28s', display:'flex', flexDirection:'column' }}>
-
-                  {/* ── Flat illustration header ── */}
-                  <div style={{ position:'relative', height:130, overflow:'hidden',
-                    background:`linear-gradient(135deg,${pat.dots[2]}55 0%,${pat.dots[1]}33 60%,${pat.dots[0]}22 100%)` }}>
-
-                    {/* Decorative circles */}
-                    <div style={{ position:'absolute', top:-20, right:-20, width:100, height:100, borderRadius:'50%',
-                      background:`${pat.dots[0]}22`, border:`2px solid ${pat.dots[0]}33` }} />
-                    <div style={{ position:'absolute', bottom:-30, right:40, width:70, height:70, borderRadius:'50%',
-                      background:`${pat.dots[1]}28`, border:`2px solid ${pat.dots[1]}40` }} />
-                    <div style={{ position:'absolute', top:10, right:60, width:36, height:36, borderRadius:'50%',
-                      background:`${pat.dots[2]}50` }} />
-
-                    {/* Decorative dashes / lines */}
-                    {pat.lines && (
-                      <>
-                        <div style={{ position:'absolute', bottom:22, left:80, width:50, height:3, borderRadius:3,
-                          background:`${pat.dots[0]}55` }} />
-                        <div style={{ position:'absolute', bottom:32, left:90, width:30, height:3, borderRadius:3,
-                          background:`${pat.dots[1]}55` }} />
-                        <div style={{ position:'absolute', bottom:12, left:70, width:70, height:3, borderRadius:3,
-                          background:`${pat.dots[0]}33` }} />
-                      </>
-                    )}
-
-                    {/* Small floating dots */}
-                    {[{t:18,l:110,s:6},{t:55,l:140,s:4},{t:80,l:120,s:5},{t:30,l:160,s:3}].map((d,di)=>(
-                      <div key={di} style={{ position:'absolute', top:d.t, left:d.l, width:d.s, height:d.s,
-                        borderRadius:'50%', background:`${pat.dots[di%3]}88` }} />
-                    ))}
-
-                    {/* Large centred icon */}
-                    <div style={{ position:'absolute', left:24, top:'50%', transform:'translateY(-50%)',
-                      width:60, height:60, borderRadius:18,
-                      background:'#fff',
-                      boxShadow:`0 8px 28px ${pat.dots[0]}44, 0 2px 8px rgba(0,0,0,0.08)`,
-                      display:'flex', alignItems:'center', justifyContent:'center' }}>
-                      <f.icon weight="fill" style={{ width:28, height:28, color:pat.dots[0] }} />
-                    </div>
-
-                    {/* Number badge */}
-                    <div style={{ position:'absolute', top:12, left:12, width:22, height:22, borderRadius:7,
-                      background:pat.dots[0], display:'flex', alignItems:'center', justifyContent:'center',
-                      fontSize:10, fontWeight:900, color:'#fff', boxShadow:`0 3px 10px ${pat.dots[0]}66` }}>
-                      {i+1}
-                    </div>
-                  </div>
-
-                  {/* ── Content ── */}
-                  <div style={{ padding:'20px 22px 22px', flex:1, display:'flex', flexDirection:'column' }}>
-                    <div style={{ fontSize:16, fontWeight:800, color:NAVY, marginBottom:8 }}>{f.title}</div>
-                    <div style={{ fontSize:14, color:'#6B7280', lineHeight:1.72, flex:1 }}>{f.desc}</div>
-                    {f.linkTo && (
-                      <Link to={f.linkTo} style={{ marginTop:16, fontSize:13, fontWeight:700, color:cfg.accent,
-                        textDecoration:'none', display:'inline-flex', alignItems:'center', gap:5 }}>
-                        Learn more <ArrowRight weight="bold" style={{ width:13, height:13 }} />
-                      </Link>
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+          {isMobile ? (
+            <FeatureCarousel features={cfg.features} accent={cfg.accent} />
+          ) : (
+            <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:24 }}>
+              {cfg.features.map((f,i) => (
+                <FeatureCard key={i} f={f} i={i} accent={cfg.accent} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* ══════════════════════════════
           APP SHOWCASE STRIP
       ══════════════════════════════ */}
-      <section style={{ background:`linear-gradient(135deg,${cfg.accentBg} 0%,#fff 100%)`, padding:'80px 28px' }}>
+      <section style={{ background:`linear-gradient(135deg,${cfg.accentBg} 0%,#fff 100%)`, padding: isMobile ? '52px 20px' : '80px 28px' }}>
         <div style={{ maxWidth:1280, margin:'0 auto',
           display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:56, alignItems:'center' }}>
           <motion.div {...fade}>
@@ -636,7 +696,7 @@ export default function IndustryPage() {
       {/* ══════════════════════════════
           TESTIMONIAL
       ══════════════════════════════ */}
-      <section style={{ background:NAVY, padding:'88px 28px', position:'relative', overflow:'hidden' }}>
+      <section style={{ background:NAVY, padding: isMobile ? '56px 20px' : '88px 28px', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute',inset:0,pointerEvents:'none',opacity:0.035,
           backgroundImage:'radial-gradient(rgba(255,255,255,1) 1px,transparent 1px)',backgroundSize:'24px 24px' }} />
         <div style={{ position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',
@@ -671,7 +731,7 @@ export default function IndustryPage() {
       {/* ══════════════════════════════
           FINAL CTA
       ══════════════════════════════ */}
-      <section style={{ background:cfg.heroBg, padding:'80px 28px' }}>
+      <section style={{ background:cfg.heroBg, padding: isMobile ? '52px 20px' : '80px 28px' }}>
         <div style={{ maxWidth:720,margin:'0 auto',textAlign:'center' }}>
           <motion.div {...fade}>
             <div style={{ display:'inline-flex',alignItems:'center',gap:8,background:cfg.accentBg,
@@ -698,7 +758,7 @@ export default function IndustryPage() {
                 style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'15px 32px',borderRadius:14,
                   background:'#fff',color:NAVY,fontWeight:800,fontSize:16,textDecoration:'none',
                   border:'2px solid #E5E7EB',boxShadow:'0 4px 16px rgba(0,0,0,0.08)' }}>
-                Start Free Trial
+                Book a Free Trial Now
               </motion.a>
             </div>
           </motion.div>

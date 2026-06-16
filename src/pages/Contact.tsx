@@ -1,10 +1,11 @@
 ﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Envelope, Phone, MapPin, Clock, Chat, Users, ArrowRight, CaretDown } from '@phosphor-icons/react';
+import { Envelope, Phone, MapPin, Clock, Chat, Users, ArrowRight, CaretDown, CheckCircle, WhatsappLogo } from '@phosphor-icons/react';
 
 const contactMethods = [
   { icon: Envelope, title: 'Email us', value: 'info@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500' },
-  { icon: Phone, title: 'Call us', value: '(0333) 006-2179', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500' },
+  { icon: Phone, title: 'Call us', value: '0330 127 9604', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500' },
+  { icon: WhatsappLogo, title: 'WhatsApp', value: '+44 7393 132453', description: 'Message us any time.', gradient: 'from-green-400 to-green-600' },
   { icon: Chat, title: 'Live chat', value: 'Available in-app', description: '24/7 support for active customers.', gradient: 'from-indigo-400 to-violet-500' },
   { icon: MapPin, title: 'Visit us', value: 'Derby, DE1 1NN', description: 'Office 108, The Old Courthouse, 18-22 St Peter\'s Churchyard', gradient: 'from-violet-400 to-purple-500' },
 ];
@@ -45,6 +46,35 @@ const answerVariants = {
 export default function Contact() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/info@logezy.co.uk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          message: form.message,
+          _subject: `New enquiry from ${form.name} — Logezy Website`,
+          _template: 'table',
+        }),
+      });
+      if (!res.ok) throw new Error('Network response was not ok');
+      setSubmitted(true);
+    } catch {
+      setSubmitError('Something went wrong. Please try again or email us directly at info@logezy.co.uk');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-[#F8FAFC]">
@@ -68,8 +98,8 @@ export default function Contact() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>
-              We'd love to{' '}
-              <span className="gradient-text">hear from you</span>
+              Let's Connect{' '}
+              <span className="gradient-text">and Grow</span>
             </motion.h1>
             <motion.p
               className="text-xl text-slate-500 leading-relaxed"
@@ -130,40 +160,77 @@ export default function Contact() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}>
               <h2 className="text-2xl font-bold text-slate-900 mb-1">Send us a message</h2>
               <p className="text-slate-500 text-sm mb-7">We'll get back to you within one business day.</p>
-              <form name="contact" method="POST" data-netlify="true" className="flex flex-col gap-5">
-                <input type="hidden" name="form-name" value="contact" />
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Name</label>
-                    <input type="text" name="name" placeholder="Sarah Mitchell" className="input-field"
-                      value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1.5">Work Email</label>
-                    <input type="email" name="email" placeholder="sarah@agency.com" className="input-field"
-                      value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Agency Name</label>
-                  <input type="text" name="company" placeholder="Sunshine Home Care" className="input-field"
-                    value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">Message</label>
-                  <textarea name="message" rows={4} placeholder="Tell us how we can help..." className="input-field resize-none"
-                    value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
-                </div>
-                <motion.button
-                  type="submit"
-                  className="btn-primary justify-center"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
-                  Send Message
-                  <ArrowRight weight="regular" className="h-4 w-4" />
-                </motion.button>
-              </form>
+
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-col items-center text-center py-10 gap-4">
+                    <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center">
+                      <CheckCircle weight="fill" className="h-9 w-9 text-emerald-500" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 mb-1">Message sent!</h3>
+                      <p className="text-slate-500 text-sm">Thanks for reaching out. We'll be in touch within one business day.</p>
+                    </div>
+                    <button
+                      onClick={() => { setSubmitted(false); setForm({ name: '', email: '', company: '', message: '' }); }}
+                      className="text-sm text-sky-600 font-medium hover:text-sky-700 transition-colors mt-2">
+                      Send another message
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    onSubmit={handleSubmit}
+                    className="flex flex-col gap-5"
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}>
+                    <input type="hidden" name="form-name" value="contact" />
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Name</label>
+                        <input type="text" name="name" placeholder="Sarah Mitchell" className="input-field" required
+                          value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1.5">Work Email</label>
+                        <input type="email" name="email" placeholder="sarah@agency.com" className="input-field" required
+                          value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Agency Name</label>
+                      <input type="text" name="company" placeholder="Sunshine Home Care" className="input-field"
+                        value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-700 mb-1.5">Message</label>
+                      <textarea name="message" rows={4} placeholder="Tell us how we can help..." className="input-field resize-none" required
+                        value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
+                    </div>
+                    {submitError && (
+                      <p className="text-sm text-red-600 bg-red-50 rounded-lg px-4 py-3">{submitError}</p>
+                    )}
+                    <motion.button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-primary justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+                      whileHover={{ scale: submitting ? 1 : 1.03, y: submitting ? 0 : -2 }}
+                      whileTap={{ scale: 0.97 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
+                      {submitting ? 'Sending…' : 'Send Message'}
+                      {!submitting && <ArrowRight weight="regular" className="h-4 w-4" />}
+                    </motion.button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </motion.div>
 
             {/* Demo + hours */}
@@ -231,7 +298,11 @@ export default function Contact() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone weight="regular" className="h-4 w-4 text-emerald-500 flex-shrink-0" />
-                    <a href="tel:03330062179" className="hover:text-emerald-600 transition-colors">(0333) 006-2179</a>
+                    <a href="tel:03301279604" className="hover:text-emerald-600 transition-colors">0330 127 9604</a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <WhatsappLogo weight="fill" className="h-4 w-4 text-green-500 flex-shrink-0" />
+                    <a href="https://wa.me/447393132453" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">+44 7393 132453</a>
                   </div>
                   <div className="flex items-start gap-2">
                     <MapPin weight="regular" className="h-4 w-4 text-violet-500 flex-shrink-0 mt-0.5" />

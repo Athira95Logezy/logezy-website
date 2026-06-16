@@ -47,8 +47,8 @@ const handleRows = [
 
 const storyParagraphs = [
   'Temp recruitment is fast, complex, and unforgiving. Shifts change by the hour, compliance can\'t slip, and clients expect results yesterday.',
-  'We saw agencies held back — not by lack of talent, but by outdated workforce management software that was never built for the pace of temporary staffing. Spreadsheets were breaking under the pressure. Agencies were drowning in admin. Good recruiters were spending more time on paperwork than on people.',
-  'So we built Logezy. A platform designed from the ground up for the specific demands of temp recruitment — where shift scheduling, compliance management, and operational simplicity aren\'t optional extras. They\'re the whole point.',
+  'We saw agencies held back, not by lack of talent, but by outdated workforce management software that was never built for the pace of temporary staffing. Spreadsheets were breaking under the pressure. Agencies were drowning in admin. Good recruiters were spending more time on paperwork than on people.',
+  'So we built Logezy. A platform designed from the ground up for the specific demands of temp recruitment, where shift scheduling, compliance management, and operational simplicity are not optional extras. They are the whole point.',
 ];
 
 /* ─────────────────────────────────────────────
@@ -160,10 +160,10 @@ export default function About() {
 
               <h1 className="font-black leading-[1.06] mb-6"
                 style={{ fontSize:'clamp(2.4rem,4vw,3.6rem)', letterSpacing:'-0.03em', color:'#183963' }}>
-                We built what temp agencies{' '}
+                Built for Agencies.{' '}
                 <span style={{
                   color: '#2396C6', display: 'inline'}}>
-                  actually needed.
+                  Designed for Reality.
                 </span>
               </h1>
 
@@ -189,7 +189,7 @@ export default function About() {
                     color:'#183963', background:'transparent',
                     border:'2px solid rgba(12,33,56,0.20)', textDecoration:'none',
                   }}>
-                    Start Free Trial
+                    Book a Free Trial Now
                   </a>
                 </motion.div>
               </div>
@@ -236,7 +236,7 @@ export default function About() {
       {/* ══════════════════════════════════════
           OUR STORY
       ══════════════════════════════════════ */}
-      <section className="py-28 bg-white relative overflow-hidden">
+      <section className="py-16 lg:py-28 bg-white relative overflow-hidden">
         <div style={{position:'absolute',right:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-start">
@@ -279,7 +279,7 @@ export default function About() {
       {/* ══════════════════════════════════════
           OUR MISSION — dark full-bleed
       ══════════════════════════════════════ */}
-      <section className="py-28 relative overflow-hidden"
+      <section className="py-16 lg:py-28 relative overflow-hidden"
         style={{background:'linear-gradient(160deg,#183963 0%,#183963 100%)'}}>
         {/* Glow */}
         <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',width:800,height:600,background:'radial-gradient(ellipse,rgba(23,149,199,0.18) 0%,transparent 65%)',filter:'blur(60px)',pointerEvents:'none'}}/>
@@ -302,7 +302,7 @@ export default function About() {
           <motion.p {...fadeUp(0.16)}
             className="text-xl leading-relaxed max-w-2xl mx-auto"
             style={{color:'rgba(165,210,255,0.75)'}}>
-            To give every temp recruitment agency, regardless of size — the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
+            To give every temp recruitment agency, regardless of size, the tools that were once only available to the biggest players. Powerful enough to handle complex staffing operations. Simple enough that your whole team can use it from day one.
           </motion.p>
 
           {/* 3 stats */}
@@ -324,7 +324,7 @@ export default function About() {
       {/* ══════════════════════════════════════
           WHY LOGEZY — 3 PILLARS
       ══════════════════════════════════════ */}
-      <section className="py-28 bg-[#F8FAFC]">
+      <section className="py-16 lg:py-28 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <motion.div {...fadeUp(0)}>
@@ -364,7 +364,7 @@ export default function About() {
       {/* ══════════════════════════════════════
           WHAT WE HANDLE — comparison table
       ══════════════════════════════════════ */}
-      <section className="py-28 bg-white">
+      <section className="py-16 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <motion.div {...fadeUp(0)}>
@@ -466,7 +466,7 @@ export default function About() {
       {/* ══════════════════════════════════════
           FINAL CTA — redesigned
       ══════════════════════════════════════ */}
-      <section className="relative overflow-hidden py-24"
+      <section className="relative overflow-hidden py-14 lg:py-24"
         style={{background:'linear-gradient(160deg,#183963 0%,#183963 50%,#183963 100%)'}}>
         {/* Glows */}
         <div style={{position:'absolute',top:0,left:'50%',transform:'translateX(-50%)',width:900,height:400,background:'radial-gradient(ellipse at 50% 0%,rgba(23,149,199,0.14) 0%,transparent 60%)',filter:'blur(48px)',pointerEvents:'none'}}/>
@@ -495,7 +495,7 @@ export default function About() {
                 style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 32px',borderRadius:100,
                   fontSize:15,fontWeight:800,color:'#fff',background:'linear-gradient(135deg,#2396C6,#2396C6)',
                   boxShadow:'0 8px 28px rgba(91,108,249,0.42)',textDecoration:'none'}}>
-                Start Free Trial <ArrowRight weight="bold" style={{width:15,height:15}}/>
+                Book a Free Trial Now <ArrowRight weight="bold" style={{width:15,height:15}}/>
               </motion.a>
               <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                 whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}

@@ -347,7 +347,7 @@ export default function MobileAppShowcase() {
       </h2>
 
       <p style={{ fontSize: 15, lineHeight: 1.78, color: 'rgba(255,255,255,0.70)', marginBottom: 24, maxWidth: isMobile ? '100%' : 420 }}>
-        A branded mobile app your temps actually want to use — shifts, timesheets, documents and chat. iOS &amp; Android.
+        A branded mobile app designed to keep your workforce connected and productive. Available on iOS and Android.
       </p>
 
       {/* Feature list */}
@@ -357,7 +357,7 @@ export default function MobileAppShowcase() {
           'Real-time shift confirmations & reminders',
           'GPS-verified clock in/out',
           'Document upload & compliance tracking',
-          'Three-way notifications — agency, worker, client',
+          'Three-way notifications: agency, worker and client',
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, justifyContent: isMobile ? 'center' : 'flex-start' }}>
             <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(56,189,248,0.12)', border: '1.5px solid rgba(56,189,248,0.32)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1, boxShadow: '0 0 8px rgba(56,189,248,0.18)' }}>

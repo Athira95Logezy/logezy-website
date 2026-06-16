@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: 'Can Logezy handle compliance tracking for temporary workers?',
-    a: 'Yes. Logezy automatically tracks right-to-work documents, DBS certificates, and expiring certifications across your workforce — so your agency stays audit-ready without the manual chasing.',
+    a: 'Yes. Logezy automatically tracks right-to-work documents, DBS certificates, and expiring certifications across your workforce, so your agency stays audit-ready without the manual chasing.',
   },
   {
     q: 'How does the digital timesheet process work?',
@@ -49,7 +49,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-28" style={{ background: '#F7F6FF', position: 'relative', overflow: 'hidden' }}>
+    <section className="py-16 lg:py-28" style={{ background: '#F7F6FF', position: 'relative', overflow: 'hidden' }}>
 
       {/* large "FAQ" watermark */}
       <div style={{
