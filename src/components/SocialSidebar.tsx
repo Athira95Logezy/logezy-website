@@ -66,7 +66,7 @@ const socials = [
 
 export default function SocialSidebar() {
   return (
-    <div className="hidden md:flex" style={{
+    <div style={{ display: 'flex',
       position: 'fixed',
       right: 0,
       top: '50%',
