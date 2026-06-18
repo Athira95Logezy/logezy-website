@@ -382,7 +382,8 @@ function MockupDemo() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.85, ease: EASE }}
-        style={{ width: '100%', background: 'linear-gradient(135deg, #2399CA, #1966AA)', borderRadius: 12, padding: '13px', textAlign: 'center', fontSize: 12, fontWeight: 800, color: '#fff', marginTop: 4, boxShadow: '0 6px 22px rgba(35,153,202,0.40)' }}
+        style={{ width: '100%', background: 'linear-gradient(135deg, #2399CA, #1966AA)', borderRadius: 12, padding: '13px', textAlign: 'center', fontSize: 12, fontWeight: 800, color: '#fff', marginTop: 4, boxShadow: '0 6px 22px rgba(35,153,202,0.40)', cursor: 'pointer' }}
+        onClick={() => window.open('https://booking.logezy.co/#/67044000000025008', '_blank')}
       >
         Book a Free Demo →
       </motion.div>
@@ -614,7 +615,7 @@ export default function ShowcaseCarousel() {
                   {slide.body}
                 </p>
                 {slide.cta && slide.id === 6 && (
-                  <Link to="/contact" style={{
+                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display: 'inline-flex', alignItems: 'center', gap: 8,
                     padding: '14px 32px', borderRadius: 100, textDecoration: 'none',
                     background: 'linear-gradient(135deg, #2399CA 0%, #1966AA 100%)',
@@ -624,7 +625,7 @@ export default function ShowcaseCarousel() {
                   }}>
                     {slide.cta}
                     <ArrowUpRight weight="bold" size={16} />
-                  </Link>
+                  </a>
                 )}
                 {slide.cta && slide.id === 0 && (
                   <button onClick={next} style={{

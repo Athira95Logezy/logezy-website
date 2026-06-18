@@ -173,7 +173,7 @@ export default function About() {
 
               <div className="flex flex-wrap gap-3">
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
+                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     padding:'14px 28px', borderRadius:100, fontSize:14, fontWeight:700,
                     color:'#fff', background:'linear-gradient(135deg,#2396C6,#2396C6)',
@@ -497,7 +497,7 @@ export default function About() {
                   boxShadow:'0 8px 28px rgba(91,108,249,0.42)',textDecoration:'none'}}>
                 Book a Free Trial Now <ArrowRight weight="bold" style={{width:15,height:15}}/>
               </motion.a>
-              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                 whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}
                 style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 32px',borderRadius:100,
                   fontSize:15,fontWeight:700,color:'rgba(255,255,255,0.82)',

@@ -6,7 +6,7 @@ const contactMethods = [
   { icon: Envelope, title: 'Email us', value: 'info@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500', href: 'mailto:info@logezy.co.uk' },
   { icon: Phone, title: 'Call us', value: '0330 127 9604', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500', href: 'tel:03301279604' },
   { icon: WhatsappLogo, title: 'WhatsApp', value: '+44 7393 132453', description: 'Message us any time.', gradient: 'from-green-400 to-green-600', href: 'https://wa.me/447393132453' },
-  { icon: Chat, title: 'Live chat', value: 'Available in-app', description: '24/7 support for active customers.', gradient: 'from-indigo-400 to-violet-500', href: null },
+  { icon: Chat, title: 'Live chat', value: 'Chat with us now', description: '24/7 support — we\'re here to help.', gradient: 'from-indigo-400 to-violet-500', href: null, openChat: true },
   { icon: MapPin, title: 'Visit us', value: 'Derby, DE1 1NN', description: 'Office 108, The Old Courthouse, 18-22 St Peter\'s Churchyard', gradient: 'from-violet-400 to-purple-500', href: 'https://maps.google.com/?q=The+Old+Courthouse,18-22+St+Peters+Churchyard,Derby,DE1+1NN' },
 ];
 
@@ -125,15 +125,19 @@ export default function Contact() {
               const Icon = m.icon;
               const Tag = m.href ? motion.a : motion.div;
               const linkProps = m.href ? { href: m.href, target: m.href.startsWith('http') ? '_blank' : undefined, rel: m.href.startsWith('http') ? 'noopener noreferrer' : undefined } : {};
+              const clickProps = (m as any).openChat ? {
+                onClick: () => { try { (window as any).$zoho?.salesiq?.floatwindow?.visible('show'); } catch(e) {} },
+                style: { textDecoration: 'none', display: 'block', cursor: 'pointer' }
+              } : { style: { textDecoration: 'none', display: 'block', cursor: m.href ? 'pointer' : 'default' } };
               return (
                 <Tag
                   key={m.title}
                   className="bento-card p-5 group"
-                  style={{ textDecoration: 'none', display: 'block', cursor: m.href ? 'pointer' : 'default' }}
                   variants={itemVariants}
                   whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.10)' }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  {...linkProps}>
+                  {...linkProps}
+                  {...clickProps}>
                   <motion.div
                     className={`w-11 h-11 rounded-xl bg-gradient-to-br ${m.gradient} flex items-center justify-center mb-3 shadow-sm`}
                     whileHover={{ scale: 1.15, rotate: 6 }}
@@ -260,7 +264,7 @@ export default function Contact() {
                     Get a personalised 30-minute walkthrough tailored to your agency's needs.
                   </p>
                   <motion.a
-                    href="mailto:info@logezy.co.uk?subject=Demo Request"
+                    href="https://booking.logezy.co/#/67044000000025008"
                     className="btn-primary text-sm justify-center w-full"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.97 }}

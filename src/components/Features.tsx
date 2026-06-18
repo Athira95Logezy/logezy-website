@@ -328,8 +328,9 @@ function ExpandPanel({
             </ul>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 'auto' }}>
-              <Link
-                to="/contact"
+              <a
+                href="https://booking.logezy.co/#/67044000000025008"
+                target="_blank" rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 7,
                   padding: '12px 24px', borderRadius: 12,
@@ -342,7 +343,7 @@ function ExpandPanel({
               >
                 Request Demo
                 <ArrowRight weight="regular" style={{ width: 13, height: 13 }} />
-              </Link>
+              </a>
               <button
                 onClick={onClose}
                 style={{
@@ -457,9 +458,9 @@ export default function Features() {
   return (
     <section
       id="features"
+      className={isTablet ? 'features-pt-mobile' : 'features-pt-desktop'}
       style={{
         background: 'linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%)',
-        paddingTop: isMobile ? 56 : 96,
         paddingBottom: isMobile ? 56 : 88,
         position: 'relative',
       }}
@@ -475,7 +476,7 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.58, ease }}
-          style={{ textAlign: 'center', marginBottom: 56 }}
+          style={{ textAlign: 'center', marginBottom: isMobile ? 24 : 56 }}
         >
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -515,7 +516,7 @@ export default function Features() {
           whileInView="show"
           viewport={{ once: true, margin: '-40px' }}
           style={{ display: 'grid', gap: isMobile ? 8 : 10 }}
-          className="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+          className="grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
         >
           {features.map(f => {
             const Icon = f.icon;
@@ -538,15 +539,15 @@ export default function Features() {
                 style={{
                   background: isSelected ? f.bg : '#FFFFFF',
                   border: isSelected ? `1.5px solid ${f.color}48` : '1.5px solid #E8ECF4',
-                  borderRadius: isMobile ? 14 : 18,
-                  padding: isMobile ? '14px 10px 12px' : '20px 14px 18px',
+                  borderRadius: isMobile ? 12 : 18,
+                  padding: isMobile ? '10px 8px 10px' : '20px 14px 18px',
                   cursor: 'pointer',
                   textAlign: 'left' as const,
                   outline: 'none',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  gap: 10,
+                  gap: isMobile ? 6 : 10,
                   boxShadow: isSelected
                     ? `0 4px 20px ${f.color}18, 0 1px 3px rgba(15,23,42,0.06)`
                     : '0 1px 3px rgba(15,23,42,0.04)',
@@ -556,18 +557,18 @@ export default function Features() {
                 }}
               >
                 <div style={{
-                  width: isMobile ? 44 : 60, height: isMobile ? 44 : 60,
-                  borderRadius: isMobile ? 12 : 17,
+                  width: isMobile ? 36 : 60, height: isMobile ? 36 : 60,
+                  borderRadius: isMobile ? 10 : 17,
                   background: f.bg,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                   boxShadow: isSelected ? `0 6px 18px ${f.color}28` : `0 4px 14px ${f.color}20`,
                 }}>
-                  <Icon weight="regular" style={{ width: isMobile ? 20 : 28, height: isMobile ? 20 : 28, color: f.color }} />
+                  <Icon weight="regular" style={{ width: isMobile ? 17 : 28, height: isMobile ? 17 : 28, color: f.color }} />
                 </div>
 
                 <span style={{
-                  fontSize: isMobile ? 10 : 12, fontWeight: 700,
+                  fontSize: isMobile ? 9.5 : 12, fontWeight: 700,
                   color: isSelected ? f.color : '#1E293B',
                   lineHeight: 1.3, letterSpacing: '-0.01em',
                   transition: 'color 0.18s',

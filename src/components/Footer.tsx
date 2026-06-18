@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import {
   Envelope, MapPin, Phone, WhatsappLogo,
-  FacebookLogo, LinkedinLogo, InstagramLogo, YoutubeLogo,
+  FacebookLogo, LinkedinLogo, InstagramLogo, XLogo,
   ArrowRight, Shield, Star, Lightning, CheckCircle,
   ArrowUpRight,
 } from '@phosphor-icons/react';
@@ -28,16 +28,16 @@ const links = {
     { label: 'Contact Us',              to: '/contact'                  },
   ],
   Support: [
-    { label: 'Book a Demo',             to: 'https://logezy.co/get-started', external: true },
+    { label: 'Book a Demo',             to: 'https://booking.logezy.co/#/67044000000025008', external: true },
     { label: 'Contact Us',              to: '/contact'                  },
   ],
 };
 
 const socials = [
-  { Icon: LinkedinLogo,  label: 'LinkedIn',  href: 'https://www.linkedin.com/company/logezy-resourcing/?viewAsMember=true', bg: 'bg-[#E8F5FB]  hover:bg-[#E8F5FB]',  text: 'text-[#2396C6]',  border: 'border-[#A8D9EF]'  },
-  { Icon: InstagramLogo, label: 'Instagram', href: 'https://www.instagram.com/logezy_software/',                             bg: 'bg-pink-50  hover:bg-pink-100',  text: 'text-pink-500',  border: 'border-pink-200'  },
-  { Icon: FacebookLogo,  label: 'Facebook',  href: 'https://www.facebook.com/logezy2018/',                                   bg: 'bg-sky-50   hover:bg-sky-100',   text: 'text-sky-600',   border: 'border-sky-200'   },
-  { Icon: YoutubeLogo,   label: 'YouTube',   href: 'https://www.youtube.com/channel/UCm_aZWC64g-q1I0nfdYD_nw',              bg: 'bg-red-50   hover:bg-red-100',   text: 'text-red-500',   border: 'border-red-200'   },
+  { Icon: FacebookLogo,  label: 'Facebook',  href: 'https://www.facebook.com/logezy2018',                              bg: 'bg-sky-50   hover:bg-sky-100',   text: 'text-sky-600',   border: 'border-sky-200'   },
+  { Icon: InstagramLogo, label: 'Instagram', href: 'https://www.instagram.com/logezy_software',                        bg: 'bg-pink-50  hover:bg-pink-100',  text: 'text-pink-500',  border: 'border-pink-200'  },
+  { Icon: LinkedinLogo,  label: 'LinkedIn',  href: 'https://www.linkedin.com/company/18681023/admin/dashboard/',       bg: 'bg-[#E8F5FB]  hover:bg-[#E8F5FB]',  text: 'text-[#2396C6]',  border: 'border-[#A8D9EF]'  },
+  { Icon: XLogo,         label: 'X',         href: 'https://x.com/LogezySoftware',                                    bg: 'bg-slate-50 hover:bg-slate-100',  text: 'text-slate-800', border: 'border-slate-200' },
 ];
 
 

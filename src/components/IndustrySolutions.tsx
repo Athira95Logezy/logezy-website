@@ -292,7 +292,7 @@ export default function IndustrySolutions() {
 
               {/* CTA button */}
               <a
-                href="https://logezy.co/get-started"
+                href="https://booking.logezy.co/#/67044000000025008"
                 target="_blank" rel="noopener noreferrer"
                 style={{
                   display: isMobile ? 'flex' : 'inline-flex',

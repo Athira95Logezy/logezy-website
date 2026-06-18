@@ -380,7 +380,7 @@ export default function DashboardShowcase() {
             </div>
           ))}
           {/* CTA buttons inline */}
-          <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
             padding: '8px 20px', borderRadius: 100, textDecoration: 'none',
             background: 'linear-gradient(135deg, #2399CA 0%, #1966AA 100%)',

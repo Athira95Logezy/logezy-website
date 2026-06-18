@@ -378,7 +378,7 @@ export default function IndustryPage() {
 
             {/* CTAs */}
             <div style={{ display:'flex',gap:12,flexWrap:'wrap' as const,marginBottom:48 }}>
-              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale:1.03 }} whileTap={{ scale:0.97 }}
                 style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:12,
                   background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
@@ -560,7 +560,7 @@ export default function IndustryPage() {
               See how Logezy fixes every one of these for your agency.
             </p>
           </div>
-          <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+          <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
             whileHover={{ scale:1.04,y:-2 }} whileTap={{ scale:0.97 }}
             style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'13px 28px',borderRadius:12,
               background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
@@ -628,7 +628,7 @@ export default function IndustryPage() {
                 </div>
               ))}
             </div>
-            <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+            <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
               whileHover={{ scale:1.03 }} whileTap={{ scale:0.97 }}
               style={{ marginTop:36,display:'inline-flex',alignItems:'center',gap:8,padding:'13px 26px',borderRadius:12,
                 background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
@@ -746,7 +746,7 @@ export default function IndustryPage() {
               Join hundreds of UK staffing agencies already running smarter with Logezy. Book your free demo and see the platform built for your sector.
             </p>
             <div style={{ display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap' as const }}>
-              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale:1.04 }} whileTap={{ scale:0.96 }}
                 style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'15px 32px',borderRadius:14,
                   background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:800,

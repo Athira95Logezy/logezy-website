@@ -171,7 +171,7 @@ export default function CaseStudiesList() {
             <h2 style={{ fontSize: 'clamp(1.4rem,2.5vw,2rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.03em', margin: '0 0 8px', fontFamily: 'var(--font-heading)' }}>Ready to see Logezy in action?</h2>
             <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.70)', margin: 0, fontFamily: 'var(--font-body)' }}>Book a free demo and see why agencies across the UK choose Logezy.</p>
           </div>
-          <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
+          <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noreferrer"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '14px 28px', borderRadius: 50, background: '#fff', color: '#183963', fontSize: 14, fontWeight: 800, textDecoration: 'none', flexShrink: 0, position: 'relative', zIndex: 1, boxShadow: '0 4px 20px rgba(0,0,0,0.18)' }}>
             Book a Free Demo <ArrowRight weight="bold" style={{ width: 15, height: 15 }} />
           </a>

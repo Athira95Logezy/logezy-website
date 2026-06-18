@@ -75,10 +75,48 @@ export default function BlogList() {
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           CONTENT
       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-      <div style={{ maxWidth: 1300, margin: '0 auto', padding: isMobile ? '28px 16px 60px' : '44px 48px 80px' }}>
+      <div style={{ maxWidth: 1300, margin: '0 auto', padding: isMobile ? '20px 0 60px' : '44px 48px 80px' }}>
+
+        {/* ── Mobile filter row (horizontal scroll with fade) ── */}
+        {isMobile && (
+          <div style={{ position: 'relative', marginBottom: 8 }}>
+            {/* right fade — hints scrollability */}
+            <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 40, background: 'linear-gradient(to left, #F4F6F9 40%, transparent)', zIndex: 2, pointerEvents: 'none' }} />
+            <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' as any, scrollbarWidth: 'none', msOverflowStyle: 'none', paddingBottom: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '0 16px', width: 'max-content' }}>
+                <FunnelSimple style={{ width: 14, height: 14, color: '#94A3B8', flexShrink: 0 }} />
+                {allCategories.map(cat => {
+                  const isActive = cat === activeCategory;
+                  const cs = cat === 'All' ? null : catStyle(cat);
+                  return (
+                    <button
+                      key={cat}
+                      onClick={() => selectCategory(cat)}
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 5, whiteSpace: 'nowrap' as const,
+                        padding: '8px 16px', borderRadius: 20, border: 'none',
+                        fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        background: isActive ? (cs ? cs.bg : '#0B1E3D') : '#fff',
+                        color: isActive ? (cs ? cs.text : '#fff') : '#6B7280',
+                        boxShadow: isActive ? '0 2px 10px rgba(0,0,0,0.12)' : '0 1px 4px rgba(0,0,0,0.08)',
+                        outline: isActive && cs ? `1.5px solid ${cs.dot}` : '1.5px solid #E2E8F0',
+                      }}
+                    >
+                      {cs && <span style={{ width: 7, height: 7, borderRadius: '50%', background: isActive ? cs.dot : '#CBD5E1', flexShrink: 0 }} />}
+                      {cat}
+                    </button>
+                  );
+                })}
+                {/* extra right padding so last pill clears the fade */}
+                <div style={{ width: 32, flexShrink: 0 }} />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ── Active filter label (if filtered) ── */}
-        {activeCategory !== 'All' && (
+        {activeCategory !== 'All' && !isMobile && (
           <motion.div
             initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
             style={{ marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10 }}
@@ -113,7 +151,7 @@ export default function BlogList() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4, ease }}
-            style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 16 : 24, marginBottom: 40 }}
+            style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: isMobile ? 12 : 24, marginBottom: 40, padding: isMobile ? '0 16px' : 0 }}
           >
             {paginated.map((post, i) => {
               const cs = catStyle(post.category);
@@ -136,8 +174,8 @@ export default function BlogList() {
                       onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-5px)'; el.style.boxShadow = '0 20px 52px rgba(0,0,0,0.13)'; }}
                       onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(0)'; el.style.boxShadow = '0 2px 14px rgba(0,0,0,0.07)'; }}
                     >
-                      {/* ── Thumbnail image — fixed 220px ── */}
-                      <div style={{ height: 300, overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      {/* ── Thumbnail image ── */}
+                      <div style={{ height: isMobile ? 140 : 300, overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
                           src={post.coverImage} alt={post.title}
                           style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center', display: 'block' }}
@@ -158,10 +196,10 @@ export default function BlogList() {
                       </div>
 
                       {/* ── Card content ── */}
-                      <div style={{ padding: '20px 22px 22px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div style={{ padding: isMobile ? '12px 12px 14px' : '20px 22px 22px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                         <div>
                           {/* Meta row */}
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 12 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 14, marginBottom: isMobile ? 6 : 12 }}>
                             <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11.5, color: '#94A3B8', fontWeight: 600 }}>
                               <CalendarBlank style={{ width: 12, height: 12 }} />{post.date}
                             </span>
@@ -172,7 +210,7 @@ export default function BlogList() {
 
                           {/* Title */}
                           <h3 style={{
-                            fontSize: '1.05rem', fontWeight: 900, color: '#0B1E3D',
+                            fontSize: isMobile ? '0.78rem' : '1.05rem', fontWeight: 900, color: '#0B1E3D',
                             lineHeight: 1.28, margin: '0 0 10px',
                             fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em',
                             display: '-webkit-box', WebkitLineClamp: 2,
@@ -181,14 +219,16 @@ export default function BlogList() {
                             {post.title}
                           </h3>
 
-                          {/* Excerpt */}
-                          <p style={{
-                            fontSize: 13, color: '#4B5563', lineHeight: 1.65, margin: 0,
-                            display: '-webkit-box', WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical' as const, overflow: 'hidden',
-                          }}>
-                            {post.excerpt}
-                          </p>
+                          {/* Excerpt — hidden on mobile to save space */}
+                          {!isMobile && (
+                            <p style={{
+                              fontSize: 13, color: '#4B5563', lineHeight: 1.65, margin: 0,
+                              display: '-webkit-box', WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical' as const, overflow: 'hidden',
+                            }}>
+                              {post.excerpt}
+                            </p>
+                          )}
                         </div>
 
                         {/* Read link */}
@@ -216,11 +256,12 @@ export default function BlogList() {
             BOTTOM BAR: pagination left | filters right
         â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <div style={{
-          display: 'flex', alignItems: isMobile ? 'flex-start' : 'center',
-          flexDirection: isMobile ? 'column' : 'row',
-          justifyContent: 'space-between',
+          display: 'flex', alignItems: 'center',
+          flexDirection: 'row',
+          justifyContent: isMobile ? 'center' : 'space-between',
           flexWrap: 'wrap' as const, gap: 16,
           paddingTop: 28, borderTop: '1px solid #E2E8F0',
+          margin: isMobile ? '0 16px' : 0,
         }}>
 
           {/* LEFT — Pagination */}
@@ -281,8 +322,8 @@ export default function BlogList() {
             </span>
           </div>
 
-          {/* RIGHT — Category filters */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {/* RIGHT — Category filters (desktop only, mobile uses top scroll row) */}
+          {!isMobile && <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <FunnelSimple style={{ width: 15, height: 15, color: '#94A3B8', flexShrink: 0 }} />
             <span style={{ fontSize: 12, color: '#94A3B8', fontWeight: 600, marginRight: 4 }}>Filter:</span>
             {allCategories.map(cat => {
@@ -316,7 +357,7 @@ export default function BlogList() {
                 </button>
               );
             })}
-          </div>
+          </div>}
         </div>
 
       </div>
@@ -349,7 +390,7 @@ export default function BlogList() {
                 Book a free demo and discover how Logezy helps UK staffing agencies work smarter.
               </p>
             </div>
-            <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
+            <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noreferrer"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '15px 30px', borderRadius: 50, background: '#fff', color: '#0B1E3D', fontSize: 14.5, fontWeight: 800, textDecoration: 'none', flexShrink: 0, position: 'relative', zIndex: 1, boxShadow: '0 4px 24px rgba(0,0,0,0.22)' }}>
               Book a Free Demo <ArrowRight weight="bold" style={{ width: 15, height: 15 }} />
             </a>

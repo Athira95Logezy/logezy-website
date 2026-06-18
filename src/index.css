@@ -681,6 +681,11 @@
   to { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
 }
 
+/* ─── Hero section: force no bottom padding ──────────────── */
+.hero-no-pb { padding-bottom: 0 !important; }
+.features-pt-mobile { padding-top: 24px !important; }
+.features-pt-desktop { padding-top: 64px !important; }
+
 /* ─── Scrollbar ───────────────────────────────────────────── */
 
 ::-webkit-scrollbar { width: 5px; }

@@ -404,7 +404,7 @@ export default function Testimonials() {
 
             {/* CTA */}
             <a
-              href="https://logezy.co/get-started"
+              href="https://booking.logezy.co/#/67044000000025008"
               target="_blank" rel="noopener noreferrer"
               style={{
                 marginTop: 20,

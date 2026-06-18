@@ -350,7 +350,7 @@ export default function CaseStudyDetail() {
             <div style={{ position:'relative', zIndex:1 }}>
               <h3 style={{ fontSize:15, fontWeight:800, color:'#fff', margin:'0 0 7px', fontFamily:'var(--font-heading)' }}>See Logezy in action</h3>
               <p style={{ fontSize:12.5, color:'rgba(255,255,255,0.70)', margin:'0 0 16px', fontFamily:'var(--font-body)', lineHeight:1.55 }}>Free demo, no credit card needed.</p>
-              <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
+              <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noreferrer"
                 style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'10px 18px', borderRadius:10, background:'#fff', color:'#183963', fontSize:13, fontWeight:800, textDecoration:'none' }}>
                 Book Demo <ArrowRight weight="regular" style={{ width:13, height:13 }} />
               </a>

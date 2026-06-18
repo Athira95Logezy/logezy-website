@@ -105,7 +105,7 @@ export default function BlogPost() {
             <div style={{ marginTop: 44, background: 'linear-gradient(135deg,#EFF6FF 0%,#E8F5FB 100%)', borderRadius: 16, padding: '28px 32px', border: '1px solid rgba(35,150,198,0.15)' }}>
               <h3 style={{ fontSize: 18, fontWeight: 800, color: '#183963', margin: '0 0 10px', fontFamily: 'var(--font-heading)' }}>{post.cta.heading}</h3>
               <p style={{ fontSize: 15, color: '#475569', lineHeight: 1.70, margin: '0 0 20px', fontFamily: 'var(--font-body)' }}>{post.cta.body}</p>
-              <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
+              <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noreferrer"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '11px 22px', borderRadius: 10, background: 'linear-gradient(135deg,#183963,#2396C6)', color: '#fff', fontSize: 14, fontWeight: 800, textDecoration: 'none', boxShadow: '0 4px 14px rgba(35,150,198,0.30)' }}>
                 Book a Free Demo <ArrowRight weight="regular" style={{ width: 14, height: 14 }} />
               </a>
@@ -181,7 +181,7 @@ export default function BlogPost() {
             <div style={{ position: 'relative', zIndex: 1 }}>
               <h3 style={{ fontSize: 16, fontWeight: 800, color: '#fff', margin: '0 0 8px', fontFamily: 'var(--font-heading)', lineHeight: 1.3 }}>See Logezy in action</h3>
               <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)', margin: '0 0 16px', fontFamily: 'var(--font-body)', lineHeight: 1.6 }}>Free demo, no credit card needed.</p>
-              <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
+              <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noreferrer"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '10px 18px', borderRadius: 10, background: '#fff', color: '#183963', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>
                 Book Demo <ArrowRight weight="regular" style={{ width: 13, height: 13 }} />
               </a>

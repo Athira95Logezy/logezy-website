@@ -533,6 +533,7 @@ export default function Hero() {
       ref={sRef}
       onMouseMove={onMove}
       onMouseLeave={onOut}
+      className="hero-no-pb"
       style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(148deg, #E8F5FB 0%, #FAFBFF 46%, #F0F9FF 100%)' }}
     >
       {/* ── Background blobs ── */}
@@ -672,7 +673,7 @@ export default function Hero() {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 420, damping: 22 }}>
-                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 14, cursor: 'pointer', background: '#FFFFFF', border: '1px solid rgba(99,102,241,0.22)', color: '#374151', fontSize: 14, fontWeight: 600, boxShadow: '0 2px 18px rgba(0,0,0,0.07)', textDecoration: 'none' }}>
+                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 14, cursor: 'pointer', background: '#FFFFFF', border: '1px solid rgba(99,102,241,0.22)', color: '#374151', fontSize: 14, fontWeight: 600, boxShadow: '0 2px 18px rgba(0,0,0,0.07)', textDecoration: 'none' }}>
                   Book a Demo
                 </a>
               </motion.div>
@@ -884,7 +885,7 @@ export default function Hero() {
           TRUSTED BY — blended directly below dashboard
           No background change, no border — same hero gradient
       ════════════════════════════════════ */}
-      <div style={{ position: 'relative', zIndex: 6, padding: isMobile ? '24px 0 28px' : '44px 0 52px', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', zIndex: 6, padding: isMobile ? '16px 0 0' : '44px 0 0', overflow: 'hidden' }}>
 
         {/* Ambient glow */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 100, background: 'radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }} />

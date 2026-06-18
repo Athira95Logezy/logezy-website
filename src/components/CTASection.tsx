@@ -103,7 +103,7 @@ export default function CTASection() {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white font-semibold text-base px-8 py-4 rounded-full hover:bg-[#E8F5FB] transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
                   style={{ color: '#183765', border: '2px solid rgba(255,255,255,0.9)', textDecoration: 'none' }}>
                   Book a demo

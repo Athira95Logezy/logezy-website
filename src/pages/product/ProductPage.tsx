@@ -743,7 +743,7 @@ export default function ProductPage() {
             {/* CTAs */}
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
               <motion.a
-                href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+                href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -850,7 +850,7 @@ export default function ProductPage() {
             </p>
             <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' as const }}>
               <motion.a
-                href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
+                href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
