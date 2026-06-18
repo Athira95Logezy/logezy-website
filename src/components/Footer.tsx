@@ -28,7 +28,7 @@ const links = {
     { label: 'Contact Us',              to: '/contact'                  },
   ],
   Support: [
-    { label: 'Book a Demo',             to: 'https://booking.logezy.co/#/67044000000025008', external: true },
+    { label: 'Book a Demo',             to: 'https://logezy.co/get-started', external: true },
     { label: 'Contact Us',              to: '/contact'                  },
   ],
 };

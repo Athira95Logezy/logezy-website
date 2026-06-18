@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
@@ -49,6 +49,13 @@ export default function CaseStudyDetail() {
   const [success, setSuccess]   = useState(false);
   const [error, setError]       = useState('');
   const formRef = useRef<HTMLFormElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   if (!cs) {
     return (
@@ -94,12 +101,12 @@ export default function CaseStudyDetail() {
     <div style={{ background:'#F8FAFC', minHeight:'100vh' }}>
 
       {/* ── Cover hero ── */}
-      <div style={{ position:'relative', overflow:'hidden', height:380 }}>
+      <div style={{ position:'relative', overflow:'hidden', height: isMobile ? 300 : 380 }}>
         <img src={cs.coverImage} alt={cs.title} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center' }} />
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg,rgba(24,57,99,0.92) 0%,rgba(25,102,170,0.82) 55%,rgba(35,150,198,0.72) 100%)' }} />
         <div style={{ position:'absolute', inset:0, opacity:0.04, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none' }} />
 
-        <div style={{ position:'absolute', inset:0, maxWidth:1200, margin:'0 auto', padding:'0 48px', display:'flex', flexDirection:'column', justifyContent:'flex-end', paddingBottom:44 }}>
+        <div style={{ position:'absolute', inset:0, maxWidth:1200, margin:'0 auto', padding: isMobile ? '66px 20px 0' : '0 48px', display:'flex', flexDirection:'column', justifyContent:'flex-end', paddingBottom: isMobile ? 24 : 44 }}>
           <motion.div initial={{ opacity:0, y:18 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5, ease:EASE }}>
             <Link to="/resources/case-studies" style={{ display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:600, color:'rgba(255,255,255,0.68)', textDecoration:'none', marginBottom:18 }}>
               <ArrowLeft weight="regular" style={{ width:14, height:14 }} /> Back to Resources
@@ -115,7 +122,7 @@ export default function CaseStudyDetail() {
 
       {/* ── Stats bar ── */}
       <div style={{ background:'#fff', borderBottom:'1px solid #F1F5F9' }}>
-        <div style={{ maxWidth:1200, margin:'0 auto', padding:'0 48px', display:'grid', gridTemplateColumns:'repeat(4,1fr)' }}>
+        <div style={{ maxWidth:1200, margin:'0 auto', padding: isMobile ? '0 16px' : '0 48px', display:'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)' }}>
           {cs.stats.map((s, i) => (
             <motion.div key={s.label}
               initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }}
@@ -130,27 +137,27 @@ export default function CaseStudyDetail() {
       </div>
 
       {/* ── Two-column layout ── */}
-      <div style={{ maxWidth:1200, margin:'0 auto', padding:'52px 48px 80px', display:'grid', gridTemplateColumns:'1fr 380px', gap:36, alignItems:'start' }}>
+      <div style={{ maxWidth:1200, margin:'0 auto', padding: isMobile ? '24px 16px 60px' : '52px 48px 80px', display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 380px', gap: isMobile ? 20 : 36, alignItems:'start' }}>
 
         {/* ── Main content ── */}
         <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.55, delay:0.1, ease:EASE }}>
 
           {/* Intro */}
-          <div style={{ background:'#fff', borderRadius:20, padding:'40px 44px', marginBottom:24, boxShadow:'0 2px 20px rgba(24,57,99,0.07)', border:'1px solid rgba(35,150,198,0.08)' }}>
+          <div style={{ background:'#fff', borderRadius:20, padding: isMobile ? '24px 20px' : '40px 44px', marginBottom:24, boxShadow:'0 2px 20px rgba(24,57,99,0.07)', border:'1px solid rgba(35,150,198,0.08)' }}>
             <p style={{ fontSize:17, color:'#334155', lineHeight:1.80, margin:0, fontFamily:'var(--font-body)', fontWeight:500, borderLeft:'4px solid #2396C6', paddingLeft:18 }}>
               {cs.excerpt}
             </p>
           </div>
 
           {/* Challenge */}
-          <div style={{ background:'#fff', borderRadius:20, padding:'40px 44px', marginBottom:24, boxShadow:'0 2px 20px rgba(24,57,99,0.07)', border:'1px solid rgba(35,150,198,0.08)' }}>
+          <div style={{ background:'#fff', borderRadius:20, padding: isMobile ? '24px 20px' : '40px 44px', marginBottom:24, boxShadow:'0 2px 20px rgba(24,57,99,0.07)', border:'1px solid rgba(35,150,198,0.08)' }}>
             <h2 style={{ fontSize:22, fontWeight:800, color:'#183963', margin:'0 0 16px', fontFamily:'var(--font-heading)', letterSpacing:'-0.02em' }}>The Challenge</h2>
             <p style={{ fontSize:15.5, color:'#334155', lineHeight:1.80, margin:0, fontFamily:'var(--font-body)' }}>{cs.challenge}</p>
           </div>
 
           {/* Content sections */}
           {cs.sections.map((sec, i) => (
-            <div key={i} style={{ background:'#fff', borderRadius:20, padding:'36px 44px', marginBottom:20, boxShadow:'0 2px 16px rgba(24,57,99,0.06)', border:'1px solid rgba(0,0,0,0.05)' }}>
+            <div key={i} style={{ background:'#fff', borderRadius:20, padding: isMobile ? '24px 20px' : '36px 44px', marginBottom:20, boxShadow:'0 2px 16px rgba(24,57,99,0.06)', border:'1px solid rgba(0,0,0,0.05)' }}>
               <h2 style={{ fontSize:19, fontWeight:800, color:'#183963', margin:'0 0 14px', fontFamily:'var(--font-heading)', letterSpacing:'-0.015em', paddingLeft:14, borderLeft:'3px solid #2396C6' }}>{sec.heading}</h2>
               <p style={{ fontSize:15.5, color:'#334155', lineHeight:1.80, margin: sec.bullets ? '0 0 16px' : 0, fontFamily:'var(--font-body)' }}>{sec.body}</p>
               {sec.bullets && (
@@ -173,7 +180,7 @@ export default function CaseStudyDetail() {
             <motion.div
               initial={{ opacity:0, scale:0.97 }} whileInView={{ opacity:1, scale:1 }}
               viewport={{ once:true }} transition={{ duration:0.5, ease:EASE }}
-              style={{ background:'linear-gradient(135deg,#183765 0%,#1966AA 50%,#2396C6 100%)', borderRadius:20, padding:'36px 44px', marginBottom:24, position:'relative', overflow:'hidden' }}
+              style={{ background:'linear-gradient(135deg,#183765 0%,#1966AA 50%,#2396C6 100%)', borderRadius:20, padding: isMobile ? '24px 20px' : '36px 44px', marginBottom:24, position:'relative', overflow:'hidden' }}
             >
               <div style={{ position:'absolute', inset:0, opacity:0.06, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'20px 20px', pointerEvents:'none' }} />
               <div style={{ fontSize:52, lineHeight:1, color:'rgba(255,255,255,0.20)', fontFamily:'Georgia,serif', position:'absolute', top:16, left:28 }}>"</div>
@@ -183,9 +190,9 @@ export default function CaseStudyDetail() {
           )}
 
           {/* Features grid */}
-          <div style={{ background:'#fff', borderRadius:20, padding:'40px 44px', marginBottom:24, boxShadow:'0 2px 20px rgba(24,57,99,0.07)', border:'1px solid rgba(35,150,198,0.08)' }}>
+          <div style={{ background:'#fff', borderRadius:20, padding: isMobile ? '24px 20px' : '40px 44px', marginBottom:24, boxShadow:'0 2px 20px rgba(24,57,99,0.07)', border:'1px solid rgba(35,150,198,0.08)' }}>
             <h2 style={{ fontSize:22, fontWeight:800, color:'#183963', margin:'0 0 28px', fontFamily:'var(--font-heading)', letterSpacing:'-0.02em' }}>Key Platform Features</h2>
-            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16 }}>
+            <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:16 }}>
               {cs.features.map(f => (
                 <div key={f.title} style={{ display:'flex', gap:14, padding:'18px', borderRadius:14, background:'#F8FAFC', border:'1px solid #F1F5F9' }}>
                   <div style={{ width:38, height:38, borderRadius:10, background:'linear-gradient(135deg,#E8F5FB,#EFF6FF)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, color:'#2396C6' }}>
@@ -201,7 +208,7 @@ export default function CaseStudyDetail() {
           </div>
 
           {/* Conclusion */}
-          <div style={{ background:'#F0FDF4', borderRadius:20, padding:'36px 44px', border:'1px solid #BBF7D0' }}>
+          <div style={{ background:'#F0FDF4', borderRadius:20, padding: isMobile ? '24px 20px' : '36px 44px', border:'1px solid #BBF7D0' }}>
             <h2 style={{ fontSize:19, fontWeight:800, color:'#065F46', margin:'0 0 12px', fontFamily:'var(--font-heading)' }}>Conclusion</h2>
             <p style={{ fontSize:15.5, color:'#334155', lineHeight:1.80, margin:0, fontFamily:'var(--font-body)' }}>{cs.conclusion}</p>
           </div>
@@ -211,7 +218,7 @@ export default function CaseStudyDetail() {
         <motion.aside
           initial={{ opacity:0, x:20 }} animate={{ opacity:1, x:0 }}
           transition={{ duration:0.55, delay:0.22, ease:EASE }}
-          style={{ position:'sticky', top:24, display:'flex', flexDirection:'column', gap:20 }}
+          style={{ position: isMobile ? 'static' : 'sticky', top:24, display:'flex', flexDirection:'column', gap:20 }}
         >
 
           {/* ─── DOWNLOAD GATE FORM ─────────────────── */}
@@ -343,7 +350,7 @@ export default function CaseStudyDetail() {
             <div style={{ position:'relative', zIndex:1 }}>
               <h3 style={{ fontSize:15, fontWeight:800, color:'#fff', margin:'0 0 7px', fontFamily:'var(--font-heading)' }}>See Logezy in action</h3>
               <p style={{ fontSize:12.5, color:'rgba(255,255,255,0.70)', margin:'0 0 16px', fontFamily:'var(--font-body)', lineHeight:1.55 }}>Free demo, no credit card needed.</p>
-              <a href="https://calendly.com/logezy/demo" target="_blank" rel="noreferrer"
+              <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
                 style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'10px 18px', borderRadius:10, background:'#fff', color:'#183963', fontSize:13, fontWeight:800, textDecoration:'none' }}>
                 Book Demo <ArrowRight weight="regular" style={{ width:13, height:13 }} />
               </a>

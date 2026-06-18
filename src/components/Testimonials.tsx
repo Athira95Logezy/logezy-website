@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Testimonials.tsx — Customer Stories · Trustpilot integration
  *
  * Layout
@@ -404,7 +404,7 @@ export default function Testimonials() {
 
             {/* CTA */}
             <a
-              href="https://booking.logezy.co/#/67044000000025008"
+              href="https://logezy.co/get-started"
               target="_blank" rel="noopener noreferrer"
               style={{
                 marginTop: 20,

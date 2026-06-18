@@ -14,7 +14,7 @@ const itemVariants = {
 
 export default function CTASection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden"
           style={{ background: 'linear-gradient(135deg, #183765 0%, #2396C6 55%, #0d2a4d 100%)' }}>
@@ -43,7 +43,7 @@ export default function CTASection() {
           <div className="absolute inset-x-0 top-0 h-px"
             style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), rgba(255,255,255,0.5), rgba(255,255,255,0.3), transparent)' }} />
 
-          <div className="relative text-center px-8 py-20 md:px-16 md:py-24">
+          <div className="relative text-center px-6 py-12 md:px-16 md:py-24">
 
             {/* Badge */}
             <motion.div
@@ -91,7 +91,7 @@ export default function CTASection() {
               className="flex flex-wrap justify-center gap-4 mb-10"
             >
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white font-bold text-base px-8 py-4 rounded-full"
                   style={{
                     background: 'linear-gradient(135deg, #2396C6 0%, #183765 100%)',
@@ -103,7 +103,7 @@ export default function CTASection() {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-white font-semibold text-base px-8 py-4 rounded-full hover:bg-[#E8F5FB] transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.15)]"
                   style={{ color: '#183765', border: '2px solid rgba(255,255,255,0.9)', textDecoration: 'none' }}>
                   Book a demo

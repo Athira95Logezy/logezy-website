@@ -639,7 +639,7 @@ export default function FeaturesPage() {
       {/* ══════════════════════
           HERO
       ══════════════════════ */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-[#F8FAFC]">
+      <section className="relative pt-20 pb-12 lg:pt-32 lg:pb-20 overflow-hidden bg-[#F8FAFC]">
         <div style={{ position:'absolute', top:0, right:0, width:700, height:700, borderRadius:'50%', background:'radial-gradient(circle,rgba(91,108,249,0.08) 0%,transparent 65%)', transform:'translate(20%,-30%)', pointerEvents:'none' }}/>
         <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(23,149,199,0.07) 1px,transparent 1px)', backgroundSize:'32px 32px', pointerEvents:'none', opacity:0.5 }}/>
 
@@ -728,7 +728,7 @@ export default function FeaturesPage() {
             const Icon = f.icon;
             return (
               <section key={f.title} className={fi % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20">
                   <div className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center ${f.reverse ? '' : ''}`}>
 
                     {/* Copy */}
@@ -763,7 +763,7 @@ export default function FeaturesPage() {
                       </ul>
 
                       <motion.div whileHover={{ scale:1.03, y:-2 }} whileTap={{ scale:0.97 }} transition={{ type:'spring', stiffness:400 }}>
-                        <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
+                        <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
                           display:'inline-flex', alignItems:'center', gap:8,
                           padding:'13px 24px', borderRadius:100,
                           fontSize:14, fontWeight:700, color:'#fff',
@@ -845,7 +845,7 @@ export default function FeaturesPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <motion.div whileHover={{ scale:1.04, y:-2 }} whileTap={{ scale:0.97 }} transition={{ type:'spring', stiffness:400 }}>
-                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
+                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
                   display:'inline-flex', alignItems:'center', gap:8,
                   padding:'14px 28px', borderRadius:100, fontSize:15, fontWeight:700,
                   color:'#fff', background:'linear-gradient(135deg,#2396C6,#2396C6)',
@@ -855,7 +855,7 @@ export default function FeaturesPage() {
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale:1.04, y:-2 }} whileTap={{ scale:0.97 }} transition={{ type:'spring', stiffness:400 }}>
-                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
+                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
                   display:'inline-flex', alignItems:'center', gap:8,
                   padding:'14px 28px', borderRadius:100, fontSize:15, fontWeight:600,
                   color:'rgba(255,255,255,0.80)', background:'rgba(255,255,255,0.08)',

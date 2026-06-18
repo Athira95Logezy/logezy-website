@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -7,7 +7,7 @@ import { useWindowWidth } from '../hooks/useWindowWidth';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── iOS banner — drops from TOP of phone, no left overlap ─── */
+/* â"€â"€â"€ iOS banner â€" drops from TOP of phone, no left overlap â"€â"€â"€ */
 const SMS_NOTIFS = [
   { id: 0, from: 'Sarah · Agency', msg: 'Your shift docs are ready...', time: 'now', action: 'Reply' },
   { id: 1, from: 'Tom · Ward B',   msg: 'Can you cover Thursday?...',  time: '1m',  action: 'Reply' },
@@ -73,82 +73,323 @@ function FloatingNotification() {
   );
 }
 
-/* ─── Apple Watch mockup ─── */
+/* ─── Realistic Apple Watch Series 9 ─── */
 function SmartWatch() {
   const [step, setStep] = useState(0);
+  const [now, setNow] = useState(() => { const d = new Date(); return { h: d.getHours(), m: d.getMinutes() }; });
   const watchMsgs = [
-    { label: 'SHIFT TODAY', text: 'Ward B · 07:00', color: '#38BDF8' },
-    { label: 'CLOCK IN', text: 'Tap to start', color: '#34D399' },
-    { label: 'NEW BOOKING', text: 'May 26 · HCA', color: '#A78BFA' },
+    { label: 'SHIFT TODAY', line1: 'Ward B · 07:00', line2: 'NHS Trust · London', color: '#38BDF8' },
+    { label: 'CLOCK IN',    line1: 'Tap to start',   line2: 'Location verified ✓', color: '#34D399' },
+    { label: 'NEW BOOKING', line1: 'May 26 · HCA',   line2: 'Primcura Care',       color: '#A78BFA' },
   ];
   useEffect(() => {
-    const t = setInterval(() => setStep(s => (s + 1) % watchMsgs.length), 3000);
-    return () => clearInterval(t);
+    const t1 = setInterval(() => setStep(s => (s + 1) % watchMsgs.length), 3000);
+    const t2 = setInterval(() => { const d = new Date(); setNow({ h: d.getHours(), m: d.getMinutes() }); }, 10000);
+    return () => { clearInterval(t1); clearInterval(t2); };
   }, []);
   const m = watchMsgs[step];
+  const timeStr = `${now.h.toString().padStart(2,'0')}:${now.m.toString().padStart(2,'0')}`;
+  const W = 94, H = 108;
+
   return (
-    <div style={{ position: 'relative', userSelect: 'none' }}>
-      {/* Crown button */}
-      <div style={{ position: 'absolute', right: -5, top: '28%', width: 5, height: 22, background: 'linear-gradient(to right,#5A5A5F,#8E8E93)', borderRadius: '0 3px 3px 0', boxShadow: '2px 0 4px rgba(0,0,0,0.40)' }} />
-      <div style={{ position: 'absolute', right: -5, top: '48%', width: 5, height: 14, background: 'linear-gradient(to right,#5A5A5F,#8E8E93)', borderRadius: '0 2px 2px 0', boxShadow: '2px 0 4px rgba(0,0,0,0.40)' }} />
+    <div style={{ position: 'relative', userSelect: 'none', filter: 'drop-shadow(0 20px 50px rgba(0,0,0,0.75)) drop-shadow(0 4px 16px rgba(0,0,0,0.5))' }}>
 
-      {/* Watch body */}
-      <div style={{
-        width: 82, height: 94,
-        borderRadius: 26,
-        background: 'linear-gradient(160deg,#2C2C2E,#1C1C1E)',
-        padding: 3,
-        boxShadow: '0 24px 60px rgba(0,0,0,0.70), 0 0 0 1px rgba(255,255,255,0.12), inset 0 1px 0 rgba(255,255,255,0.14)',
-      }}>
-        <div style={{
-          width: '100%', height: '100%', borderRadius: 24,
-          background: '#000', overflow: 'hidden', position: 'relative',
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          gap: 4, padding: '8px 8px',
+      {/* Top band stub */}
+      <div style={{ width: 74, height: 18, margin: '0 auto',
+        background: 'linear-gradient(to bottom, #1A1A1C 0%, #2A2A2D 40%, #1E1E20 100%)',
+        borderRadius: '5px 5px 0 0',
+        boxShadow: 'inset 1px 0 0 rgba(255,255,255,0.08), inset -1px 0 0 rgba(255,255,255,0.04)',
+      }} />
+
+      {/* Main watch body */}
+      <div style={{ position: 'relative', width: W, height: H }}>
+
+        {/* Digital Crown (right side, top) */}
+        <div style={{ position: 'absolute', right: -6, top: '22%', width: 7, height: 26,
+          background: 'linear-gradient(to right, #3A3A3C, #6E6E73, #48484A, #8E8E93)',
+          borderRadius: '0 4px 4px 0',
+          boxShadow: '3px 0 6px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.20)',
         }}>
-          {/* Ambient glow */}
-          <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse at 50% 40%, ${m.color}18 0%, transparent 70%)`, transition: 'background 0.4s' }} />
+          {/* Crown ridges */}
+          {[0,1,2,3,4].map(i => (
+            <div key={i} style={{ position: 'absolute', top: 4 + i*4, left: 0, right: 0, height: 1,
+              background: 'rgba(255,255,255,0.12)', borderRadius: 1 }} />
+          ))}
+        </div>
 
-          {/* Time */}
-          <p style={{ fontSize: 18, fontWeight: 800, color: '#FFF', margin: 0, letterSpacing: '-0.03em', lineHeight: 1, position: 'relative', zIndex: 1 }}>
-            {new Date().getHours().toString().padStart(2,'0')}:{new Date().getMinutes().toString().padStart(2,'0')}
-          </p>
+        {/* Side button (right side, bottom) */}
+        <div style={{ position: 'absolute', right: -5, top: '54%', width: 5, height: 17,
+          background: 'linear-gradient(to right, #3A3A3C, #6E6E73, #48484A)',
+          borderRadius: '0 3px 3px 0',
+          boxShadow: '2px 0 5px rgba(0,0,0,0.45)',
+        }} />
 
-          {/* Animated notification */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35 }}
-              style={{ width: '100%', position: 'relative', zIndex: 1 }}
-            >
-              <div style={{ background: `${m.color}1A`, border: `1px solid ${m.color}44`, borderRadius: 8, padding: '4px 6px', textAlign: 'center' }}>
-                <p style={{ fontSize: 6.5, fontWeight: 800, color: m.color, margin: '0 0 2px', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>{m.label}</p>
-                <p style={{ fontSize: 9, fontWeight: 700, color: '#FFF', margin: 0, letterSpacing: '-0.01em' }}>{m.text}</p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+        {/* Outer case — titanium-style frame */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          borderRadius: 28,
+          background: 'linear-gradient(145deg, #4A4A4F 0%, #2C2C2E 20%, #1C1C1E 50%, #2A2A2C 80%, #3C3C3E 100%)',
+          boxShadow: [
+            '0 0 0 0.5px rgba(255,255,255,0.22)',
+            'inset 0 2px 0 rgba(255,255,255,0.18)',
+            'inset 0 -1px 0 rgba(255,255,255,0.06)',
+            'inset 1px 0 0 rgba(255,255,255,0.10)',
+            'inset -1px 0 0 rgba(0,0,0,0.28)',
+          ].join(', '),
+        }} />
 
-          {/* Bottom health ring arc */}
-          <svg width={40} height={10} viewBox="0 0 40 10" style={{ position: 'relative', zIndex: 1 }}>
-            <path d="M4 8 Q20 0 36 8" stroke={m.color} strokeWidth={2} fill="none" strokeLinecap="round" opacity={0.6}/>
-            <motion.circle r={2.5} fill={m.color} style={{ filter: `drop-shadow(0 0 4px ${m.color})` }}
-              animate={{ opacity: [0.4,1,0.4] }} transition={{ duration: 1.4, repeat: Infinity }}>
-              <animateMotion dur="3s" repeatCount="indefinite" path="M4 8 Q20 0 36 8" />
-            </motion.circle>
-          </svg>
+        {/* Inner bezel */}
+        <div style={{
+          position: 'absolute', inset: 4,
+          borderRadius: 24,
+          background: '#0A0A0A',
+          boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.80)',
+          overflow: 'hidden',
+        }}>
+          {/* Screen content */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: `radial-gradient(ellipse at 50% 30%, ${m.color}22 0%, #000 60%)`,
+            transition: 'background 0.6s ease',
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
+            padding: '10px 8px 8px',
+            gap: 0,
+          }}>
+            {/* Top status bar */}
+            <div style={{ position: 'absolute', top: 6, left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
+              <div style={{ width: 4, height: 4, borderRadius: '50%', background: m.color, boxShadow: `0 0 5px ${m.color}` }} />
+              <span style={{ fontSize: 6.5, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em', fontWeight: 600 }}>LOGEZY</span>
+              <div style={{ width: 4, height: 4, borderRadius: '50%', background: m.color, boxShadow: `0 0 5px ${m.color}` }} />
+            </div>
+
+            {/* Time — large */}
+            <p style={{ fontSize: 24, fontWeight: 300, color: '#FFFFFF', margin: 0, letterSpacing: '-0.04em', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>
+              {timeStr}
+            </p>
+
+            {/* Day / date */}
+            <p style={{ fontSize: 7.5, fontWeight: 500, color: 'rgba(255,255,255,0.38)', margin: '2px 0 5px', letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>
+              {['SUN','MON','TUE','WED','THU','FRI','SAT'][new Date().getDay()]}
+            </p>
+
+            {/* Notification card */}
+            <AnimatePresence mode="wait">
+              <motion.div key={step}
+                initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3 }}
+                style={{ width: '100%' }}
+              >
+                <div style={{
+                  background: `linear-gradient(135deg, ${m.color}28, ${m.color}14)`,
+                  border: `1px solid ${m.color}50`,
+                  borderRadius: 10,
+                  padding: '5px 7px',
+                  textAlign: 'center',
+                  backdropFilter: 'blur(8px)',
+                  boxShadow: `0 0 12px ${m.color}18`,
+                }}>
+                  <p style={{ fontSize: 7, fontWeight: 800, color: m.color, margin: '0 0 2px', letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>{m.label}</p>
+                  <p style={{ fontSize: 10, fontWeight: 700, color: '#FFFFFF', margin: '0 0 1px', letterSpacing: '-0.01em', lineHeight: 1.2 }}>{m.line1}</p>
+                  <p style={{ fontSize: 7.5, fontWeight: 500, color: 'rgba(255,255,255,0.50)', margin: 0 }}>{m.line2}</p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Activity rings (bottom) */}
+            <div style={{ marginTop: 6, position: 'relative', width: 28, height: 28 }}>
+              <svg width={28} height={28} viewBox="0 0 28 28">
+                {/* Outer ring track */}
+                <circle cx={14} cy={14} r={12} fill="none" stroke="rgba(255,59,48,0.20)" strokeWidth={2.5} />
+                <circle cx={14} cy={14} r={12} fill="none" stroke="#FF3B30" strokeWidth={2.5}
+                  strokeDasharray={`${0.72 * 2 * Math.PI * 12} ${2 * Math.PI * 12}`}
+                  strokeLinecap="round" transform="rotate(-90 14 14)" style={{ filter: 'drop-shadow(0 0 3px #FF3B30)' }}/>
+                {/* Middle ring */}
+                <circle cx={14} cy={14} r={8.5} fill="none" stroke="rgba(52,211,153,0.20)" strokeWidth={2.2} />
+                <circle cx={14} cy={14} r={8.5} fill="none" stroke="#34D399" strokeWidth={2.2}
+                  strokeDasharray={`${0.85 * 2 * Math.PI * 8.5} ${2 * Math.PI * 8.5}`}
+                  strokeLinecap="round" transform="rotate(-90 14 14)" style={{ filter: 'drop-shadow(0 0 3px #34D399)' }}/>
+                {/* Inner ring */}
+                <circle cx={14} cy={14} r={5} fill="none" stroke="rgba(56,189,248,0.20)" strokeWidth={2} />
+                <circle cx={14} cy={14} r={5} fill="none" stroke="#38BDF8" strokeWidth={2}
+                  strokeDasharray={`${0.60 * 2 * Math.PI * 5} ${2 * Math.PI * 5}`}
+                  strokeLinecap="round" transform="rotate(-90 14 14)" style={{ filter: 'drop-shadow(0 0 3px #38BDF8)' }}/>
+              </svg>
+            </div>
+          </div>
+
+          {/* Screen glare / reflection */}
+          <div style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 24,
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 45%, transparent 55%, rgba(255,255,255,0.02) 100%)',
+          }} />
         </div>
       </div>
 
-      {/* Watch band stubs */}
-      <div style={{ width: 68, height: 12, background: 'linear-gradient(to bottom,#1C1C1E,#111)', borderRadius: '0 0 6px 6px', margin: '0 auto', boxShadow: '0 4px 12px rgba(0,0,0,0.50)' }} />
+      {/* Bottom band stub */}
+      <div style={{ width: 74, height: 22, margin: '0 auto',
+        background: 'linear-gradient(to bottom, #2A2A2D 0%, #1E1E20 60%, #141416 100%)',
+        borderRadius: '0 0 8px 8px',
+        boxShadow: 'inset 1px 0 0 rgba(255,255,255,0.06), inset -1px 0 0 rgba(255,255,255,0.03), 0 4px 14px rgba(0,0,0,0.55)',
+      }} />
     </div>
   );
 }
 
-/* ─── iPhone 15 Pro ─── */
+/* ─── Realistic Worker ID Card ─── */
+function WorkerIDCard() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.8, ease: [0.22,1,0.36,1] }}
+      style={{ userSelect: 'none', rotate: '2deg' as any }}
+    >
+      {/* Plastic clip housing */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 0 }}>
+        <div style={{
+          width: 32, height: 14,
+          background: 'linear-gradient(180deg,#D1D5DB 0%,#9CA3AF 50%,#6B7280 100%)',
+          borderRadius: '3px 3px 0 0',
+          boxShadow: '0 -1px 3px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.45)',
+          position: 'relative',
+        }}>
+          {/* Clip slot cutout */}
+          <div style={{
+            position: 'absolute', left: '50%', top: 3, transform: 'translateX(-50%)',
+            width: 16, height: 8, background: 'rgba(0,0,0,0.28)',
+            borderRadius: 2,
+            boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.50)',
+          }} />
+        </div>
+      </div>
+
+      {/* Card in clear plastic sleeve */}
+      <div style={{
+        position: 'relative',
+        width: 112,
+        borderRadius: '2px 2px 5px 5px',
+        /* Outer plastic sleeve */
+        background: 'rgba(220,230,245,0.18)',
+        padding: '3px 3px 4px',
+        boxShadow: [
+          '0 14px 40px rgba(0,0,0,0.55)',
+          '0 4px 10px rgba(0,0,0,0.35)',
+          'inset 0 0 0 1px rgba(255,255,255,0.20)',
+        ].join(','),
+        backdropFilter: 'blur(2px)',
+      }}>
+
+        {/* Plastic sleeve glare */}
+        <div style={{
+          position: 'absolute', inset: 0, borderRadius: '2px 2px 5px 5px', zIndex: 10, pointerEvents: 'none',
+          background: 'linear-gradient(135deg,rgba(255,255,255,0.22) 0%,rgba(255,255,255,0.06) 30%,transparent 60%)',
+        }} />
+
+        {/* Actual card */}
+        <div style={{
+          width: '100%',
+          borderRadius: 3,
+          background: '#FFFFFF',
+          overflow: 'hidden',
+          position: 'relative',
+        }}>
+
+          {/* Top colour bar — NHS blue */}
+          <div style={{
+            height: 8,
+            background: 'linear-gradient(90deg,#003087 0%,#005EB8 60%,#0072CE 100%)',
+          }} />
+
+          {/* Organisation row */}
+          <div style={{
+            background: '#F8FAFF',
+            padding: '5px 8px 4px',
+            display: 'flex', alignItems: 'center', gap: 5,
+            borderBottom: '0.5px solid #E2E8F0',
+          }}>
+            {/* NHS cross icon */}
+            <svg width={14} height={14} viewBox="0 0 20 20">
+              <rect width={20} height={20} rx={2} fill="#005EB8"/>
+              <rect x={7} y={2} width={6} height={16} fill="white"/>
+              <rect x={2} y={7} width={16} height={6} fill="white"/>
+            </svg>
+            <div>
+              <p style={{ fontSize: 6, fontWeight: 800, color: '#005EB8', margin: 0, letterSpacing: '0.04em' }}>NHS TRUST</p>
+              <p style={{ fontSize: 5.5, color: '#64748B', margin: 0 }}>Powered by Logezy</p>
+            </div>
+          </div>
+
+          {/* Photo + details row */}
+          <div style={{ display: 'flex', gap: 7, padding: '7px 8px 6px' }}>
+
+            {/* Photo box */}
+            <div style={{
+              width: 38, height: 46, flexShrink: 0,
+              borderRadius: 2,
+              background: 'linear-gradient(160deg,#C8D8E8 0%,#A8BDD0 100%)',
+              border: '1px solid #CBD5E1',
+              overflow: 'hidden',
+              position: 'relative',
+              boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.08)',
+            }}>
+              {/* Realistic silhouette */}
+              <svg width={38} height={46} viewBox="0 0 38 46" style={{ display: 'block' }}>
+                <rect width={38} height={46} fill="#B8CCDE"/>
+                {/* Head */}
+                <ellipse cx={19} cy={15} rx={8} ry={9} fill="#D4A574"/>
+                {/* Hair */}
+                <ellipse cx={19} cy={9} rx={8.5} ry={6} fill="#5C3D2E"/>
+                <ellipse cx={11} cy={12} rx={3} ry={5} fill="#5C3D2E"/>
+                <ellipse cx={27} cy={12} rx={3} ry={5} fill="#5C3D2E"/>
+                {/* Neck */}
+                <rect x={16} y={22} width={6} height={5} fill="#D4A574"/>
+                {/* Scrubs body */}
+                <path d="M5 46 Q5 30 19 28 Q33 30 33 46Z" fill="#1E3A5F"/>
+                {/* White collar */}
+                <path d="M15 27 L19 32 L23 27 L19 29Z" fill="#E8EEF4"/>
+              </svg>
+            </div>
+
+            {/* Text details */}
+            <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div>
+                <p style={{ fontSize: 9, fontWeight: 800, color: '#0F172A', margin: '0 0 2px', lineHeight: 1.1, letterSpacing: '-0.01em' }}>Sarah<br/>Mitchell</p>
+                <p style={{ fontSize: 7, fontWeight: 700, color: '#005EB8', margin: '0 0 4px', lineHeight: 1.2 }}>Registered Nurse</p>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 3, padding: '1px 5px', borderRadius: 3, background: '#EFF6FF', border: '0.5px solid #BFDBFE' }}>
+                  <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#22C55E', boxShadow: '0 0 4px #22C55E' }} />
+                  <span style={{ fontSize: 5.5, fontWeight: 700, color: '#1D4ED8', letterSpacing: '0.04em' }}>ACTIVE</span>
+                </div>
+              </div>
+              <div>
+                <p style={{ fontSize: 5.5, color: '#94A3B8', margin: '0 0 1px', letterSpacing: '0.02em' }}>Staff ID</p>
+                <p style={{ fontSize: 7, fontWeight: 700, color: '#334155', margin: 0, letterSpacing: '0.04em', fontFamily: 'monospace' }}>SM-4821</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Barcode strip */}
+          <div style={{ padding: '0 8px 6px' }}>
+            <svg width="100%" height={18} viewBox="0 0 96 18" preserveAspectRatio="none">
+              {[2,1,1,2,1,3,1,1,2,1,1,3,1,2,1,1,2,1,3,1,1,2,1,1,2,1,3,1,2,1,1,1].map((w,i,arr) => {
+                const total = arr.reduce((a,b)=>a+b,0);
+                const x = arr.slice(0,i).reduce((a,b)=>a+b,0) * (96/total);
+                const fw = w * (96/total);
+                return i%2===0 ? <rect key={i} x={x} y={1} width={fw} height={14} rx={0.3} fill="#1E293B"/> : null;
+              })}
+            </svg>
+            <p style={{ fontSize: 5, color: '#94A3B8', textAlign: 'center', margin: '1px 0 0', letterSpacing: '0.15em', fontFamily: 'monospace' }}>NHS·LGZ·0004821·B</p>
+          </div>
+
+          {/* Bottom accent */}
+          <div style={{ height: 5, background: 'linear-gradient(90deg,#003087 0%,#005EB8 50%,#0072CE 100%)' }} />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* â"€â"€â"€ iPhone 15 Pro â"€â"€â"€ */
 function IPhoneMockup({ scale = 1 }: { scale?: number }) {
   const W = Math.round(308 * scale);
   const H = Math.round(664 * scale);
@@ -193,11 +434,11 @@ function IPhoneMockup({ scale = 1 }: { scale?: number }) {
   );
 }
 
-/* ─── Notification stream cards ─── */
+/* â"€â"€â"€ Notification stream cards â"€â"€â"€ */
 const STREAM_CARDS = [
   { id: 0, type: 'SHIFT CONFIRMED', typeColor: '#38BDF8', iconBg: 'rgba(56,189,248,0.15)',
     icon: <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#38BDF8" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>,
-    title: 'Shift Confirmed ✓', snippet: 'NHS Ward B · 07:00–19:00' },
+    title: 'Shift Confirmed âœ"', snippet: 'NHS Ward B · 07:00â€"19:00' },
   { id: 1, type: 'NEW BOOKING', typeColor: '#34D399', iconBg: 'rgba(52,211,153,0.15)',
     icon: <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#34D399" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>,
     title: 'New Booking Available', snippet: 'May 26 · HCA · Tap to view' },
@@ -216,11 +457,22 @@ const STREAM_CARDS = [
 ];
 type StreamCard = typeof STREAM_CARDS[number] & { uid: number };
 
+/* Watch icon SVG */
+const WatchIcon = ({ color }: { color: string }) => (
+  <svg width={9} height={11} viewBox="0 0 9 11" fill="none">
+    <rect x={1} y={2} width={7} height={7} rx={2} stroke={color} strokeWidth={1.2}/>
+    <rect x={3} y={0} width={3} height={2.5} rx={0.6} fill={color} opacity={0.7}/>
+    <rect x={3} y={8.5} width={3} height={2.5} rx={0.6} fill={color} opacity={0.7}/>
+    <line x1={4.5} y1={4} x2={4.5} y2={5.8} stroke={color} strokeWidth={1} strokeLinecap="round"/>
+    <line x1={4.5} y1={5.8} x2={6} y2={5.8} stroke={color} strokeWidth={1} strokeLinecap="round"/>
+  </svg>
+);
+
 function NotifStream({ compact = false }: { compact?: boolean }) {
   const [cards, setCards] = useState<StreamCard[]>([]);
   const idxRef = useRef(0);
   const uidRef = useRef(0);
-  const W = compact ? 200 : 228;
+  const W = compact ? 210 : 240;
 
   useEffect(() => {
     const add = () => {
@@ -229,43 +481,86 @@ function NotifStream({ compact = false }: { compact?: boolean }) {
       setCards(prev => [...prev.slice(-2), card]);
     };
     add();
-    const t = setInterval(add, 2400);
+    const t = setInterval(add, 2600);
     return () => clearInterval(t);
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: W }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: compact ? 7 : 9, width: W }}>
       <AnimatePresence mode="popLayout">
         {cards.map(card => (
           <motion.div key={card.uid} layout
-            initial={{ opacity: 0, x: 40, scale: 0.88 }}
+            initial={{ opacity: 0, x: 36, scale: 0.90 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -16, scale: 0.94 }}
-            transition={{ type: 'spring', stiffness: 240, damping: 22 }}
-            style={{
-              background: 'rgba(10,25,60,0.80)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              borderRadius: compact ? 12 : 16,
-              padding: compact ? '8px 10px 9px' : '10px 13px 11px',
-              boxShadow: `0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.09), 0 0 18px ${card.typeColor}20`,
-              border: '1px solid rgba(255,255,255,0.10)',
-              position: 'relative', overflow: 'hidden',
-            }}
+            exit={{ opacity: 0, x: 20, scale: 0.94 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+            style={{ position: 'relative' }}
           >
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(to right, transparent, ${card.typeColor}55, transparent)` }} />
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: compact ? 4 : 6 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <div style={{ width: compact ? 18 : 22, height: compact ? 18 : 22, borderRadius: 6, background: card.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: `0 0 8px ${card.typeColor}44` }}>
-                  {card.icon}
+            {/* Haptic ripple on entry */}
+            <motion.div
+              initial={{ opacity: 0.5, scale: 0.9 }}
+              animate={{ opacity: 0, scale: 1.12 }}
+              transition={{ duration: 0.55, ease: 'easeOut' }}
+              style={{
+                position: 'absolute', inset: -3, borderRadius: compact ? 15 : 19,
+                border: `1.5px solid ${card.typeColor}`,
+                pointerEvents: 'none',
+              }}
+            />
+
+            {/* Card */}
+            <div style={{
+              background: 'linear-gradient(145deg, rgba(12,24,58,0.92) 0%, rgba(8,18,44,0.96) 100%)',
+              backdropFilter: 'blur(28px)',
+              WebkitBackdropFilter: 'blur(28px)',
+              borderRadius: compact ? 14 : 18,
+              overflow: 'hidden',
+              boxShadow: [
+                `0 10px 44px rgba(0,0,0,0.52)`,
+                `0 0 0 1px rgba(255,255,255,0.10)`,
+                `0 0 22px ${card.typeColor}18`,
+              ].join(', '),
+            }}>
+              {/* Top accent line */}
+              <div style={{ height: 2, background: `linear-gradient(to right, transparent 0%, ${card.typeColor}80 30%, ${card.typeColor} 50%, ${card.typeColor}80 70%, transparent 100%)` }} />
+
+              {/* "From Watch" source pill */}
+              <div style={{ padding: compact ? '5px 10px 0' : '6px 12px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '2px 7px 2px 5px', borderRadius: 20, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.10)' }}>
+                  <WatchIcon color={card.typeColor} />
+                  <span style={{ fontSize: 7, fontWeight: 700, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.04em' }}>from Watch</span>
                 </div>
-                <span style={{ fontSize: compact ? 7 : 8, fontWeight: 800, color: card.typeColor, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>{card.type}</span>
+                <span style={{ fontSize: 7, color: 'rgba(255,255,255,0.28)', fontWeight: 500 }}>now</span>
               </div>
-              <motion.div style={{ width: 6, height: 6, borderRadius: '50%', background: card.typeColor, boxShadow: `0 0 6px ${card.typeColor}` }}
-                animate={{ opacity: [1,0.2,1], scale: [1,1.5,1] }} transition={{ duration: 1.2, repeat: Infinity }} />
+
+              {/* Main content */}
+              <div style={{ padding: compact ? '5px 10px 8px' : '6px 12px 10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: compact ? 4 : 5 }}>
+                  {/* App icon */}
+                  <div style={{
+                    width: compact ? 24 : 28, height: compact ? 24 : 28, borderRadius: compact ? 7 : 8, flexShrink: 0,
+                    background: `linear-gradient(135deg, ${card.iconBg}, ${card.typeColor}22)`,
+                    border: `1px solid ${card.typeColor}30`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: `0 2px 10px ${card.typeColor}30, inset 0 1px 0 rgba(255,255,255,0.12)`,
+                  }}>
+                    {card.icon}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <span style={{ fontSize: compact ? 7.5 : 8.5, fontWeight: 800, color: card.typeColor, letterSpacing: '0.06em', textTransform: 'uppercase' as const, display: 'block' }}>{card.type}</span>
+                  </div>
+                  {/* Live dot */}
+                  <motion.div
+                    style={{ width: 7, height: 7, borderRadius: '50%', background: card.typeColor, flexShrink: 0, boxShadow: `0 0 8px ${card.typeColor}` }}
+                    animate={{ opacity: [1, 0.25, 1], scale: [1, 1.45, 1] }}
+                    transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                </div>
+
+                <p style={{ fontSize: compact ? 11.5 : 12.5, fontWeight: 700, color: '#FFFFFF', margin: '0 0 3px', lineHeight: 1.25, letterSpacing: '-0.01em' }}>{card.title}</p>
+                <p style={{ fontSize: compact ? 9.5 : 10.5, color: 'rgba(186,210,255,0.55)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const, lineHeight: 1.3 }}>{card.snippet}</p>
+              </div>
             </div>
-            <p style={{ fontSize: compact ? 11 : 12, fontWeight: 700, color: '#FFFFFF', margin: '0 0 2px', lineHeight: 1.25, letterSpacing: '-0.01em' }}>{card.title}</p>
-            <p style={{ fontSize: compact ? 9 : 10, color: 'rgba(186,210,255,0.60)', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{card.snippet}</p>
           </motion.div>
         ))}
       </AnimatePresence>
@@ -273,7 +568,7 @@ function NotifStream({ compact = false }: { compact?: boolean }) {
   );
 }
 
-/* ─── Travelling-dot connector ─── */
+/* â"€â"€â"€ Travelling-dot connector â"€â"€â"€ */
 function GlowConnector({ length = 56, vertical = false }: { length?: number; vertical?: boolean }) {
   const W = vertical ? 2 : length;
   const H = vertical ? length : 2;
@@ -296,9 +591,9 @@ function GlowNode({ color = '#38BDF8', size = 9 }: { color?: string; size?: numb
   );
 }
 
-/* ═══════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    MAIN SECTION
-═══════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 export default function MobileAppShowcase() {
   const sectionRef = useRef<HTMLElement>(null);
   const phoneRef   = useRef<HTMLDivElement>(null);
@@ -318,7 +613,7 @@ export default function MobileAppShowcase() {
     return () => ctx.revert();
   }, []);
 
-  /* ── shared left content ── */
+  /* â"€â"€ shared left content â"€â"€ */
   const LeftContent = (
     <div ref={leftRef} style={{
       flex: '0 0 auto',
@@ -368,7 +663,7 @@ export default function MobileAppShowcase() {
         ))}
       </div>
 
-      <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+      <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
         style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 14, textDecoration: 'none', background: 'linear-gradient(135deg,#2396C6 0%,#2396C6 100%)', color: '#fff', fontWeight: 700, fontSize: 14, boxShadow: '0 10px 32px rgba(56,189,248,0.28), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.16)', alignSelf: isMobile ? 'center' : 'flex-start', letterSpacing: '-0.01em' }}>
         Get your branded app
         <ArrowRight weight="bold" style={{ width: 14, height: 14 }} />
@@ -389,25 +684,8 @@ export default function MobileAppShowcase() {
         <div style={{ position: 'absolute', top: '20%', left: '5%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(99,102,241,0.07) 0%,transparent 65%)', filter: 'blur(60px)' }} />
       </div>
 
-      {/* ── Nurse image — full right, show wrist/mid-body ── */}
-      {!isMobile && (
-        <>
-          <img src="/nurse.png" alt="Healthcare worker" style={{
-            position: 'absolute', right: -20, top: 0, bottom: 0,
-            height: '100%',
-            width: isTablet ? '42%' : '50%',
-            objectFit: 'cover',
-            /* shifted down so wrist / watch area is visible */
-            objectPosition: 'center 30%',
-            zIndex: 1, userSelect: 'none', pointerEvents: 'none',
-          }} />
-          {/* fade left edge of nurse */}
-          <div style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none', background: 'linear-gradient(to right,rgba(9,21,48,1) 0%,rgba(9,21,48,0.97) 28%,rgba(9,21,48,0.78) 46%,rgba(9,21,48,0.38) 62%,rgba(9,21,48,0.06) 76%,transparent 90%)' }} />
-          <div style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none', background: 'linear-gradient(to bottom,rgba(6,15,40,0.28) 0%,transparent 14%,transparent 84%,rgba(6,15,40,0.34) 100%)' }} />
-        </>
-      )}
 
-      {/* ════════════════ DESKTOP (≥1120px) ════════════════ */}
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• DESKTOP (â‰¥1120px) â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       {isDesktop && (
         <div style={{ maxWidth: 1360, margin: '0 auto', padding: '0 52px', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 0, position: 'relative', zIndex: 3, minHeight: 700 }}>
 
@@ -421,7 +699,7 @@ export default function MobileAppShowcase() {
               <IPhoneMockup scale={1} />
             </div>
 
-            {/* Connector: phone → notif cards */}
+            {/* Connector: phone â†' notif cards */}
             <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 8 }}>
               <GlowNode color="#38BDF8" size={8} />
               <GlowConnector length={40} />
@@ -432,23 +710,11 @@ export default function MobileAppShowcase() {
               </motion.div>
             </div>
 
-            {/* Smartwatch — floats lower-right, connected by vertical line */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.7 }}
-              style={{ position: 'absolute', bottom: -30, right: -100, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0 }}
-            >
-              {/* Vertical glow line from card area down to watch */}
-              <GlowConnector length={40} vertical />
-              <GlowNode color="#C084FC" size={7} />
-              <div style={{ height: 8 }} />
-              <SmartWatch />
-            </motion.div>
           </div>
         </div>
       )}
 
-      {/* ════════════════ TABLET (640–1119px) ════════════════ */}
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TABLET (640â€"1119px) â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       {isTablet && (
         <div style={{ maxWidth: 960, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40, position: 'relative', zIndex: 3 }}>
           {LeftContent}
@@ -470,17 +736,11 @@ export default function MobileAppShowcase() {
               </motion.div>
             </div>
 
-            {/* Watch beside notif stack */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: 18, gap: 6 }}>
-              <GlowNode color="#C084FC" size={7} />
-              <GlowConnector length={28} vertical />
-              <SmartWatch />
-            </div>
           </div>
         </div>
       )}
 
-      {/* ════════════════ MOBILE (<640px) ════════════════ */}
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MOBILE (<640px) â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       {isMobile && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 32, position: 'relative', zIndex: 3 }}>
           {LeftContent}
@@ -490,7 +750,7 @@ export default function MobileAppShowcase() {
             <IPhoneMockup scale={0.70} />
           </div>
 
-          {/* Connector → notif grid */}
+          {/* Connector â†' notif grid */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <GlowNode color="#38BDF8" size={6} />
             <GlowConnector length={20} />
@@ -512,14 +772,35 @@ export default function MobileAppShowcase() {
             ))}
           </div>
 
-          {/* Watch at bottom for mobile */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-            <GlowConnector length={24} vertical />
-            <GlowNode color="#C084FC" size={6} />
-            <SmartWatch />
-          </div>
         </div>
       )}
+
+      {/* ── Nurse image at bottom-right end of section ── */}
+      <motion.img
+        src="/nurse.png"
+        alt="Healthcare worker"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22,1,0.36,1] }}
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: isMobile ? '95%' : isTablet ? '55%' : '38%',
+          height: isMobile ? 500 : isTablet ? 620 : 720,
+          objectFit: 'cover',
+          objectPosition: 'center 15%',
+          borderRadius: '20px 0 0 0',
+          userSelect: 'none',
+          pointerEvents: 'none',
+          zIndex: 1,
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 62%, transparent 100%), linear-gradient(to left, black 60%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 18%, black 62%, transparent 100%), linear-gradient(to left, black 60%, transparent 100%)',
+          maskComposite: 'intersect',
+          WebkitMaskComposite: 'destination-in',
+        }}
+      />
 
     </section>
   );

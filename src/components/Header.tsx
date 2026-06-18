@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import {
   List, X, ArrowRight, CaretDown,
@@ -77,6 +78,7 @@ export default function Header() {
   }, [location.pathname]);
 
   return (
+    <>
     <motion.header
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
@@ -279,7 +281,7 @@ export default function Header() {
             </a>
             <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400 }}>
               <a
-                href="https://booking.logezy.co/#/67044000000025008"
+                href="https://logezy.co/get-started"
                 target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#2396C6] to-[#183963] hover:from-[#2396C6] hover:to-[#2396C6] text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)] hover:shadow-[0_4px_16px_rgba(23,149,199,0.45)] transition-all duration-200"
               >
@@ -303,110 +305,109 @@ export default function Header() {
           </motion.button>
         </div>
 
-        {/* ── Mobile Menu ── */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              variants={mobileMenuVariants}
-              initial="hidden"
-              animate="show"
-              exit="exit"
-              className="lg:hidden"
-              style={{
-                position: 'fixed',
-                top: 66,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                overflowY: 'auto',
-                background: '#fff',
-                borderTop: '1px solid #f1f5f9',
-                zIndex: 49,
-              }}
-            >
-              <nav className="flex flex-col gap-1 px-1 py-4 pb-8">
-
-                {/* Product group */}
-                <p className="px-4 pt-1 pb-0.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Product</p>
-                {productLinks.map(({ icon: Icon, label, color, to }, i) => (
-                  <motion.div key={to} custom={i} variants={mobileLinkVariants} initial="hidden" animate="show">
-                    <Link to={to} onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
-                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
-                        <Icon weight="regular" className="h-3.5 w-3.5" />
-                      </div>
-                      {label}
-                    </Link>
-                  </motion.div>
-                ))}
-
-                {/* Industries group */}
-                <p className="px-4 pt-3 pb-0.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Industries</p>
-                {industryLinks.map(({ icon: Icon, label, color, to }, i) => (
-                  <motion.div key={to} custom={productLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
-                    <Link to={to} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
-                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
-                        <Icon weight="regular" className="h-3.5 w-3.5" />
-                      </div>
-                      {label}
-                    </Link>
-                  </motion.div>
-                ))}
-
-                {/* Resources group */}
-                <p className="px-4 pt-3 pb-0.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Resources</p>
-                {resourceLinks.map(({ icon: Icon, label, color, to }, i) => (
-                  <motion.div key={to} custom={productLinks.length + industryLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
-                    <Link to={to} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition-all">
-                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
-                        <Icon weight="regular" className="h-3.5 w-3.5" />
-                      </div>
-                      {label}
-                    </Link>
-                  </motion.div>
-                ))}
-
-                {/* Flat links */}
-                <p className="px-4 pt-3 pb-0.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Company</p>
-                {[
-                  { to: '/about',   label: 'About'   },
-                  { to: '/pricing', label: 'Pricing' },
-                  { to: '/contact', label: 'Contact' },
-                ].map((link, i) => (
-                  <motion.div key={link.to} custom={productLinks.length + industryLinks.length + resourceLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
-                    <Link to={link.to}
-                      className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                        isActive(link.to) ? 'text-[#2396C6] bg-[#E8F5FB]' : 'text-slate-700 hover:bg-slate-50'
-                      }`}>
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-
-                {/* CTAs */}
-                <div className="pt-3 mt-2 border-t border-slate-100 flex flex-col gap-2 px-1">
-                  <a
-                    href="https://accounts.logezy.co/login"
-                    target="_blank" rel="noopener noreferrer"
-                    className="w-full text-center py-2.5 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
-                  >
-                    Sign in
-                  </a>
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                    <a
-                      href="https://booking.logezy.co/#/67044000000025008"
-                      target="_blank" rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#2396C6] to-[#183963] text-white text-sm font-semibold py-3 px-5 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)]"
-                    >
-                      Book a Demo
-                      <ArrowRight weight="regular" className="h-4 w-4" />
-                    </a>
-                  </motion.div>
-                </div>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </motion.header>
+
+    {/* ── Mobile Menu (portal — outside motion.header to avoid transform stacking context) ── */}
+    {createPortal(
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            style={{
+              position: 'fixed',
+              top: 66,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              overflowY: 'auto',
+              background: '#fff',
+              borderTop: '1px solid #f1f5f9',
+              zIndex: 49,
+            }}
+          >
+            <nav className="flex flex-col px-3 py-3 pb-6">
+
+              {/* Product group — 2-column grid */}
+              <p className="px-1 pt-1 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Product</p>
+              <div className="grid grid-cols-2 gap-0.5">
+                {productLinks.map(({ icon: Icon, label, color, to }, i) => (
+                  <motion.div key={to} custom={i} variants={mobileLinkVariants} initial="hidden" animate="show">
+                    <Link to={to} onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }} className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 transition-all">
+                      <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${color}`}>
+                        <Icon weight="regular" className="h-3 w-3" />
+                      </div>
+                      <span className="truncate">{label}</span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Industries + Resources side by side */}
+              <div className="grid grid-cols-2 gap-x-2 mt-2 pt-2 border-t border-slate-100">
+                <div>
+                  <p className="px-1 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Industries</p>
+                  {industryLinks.map(({ icon: Icon, label, color, to }, i) => (
+                    <motion.div key={to} custom={productLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
+                      <Link to={to} onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-50 transition-all">
+                        <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 ${color}`}>
+                          <Icon weight="regular" className="h-3 w-3" />
+                        </div>
+                        <span className="truncate">{label}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div>
+                  <p className="px-1 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Company</p>
+                  {[
+                    { to: '/about',   label: 'About'   },
+                    { to: '/pricing', label: 'Pricing' },
+                    { to: '/contact', label: 'Contact' },
+                    ...resourceLinks.map(r => ({ to: r.to, label: r.label })),
+                  ].map((link, i) => (
+                    <motion.div key={link.to} custom={productLinks.length + industryLinks.length + i} variants={mobileLinkVariants} initial="hidden" animate="show">
+                      <Link to={link.to} onClick={() => setIsMenuOpen(false)}
+                        className={`block px-2 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                          isActive(link.to) ? 'text-[#2396C6] bg-[#E8F5FB]' : 'text-slate-700 hover:bg-slate-50'
+                        }`}>
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTAs */}
+              <div className="pt-3 mt-2 border-t border-slate-100 flex flex-col gap-2">
+                <a
+                  href="https://accounts.logezy.co/login"
+                  target="_blank" rel="noopener noreferrer"
+                  className="w-full text-center py-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+                >
+                  Sign in
+                </a>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+                  <a
+                    href="https://logezy.co/get-started"
+                    target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#2396C6] to-[#183963] text-white text-sm font-semibold py-3 px-5 rounded-xl shadow-[0_2px_8px_rgba(23,149,199,0.35)]"
+                  >
+                    Book a Demo
+                    <ArrowRight weight="regular" className="h-4 w-4" />
+                  </a>
+                </motion.div>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>,
+      document.body
+    )}
+  </>
   );
 }

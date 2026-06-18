@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, ChartBar, Shield, CalendarBlank, Coins } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -35,12 +36,14 @@ function StatWidget({ delay, style, children }: { delay: number; style: React.CS
    DASHBOARD REVEAL SECTION
 ───────────────────────────────────────────── */
 export default function DashboardReveal() {
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
   return (
     <section style={{
       background: '#020817',
       overflow: 'hidden',
       position: 'relative',
-      padding: '72px 0 112px',
+      padding: isMobile ? '48px 0 64px' : '72px 0 112px',
     }}>
 
       {/* ── Neon glow layers ── */}
@@ -107,7 +110,7 @@ export default function DashboardReveal() {
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}
           >
             <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 380, damping: 20 }}>
-              <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '11px 24px', borderRadius: 12, textDecoration: 'none',
                 background: 'linear-gradient(135deg, #2396C6 0%, #06B6D4 100%)',

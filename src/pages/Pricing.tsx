@@ -1,11 +1,12 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Users, UserCircle, Phone, Sparkle, Star } from '@phosphor-icons/react';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 
-/* ═══════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    DATA
-═══════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const plans = [
   {
     name: 'Entry Level',
@@ -89,17 +90,19 @@ function openSalesIQ() {
   } catch (e) { /* fallback: do nothing */ }
 }
 
-/* ═══════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    COMPONENT
-═══════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 export default function Pricing() {
+  const vw = useWindowWidth();
+  const isMobile = vw < 768;
   return (
     <div style={{ minHeight: '100vh', background: '#fff', fontFamily: 'var(--font-body)' }}>
 
       {/* ── HERO HEADER ─────────────────────────── */}
       <section style={{
         background: 'linear-gradient(160deg,#183963 0%,#1d4a7a 50%,#2396C6 100%)',
-        padding: '96px 24px 80px',
+        padding: isMobile ? '80px 20px 60px' : '96px 24px 80px',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
@@ -290,7 +293,7 @@ export default function Pricing() {
                   /* Regular plans: Register */
                   <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                     <a
-                      href="https://booking.logezy.co/#/67044000000025008"
+                      href="https://logezy.co/get-started"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -334,14 +337,14 @@ export default function Pricing() {
       </section>
 
       {/* ── ENTERPRISE BANNER ───────────────────── */}
-      <section style={{ maxWidth: 900, margin: '64px auto', padding: '0 24px 80px' }}>
+      <section style={{ maxWidth: 900, margin: '64px auto', padding: isMobile ? '0 16px 60px' : '0 24px 80px' }}>
         <motion.div
           initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6 }}
           style={{
             background: 'linear-gradient(135deg,#0d1b2a 0%,#0f3460 50%,#183963 100%)',
-            borderRadius: 24, padding: '48px 40px',
-            display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, alignItems: 'center',
+            borderRadius: 24, padding: isMobile ? '36px 24px' : '48px 40px',
+            display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr auto', gap: isMobile ? 24 : 32, alignItems: 'center',
             boxShadow: '0 24px 64px rgba(15,52,96,0.30)',
             position: 'relative', overflow: 'hidden',
           }}
@@ -369,13 +372,15 @@ export default function Pricing() {
               whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.97 }}
               onClick={openSalesIQ}
               style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                 padding: '14px 28px', borderRadius: 12, border: 'none', cursor: 'pointer',
                 fontSize: 14.5, fontWeight: 800,
                 background: 'linear-gradient(135deg,#2396C6,#38BDF8)',
                 color: 'white',
                 boxShadow: '0 10px 32px rgba(35,150,198,0.48)',
                 whiteSpace: 'nowrap' as const,
+                width: isMobile ? '100%' : 'auto',
+                boxSizing: 'border-box' as const,
               }}
             >
               <Phone weight="fill" style={{ width: 15, height: 15 }} />
@@ -384,12 +389,14 @@ export default function Pricing() {
             <Link
               to="/contact"
               style={{
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                 padding: '12px 28px', borderRadius: 12, textDecoration: 'none',
                 fontSize: 14, fontWeight: 600,
                 background: 'rgba(255,255,255,0.07)',
                 color: 'rgba(255,255,255,0.75)',
                 border: '1px solid rgba(255,255,255,0.14)',
+                width: isMobile ? '100%' : 'auto',
+                boxSizing: 'border-box' as const,
               }}
             >
               Send a message

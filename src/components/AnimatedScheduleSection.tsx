@@ -426,14 +426,16 @@ export default function AnimatedScheduleSection() {
 
       </div>
 
-      {/* Bottom wave */}
-      <div style={{ position:'relative', zIndex:4, lineHeight:0, marginTop: isMobile ? 40 : 16 }}>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ width:'100%', height:120, display:'block' }}>
-          <path d="M0,80 C180,30 360,100 540,65 C720,30 900,95 1080,60 C1260,25 1380,75 1440,70 L1440,120 L0,120 Z" fill="rgba(25,102,170,0.35)" />
-          <path d="M0,90 C200,50 400,110 600,75 C800,40 1000,100 1200,68 C1320,48 1400,88 1440,82 L1440,120 L0,120 Z" fill="rgba(35,153,202,0.25)" />
-          <path d="M0,100 C240,55 480,115 720,80 C960,45 1200,105 1440,88 L1440,120 L0,120 Z" fill="#F7F6FF" />
-        </svg>
-      </div>
+      {/* Bottom wave — hidden on mobile */}
+      {!isMobile && (
+        <div style={{ position:'relative', zIndex:4, lineHeight:0, marginTop: 16 }}>
+          <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{ width:'100%', height:120, display:'block' }}>
+            <path d="M0,80 C180,30 360,100 540,65 C720,30 900,95 1080,60 C1260,25 1380,75 1440,70 L1440,120 L0,120 Z" fill="rgba(25,102,170,0.35)" />
+            <path d="M0,90 C200,50 400,110 600,75 C800,40 1000,100 1200,68 C1320,48 1400,88 1440,82 L1440,120 L0,120 Z" fill="rgba(35,153,202,0.25)" />
+            <path d="M0,100 C240,55 480,115 720,80 C960,45 1200,105 1440,88 L1440,120 L0,120 Z" fill="#F7F6FF" />
+          </svg>
+        </div>
+      )}
     </section>
   );
 }

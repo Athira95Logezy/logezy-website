@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChartBar, BookOpen, ArrowUpRight } from '@phosphor-icons/react';
@@ -13,11 +13,19 @@ const CAT_STYLE: Record<string, { bg: string; text: string }> = {
 };
 
 export default function CaseStudiesList() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <div style={{ background: '#F8FAFC', minHeight: '100vh' }}>
 
       {/* ── Hero ── */}
-      <div style={{ background: 'linear-gradient(135deg,#183765 0%,#1966AA 45%,#2396C6 100%)', padding: '80px 48px 72px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ background: 'linear-gradient(135deg,#183765 0%,#1966AA 45%,#2396C6 100%)', padding: isMobile ? '90px 20px 48px' : '80px 48px 72px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, opacity: 0.04, backgroundImage: 'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
         {/* Glow orb */}
         <div style={{ position: 'absolute', top: -100, right: -100, width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle,rgba(35,150,198,0.28) 0%,transparent 65%)', pointerEvents: 'none' }} />
@@ -40,7 +48,7 @@ export default function CaseStudiesList() {
 
       {/* ── Stats bar ── */}
       <div style={{ background: '#fff', borderBottom: '1px solid #F1F5F9' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '0 16px' : '0 48px', display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)' }}>
           {[
             { n: '60%',  label: 'Admin time saved on average' },
             { n: '24/7', label: 'Real-time workforce visibility' },
@@ -61,7 +69,7 @@ export default function CaseStudiesList() {
       </div>
 
       {/* ── Case study cards ── */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '56px 48px 80px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: isMobile ? '32px 16px 60px' : '56px 48px 80px' }}>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 36 }}>
           <div style={{ width: 4, height: 28, borderRadius: 4, background: 'linear-gradient(to bottom,#183963,#2396C6)' }} />
@@ -69,7 +77,7 @@ export default function CaseStudiesList() {
           <span style={{ marginLeft: 'auto', fontSize: 12, color: '#94A3B8', fontWeight: 600 }}>{caseStudies.length} resource{caseStudies.length !== 1 ? 's' : ''}</span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(360px,1fr))', gap: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill,minmax(360px,1fr))', gap: isMobile ? 16 : 24 }}>
           {caseStudies.map((cs, i) => {
             const cat = CAT_STYLE[cs.category] ?? { bg: '#F1F5F9', text: '#475569' };
             return (
@@ -156,14 +164,14 @@ export default function CaseStudiesList() {
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.55, ease: EASE }}
-          style={{ marginTop: 64, background: 'linear-gradient(135deg,#183765 0%,#1966AA 50%,#2396C6 100%)', borderRadius: 24, padding: '48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' as const, position: 'relative', overflow: 'hidden' }}
+          style={{ marginTop: isMobile ? 40 : 64, background: 'linear-gradient(135deg,#183765 0%,#1966AA 50%,#2396C6 100%)', borderRadius: 24, padding: isMobile ? '32px 24px' : '48px', display: 'flex', alignItems: isMobile ? 'flex-start' : 'center', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', gap: isMobile ? 20 : 32, flexWrap: 'wrap' as const, position: 'relative', overflow: 'hidden' }}
         >
           <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize: '22px 22px', pointerEvents: 'none' }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <h2 style={{ fontSize: 'clamp(1.4rem,2.5vw,2rem)', fontWeight: 900, color: '#fff', letterSpacing: '-0.03em', margin: '0 0 8px', fontFamily: 'var(--font-heading)' }}>Ready to see Logezy in action?</h2>
             <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.70)', margin: 0, fontFamily: 'var(--font-body)' }}>Book a free demo and see why agencies across the UK choose Logezy.</p>
           </div>
-          <a href="https://calendly.com/logezy/demo" target="_blank" rel="noreferrer"
+          <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 9, padding: '14px 28px', borderRadius: 50, background: '#fff', color: '#183963', fontSize: 14, fontWeight: 800, textDecoration: 'none', flexShrink: 0, position: 'relative', zIndex: 1, boxShadow: '0 4px 20px rgba(0,0,0,0.18)' }}>
             Book a Free Demo <ArrowRight weight="bold" style={{ width: 15, height: 15 }} />
           </a>

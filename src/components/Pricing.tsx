@@ -69,7 +69,7 @@ export default function Pricing() {
   const ref = useScrollReveal();
 
   return (
-    <section id="pricing" className="py-28 relative overflow-hidden"
+    <section id="pricing" className="py-14 lg:py-28 relative overflow-hidden"
       style={{ background: 'linear-gradient(160deg, #0A1628 0%, #0F1E4A 50%, #0A1628 100%)' }}
       ref={ref}>
 

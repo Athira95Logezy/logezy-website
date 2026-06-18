@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Clock, CalendarBlank, Tag } from '@phosphor-icons/react';
@@ -17,6 +17,13 @@ const allCategories = ['Healthcare', 'Technology', 'Agency Tips', 'Compliance', 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = blogs.find(b => b.slug === slug);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   if (!post) {
     return (
@@ -34,7 +41,7 @@ export default function BlogPost() {
     <div style={{ background: '#F8FAFC', minHeight: '100vh' }}>
 
       {/* ── Cover image hero ── */}
-      <div style={{ position: 'relative', overflow: 'hidden', height: 420 }}>
+      <div style={{ position: 'relative', overflow: 'hidden', height: isMobile ? 320 : 420 }}>
         <img src={post.coverImage} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(24,57,99,0.88) 0%,rgba(25,102,170,0.80) 55%,rgba(35,150,198,0.70) 100%)' }} />
         <div style={{ position: 'absolute', inset: 0, opacity: 0.04, backgroundImage: 'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
@@ -60,13 +67,13 @@ export default function BlogPost() {
       </div>
 
       {/* ── Two-column layout ── */}
-      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '48px 24px 80px', display: 'grid', gridTemplateColumns: '1fr 340px', gap: 32, alignItems: 'start' }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: isMobile ? '24px 16px 60px' : '48px 24px 80px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 340px', gap: isMobile ? 24 : 32, alignItems: 'start' }}>
 
         {/* ── Main article ── */}
         <motion.article
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.12, ease: EASE }}
-          style={{ background: '#fff', borderRadius: 20, padding: '44px 52px', boxShadow: '0 2px 24px rgba(24,57,99,0.07)', border: '1px solid rgba(35,150,198,0.08)' }}
+          style={{ background: '#fff', borderRadius: 20, padding: isMobile ? '24px 20px' : '44px 52px', boxShadow: '0 2px 24px rgba(24,57,99,0.07)', border: '1px solid rgba(35,150,198,0.08)' }}
         >
           {/* Excerpt lead */}
           <p style={{ fontSize: 17, color: '#334155', lineHeight: 1.75, margin: '0 0 32px', fontFamily: 'var(--font-body)', fontWeight: 500, borderLeft: '4px solid #2396C6', paddingLeft: 18 }}>
@@ -98,7 +105,7 @@ export default function BlogPost() {
             <div style={{ marginTop: 44, background: 'linear-gradient(135deg,#EFF6FF 0%,#E8F5FB 100%)', borderRadius: 16, padding: '28px 32px', border: '1px solid rgba(35,150,198,0.15)' }}>
               <h3 style={{ fontSize: 18, fontWeight: 800, color: '#183963', margin: '0 0 10px', fontFamily: 'var(--font-heading)' }}>{post.cta.heading}</h3>
               <p style={{ fontSize: 15, color: '#475569', lineHeight: 1.70, margin: '0 0 20px', fontFamily: 'var(--font-body)' }}>{post.cta.body}</p>
-              <a href="https://calendly.com/logezy/demo" target="_blank" rel="noreferrer"
+              <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '11px 22px', borderRadius: 10, background: 'linear-gradient(135deg,#183963,#2396C6)', color: '#fff', fontSize: 14, fontWeight: 800, textDecoration: 'none', boxShadow: '0 4px 14px rgba(35,150,198,0.30)' }}>
                 Book a Free Demo <ArrowRight weight="regular" style={{ width: 14, height: 14 }} />
               </a>
@@ -110,7 +117,7 @@ export default function BlogPost() {
         <motion.aside
           initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.55, delay: 0.22, ease: EASE }}
-          style={{ display: 'flex', flexDirection: 'column', gap: 20, position: 'sticky', top: 24 }}
+          style={{ display: 'flex', flexDirection: 'column', gap: 20, position: isMobile ? 'static' : 'sticky', top: 24 }}
         >
 
           {/* Categories */}
@@ -174,7 +181,7 @@ export default function BlogPost() {
             <div style={{ position: 'relative', zIndex: 1 }}>
               <h3 style={{ fontSize: 16, fontWeight: 800, color: '#fff', margin: '0 0 8px', fontFamily: 'var(--font-heading)', lineHeight: 1.3 }}>See Logezy in action</h3>
               <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)', margin: '0 0 16px', fontFamily: 'var(--font-body)', lineHeight: 1.6 }}>Free demo, no credit card needed.</p>
-              <a href="https://calendly.com/logezy/demo" target="_blank" rel="noreferrer"
+              <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '10px 18px', borderRadius: 10, background: '#fff', color: '#183963', fontSize: 13, fontWeight: 800, textDecoration: 'none' }}>
                 Book Demo <ArrowRight weight="regular" style={{ width: 13, height: 13 }} />
               </a>

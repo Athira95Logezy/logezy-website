@@ -17,7 +17,7 @@
  *   0.22 → 0.76  Dashboard rotateX eases 13° → 5°
  */
 
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
   ArrowRight, Star,
@@ -465,6 +465,13 @@ function FC({ delay, fromX, floatY, floatDur, floatDelay, rotate, children }: FP
 export default function Hero() {
   const sRef = useRef<HTMLElement>(null);
   const [m, setM] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
   const onMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const r = sRef.current?.getBoundingClientRect();
     if (!r) return;
@@ -615,8 +622,8 @@ export default function Hero() {
           CENTER CONTENT
       ════════════════════════════════════ */}
       <motion.div style={{ y: cy, opacity: cop, position: 'relative', zIndex: 10 }}>
-        <div style={{ paddingTop: 108 }}>
-          <div style={{ textAlign: 'center', maxWidth: 660, margin: '0 auto', padding: '0 28px 60px' }}>
+        <div style={{ paddingTop: isMobile ? 56 : 96 }}>
+          <div style={{ textAlign: 'center', maxWidth: 660, margin: '0 auto', padding: isMobile ? '0 20px 20px' : '0 28px 40px' }}>
 
             {/* Badge */}
             <motion.div
@@ -660,12 +667,12 @@ export default function Hero() {
               style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 28 }}
             >
               <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 420, damping: 22 }}>
-                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 30px', borderRadius: 14, textDecoration: 'none', background: `linear-gradient(135deg, ${I} 0%, #5AB4D5 100%)`, color: '#fff', fontSize: 14.5, fontWeight: 700, boxShadow: `0 6px 30px rgba(99,102,241,0.42), 0 2px 8px rgba(99,102,241,0.22)` }}>
+                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 30px', borderRadius: 14, textDecoration: 'none', background: `linear-gradient(135deg, ${I} 0%, #5AB4D5 100%)`, color: '#fff', fontSize: 14.5, fontWeight: 700, boxShadow: `0 6px 30px rgba(99,102,241,0.42), 0 2px 8px rgba(99,102,241,0.22)` }}>
                   Book a Free Trial Now <ArrowRight weight="regular" style={{ width: 15, height: 15 }} />
                 </a>
               </motion.div>
               <motion.div whileHover={{ scale: 1.06, y: -2 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 420, damping: 22 }}>
-                <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 14, cursor: 'pointer', background: '#FFFFFF', border: '1px solid rgba(99,102,241,0.22)', color: '#374151', fontSize: 14, fontWeight: 600, boxShadow: '0 2px 18px rgba(0,0,0,0.07)', textDecoration: 'none' }}>
+                <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 14, cursor: 'pointer', background: '#FFFFFF', border: '1px solid rgba(99,102,241,0.22)', color: '#374151', fontSize: 14, fontWeight: 600, boxShadow: '0 2px 18px rgba(0,0,0,0.07)', textDecoration: 'none' }}>
                   Book a Demo
                 </a>
               </motion.div>
@@ -679,7 +686,7 @@ export default function Hero() {
               style={{ display: 'flex', alignItems: 'center', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                {[...Array(5)].map((_, i) => <Star key={i} weight="regular" style={{ width: 13, height: 13, color: '#FBBF24' }} />)}
+                {[...Array(5)].map((_, i) => <Star key={i} weight="fill" style={{ width: 13, height: 13, color: '#FBBF24' }} />)}
                 <span style={{ marginLeft: 5, fontSize: 12.5, color: '#1E293B', fontWeight: 700 }}>4.9 / 5</span>
               </div>
               <div style={{ width: 1, height: 14, background: '#E2E8F0' }} />
@@ -700,24 +707,26 @@ export default function Hero() {
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.50, duration: 1.18, ease: EASE }}
-        style={{ position: 'relative', zIndex: 6, padding: '0 32px 0' }}
+        style={{ position: 'relative', zIndex: 6, padding: isMobile ? '0 12px 0' : '0 12px 0' }}
       >
         {/* Glow halo */}
         <div style={{ position: 'absolute', top: -120, left: '5%', right: '5%', height: 240, background: 'radial-gradient(ellipse, rgba(99,102,241,0.24) 0%, rgba(14,165,233,0.10) 48%, transparent 72%)', filter: 'blur(58px)', pointerEvents: 'none', zIndex: -1 }} />
 
-        <div style={{ maxWidth: 1380, margin: '0 auto', position: 'relative' }}>
-          {/* perspective wrapper */}
-          <div style={{ perspective: 1800, perspectiveOrigin: 'top center' }}>
-            <motion.div style={{ rotateX: dashRotX, transformOrigin: 'top center', willChange: 'transform' }}>
+        <div style={{ maxWidth: 1440, margin: '0 auto', position: 'relative' }}>
+          {/* perspective wrapper — disabled on mobile to show full image */}
+          <div style={{ perspective: isMobile ? 'none' : 1800, perspectiveOrigin: 'top center' }}>
+            <motion.div style={{ rotateX: isMobile ? 0 : dashRotX, transformOrigin: 'top center', willChange: 'transform' }}>
               <div style={{
-                borderRadius: '18px 18px 0 0',
+                borderRadius: isMobile ? 12 : '18px 18px 0 0',
                 overflow: 'hidden',
-                boxShadow: [
-                  '0 0 0 1px rgba(99,102,241,0.20)',
-                  '0 -4px 0 rgba(99,102,241,0.24)',
-                  '0 60px 180px rgba(99,102,241,0.24)',
-                  '0 30px 80px rgba(0,0,0,0.18)',
-                ].join(', '),
+                boxShadow: isMobile
+                  ? '0 8px 40px rgba(99,102,241,0.18), 0 2px 12px rgba(0,0,0,0.10)'
+                  : [
+                      '0 0 0 1px rgba(99,102,241,0.20)',
+                      '0 -4px 0 rgba(99,102,241,0.24)',
+                      '0 60px 180px rgba(99,102,241,0.24)',
+                      '0 30px 80px rgba(0,0,0,0.18)',
+                    ].join(', '),
               }}>
                 <img
                   src="/dashboard_v2.png"
@@ -728,70 +737,68 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* ── Floating phone mockup — matches dashboard border style ── */}
+          {/* ── Floating phone mockup ── */}
           <motion.div
-            className="hidden lg:block"
             initial={{ opacity: 0, x: 40, y: 20 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ delay: 0.8, duration: 1.0, ease: EASE }}
-            style={{ position: 'absolute', right: -28, top: -100, zIndex: 20, pointerEvents: 'none' }}
+            style={{
+              position: 'absolute',
+              right: isMobile ? 4 : 16,
+              top: isMobile ? -50 : -90,
+              zIndex: 20,
+              pointerEvents: 'none',
+            }}
           >
             <motion.div
-              animate={{ y: [0, -12, 0] }}
+              animate={{ y: [0, isMobile ? -6 : -12, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
             >
-              {/* Phone container — same indigo border/shadow as dashboard */}
               <div style={{
                 position: 'relative',
                 userSelect: 'none',
-                width: 240,
-                borderRadius: 44,
+                width: isMobile ? 110 : 240,
+                borderRadius: isMobile ? 22 : 44,
                 overflow: 'hidden',
                 boxShadow: [
                   '0 0 0 1px rgba(99,102,241,0.28)',
-                  '0 -4px 0 rgba(99,102,241,0.20)',
-                  '0 60px 160px rgba(99,102,241,0.28)',
-                  '0 30px 80px rgba(0,0,0,0.22)',
-                ].join(', '),
+                  isMobile ? '0 12px 40px rgba(99,102,241,0.22)' : '0 -4px 0 rgba(99,102,241,0.20)',
+                  isMobile ? '0 4px 16px rgba(0,0,0,0.18)' : '0 60px 160px rgba(99,102,241,0.28)',
+                  isMobile ? '' : '0 30px 80px rgba(0,0,0,0.22)',
+                ].filter(Boolean).join(', '),
               }}>
-                {/* Side buttons — subtle, same colour tone as frame */}
-                <div style={{ position:'absolute', left:-3, top:96, width:3, height:28,
-                  background:'rgba(99,102,241,0.35)', borderRadius:'3px 0 0 3px' }} />
-                <div style={{ position:'absolute', left:-3, top:138, width:3, height:52,
-                  background:'rgba(99,102,241,0.35)', borderRadius:'3px 0 0 3px' }} />
-                <div style={{ position:'absolute', right:-3, top:154, width:3, height:64,
-                  background:'rgba(99,102,241,0.35)', borderRadius:'0 3px 3px 0' }} />
-
-                {/* Thin indigo border frame */}
+                {!isMobile && (
+                  <>
+                    <div style={{ position:'absolute', left:-3, top:96, width:3, height:28, background:'rgba(99,102,241,0.35)', borderRadius:'3px 0 0 3px' }} />
+                    <div style={{ position:'absolute', left:-3, top:138, width:3, height:52, background:'rgba(99,102,241,0.35)', borderRadius:'3px 0 0 3px' }} />
+                    <div style={{ position:'absolute', right:-3, top:154, width:3, height:64, background:'rgba(99,102,241,0.35)', borderRadius:'0 3px 3px 0' }} />
+                  </>
+                )}
                 <div style={{
                   background: 'linear-gradient(160deg,rgba(99,102,241,0.18) 0%,rgba(129,140,248,0.10) 50%,rgba(14,165,233,0.12) 100%)',
-                  padding: 3,
-                  borderRadius: 44,
+                  padding: isMobile ? 2 : 3,
+                  borderRadius: isMobile ? 22 : 44,
                 }}>
-                  <div style={{ borderRadius: 42, overflow: 'hidden', position: 'relative', background: '#fff' }}>
+                  <div style={{ borderRadius: isMobile ? 20 : 42, overflow: 'hidden', position: 'relative', background: '#fff' }}>
                     <img
                       src="/mobile_app_main_screen.jpeg"
                       alt="Logezy Mobile App"
                       style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover', objectPosition: 'top' }}
                     />
-                    {/* Dynamic Island */}
-                    <div style={{ position:'absolute', top:14, left:'50%', transform:'translateX(-50%)',
-                      width:96, height:28, background:'#000', borderRadius:16, zIndex:10 }} />
-                    {/* Screen glare */}
-                    <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:20, borderRadius:42,
+                    <div style={{ position:'absolute', top: isMobile ? 6 : 14, left:'50%', transform:'translateX(-50%)',
+                      width: isMobile ? 44 : 96, height: isMobile ? 12 : 28, background:'#000', borderRadius: isMobile ? 6 : 16, zIndex:10 }} />
+                    <div style={{ position:'absolute', inset:0, pointerEvents:'none', zIndex:20, borderRadius: isMobile ? 20 : 42,
                       background:'linear-gradient(135deg,rgba(255,255,255,0.14) 0%,transparent 40%)' }} />
                   </div>
                 </div>
               </div>
-
-              {/* Glow halo matching dashboard */}
               <div style={{ position:'absolute', inset:-40, borderRadius:'50%',
                 background:'radial-gradient(ellipse,rgba(99,102,241,0.22) 0%,transparent 65%)',
                 filter:'blur(28px)', zIndex:-1, pointerEvents:'none' }} />
             </motion.div>
           </motion.div>
 
-          {/* ── Agency Chat card — right of phone, compact ── */}
+          {/* ── Agency Chat card — desktop only ── */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity:0, x:30 }} animate={{ opacity:1, x:0 }}
@@ -800,7 +807,6 @@ export default function Hero() {
           >
             <motion.div animate={{ y:[0,-7,0] }} transition={{ duration:4.2, repeat:Infinity, ease:'easeInOut', delay:0.5 }}>
               <div style={{ background:'#fff', borderRadius:14, overflow:'hidden', boxShadow:'0 8px 28px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05)', width:170 }}>
-                {/* Header */}
                 <div style={{ background:'linear-gradient(135deg,#2396C6,#5AB4D5)', padding:'9px 11px', display:'flex', alignItems:'center', gap:8 }}>
                   <div style={{ width:24, height:24, borderRadius:'50%', background:'rgba(255,255,255,0.20)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
                     <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -813,7 +819,6 @@ export default function Hero() {
                     </div>
                   </div>
                 </div>
-                {/* 2 compact messages */}
                 <div style={{ padding:'8px 10px', display:'flex', flexDirection:'column' as const, gap:6 }}>
                   <div style={{ display:'flex', alignItems:'flex-end', gap:5 }}>
                     <div style={{ width:18, height:18, borderRadius:'50%', background:'#E8F5FB', display:'flex', alignItems:'center', justifyContent:'center', fontSize:6.5, fontWeight:800, color:'#2396C6', flexShrink:0 }}>AG</div>
@@ -833,49 +838,53 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── Shift Confirmed card — left of phone ── */}
-          <motion.div
-            className="hidden lg:block"
-            initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
-            transition={{ delay:1.0, duration:0.8, ease:EASE }}
-            style={{ position:'absolute', right:224, top:-70, zIndex:22, pointerEvents:'none' }}
-          >
-            <motion.div animate={{ y:[0,-7,0] }} transition={{ duration:3.8, repeat:Infinity, ease:'easeInOut', delay:0.3 }}>
-              <ShiftConfirmedCard />
+          {/* ── Shift Confirmed card — desktop only ── */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
+              transition={{ delay:1.0, duration:0.8, ease:EASE }}
+              style={{ position:'absolute', right:224, top:-70, zIndex:22, pointerEvents:'none' }}
+            >
+              <motion.div animate={{ y:[0,-7,0] }} transition={{ duration:3.8, repeat:Infinity, ease:'easeInOut', delay:0.3 }}>
+                <ShiftConfirmedCard />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )}
 
-          {/* ── Availability card — left-lower of phone ── */}
-          <motion.div
-            className="hidden lg:block"
-            initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
-            transition={{ delay:1.15, duration:0.8, ease:EASE }}
-            style={{ position:'absolute', right:228, top:48, zIndex:22, pointerEvents:'none' }}
-          >
-            <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:4.2, repeat:Infinity, ease:'easeInOut', delay:0.8 }}>
-              <AvailabilityCard />
+          {/* ── Availability card — desktop only ── */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity:0, x:-30 }} animate={{ opacity:1, x:0 }}
+              transition={{ delay:1.15, duration:0.8, ease:EASE }}
+              style={{ position:'absolute', right:228, top:48, zIndex:22, pointerEvents:'none' }}
+            >
+              <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:4.2, repeat:Infinity, ease:'easeInOut', delay:0.8 }}>
+                <AvailabilityCard />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )}
 
-          {/* ── Signed Timesheet card — bottom of phone ── */}
-          <motion.div
-            className="hidden lg:block"
-            initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
-            transition={{ delay:1.3, duration:0.8, ease:EASE }}
-            style={{ position:'absolute', right:20, top:200, zIndex:22, pointerEvents:'none' }}
-          >
-            <motion.div animate={{ y:[0,-6,0] }} transition={{ duration:4.5, repeat:Infinity, ease:'easeInOut', delay:1.2 }}>
-              <SignedTimesheetCard />
+          {/* ── Signed Timesheet card — desktop only ── */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
+              transition={{ delay:1.3, duration:0.8, ease:EASE }}
+              style={{ position:'absolute', right:20, top:200, zIndex:22, pointerEvents:'none' }}
+            >
+              <motion.div animate={{ y:[0,-6,0] }} transition={{ duration:4.5, repeat:Infinity, ease:'easeInOut', delay:1.2 }}>
+                <SignedTimesheetCard />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )}
         </div>
       </motion.div>
+
 
       {/* ════════════════════════════════════
           TRUSTED BY — blended directly below dashboard
           No background change, no border — same hero gradient
       ════════════════════════════════════ */}
-      <div style={{ position: 'relative', zIndex: 6, padding: '44px 0 52px', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', zIndex: 6, padding: isMobile ? '24px 0 28px' : '44px 0 52px', overflow: 'hidden' }}>
 
         {/* Ambient glow */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 500, height: 100, background: 'radial-gradient(ellipse, rgba(99,102,241,0.08) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }} />

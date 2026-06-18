@@ -45,7 +45,7 @@ const itemVariants = {
 
 export default function AppShowcase() {
   return (
-    <section className="py-28 overflow-hidden relative"
+    <section className="py-14 lg:py-28 overflow-hidden relative"
       style={{ background: 'linear-gradient(160deg, #080E2A 0%, #0C1640 50%, #080E2A 100%)' }}>
 
       {/* Background effects */}

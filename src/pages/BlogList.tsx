@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Clock, CalendarBlank, FunnelSimple, CaretLeft, CaretRight } from '@phosphor-icons/react';
@@ -23,6 +23,13 @@ export default function BlogList() {
 
   const [activeCategory, setActiveCategory] = useState('All');
   const [page, setPage] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   /* filter + paginate */
   const filtered = useMemo(() =>
@@ -40,12 +47,12 @@ export default function BlogList() {
   return (
     <div style={{ background: '#F4F6F9', minHeight: '100vh', fontFamily: 'var(--font-body)' }}>
 
-      {/* ════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           HEADER
-      ════════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <div style={{
         background: 'linear-gradient(140deg,#0B1E3D 0%,#173462 60%,#1A5EA0 100%)',
-        padding: '120px 48px 72px',
+        padding: isMobile ? '90px 20px 48px' : '120px 48px 72px',
       }}>
         <div style={{ maxWidth: 1300, margin: '0 auto' }}>
           <motion.div
@@ -65,10 +72,10 @@ export default function BlogList() {
         </div>
       </div>
 
-      {/* ════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           CONTENT
-      ════════════════════════════════ */}
-      <div style={{ maxWidth: 1300, margin: '0 auto', padding: '44px 48px 80px' }}>
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
+      <div style={{ maxWidth: 1300, margin: '0 auto', padding: isMobile ? '28px 16px 60px' : '44px 48px 80px' }}>
 
         {/* ── Active filter label (if filtered) ── */}
         {activeCategory !== 'All' && (
@@ -106,7 +113,7 @@ export default function BlogList() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4, ease }}
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 40 }}
+            style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 16 : 24, marginBottom: 40 }}
           >
             {paginated.map((post, i) => {
               const cs = catStyle(post.category);
@@ -205,11 +212,13 @@ export default function BlogList() {
           </motion.div>
         </AnimatePresence>
 
-        {/* ════════════════════════════════
+        {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
             BOTTOM BAR: pagination left | filters right
-        ════════════════════════════════ */}
+        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
         <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          display: 'flex', alignItems: isMobile ? 'flex-start' : 'center',
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'space-between',
           flexWrap: 'wrap' as const, gap: 16,
           paddingTop: 28, borderTop: '1px solid #E2E8F0',
         }}>
@@ -313,7 +322,7 @@ export default function BlogList() {
       </div>
 
       {/* ── CTA BANNER ── */}
-      <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 48px 80px' }}>
+      <div style={{ maxWidth: 1300, margin: '0 auto', padding: isMobile ? '0 16px 60px' : '0 48px 80px' }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6, ease }}
@@ -321,9 +330,11 @@ export default function BlogList() {
           <div style={{
             borderRadius: 22,
             background: 'linear-gradient(135deg,#0B1E3D 0%,#173462 50%,#2396C6 100%)',
-            padding: '52px 60px',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            gap: 32, flexWrap: 'wrap' as const,
+            padding: isMobile ? '36px 24px' : '52px 60px',
+            display: 'flex', alignItems: isMobile ? 'flex-start' : 'center',
+            flexDirection: isMobile ? 'column' : 'row',
+            justifyContent: 'space-between',
+            gap: isMobile ? 24 : 32, flexWrap: 'wrap' as const,
             position: 'relative', overflow: 'hidden',
             boxShadow: '0 8px 48px rgba(11,30,61,0.28)',
           }}>
@@ -338,7 +349,7 @@ export default function BlogList() {
                 Book a free demo and discover how Logezy helps UK staffing agencies work smarter.
               </p>
             </div>
-            <a href="https://calendly.com/logezy/demo" target="_blank" rel="noreferrer"
+            <a href="https://logezy.co/get-started" target="_blank" rel="noreferrer"
               style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '15px 30px', borderRadius: 50, background: '#fff', color: '#0B1E3D', fontSize: 14.5, fontWeight: 800, textDecoration: 'none', flexShrink: 0, position: 'relative', zIndex: 1, boxShadow: '0 4px 24px rgba(0,0,0,0.22)' }}>
               Book a Free Demo <ArrowRight weight="bold" style={{ width: 15, height: 15 }} />
             </a>

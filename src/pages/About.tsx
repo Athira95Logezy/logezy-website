@@ -128,7 +128,7 @@ export default function About() {
       {/* ══════════════════════════════════════
           HERO
       ══════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-[#EFF8F3]">
+      <section className="relative pt-20 pb-12 lg:pt-32 lg:pb-20 overflow-hidden bg-[#EFF8F3]">
         {/* Decorative rings */}
         {[700, 920, 1140].map((sz, i) => (
           <div key={sz} style={{
@@ -173,7 +173,7 @@ export default function About() {
 
               <div className="flex flex-wrap gap-3">
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
+                  <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     padding:'14px 28px', borderRadius:100, fontSize:14, fontWeight:700,
                     color:'#fff', background:'linear-gradient(135deg,#2396C6,#2396C6)',
@@ -183,7 +183,7 @@ export default function About() {
                   </a>
                 </motion.div>
                 <motion.div whileHover={{scale:1.04,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}>
-                  <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
+                  <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
                     display:'inline-flex', alignItems:'center', gap:8,
                     padding:'14px 28px', borderRadius:100, fontSize:14, fontWeight:600,
                     color:'#183963', background:'transparent',
@@ -411,7 +411,7 @@ export default function About() {
       {/* ══════════════════════════════════════
           WHO WE SERVE
       ══════════════════════════════════════ */}
-      <section className="py-28 bg-[#F8FAFC] relative overflow-hidden">
+      <section className="py-14 lg:py-28 bg-[#F8FAFC] relative overflow-hidden">
         <div style={{position:'absolute',left:'-5%',top:'20%',width:500,height:500,borderRadius:'50%',background:'radial-gradient(circle,rgba(23,149,199,0.06) 0%,transparent 65%)',pointerEvents:'none'}}/>
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-16 items-center">
@@ -490,14 +490,14 @@ export default function About() {
 
             {/* CTAs */}
             <div style={{display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap' as const,marginBottom:64}}>
-              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                 whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}
                 style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 32px',borderRadius:100,
                   fontSize:15,fontWeight:800,color:'#fff',background:'linear-gradient(135deg,#2396C6,#2396C6)',
                   boxShadow:'0 8px 28px rgba(91,108,249,0.42)',textDecoration:'none'}}>
                 Book a Free Trial Now <ArrowRight weight="bold" style={{width:15,height:15}}/>
               </motion.a>
-              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                 whileHover={{scale:1.05,y:-2}} whileTap={{scale:0.97}} transition={{type:'spring',stiffness:400}}
                 style={{display:'inline-flex',alignItems:'center',gap:8,padding:'14px 32px',borderRadius:100,
                   fontSize:15,fontWeight:700,color:'rgba(255,255,255,0.82)',

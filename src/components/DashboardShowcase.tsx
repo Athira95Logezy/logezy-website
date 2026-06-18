@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useWindowWidth } from '../hooks/useWindowWidth';
 import { motion } from 'framer-motion';
 import {
@@ -171,7 +171,7 @@ function MacBrowser({ src, alt }: { src: string; alt: string }) {
           </div>
           {/* Arrows */}
           <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
-            {['‹', '›'].map((ch, i) => (
+            {['â€¹', 'â€º'].map((ch, i) => (
               <div key={i} style={{ width: 20, height: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: i === 0 ? '#999' : '#CCC', fontWeight: 500 }}>{ch}</div>
             ))}
           </div>
@@ -211,7 +211,7 @@ function MacBrowser({ src, alt }: { src: string; alt: string }) {
           }}>
             <div style={{ width: 13, height: 13, borderRadius: 4, background: 'linear-gradient(135deg, #1966AA, #2399CA)', flexShrink: 0 }} />
             <span style={{ fontSize: 10, fontWeight: 600, color: '#333', whiteSpace: 'nowrap', flex: 1 }}>Logezy Schedule</span>
-            <div style={{ width: 14, height: 14, borderRadius: '50%', background: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: '#777' }}>✕</div>
+            <div style={{ width: 14, height: 14, borderRadius: '50%', background: 'rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: '#777' }}>âœ•</div>
           </div>
           <div style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, color: '#aaa', paddingBottom: 2 }}>+</div>
         </div>
@@ -271,7 +271,7 @@ export default function DashboardShowcase() {
   return (
     <section style={{
       background: 'linear-gradient(160deg, #0A1228 0%, #0F1E45 45%, #1A3A6B 100%)',
-      paddingTop: 100,
+      paddingTop: isMobile ? 56 : 100,
       paddingBottom: 0,
       overflow: 'hidden',
       position: 'relative',
@@ -380,7 +380,7 @@ export default function DashboardShowcase() {
             </div>
           ))}
           {/* CTA buttons inline */}
-          <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer" style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
             padding: '8px 20px', borderRadius: 100, textDecoration: 'none',
             background: 'linear-gradient(135deg, #2399CA 0%, #1966AA 100%)',

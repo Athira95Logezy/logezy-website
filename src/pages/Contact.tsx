@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Envelope, Phone, MapPin, Clock, Chat, Users, ArrowRight, CaretDown, CheckCircle, WhatsappLogo } from '@phosphor-icons/react';
 
 const contactMethods = [
-  { icon: Envelope, title: 'Email us', value: 'info@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500' },
-  { icon: Phone, title: 'Call us', value: '0330 127 9604', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500' },
-  { icon: WhatsappLogo, title: 'WhatsApp', value: '+44 7393 132453', description: 'Message us any time.', gradient: 'from-green-400 to-green-600' },
-  { icon: Chat, title: 'Live chat', value: 'Available in-app', description: '24/7 support for active customers.', gradient: 'from-indigo-400 to-violet-500' },
-  { icon: MapPin, title: 'Visit us', value: 'Derby, DE1 1NN', description: 'Office 108, The Old Courthouse, 18-22 St Peter\'s Churchyard', gradient: 'from-violet-400 to-purple-500' },
+  { icon: Envelope, title: 'Email us', value: 'info@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500', href: 'mailto:info@logezy.co.uk' },
+  { icon: Phone, title: 'Call us', value: '0330 127 9604', description: 'Mon–Fri, 9am–6pm GMT.', gradient: 'from-emerald-400 to-green-500', href: 'tel:03301279604' },
+  { icon: WhatsappLogo, title: 'WhatsApp', value: '+44 7393 132453', description: 'Message us any time.', gradient: 'from-green-400 to-green-600', href: 'https://wa.me/447393132453' },
+  { icon: Chat, title: 'Live chat', value: 'Available in-app', description: '24/7 support for active customers.', gradient: 'from-indigo-400 to-violet-500', href: null },
+  { icon: MapPin, title: 'Visit us', value: 'Derby, DE1 1NN', description: 'Office 108, The Old Courthouse, 18-22 St Peter\'s Churchyard', gradient: 'from-violet-400 to-purple-500', href: 'https://maps.google.com/?q=The+Old+Courthouse,18-22+St+Peters+Churchyard,Derby,DE1+1NN' },
 ];
 
 const faqs = [
@@ -80,7 +80,7 @@ export default function Contact() {
     <div className="bg-[#F8FAFC]">
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-20 pb-12 lg:pt-32 lg:pb-20 overflow-hidden">
         <div className="absolute inset-0 dot-grid opacity-50 pointer-events-none" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)', transform: 'translate(20%,-30%)', animation: 'aurora-1 14s ease-in-out infinite' }} />
@@ -123,13 +123,17 @@ export default function Contact() {
             viewport={{ once: true, margin: '-80px' }}>
             {contactMethods.map((m) => {
               const Icon = m.icon;
+              const Tag = m.href ? motion.a : motion.div;
+              const linkProps = m.href ? { href: m.href, target: m.href.startsWith('http') ? '_blank' : undefined, rel: m.href.startsWith('http') ? 'noopener noreferrer' : undefined } : {};
               return (
-                <motion.div
+                <Tag
                   key={m.title}
                   className="bento-card p-5 group"
+                  style={{ textDecoration: 'none', display: 'block', cursor: m.href ? 'pointer' : 'default' }}
                   variants={itemVariants}
                   whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.10)' }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}>
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                  {...linkProps}>
                   <motion.div
                     className={`w-11 h-11 rounded-xl bg-gradient-to-br ${m.gradient} flex items-center justify-center mb-3 shadow-sm`}
                     whileHover={{ scale: 1.15, rotate: 6 }}
@@ -139,7 +143,7 @@ export default function Contact() {
                   <p className="font-semibold text-slate-900 text-sm mb-0.5">{m.title}</p>
                   <p className="text-sky-600 font-medium text-sm mb-1">{m.value}</p>
                   <p className="text-xs text-slate-500">{m.description}</p>
-                </motion.div>
+                </Tag>
               );
             })}
           </motion.div>
@@ -147,7 +151,7 @@ export default function Contact() {
       </section>
 
       {/* Form + demo */}
-      <section className="py-24">
+      <section className="py-12 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10">
 
@@ -409,7 +413,7 @@ export default function Contact() {
             Join 600+ UK agencies already running smarter with Logezy.
           </motion.p>
           <motion.a
-            href="https://booking.logezy.co/#/67044000000025008"
+            href="https://logezy.co/get-started"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex"

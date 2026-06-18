@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+﻿import React, { useState, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
@@ -180,7 +180,7 @@ function StatBadge({ value, label, icon: Icon, accent, accentBg, delay=0 }:
   );
 }
 
-/* ═══════════════════════════════ FEATURE CARD ══════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FEATURE CARD â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function FeatureCard({ f, i, accent }: { f: any; i: number; accent: string }) {
   const pat = FEATURE_PATTERNS[f.title] || { dots:[accent,'#ccc','#eee'], lines:false };
   return (
@@ -241,7 +241,7 @@ function FeatureCard({ f, i, accent }: { f: any; i: number; accent: string }) {
   );
 }
 
-/* ══════════════════════════════ FEATURE CAROUSEL ════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FEATURE CAROUSEL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function FeatureCarousel({ features, accent }: { features: any[]; accent: string }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -305,7 +305,7 @@ function FeatureCarousel({ features, accent }: { features: any[]; accent: string
   );
 }
 
-/* ═══════════════════════════════════ MAIN ═══════════════════════════════════ */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MAIN â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 export default function IndustryPage() {
   const { slug } = useParams<{ slug:string }>();
   const cfg = pages.find(p => p.slug === slug);
@@ -327,9 +327,9 @@ export default function IndustryPage() {
   return (
     <div style={{ minHeight:'100vh', background:'#fff', fontFamily:'var(--font-body)' }}>
 
-      {/* ══════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           HERO
-      ══════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section style={{ background:cfg.heroBg, paddingTop: isMobile ? 64 : 88, paddingBottom:0, overflow:'hidden', position:'relative' }}>
         {/* Subtle dot grid */}
         <div style={{ position:'absolute',inset:0,pointerEvents:'none',opacity:0.4,
@@ -378,14 +378,14 @@ export default function IndustryPage() {
 
             {/* CTAs */}
             <div style={{ display:'flex',gap:12,flexWrap:'wrap' as const,marginBottom:48 }}>
-              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale:1.03 }} whileTap={{ scale:0.97 }}
                 style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:12,
                   background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
                   fontSize:15,textDecoration:'none',boxShadow:`0 10px 28px ${cfg.accent}45` }}>
                 Book a Free Demo <ArrowRight weight="bold" style={{ width:16,height:16 }} />
               </motion.a>
-              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale:1.03 }} whileTap={{ scale:0.97 }}
                 style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'14px 28px',borderRadius:12,
                   background:'#fff',color:NAVY,fontWeight:700,fontSize:15,textDecoration:'none',
@@ -436,9 +436,9 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           CHALLENGE — redesigned
-      ══════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section style={{ position:'relative', overflow:'hidden', background:`linear-gradient(160deg,#183963 0%,#183963 50%,#183963 100%)` }}>
         {/* Animated dot grid */}
         <div style={{ position:'absolute',inset:0,pointerEvents:'none',
@@ -490,7 +490,7 @@ export default function IndustryPage() {
                   borderBottom: i < pains.length-1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
                   padding:'28px 0' }}>
 
-                {/* ❌ Pain side */}
+                {/* âŒ Pain side */}
                 <motion.div
                   whileHover={{ x:4 }} transition={{ type:'spring', stiffness:300 }}
                   style={{ display:'flex',alignItems:'flex-start',gap:14,paddingRight: isMobile ? 0 : 24 }}>
@@ -520,7 +520,7 @@ export default function IndustryPage() {
                   </div>
                 )}
 
-                {/* ✅ Fix side */}
+                {/* âœ… Fix side */}
                 <motion.div
                   whileHover={{ x: isMobile ? 0 : -4 }} transition={{ type:'spring', stiffness:300 }}
                   style={{ display:'flex',alignItems:'flex-start',gap:14,paddingLeft: isMobile ? 0 : 24,
@@ -560,7 +560,7 @@ export default function IndustryPage() {
               See how Logezy fixes every one of these for your agency.
             </p>
           </div>
-          <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+          <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
             whileHover={{ scale:1.04,y:-2 }} whileTap={{ scale:0.97 }}
             style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'13px 28px',borderRadius:12,
               background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
@@ -571,9 +571,9 @@ export default function IndustryPage() {
         </motion.div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           FEATURES — with screenshots
-      ══════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section style={{ background:'#F8FAFC', padding: isMobile ? '56px 20px' : '88px 28px' }}>
         <div style={{ maxWidth:1280, margin:'0 auto' }}>
           <motion.div {...fade} style={{ textAlign:'center', marginBottom:56 }}>
@@ -599,9 +599,9 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           APP SHOWCASE STRIP
-      ══════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section style={{ background:`linear-gradient(135deg,${cfg.accentBg} 0%,#fff 100%)`, padding: isMobile ? '52px 20px' : '80px 28px' }}>
         <div style={{ maxWidth:1280, margin:'0 auto',
           display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:56, alignItems:'center' }}>
@@ -628,7 +628,7 @@ export default function IndustryPage() {
                 </div>
               ))}
             </div>
-            <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+            <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
               whileHover={{ scale:1.03 }} whileTap={{ scale:0.97 }}
               style={{ marginTop:36,display:'inline-flex',alignItems:'center',gap:8,padding:'13px 26px',borderRadius:12,
                 background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
@@ -684,7 +684,7 @@ export default function IndustryPage() {
                   <Shield weight="fill" style={{ width:14,height:14,color:'#10B981' }} />
                 </div>
                 <div>
-                  <div style={{ fontSize:10,fontWeight:800,color:NAVY }}>Compliance ✓</div>
+                  <div style={{ fontSize:10,fontWeight:800,color:NAVY }}>Compliance âœ“</div>
                   <div style={{ fontSize:9,color:'#6B7280' }}>All docs valid</div>
                 </div>
               </motion.div>
@@ -693,9 +693,9 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           TESTIMONIAL
-      ══════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section style={{ background:NAVY, padding: isMobile ? '56px 20px' : '88px 28px', position:'relative', overflow:'hidden' }}>
         <div style={{ position:'absolute',inset:0,pointerEvents:'none',opacity:0.035,
           backgroundImage:'radial-gradient(rgba(255,255,255,1) 1px,transparent 1px)',backgroundSize:'24px 24px' }} />
@@ -728,9 +728,9 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           FINAL CTA
-      ══════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section style={{ background:cfg.heroBg, padding: isMobile ? '52px 20px' : '80px 28px' }}>
         <div style={{ maxWidth:720,margin:'0 auto',textAlign:'center' }}>
           <motion.div {...fade}>
@@ -746,14 +746,14 @@ export default function IndustryPage() {
               Join hundreds of UK staffing agencies already running smarter with Logezy. Book your free demo and see the platform built for your sector.
             </p>
             <div style={{ display:'flex',gap:14,justifyContent:'center',flexWrap:'wrap' as const }}>
-              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale:1.04 }} whileTap={{ scale:0.96 }}
                 style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'15px 32px',borderRadius:14,
                   background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:800,
                   fontSize:16,textDecoration:'none',boxShadow:`0 12px 32px ${cfg.accent}45` }}>
                 Book a Free Demo <ArrowRight weight="bold" style={{ width:17,height:17 }} />
               </motion.a>
-              <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+              <motion.a href="https://logezy.co/get-started" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale:1.04 }} whileTap={{ scale:0.96 }}
                 style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'15px 32px',borderRadius:14,
                   background:'#fff',color:NAVY,fontWeight:800,fontSize:16,textDecoration:'none',
