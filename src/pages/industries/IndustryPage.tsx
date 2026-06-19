@@ -439,136 +439,195 @@ export default function IndustryPage() {
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           CHALLENGE — redesigned
       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-      <section style={{ position:'relative', overflow:'hidden', background:`linear-gradient(160deg,#183963 0%,#183963 50%,#183963 100%)` }}>
-        {/* Animated dot grid */}
-        <div style={{ position:'absolute',inset:0,pointerEvents:'none',
-          backgroundImage:'radial-gradient(rgba(255,255,255,0.045) 1px,transparent 1px)',
-          backgroundSize:'32px 32px' }} />
+      <section style={{ position:'relative', overflow:'hidden',
+        background:'linear-gradient(160deg,#060d18 0%,#0a1525 50%,#060d18 100%)' }}>
 
-        {/* Large accent glow blobs */}
-        <div style={{ position:'absolute',top:'-10%',right:'-5%',width:600,height:600,borderRadius:'50%',
-          background:`radial-gradient(circle,${cfg.accent}18 0%,transparent 65%)`,filter:'blur(80px)',pointerEvents:'none' }} />
-        <div style={{ position:'absolute',bottom:'-10%',left:'-5%',width:500,height:500,borderRadius:'50%',
-          background:'radial-gradient(circle,rgba(91,108,249,0.12) 0%,transparent 65%)',filter:'blur(80px)',pointerEvents:'none' }} />
+        {/* Noise overlay */}
+        <div style={{ position:'absolute',inset:0,pointerEvents:'none',opacity:0.025,
+          backgroundImage:'radial-gradient(rgba(255,255,255,1) 1px,transparent 1px)',
+          backgroundSize:'28px 28px' }} />
 
-        {/* Top section — heading */}
-        <div style={{ maxWidth:1200,margin:'0 auto',padding: isMobile ? '56px 20px 0' : '88px 28px 0',position:'relative',zIndex:1 }}>
-          <motion.div initial={{ opacity:0,y:32 }} whileInView={{ opacity:1,y:0 }} viewport={{ once:true }} transition={{ duration:0.65 }}
-            style={{ display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',marginBottom:72 }}>
+        {/* Glow orbs */}
+        <div style={{ position:'absolute',top:'-8%',right:'-4%',width:560,height:560,borderRadius:'50%',
+          background:`radial-gradient(circle,${cfg.accent}14 0%,transparent 65%)`,filter:'blur(100px)',pointerEvents:'none' }} />
+        <div style={{ position:'absolute',bottom:'-8%',left:'-4%',width:480,height:480,borderRadius:'50%',
+          background:'radial-gradient(circle,rgba(239,68,68,0.10) 0%,transparent 65%)',filter:'blur(100px)',pointerEvents:'none' }} />
 
-            {/* Animated badge */}
-            <motion.div
-              initial={{ scale:0.8, opacity:0 }} whileInView={{ scale:1, opacity:1 }}
-              viewport={{ once:true }} transition={{ duration:0.5, type:'spring', stiffness:200 }}
-              style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'7px 20px',borderRadius:40,
-                background:`rgba(255,255,255,0.08)`,border:'1px solid rgba(255,255,255,0.16)',marginBottom:24 }}>
-              <motion.div style={{ width:7,height:7,borderRadius:'50%',background:cfg.accentMid }}
-                animate={{ scale:[1,1.6,1], opacity:[0.6,1,0.6] }}
-                transition={{ duration:1.6,repeat:Infinity }} />
-              <span style={{ fontSize:11,fontWeight:800,color:'rgba(255,255,255,0.85)',letterSpacing:'0.10em',textTransform:'uppercase' as const }}>The Challenge</span>
-            </motion.div>
+        <div style={{ maxWidth:1100,margin:'0 auto',padding: isMobile ? '64px 20px 56px' : '96px 40px 80px',position:'relative',zIndex:1 }}>
 
-            <h2 style={{ fontSize:'clamp(24px,3.5vw,46px)',fontWeight:900,color:'#fff',lineHeight:1.15,
-              letterSpacing:'-0.025em',marginBottom:18,maxWidth:760 }}>
+          {/* Heading */}
+          <motion.div initial={{ opacity:0,y:24 }} whileInView={{ opacity:1,y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }}
+            style={{ textAlign:'center',marginBottom: isMobile ? 48 : 72 }}>
+            <div style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'7px 18px',borderRadius:40,
+              background:'rgba(239,68,68,0.12)',border:'1px solid rgba(239,68,68,0.28)',marginBottom:20 }}>
+              <span style={{ width:6,height:6,borderRadius:'50%',background:'#F87171',display:'inline-block',flexShrink:0 }} />
+              <span style={{ fontSize:11,fontWeight:800,color:'#FCA5A5',letterSpacing:'0.13em',textTransform:'uppercase' as const }}>The Challenge</span>
+            </div>
+            <h2 style={{ fontSize:'clamp(26px,3.8vw,50px)',fontWeight:900,color:'#ffffff',lineHeight:1.1,
+              letterSpacing:'-0.03em',margin:'0 auto 18px',maxWidth:780 }}>
               {cfg.challengeHeading}
             </h2>
-            <p style={{ fontSize:17,color:'rgba(186,210,255,0.62)',lineHeight:1.85,maxWidth:680,margin:0 }}>
+            <p style={{ fontSize:17,color:'rgba(200,220,255,0.68)',lineHeight:1.75,maxWidth:620,margin:'0 auto' }}>
               {cfg.challengeText}
             </p>
           </motion.div>
 
-          {/* Before → After rows */}
-          <div style={{ display:'flex',flexDirection:'column',gap:0,marginBottom:0 }}>
+          {/* Column header pills */}
+          {!isMobile && (
+            <motion.div initial={{ opacity:0,y:12 }} whileInView={{ opacity:1,y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }}
+              style={{ display:'grid',gridTemplateColumns:'1fr 64px 1fr',gap:0,marginBottom:18 }}>
+              <div style={{ display:'flex',justifyContent:'flex-start',paddingLeft:8 }}>
+                <div style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'8px 20px',borderRadius:40,
+                  background:'rgba(239,68,68,0.12)',border:'1px solid rgba(239,68,68,0.28)' }}>
+                  <XCircle weight="fill" style={{ width:15,height:15,color:'#F87171' }} />
+                  <span style={{ fontSize:12,fontWeight:800,color:'#FCA5A5',letterSpacing:'0.10em',textTransform:'uppercase' as const }}>Without Logezy</span>
+                </div>
+              </div>
+              <div />
+              <div style={{ display:'flex',justifyContent:'flex-start',paddingLeft:8 }}>
+                <div style={{ display:'inline-flex',alignItems:'center',gap:8,padding:'8px 20px',borderRadius:40,
+                  background:'rgba(16,185,129,0.14)',border:'1px solid rgba(52,211,153,0.35)' }}>
+                  <CheckCircle weight="fill" style={{ width:15,height:15,color:'#34D399' }} />
+                  <span style={{ fontSize:12,fontWeight:800,color:'#34D399',letterSpacing:'0.10em',textTransform:'uppercase' as const }}>With Logezy</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Rows */}
+          <div style={{ display:'flex',flexDirection:'column',gap:12 }}>
             {pains.map((item,i) => (
               <motion.div key={i}
-                initial={{ opacity:0, x: i%2===0 ? -40 : 40 }}
-                whileInView={{ opacity:1, x:0 }}
-                viewport={{ once:true }}
-                transition={{ duration:0.6, delay:i*0.10, ease:[0.22,1,0.36,1] }}
-                style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 48px 1fr',
-                  gap:0, alignItems:'stretch',
-                  borderBottom: i < pains.length-1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
-                  padding:'28px 0' }}>
+                initial={{ opacity:0,y:20 }} whileInView={{ opacity:1,y:0 }}
+                viewport={{ once:true }} transition={{ duration:0.5,delay:i*0.08,ease:[0.22,1,0.36,1] }}
+                style={{ display: isMobile ? 'flex' : 'grid',
+                  flexDirection: isMobile ? 'column' : undefined,
+                  gridTemplateColumns: isMobile ? undefined : '1fr 64px 1fr',
+                  gap:0, alignItems:'stretch' }}>
 
-                {/* âŒ Pain side */}
-                <motion.div
-                  whileHover={{ x:4 }} transition={{ type:'spring', stiffness:300 }}
-                  style={{ display:'flex',alignItems:'flex-start',gap:14,paddingRight: isMobile ? 0 : 24 }}>
-                  <div style={{ width:36,height:36,borderRadius:10,background:'rgba(239,68,68,0.15)',
-                    border:'1px solid rgba(239,68,68,0.30)',
-                    display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2 }}>
-                    <XCircle weight="fill" style={{ width:18,height:18,color:'#FCA5A5' }} />
+                {/* LEFT — problem card */}
+                <motion.div whileHover={{ scale:1.01 }} transition={{ type:'spring',stiffness:300 }}
+                  style={{ borderRadius: isMobile ? '14px 14px 0 0' : '14px 0 0 14px',
+                    background:'rgba(20,8,12,0.7)',
+                    border:'1px solid rgba(239,68,68,0.22)',
+                    borderRight: isMobile ? '1px solid rgba(239,68,68,0.22)' : 'none',
+                    padding: isMobile ? '20px' : '22px 24px',
+                    display:'flex',alignItems:'center',gap:18,
+                    backdropFilter:'blur(8px)' }}>
+                  <div style={{ width: isMobile ? 48 : 56,height: isMobile ? 48 : 56,borderRadius:'50%',flexShrink:0,
+                    background:'rgba(239,68,68,0.13)',border:'1.5px solid rgba(239,68,68,0.30)',
+                    display:'flex',alignItems:'center',justifyContent:'center',
+                    boxShadow:'0 0 18px rgba(239,68,68,0.15)' }}>
+                    <XCircle weight="fill" style={{ width: isMobile ? 22 : 26,height: isMobile ? 22 : 26,color:'#F87171' }} />
                   </div>
-                  <div>
-                    <div style={{ fontSize:9.5,fontWeight:800,color:'rgba(252,165,165,0.70)',
-                      letterSpacing:'0.09em',textTransform:'uppercase' as const,marginBottom:5 }}>Before</div>
-                    <p style={{ fontSize:15,color:'rgba(255,255,255,0.55)',lineHeight:1.65,margin:0 }}>{item.pain}</p>
+                  <div style={{ flex:1,minWidth:0 }}>
+                    {isMobile && (
+                      <div style={{ display:'inline-flex',alignItems:'center',gap:6,marginBottom:8,padding:'4px 12px',
+                        borderRadius:40,background:'rgba(239,68,68,0.12)',border:'1px solid rgba(239,68,68,0.25)' }}>
+                        <XCircle weight="fill" style={{ width:11,height:11,color:'#F87171' }} />
+                        <span style={{ fontSize:9,fontWeight:800,color:'#FCA5A5',letterSpacing:'0.12em',textTransform:'uppercase' as const }}>Without Logezy</span>
+                      </div>
+                    )}
+                    <p style={{ fontSize:15,fontWeight:700,color:'rgba(255,255,255,0.90)',lineHeight:1.5,margin:0 }}>{item.pain}</p>
                   </div>
                 </motion.div>
 
-                {/* Arrow — hidden on mobile */}
-                {!isMobile && (
-                  <div style={{ display:'flex',alignItems:'center',justifyContent:'center',padding:'0 4px' }}>
-                    <motion.div
-                      animate={{ x:[-3,3,-3] }} transition={{ duration:1.8,repeat:Infinity,ease:'easeInOut',delay:i*0.2 }}
+                {/* Arrow connector */}
+                {isMobile ? (
+                  <div style={{ display:'flex',alignItems:'center',justifyContent:'center',
+                    background:'rgba(255,255,255,0.02)',
+                    borderLeft:'1px solid rgba(255,255,255,0.06)',borderRight:'1px solid rgba(255,255,255,0.06)',
+                    padding:'10px 0' }}>
+                    <motion.div animate={{ y:[-2,2,-2] }} transition={{ duration:1.6,repeat:Infinity,ease:'easeInOut',delay:i*0.2 }}
                       style={{ width:32,height:32,borderRadius:'50%',
-                        background:`linear-gradient(135deg,${cfg.accent}50,${cfg.accentMid}50)`,
-                        border:`1px solid ${cfg.accent}60`,
-                        display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0 }}>
-                      <ArrowRight weight="bold" style={{ width:14,height:14,color:cfg.accentMid }} />
+                        background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,
+                        display:'flex',alignItems:'center',justifyContent:'center',
+                        boxShadow:`0 0 16px ${cfg.accent}55` }}>
+                      <ArrowRight weight="bold" style={{ width:14,height:14,color:'#fff',transform:'rotate(90deg)' }} />
+                    </motion.div>
+                  </div>
+                ) : (
+                  <div style={{ display:'flex',alignItems:'center',justifyContent:'center',
+                    background:'transparent',zIndex:2 }}>
+                    <motion.div animate={{ x:[-3,3,-3] }} transition={{ duration:1.8,repeat:Infinity,ease:'easeInOut',delay:i*0.2 }}
+                      style={{ width:36,height:36,borderRadius:'50%',
+                        background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,
+                        display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,
+                        boxShadow:`0 0 20px ${cfg.accent}60` }}>
+                      <ArrowRight weight="bold" style={{ width:15,height:15,color:'#fff' }} />
                     </motion.div>
                   </div>
                 )}
 
-                {/* âœ… Fix side */}
-                <motion.div
-                  whileHover={{ x: isMobile ? 0 : -4 }} transition={{ type:'spring', stiffness:300 }}
-                  style={{ display:'flex',alignItems:'flex-start',gap:14,paddingLeft: isMobile ? 0 : 24,
-                    borderLeft: isMobile ? 'none' : '1px solid rgba(255,255,255,0.06)',
-                    marginTop: isMobile ? 16 : 0 }}>
-                  <div style={{ width:36,height:36,borderRadius:10,
-                    background:`${cfg.accent}25`,border:`1px solid ${cfg.accent}50`,
-                    display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2,
-                    boxShadow:`0 0 16px ${cfg.accent}30` }}>
-                    <CheckCircle weight="fill" style={{ width:18,height:18,color:cfg.accentMid }} />
+                {/* RIGHT — solution card */}
+                <motion.div whileHover={{ scale:1.01 }} transition={{ type:'spring',stiffness:300 }}
+                  style={{ borderRadius: isMobile ? '0 0 14px 14px' : '0 14px 14px 0',
+                    background:'linear-gradient(135deg,rgba(16,185,129,0.10),rgba(16,185,129,0.05))',
+                    borderTop:'1px solid rgba(16,185,129,0.22)',
+                    borderBottom:'1px solid rgba(16,185,129,0.22)',
+                    borderRight:'1px solid rgba(16,185,129,0.22)',
+                    borderLeft: isMobile ? '1px solid rgba(16,185,129,0.22)' : 'none',
+                    padding: isMobile ? '20px' : '22px 24px',
+                    display:'flex',alignItems:'center',gap:18,
+                    backdropFilter:'blur(8px)' }}>
+                  <div style={{ width: isMobile ? 48 : 56,height: isMobile ? 48 : 56,borderRadius:'50%',flexShrink:0,
+                    background:'rgba(16,185,129,0.18)',border:'1.5px solid rgba(52,211,153,0.40)',
+                    display:'flex',alignItems:'center',justifyContent:'center',
+                    boxShadow:'0 0 20px rgba(16,185,129,0.28)' }}>
+                    <CheckCircle weight="fill" style={{ width: isMobile ? 22 : 26,height: isMobile ? 22 : 26,color:'#34D399' }} />
                   </div>
-                  <div>
-                    <div style={{ fontSize:9.5,fontWeight:800,color:cfg.accentMid,
-                      letterSpacing:'0.09em',textTransform:'uppercase' as const,marginBottom:5,opacity:0.85 }}>With Logezy</div>
-                    <p style={{ fontSize:15,color:'rgba(255,255,255,0.90)',lineHeight:1.65,margin:0,fontWeight:500 }}>{item.fix}</p>
+                  <div style={{ flex:1,minWidth:0 }}>
+                    {isMobile && (
+                      <div style={{ display:'inline-flex',alignItems:'center',gap:6,marginBottom:8,padding:'4px 12px',
+                        borderRadius:40,background:'rgba(16,185,129,0.14)',border:'1px solid rgba(52,211,153,0.32)' }}>
+                        <CheckCircle weight="fill" style={{ width:11,height:11,color:'#34D399' }} />
+                        <span style={{ fontSize:9,fontWeight:800,color:'#34D399',letterSpacing:'0.12em',textTransform:'uppercase' as const }}>With Logezy</span>
+                      </div>
+                    )}
+                    <p style={{ fontSize:15,fontWeight:700,color:'#ffffff',lineHeight:1.5,margin:0 }}>{item.fix}</p>
                   </div>
                 </motion.div>
               </motion.div>
             ))}
           </div>
-        </div>
 
-        {/* Bottom CTA strip */}
-        <motion.div
-          initial={{ opacity:0,y:24 }} whileInView={{ opacity:1,y:0 }}
-          viewport={{ once:true }} transition={{ duration:0.6, delay:0.3 }}
-          style={{ borderTop:'1px solid rgba(255,255,255,0.07)',
-            padding:'40px 28px 56px',
-            display:'flex',flexDirection: isMobile ? 'column' : 'row',
-            alignItems:'center',justifyContent:'space-between',gap:20,
-            maxWidth:1200,margin:'0 auto',position:'relative',zIndex:1 }}>
-          <div>
-            <p style={{ fontSize:18,fontWeight:800,color:'#fff',margin:'0 0 4px' }}>
-              Ready to solve these challenges?
-            </p>
-            <p style={{ fontSize:14,color:'rgba(186,210,255,0.55)',margin:0 }}>
-              See how Logezy fixes every one of these for your agency.
-            </p>
-          </div>
-          <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
-            whileHover={{ scale:1.04,y:-2 }} whileTap={{ scale:0.97 }}
-            style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'13px 28px',borderRadius:12,
-              background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
-              fontSize:14,textDecoration:'none',flexShrink:0,
-              boxShadow:`0 10px 32px ${cfg.accent}45` }}>
-            Book a Free Demo <ArrowRight weight="bold" style={{ width:15,height:15 }} />
-          </motion.a>
-        </motion.div>
+          {/* CTA bar */}
+          <motion.div
+            initial={{ opacity:0,y:20 }} whileInView={{ opacity:1,y:0 }}
+            viewport={{ once:true }} transition={{ duration:0.55,delay:0.3 }}
+            style={{ marginTop: isMobile ? 40 : 52,
+              borderRadius:18,
+              background:'rgba(255,255,255,0.04)',
+              border:'1px solid rgba(255,255,255,0.09)',
+              padding: isMobile ? '24px 20px' : '28px 36px',
+              display:'flex',flexDirection: isMobile ? 'column' : 'row',
+              alignItems:'center',gap: isMobile ? 20 : 28,
+              backdropFilter:'blur(12px)' }}>
+            <div style={{ width:52,height:52,borderRadius:'50%',flexShrink:0,
+              background:`linear-gradient(135deg,${cfg.accent}28,${cfg.accent}10)`,
+              border:`1.5px solid ${cfg.accent}40`,
+              display:'flex',alignItems:'center',justifyContent:'center',
+              boxShadow:`0 0 24px ${cfg.accent}30` }}>
+              <ArrowUpRight weight="bold" style={{ width:22,height:22,color:cfg.accentMid }} />
+            </div>
+            <div style={{ flex:1,minWidth:0 }}>
+              <p style={{ fontSize: isMobile ? 17 : 19,fontWeight:800,color:'#fff',margin:'0 0 4px',lineHeight:1.3 }}>
+                Ready to solve these challenges?
+              </p>
+              <p style={{ fontSize:14,color:'rgba(186,210,255,0.55)',margin:0 }}>
+                See how Logezy fixes every one of these for your agency.
+              </p>
+            </div>
+            <motion.a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noopener noreferrer"
+              whileHover={{ scale:1.05,y:-2 }} whileTap={{ scale:0.97 }}
+              style={{ display:'inline-flex',alignItems:'center',gap:9,padding:'13px 28px',borderRadius:12,
+                background:`linear-gradient(135deg,${cfg.accent},${cfg.accentMid})`,color:'#fff',fontWeight:700,
+                fontSize:15,textDecoration:'none',flexShrink:0,whiteSpace:'nowrap' as const,
+                boxShadow:`0 10px 36px ${cfg.accent}45` }}>
+              Book a Free Demo <ArrowRight weight="bold" style={{ width:15,height:15 }} />
+            </motion.a>
+          </motion.div>
+        </div>
       </section>
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
