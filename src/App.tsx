@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -26,6 +27,9 @@ function ScrollToTop() {
 function App() {
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <meta name="google-site-verification" content="2EVnfjmV-66Xl2OQ215CH-gPuDHlIRHBEpVmudO1QgI" />
+      </Helmet>
       <ScrollProgress />
       <SocialSidebar />
       <Header />
