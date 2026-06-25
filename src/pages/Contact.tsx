@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Envelope, Phone, MapPin, Clock, Chat, Users, ArrowRight, CaretDown, CheckCircle, WhatsappLogo } from '@phosphor-icons/react';
+import SEO from '../components/SEO';
 
 const contactMethods = [
   { icon: Envelope, title: 'Email us', value: 'info@logezy.co.uk', description: "We'll respond within 24 hours.", gradient: 'from-sky-400 to-blue-500', href: 'mailto:info@logezy.co.uk' },
@@ -78,6 +79,25 @@ export default function Contact() {
 
   return (
     <div className="bg-[#F8FAFC]">
+      <SEO
+        title="Contact Logezy — Get in Touch With Our Team"
+        description="Contact Logezy for a demo, pricing query, or support. Call 0330 127 9604, email info@logezy.co.uk, or chat live. Office in Derby, UK."
+        keywords="contact Logezy, Logezy support, staffing software demo, Logezy phone number, book a demo"
+        canonical="/contact"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Logezy",
+          "url": "https://logezy.co.uk/contact",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+44-330-127-9604",
+            "email": "info@logezy.co.uk",
+            "contactType": "customer service",
+            "areaServed": "GB"
+          }
+        }}
+      />
 
       {/* Hero */}
       <section className="relative pt-20 pb-12 lg:pt-32 lg:pb-20 overflow-hidden">

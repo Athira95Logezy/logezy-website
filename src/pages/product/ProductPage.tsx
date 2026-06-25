@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 import {
@@ -705,6 +706,12 @@ export default function ProductPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'white' }}>
+      <SEO
+        title={`${cfg.title} — Logezy`}
+        description={cfg.heroDesc}
+        keywords={`${cfg.title.toLowerCase()}, ${cfg.category.toLowerCase()}, staffing software UK, Logezy ${cfg.slug}`}
+        canonical={`/product/${cfg.slug}`}
+      />
 
       {/* ── HERO ──────────────────────────────────── */}
       <section style={{ background: cfg.heroBg, paddingTop: isMobile ? 90 : 80, paddingBottom: isMobile ? 48 : 80, overflow: 'hidden' }}>

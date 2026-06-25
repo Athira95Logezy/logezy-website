@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import SEO from '../components/SEO';
 import {
   CalendarBlank, Clock, Users, Shield, FileText, Receipt,
   DeviceMobile, Briefcase, Buildings, ArrowRight, CheckCircle,
@@ -635,6 +636,12 @@ const fadeUp = (delay = 0) => ({
 export default function FeaturesPage() {
   return (
     <div className="bg-white">
+      <SEO
+        title="Features — Logezy Staffing Platform"
+        description="Explore Logezy's full feature set: automated scheduling, digital timesheets, CQC compliance tracking, invoicing, payroll, mobile app, and client portal — all in one platform."
+        keywords="staffing software features, scheduling software UK, timesheet software, compliance tracking, invoicing software, payroll automation, Logezy features"
+        canonical="/features"
+      />
 
       {/* ══════════════════════
           HERO

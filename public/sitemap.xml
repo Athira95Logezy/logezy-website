@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Static pages -->
+  <url><loc>https://logezy.co.uk/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://logezy.co.uk/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/features</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logezy.co.uk/pricing</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logezy.co.uk/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://logezy.co.uk/resources</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://logezy.co.uk/resources/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/resources/case-studies</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Product pages -->
+  <url><loc>https://logezy.co.uk/product/scheduling</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logezy.co.uk/product/availability</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/product/candidate-client</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/product/compliance</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logezy.co.uk/product/timesheets</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logezy.co.uk/product/invoicing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/product/mobile-app</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/product/recruitment</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/product/client-portal</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Industry pages -->
+  <url><loc>https://logezy.co.uk/industries/healthcare</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logezy.co.uk/industries/education</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logezy.co.uk/industries/hospitality</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+</urlset>

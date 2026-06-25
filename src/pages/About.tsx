@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import SEO from '../components/SEO';
 import {
   Target, Lightning, Heart, ArrowRight, CheckCircle,
   Users, Shield, TrendUp, Pulse, CalendarBlank, Heartbeat, Briefcase,
@@ -124,6 +125,12 @@ function MiniDashboard() {
 export default function About() {
   return (
     <div className="bg-white overflow-hidden">
+      <SEO
+        title="About Logezy — The Team Behind UK's Leading Staffing Software"
+        description="Learn about Logezy — built by staffing industry experts to help UK temp agencies automate operations, stay compliant, and grow faster."
+        keywords="about Logezy, staffing software company UK, workforce management team, Logezy story"
+        canonical="/about"
+      />
 
       {/* ══════════════════════════════════════
           HERO

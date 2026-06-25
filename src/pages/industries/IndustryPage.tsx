@@ -1,5 +1,6 @@
 ﻿import React, { useState, useRef, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 import {
@@ -326,6 +327,12 @@ export default function IndustryPage() {
 
   return (
     <div style={{ minHeight:'100vh', background:'#fff', fontFamily:'var(--font-body)' }}>
+      <SEO
+        title={`${cfg.title} Staffing Software — Logezy`}
+        description={cfg.heroDesc}
+        keywords={`${cfg.label.toLowerCase()} staffing software, ${cfg.slug} workforce management UK, Logezy ${cfg.slug}`}
+        canonical={`/industries/${cfg.slug}`}
+      />
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           HERO

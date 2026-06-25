@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Clock, CalendarBlank, Tag } from '@phosphor-icons/react';
 import { blogs } from '../data/blogs';
+import SEO from '../components/SEO';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -39,6 +40,24 @@ export default function BlogPost() {
 
   return (
     <div style={{ background: '#F8FAFC', minHeight: '100vh' }}>
+      <SEO
+        title={`${post.title} | Logezy Blog`}
+        description={post.excerpt ?? post.title}
+        keywords={`${post.category}, staffing blog, workforce management, Logezy`}
+        canonical={`/resources/blog/${post.slug}`}
+        ogImage={post.coverImage}
+        ogType="article"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": post.title,
+          "description": post.excerpt,
+          "image": post.coverImage,
+          "author": { "@type": "Organization", "name": "Logezy" },
+          "publisher": { "@type": "Organization", "name": "Logezy", "url": "https://logezy.co.uk" },
+          "url": `https://logezy.co.uk/resources/blog/${post.slug}`
+        }}
+      />
 
       {/* ── Cover image hero ── */}
       <div style={{ position: 'relative', overflow: 'hidden', height: isMobile ? 320 : 420 }}>

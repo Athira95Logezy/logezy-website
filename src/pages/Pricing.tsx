@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Users, UserCircle, Phone, Sparkle, Star } from '@phosphor-icons/react';
 import { useWindowWidth } from '../hooks/useWindowWidth';
+import SEO from '../components/SEO';
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    DATA
@@ -98,6 +99,19 @@ export default function Pricing() {
   const isMobile = vw < 768;
   return (
     <div style={{ minHeight: '100vh', background: '#fff', fontFamily: 'var(--font-body)' }}>
+      <SEO
+        title="Pricing — Logezy Workforce Management Plans"
+        description="Simple, transparent pricing for UK staffing agencies. Logezy starts from £149/month with no hidden fees. Book a free 14-day trial today."
+        keywords="Logezy pricing, staffing software pricing UK, workforce management cost, temp agency software plans"
+        canonical="/pricing"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "PriceSpecification",
+          "priceCurrency": "GBP",
+          "price": "149",
+          "description": "Logezy monthly subscription starting from £149/month"
+        }}
+      />
 
       {/* ── HERO HEADER ─────────────────────────── */}
       <section style={{

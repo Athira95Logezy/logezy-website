@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChartBar, BookOpen, ArrowUpRight } from '@phosphor-icons/react';
 import { caseStudies } from '../data/caseStudies';
+import SEO from '../components/SEO';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -23,6 +24,12 @@ export default function CaseStudiesList() {
 
   return (
     <div style={{ background: '#F8FAFC', minHeight: '100vh' }}>
+      <SEO
+        title="Case Studies — How UK Agencies Succeed With Logezy"
+        description="Read real success stories from UK staffing and healthcare agencies using Logezy. See measurable results in compliance, scheduling efficiency, and revenue growth."
+        keywords="staffing agency case studies, Logezy success stories, workforce management results, UK staffing software testimonials"
+        canonical="/resources/case-studies"
+      />
 
       {/* ── Hero ── */}
       <div style={{ background: 'linear-gradient(135deg,#183765 0%,#1966AA 45%,#2396C6 100%)', padding: isMobile ? '90px 20px 48px' : '80px 48px 72px', position: 'relative', overflow: 'hidden' }}>

@@ -1,5 +1,6 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import {
@@ -99,6 +100,14 @@ export default function CaseStudyDetail() {
 
   return (
     <div style={{ background:'#F8FAFC', minHeight:'100vh' }}>
+      <SEO
+        title={`${cs.title} | Logezy Case Study`}
+        description={cs.excerpt ?? cs.title}
+        keywords={`${cs.category ?? 'staffing'}, case study, Logezy, UK staffing software`}
+        canonical={`/resources/case-studies/${cs.slug}`}
+        ogImage={cs.coverImage}
+        ogType="article"
+      />
 
       {/* ── Cover hero ── */}
       <div style={{ position:'relative', overflow:'hidden', height: isMobile ? 300 : 380 }}>

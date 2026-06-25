@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Clock, CalendarBlank, FunnelSimple, CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { blogs } from '../data/blogs';
+import SEO from '../components/SEO';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -46,6 +47,12 @@ export default function BlogList() {
 
   return (
     <div style={{ background: '#F4F6F9', minHeight: '100vh', fontFamily: 'var(--font-body)' }}>
+      <SEO
+        title="Blog — Logezy Staffing & Workforce Management Insights"
+        description="Read the latest articles on UK staffing, healthcare compliance, workforce management tips, scheduling best practices, and agency growth from the Logezy team."
+        keywords="staffing agency blog, workforce management articles, UK staffing tips, healthcare compliance blog, Logezy blog"
+        canonical="/resources/blog"
+      />
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           HEADER
