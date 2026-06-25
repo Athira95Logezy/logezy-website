@@ -54,8 +54,8 @@ export default function BlogPost() {
           "description": post.excerpt,
           "image": post.coverImage,
           "author": { "@type": "Organization", "name": "Logezy" },
-          "publisher": { "@type": "Organization", "name": "Logezy", "url": "https://logezy.co.uk" },
-          "url": `https://logezy.co.uk/resources/blog/${post.slug}`
+          "publisher": { "@type": "Organization", "name": "Logezy", "url": "https://logezy.com" },
+          "url": `https://logezy.com/resources/blog/${post.slug}`
         }}
       />
 

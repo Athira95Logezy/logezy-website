@@ -10,7 +10,7 @@ interface SEOProps {
   schema?: object;
 }
 
-const BASE_URL = 'https://logezy.co.uk';
+const BASE_URL = 'https://logezy.com';
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 export default function SEO({

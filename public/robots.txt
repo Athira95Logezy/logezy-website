@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://logezy.co.uk/sitemap.xml
+Sitemap: https://logezy.com/sitemap.xml

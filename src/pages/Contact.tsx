@@ -88,7 +88,7 @@ export default function Contact() {
           "@context": "https://schema.org",
           "@type": "ContactPage",
           "name": "Contact Logezy",
-          "url": "https://logezy.co.uk/contact",
+          "url": "https://logezy.com/contact",
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+44-330-127-9604",
