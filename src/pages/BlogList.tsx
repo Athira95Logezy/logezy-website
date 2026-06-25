@@ -52,6 +52,7 @@ export default function BlogList() {
         description="Read the latest articles on UK staffing, healthcare compliance, workforce management tips, scheduling best practices, and agency growth from the Logezy team."
         keywords="staffing agency blog, workforce management articles, UK staffing tips, healthcare compliance blog, Logezy blog"
         canonical="/resources/blog"
+        breadcrumbs={[{ name: 'Resources', path: '/resources' }, { name: 'Blog', path: '/resources/blog' }]}
       />
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•

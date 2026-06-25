@@ -107,6 +107,11 @@ export default function CaseStudyDetail() {
         canonical={`/resources/case-studies/${cs.slug}`}
         ogImage={cs.coverImage}
         ogType="article"
+        breadcrumbs={[
+          { name: 'Resources', path: '/resources' },
+          { name: 'Case Studies', path: '/resources/case-studies' },
+          { name: cs.title, path: `/resources/case-studies/${cs.slug}` },
+        ]}
       />
 
       {/* ── Cover hero ── */}

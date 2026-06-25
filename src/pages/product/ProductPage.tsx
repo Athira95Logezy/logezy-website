@@ -711,6 +711,10 @@ export default function ProductPage() {
         description={cfg.heroDesc}
         keywords={`${cfg.title.toLowerCase()}, ${cfg.category.toLowerCase()}, staffing software UK, Logezy ${cfg.slug}`}
         canonical={`/product/${cfg.slug}`}
+        breadcrumbs={[
+          { name: 'Features', path: '/features' },
+          { name: cfg.title, path: `/product/${cfg.slug}` },
+        ]}
       />
 
       {/* ── HERO ──────────────────────────────────── */}

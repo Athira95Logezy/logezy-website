@@ -332,6 +332,10 @@ export default function IndustryPage() {
         description={cfg.heroDesc}
         keywords={`${cfg.label.toLowerCase()} staffing software, ${cfg.slug} workforce management UK, Logezy ${cfg.slug}`}
         canonical={`/industries/${cfg.slug}`}
+        breadcrumbs={[
+          { name: 'Industries', path: '/features' },
+          { name: cfg.label, path: `/industries/${cfg.slug}` },
+        ]}
       />
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•

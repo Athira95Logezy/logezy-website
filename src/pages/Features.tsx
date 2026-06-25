@@ -641,6 +641,7 @@ export default function FeaturesPage() {
         description="Explore Logezy's full feature set: automated scheduling, digital timesheets, CQC compliance tracking, invoicing, payroll, mobile app, and client portal — all in one platform."
         keywords="staffing software features, scheduling software UK, timesheet software, compliance tracking, invoicing software, payroll automation, Logezy features"
         canonical="/features"
+        breadcrumbs={[{ name: 'Features', path: '/features' }]}
       />
 
       {/* ══════════════════════

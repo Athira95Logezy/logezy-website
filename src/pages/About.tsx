@@ -130,6 +130,7 @@ export default function About() {
         description="Learn about Logezy — built by staffing industry experts to help UK temp agencies automate operations, stay compliant, and grow faster."
         keywords="about Logezy, staffing software company UK, workforce management team, Logezy story"
         canonical="/about"
+        breadcrumbs={[{ name: 'About', path: '/about' }]}
       />
 
       {/* ══════════════════════════════════════

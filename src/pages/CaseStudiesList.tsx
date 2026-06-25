@@ -29,6 +29,7 @@ export default function CaseStudiesList() {
         description="Read real success stories from UK staffing and healthcare agencies using Logezy. See measurable results in compliance, scheduling efficiency, and revenue growth."
         keywords="staffing agency case studies, Logezy success stories, workforce management results, UK staffing software testimonials"
         canonical="/resources/case-studies"
+        breadcrumbs={[{ name: 'Resources', path: '/resources' }, { name: 'Case Studies', path: '/resources/case-studies' }]}
       />
 
       {/* ── Hero ── */}

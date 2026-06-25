@@ -111,6 +111,7 @@ export default function Pricing() {
           "price": "149",
           "description": "Logezy monthly subscription starting from £149/month"
         }}
+        breadcrumbs={[{ name: 'Pricing', path: '/pricing' }]}
       />
 
       {/* ── HERO HEADER ─────────────────────────── */}

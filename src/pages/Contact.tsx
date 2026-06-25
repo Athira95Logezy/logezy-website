@@ -88,7 +88,7 @@ export default function Contact() {
           "@context": "https://schema.org",
           "@type": "ContactPage",
           "name": "Contact Logezy",
-          "url": "https://logezy.com/contact",
+          "url": "https://www.logezy.com/contact",
           "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+44-330-127-9604",
@@ -97,6 +97,7 @@ export default function Contact() {
             "areaServed": "GB"
           }
         }}
+        breadcrumbs={[{ name: 'Contact', path: '/contact' }]}
       />
 
       {/* Hero */}

@@ -23,7 +23,7 @@ export default function Home() {
           "applicationCategory": "BusinessApplication",
           "operatingSystem": "Web, iOS, Android",
           "description": "All-in-one workforce management platform for UK staffing and healthcare agencies.",
-          "url": "https://logezy.com",
+          "url": "https://www.logezy.com",
           "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "600" }
         }}
       />

@@ -10,6 +10,7 @@ export default function Resources() {
         description="Explore Logezy's resources hub: staffing agency guides, blog articles, case studies, compliance tips, and workforce management best practices for UK agencies."
         keywords="staffing agency resources, workforce management guides, Logezy blog, staffing case studies, compliance guides UK"
         canonical="/resources"
+        breadcrumbs={[{ name: 'Resources', path: '/resources' }]}
       />
       <div style={{ textAlign: 'center', padding: '0 24px' }}>
         <div style={{ width: 64, height: 64, borderRadius: 18, background: '#E8F5FB', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>

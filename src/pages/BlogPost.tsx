@@ -54,9 +54,14 @@ export default function BlogPost() {
           "description": post.excerpt,
           "image": post.coverImage,
           "author": { "@type": "Organization", "name": "Logezy" },
-          "publisher": { "@type": "Organization", "name": "Logezy", "url": "https://logezy.com" },
-          "url": `https://logezy.com/resources/blog/${post.slug}`
+          "publisher": { "@type": "Organization", "name": "Logezy", "url": "https://www.logezy.com" },
+          "url": `https://www.logezy.com/resources/blog/${post.slug}`
         }}
+        breadcrumbs={[
+          { name: 'Resources', path: '/resources' },
+          { name: 'Blog', path: '/resources/blog' },
+          { name: post.title, path: `/resources/blog/${post.slug}` },
+        ]}
       />
 
       {/* ── Cover image hero ── */}
