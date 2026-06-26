@@ -2,13 +2,6 @@
   command = "npm run build"
   publish = "dist"
 
-# Force www canonical domain
-[[redirects]]
-  from = "https://logezy.com/*"
-  to = "https://www.logezy.com/:splat"
-  status = 301
-  force = true
-
 # SPA fallback
 [[redirects]]
   from = "/*"
