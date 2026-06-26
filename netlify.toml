@@ -9,13 +9,6 @@
   status = 301
   force = true
 
-# Allow Google verification file to bypass SPA catch-all
-[[redirects]]
-  from = "/google596fef10a41501ba.html"
-  to = "/google596fef10a41501ba.html"
-  status = 200
-  force = true
-
 # SPA fallback
 [[redirects]]
   from = "/*"
