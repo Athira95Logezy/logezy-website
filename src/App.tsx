@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import SocialSidebar from './components/SocialSidebar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Features from './pages/Features';
-import Contact from './pages/Contact';
-import Resources from './pages/Resources';
-import BlogList from './pages/BlogList';
-import BlogPost from './pages/BlogPost';
-import CaseStudiesList from './pages/CaseStudiesList';
-import CaseStudyDetail from './pages/CaseStudyDetail';
-import Pricing from './pages/Pricing';
-import ProductPage from './pages/product/ProductPage';
-import IndustryPage from './pages/industries/IndustryPage';
+
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Features = lazy(() => import('./pages/Features'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Resources = lazy(() => import('./pages/Resources'));
+const BlogList = lazy(() => import('./pages/BlogList'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const CaseStudiesList = lazy(() => import('./pages/CaseStudiesList'));
+const CaseStudyDetail = lazy(() => import('./pages/CaseStudyDetail'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const ProductPage = lazy(() => import('./pages/product/ProductPage'));
+const IndustryPage = lazy(() => import('./pages/industries/IndustryPage'));
 
 function ScrollToTop() {
   const { pathname, key } = useLocation();
@@ -34,22 +35,22 @@ function App() {
       <SocialSidebar />
       <Header />
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/resources/blog" element={<BlogList />} />
-        <Route path="/resources/blog/:slug" element={<BlogPost />} />
-        <Route path="/resources/case-studies" element={<CaseStudiesList />} />
-        <Route path="/resources/case-studies/:slug" element={<CaseStudyDetail />} />
-        <Route path="/pricing" element={<Pricing />} />
-        {/* Product sub-pages */}
-        <Route path="/product/:slug" element={<ProductPage />} />
-        {/* Industry sub-pages */}
-        <Route path="/industries/:slug" element={<IndustryPage />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/blog" element={<BlogList />} />
+          <Route path="/resources/blog/:slug" element={<BlogPost />} />
+          <Route path="/resources/case-studies" element={<CaseStudiesList />} />
+          <Route path="/resources/case-studies/:slug" element={<CaseStudyDetail />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/product/:slug" element={<ProductPage />} />
+          <Route path="/industries/:slug" element={<IndustryPage />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </div>
   );
