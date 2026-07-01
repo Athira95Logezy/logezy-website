@@ -24,7 +24,7 @@ export const blogs: BlogPost[] = [
     category: 'Healthcare',
     readTime: '4 min read',
     date: 'Jun 03, 2025',
-    coverImage: '/blog/blog-healthcare-staffing.png',
+    coverImage: '/blog/blog-healthcare-staffing.webp',
     sections: [
       {
         body: 'Healthcare organisations face growing staffing challenges that impact patient care, employee wellbeing, and operational efficiency. From workforce shortages and scheduling difficulties to compliance requirements and employee burnout, managing healthcare staff has become increasingly complex.',
@@ -62,7 +62,7 @@ export const blogs: BlogPost[] = [
     category: 'Technology',
     readTime: '3 min read',
     date: 'Jun 10, 2025',
-    coverImage: '/blog/blog-branded-mobile-app.jpg',
+    coverImage: '/blog/blog-branded-mobile-app.webp',
     sections: [
       {
         body: 'The recruitment industry is evolving rapidly, and agencies need smarter ways to connect with candidates, workers, and clients. A branded mobile app helps recruitment agencies streamline operations, improve communication, and strengthen their brand presence.',
@@ -104,7 +104,7 @@ export const blogs: BlogPost[] = [
     category: 'Agency Tips',
     readTime: '5 min read',
     date: 'Jun 18, 2025',
-    coverImage: '/blog/blog-agency-admin-time.jpg',
+    coverImage: '/blog/blog-agency-admin-time.webp',
     sections: [
       {
         body: "For most temp recruitment agencies, the admin never stops. Coordinating availability, building weekly rotas, chasing confirmations, fixing last-minute gaps. It all adds up. Many consultants spend more time on scheduling admin than they do on revenue-generating activity. The good news is that smart scheduling software can change that completely.",

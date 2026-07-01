@@ -46,7 +46,7 @@ function PhoneShell({
           padding:Math.round(1.5*scale),
         }}>
           <div style={{ width:'100%', height:'100%', borderRadius:Ri, background:'#000', overflow:'hidden', position:'relative' }}>
-            <img src={src} alt={alt} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center', display:'block' }} />
+            <img src={src} alt={alt} loading="lazy" decoding="async" style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top center', display:'block' }} />
             {/* Dynamic Island */}
             <div style={{ position:'absolute', top:Math.round(12*scale), left:'50%', transform:'translateX(-50%)', width:Math.round(120*scale), height:Math.round(34*scale), background:'#000', borderRadius:Math.round(18*scale), zIndex:10, boxShadow:'0 0 0 1px rgba(255,255,255,0.05)' }} />
             {/* Screen reflection / glare */}
@@ -373,7 +373,7 @@ export default function AnimatedScheduleSection() {
                 transition={{ duration:4.5, repeat:Infinity, ease:'easeInOut' }}
               >
                 <PhoneShell
-                  src="/Avilability.jpeg"
+                  src="/Avilability.webp"
                   alt="Logezy Availability"
                   scale={isTablet ? 0.78 : 0.90}
                 />
@@ -392,7 +392,7 @@ export default function AnimatedScheduleSection() {
               }}
             >
               <DesktopChrome>
-                <img src="/schedule.png" alt="Logezy Schedule" style={{ width:'100%', height:'auto', display:'block' }} />
+                <img src="/schedule.webp" alt="Logezy Schedule" loading="lazy" decoding="async" style={{ width:'100%', height:'auto', display:'block' }} />
               </DesktopChrome>
 
               {/* Floating cards — RIGHT side */}
@@ -413,7 +413,7 @@ export default function AnimatedScheduleSection() {
             viewport={{ once:true }} transition={{ duration:0.65, ease:EASE }}
             style={{ display:'flex', justifyContent:'center' }}
           >
-            <PhoneShell src="/Avilability.jpeg" alt="Logezy App" scale={0.72} />
+            <PhoneShell src="/Avilability.webp" alt="Logezy App" scale={0.72} />
           </motion.div>
         )}
 

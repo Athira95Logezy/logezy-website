@@ -177,7 +177,7 @@ export default function BlogPost() {
                   >
                     {/* Thumbnail */}
                     <div style={{ width: 72, height: 64, borderRadius: 10, overflow: 'hidden', flexShrink: 0 }}>
-                      <img src={rel.coverImage} alt={rel.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+                      <img src={rel.coverImage} alt={rel.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <span style={{

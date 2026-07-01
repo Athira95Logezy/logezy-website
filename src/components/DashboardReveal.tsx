@@ -200,8 +200,10 @@ export default function DashboardReveal() {
                 zIndex: 2, pointerEvents: 'none',
               }} />
               <img
-                src="/dashboard.png"
+                src="/dashboard.webp"
                 alt="Logezy Dashboard, full agency overview"
+                loading="lazy"
+                decoding="async"
                 style={{ width: '100%', display: 'block', maxHeight: '65vh', objectFit: 'cover', objectPosition: 'top' }}
               />
             </div>

@@ -73,7 +73,7 @@ export default function Footer() {
             {/* Brand col */}
             <motion.div variants={itemVariants} className="col-span-2 md:col-span-4">
               <Link to="/" className="inline-flex mb-4">
-                <img src="/logezy_Logo.png" alt="Logezy" className="h-10 w-auto" />
+                <img src="/logezy_Logo.webp" alt="Logezy" loading="lazy" decoding="async" className="h-10 w-auto" />
               </Link>
               <p className="text-sm leading-relaxed text-slate-500 mb-5 max-w-[260px]">
                 The UK's leading workforce management platform for staffing &amp; healthcare agencies.
@@ -198,15 +198,20 @@ export default function Footer() {
               © {new Date().getFullYear()} Logezy Ltd. All rights reserved.
             </p>
             <div className="flex items-center">
-              {['Privacy', 'Terms', 'Cookies', 'GDPR'].map((l, i, arr) => (
-                <React.Fragment key={l}>
-                  <a href="#"
+              {[
+                { label: 'Privacy', to: '/privacy-policy' },
+                { label: 'Terms', to: '#' },
+                { label: 'Cookies', to: '#' },
+                { label: 'GDPR', to: '#' },
+              ].map((l, i, arr) => (
+                <React.Fragment key={l.label}>
+                  <Link to={l.to}
                     className="text-xs px-2.5 py-1 rounded transition-colors"
                     style={{ color: 'rgba(255,255,255,0.40)' }}
                     onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.85)')}
                     onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.40)')}>
-                    {l}
-                  </a>
+                    {l.label}
+                  </Link>
                   {i < arr.length - 1 && <span style={{ color: 'rgba(255,255,255,0.18)' }} className="text-xs">·</span>}
                 </React.Fragment>
               ))}

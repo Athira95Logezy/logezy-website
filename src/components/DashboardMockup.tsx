@@ -17,8 +17,10 @@ export default function DashboardMockup({ animate = true }: { animate?: boolean 
 
       {/* Real dashboard screenshot */}
       <img
-        src="/DASHBAORD_NEW.png"
+        src="/DASHBAORD_NEW.webp"
         alt="Logezy Dashboard"
+        loading="lazy"
+        decoding="async"
         className="w-full block"
       />
     </div>

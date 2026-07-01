@@ -88,7 +88,7 @@ function SchedulingMockup() {
   return (
     <BrowserChrome>
       <img
-        src="/schedule.png"
+        src="/schedule.webp"
         alt="Logezy Schedule Dashboard"
         style={{ width: '100%', display: 'block', borderRadius: '0 0 10px 10px' }}
       />

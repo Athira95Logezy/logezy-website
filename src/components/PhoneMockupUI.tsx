@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 const screens = [
-  '/mobile_app_main_screen.jpeg',
-  '/schedule.jpeg',
-  '/Avilability.jpeg',
-  '/notification.jpeg',
-  '/Documents.jpeg',
-  '/Job_location.jpeg',
-  '/Timesheet.jpeg',
-  '/Booking.jpeg',
+  '/mobile_app_main_screen.webp',
+  '/schedule-mobile.webp',
+  '/Avilability.webp',
+  '/notification.webp',
+  '/Documents.webp',
+  '/Job_location.webp',
+  '/Timesheet.webp',
+  '/Booking.webp',
 ];
 
 export default function PhoneMockupUI() {
@@ -43,6 +43,8 @@ export default function PhoneMockupUI() {
               key={src}
               src={src}
               alt="Logezy mobile app"
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover object-top"
               style={{
                 opacity: i === current ? 1 : 0,

@@ -95,7 +95,7 @@ export default function Header() {
           {/* ── Logo ── */}
           <Link to="/" className="flex items-center flex-shrink-0 group">
             <img
-              src="/logezy_Logo.png"
+              src="/logezy_Logo.webp"
               alt="Logezy — Temporary Recruitment Software"
               className="h-11 w-auto transition-transform duration-200 group-hover:scale-[1.02]"
             />

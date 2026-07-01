@@ -217,7 +217,7 @@ function MacBrowser({ src, alt }: { src: string; alt: string }) {
         </div>
       </div>
       {/* Screenshot */}
-      <img src={src} alt={alt} style={{ width: '100%', display: 'block' }} />
+      <img src={src} alt={alt} loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
     </div>
   );
 }
@@ -243,7 +243,7 @@ function PhoneFrame({ src, alt }: { src: string; alt: string }) {
       <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 12, background: '#0A1228' }}>
         <div style={{ width: 88, height: 24, borderRadius: 12, background: '#000' }} />
       </div>
-      <img src={src} alt={alt} style={{ width: '100%', display: 'block' }} />
+      <img src={src} alt={alt} loading="lazy" decoding="async" style={{ width: '100%', display: 'block' }} />
       {/* Live dot */}
       <motion.div
         animate={{ scale: [1, 1.8, 1], opacity: [1, 0, 1] }}
@@ -418,7 +418,7 @@ export default function DashboardShowcase() {
 
           {/* ── Main browser frame ── */}
           <div style={{ position: 'relative' }}>
-            <MacBrowser src="/schedule.png" alt="Logezy Schedule" />
+            <MacBrowser src="/schedule.webp" alt="Logezy Schedule" />
 
             {/* ── Phone — overlaps left side ── */}
             <motion.div
@@ -437,7 +437,7 @@ export default function DashboardShowcase() {
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
               >
-                <PhoneFrame src="/Avilability.jpeg" alt="Availability" />
+                <PhoneFrame src="/Avilability.webp" alt="Availability" />
               </motion.div>
             </motion.div>
 

@@ -420,7 +420,7 @@ function IPhoneMockup({ scale = 1 }: { scale?: number }) {
         position: 'relative',
       }}>
         <div style={{ width: '100%', height: '100%', borderRadius: Ri, background: '#000', overflow: 'hidden', position: 'relative' }}>
-          <img src="/mobile_app_main_screen.jpeg" alt="Logezy App" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
+          <img src="/mobile_app_main_screen.webp" alt="Logezy App" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
           <div style={{ position: 'absolute', top: Math.round(14*scale), left: '50%', transform: 'translateX(-50%)', width: Math.round(140*scale), height: Math.round(38*scale), background: '#000', borderRadius: 22, zIndex: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
             <div style={{ width: Math.round(10*scale), height: Math.round(10*scale), borderRadius: '50%', background: '#1a1a1a' }} />
             <div style={{ width: Math.round(6*scale), height: Math.round(6*scale), borderRadius: '50%', background: '#222' }} />
@@ -777,8 +777,10 @@ export default function MobileAppShowcase() {
 
       {/* ── Nurse image at bottom-right end of section ── */}
       <motion.img
-        src="/nurse.png"
+        src="/nurse.webp"
         alt="Healthcare worker"
+        loading="lazy"
+        decoding="async"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

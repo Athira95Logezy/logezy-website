@@ -5,14 +5,14 @@ import { motion } from 'framer-motion';
    LOGO DATA
 ───────────────────────────────────────────── */
 const logos = [
-  { src: '/medsolve.png',                 alt: 'Medsolve'       },
-  { src: '/ansacare_logo.png',           alt: 'Ansacare'       },
-  { src: '/jayco_logo.png',               alt: 'Jayco',          bg: '#114450' },
-  { src: '/primcura_healthcare_logo.png', alt: 'Primcura'       },
-  { src: '/Leadcare_logo.png',            alt: 'Leadcare'       },
-  { src: '/annicare_uk.png',              alt: 'Annicare UK'    },
-  { src: '/ocean_logo.png',               alt: 'Ocean'          },
-  { src: '/Staffnursing_logo.png',        alt: 'Staff Nursing'  },
+  { src: '/medsolve.webp',                 alt: 'Medsolve'       },
+  { src: '/ansacare_logo.webp',           alt: 'Ansacare'       },
+  { src: '/jayco_logo.webp',               alt: 'Jayco',          bg: '#114450' },
+  { src: '/primcura_healthcare_logo.webp', alt: 'Primcura'       },
+  { src: '/Leadcare_logo.webp',            alt: 'Leadcare'       },
+  { src: '/annicare_uk.webp',              alt: 'Annicare UK'    },
+  { src: '/ocean_logo.webp',               alt: 'Ocean'          },
+  { src: '/Staffnursing_logo.webp',        alt: 'Staff Nursing'  },
 ];
 
 const LOGO_SLOT = 180;
@@ -107,6 +107,8 @@ export default function TrustedBy() {
               <img
                 src={logo.src}
                 alt={logo.alt}
+                loading="lazy"
+                decoding="async"
                 style={{
                   maxHeight: 64,
                   width: 'auto',

@@ -18,6 +18,7 @@ const CaseStudyDetail = lazy(() => import('./pages/CaseStudyDetail'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 const ProductPage = lazy(() => import('./pages/product/ProductPage'));
 const IndustryPage = lazy(() => import('./pages/industries/IndustryPage'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
 function ScrollToTop() {
   const { pathname, key } = useLocation();
@@ -49,6 +50,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/industries/:slug" element={<IndustryPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </Suspense>
       <Footer />

@@ -186,6 +186,7 @@ export default function BlogList() {
                       <div style={{ height: isMobile ? 140 : 300, overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
                           src={post.coverImage} alt={post.title}
+                          loading="lazy" decoding="async"
                           style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center', display: 'block' }}
                         />
                         {/* Category pill floating on image bottom-left */}

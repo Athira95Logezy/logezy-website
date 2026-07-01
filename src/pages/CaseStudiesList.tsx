@@ -107,7 +107,7 @@ export default function CaseStudiesList() {
                   >
                     {/* Cover image */}
                     <div style={{ height: 220, overflow: 'hidden', position: 'relative', flexShrink: 0 }}>
-                      <img src={cs.coverImage} alt={cs.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block', transition: 'transform 0.5s' }}
+                      <img src={cs.coverImage} alt={cs.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block', transition: 'transform 0.5s' }}
                         onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.06)'; }}
                         onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1)'; }}
                       />

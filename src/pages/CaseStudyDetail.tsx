@@ -348,7 +348,7 @@ export default function CaseStudyDetail() {
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
               >
                 <div style={{ width:56, height:48, borderRadius:8, overflow:'hidden', flexShrink:0 }}>
-                  <img src={rel.coverImage} alt={rel.title} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top' }} />
+                  <img src={rel.coverImage} alt={rel.title} loading="lazy" decoding="async" style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'top' }} />
                 </div>
                 <div>
                   <p style={{ fontSize:12, fontWeight:700, color:'#0F172A', margin:'0 0 3px', lineHeight:1.35 }}>{rel.title.slice(0,55)}...</p>

@@ -32,14 +32,14 @@ const I = '#2396C6';
    LOGO DATA (for inline trusted-by strip)
 ───────────────────────────────────────────────── */
 const logos = [
-  { src: '/medsolve.png',                 alt: 'Medsolve'      },
-  { src: '/ansacare_logo.png',           alt: 'Ansacare'      },
-  { src: '/jayco_logo.png',               alt: 'Jayco'         },
-  { src: '/primcura_healthcare_logo.png', alt: 'Primcura'      },
-  { src: '/Leadcare_logo.png',            alt: 'Leadcare'      },
-  { src: '/annicare_uk.png',              alt: 'Annicare UK'   },
-  { src: '/ocean_logo.png',               alt: 'Ocean'         },
-  { src: '/Staffnursing_logo.png',        alt: 'Staff Nursing' },
+  { src: '/medsolve.webp',                 alt: 'Medsolve'      },
+  { src: '/ansacare_logo.webp',           alt: 'Ansacare'      },
+  { src: '/jayco_logo.webp',               alt: 'Jayco'         },
+  { src: '/primcura_healthcare_logo.webp', alt: 'Primcura'      },
+  { src: '/Leadcare_logo.webp',            alt: 'Leadcare'      },
+  { src: '/annicare_uk.webp',              alt: 'Annicare UK'   },
+  { src: '/ocean_logo.webp',               alt: 'Ocean'         },
+  { src: '/Staffnursing_logo.webp',        alt: 'Staff Nursing' },
 ];
 const LOGO_W   = 140;
 const LOGO_GAP = 40;
@@ -730,8 +730,10 @@ export default function Hero() {
                     ].join(', '),
               }}>
                 <img
-                  src="/dashboard_v2.png"
+                  src="/dashboard_v2.webp"
                   alt="Logezy Dashboard"
+                  {...{ fetchpriority: 'high' }}
+                  decoding="async"
                   style={{ width: '100%', display: 'block', objectFit: 'cover', objectPosition: 'top center' }}
                 />
               </div>
@@ -782,7 +784,7 @@ export default function Hero() {
                 }}>
                   <div style={{ borderRadius: isMobile ? 20 : 42, overflow: 'hidden', position: 'relative', background: '#fff' }}>
                     <img
-                      src="/mobile_app_main_screen.jpeg"
+                      src="/mobile_app_main_screen.webp"
                       alt="Logezy Mobile App"
                       style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover', objectPosition: 'top' }}
                     />
@@ -909,6 +911,8 @@ export default function Hero() {
                     src={logo.src}
                     alt={logo.alt}
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                     style={{ maxHeight: 44, width: 'auto', maxWidth: LOGO_W, objectFit: 'contain', opacity: 1, filter: logo.alt === 'Ocean' ? 'invert(76%) sepia(51%) saturate(416%) hue-rotate(148deg) brightness(98%) contrast(89%)' : 'none', userSelect: 'none', pointerEvents: 'none', display: 'block' } as React.CSSProperties}
                   />
                 </div>

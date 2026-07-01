@@ -48,9 +48,9 @@ const PAIN_SOLUTIONS: Record<string,{pain:string;fix:string}[]> = {
 
 /* ── Hero screenshots per industry ── */
 const HERO_IMAGES: Record<string,string> = {
-  healthcare: '/DASHBAORD_NEW.png',
-  education:  '/schedule.png',
-  hospitality:'/dashboard_v2.png',
+  healthcare: '/DASHBAORD_NEW.webp',
+  education:  '/schedule.webp',
+  hospitality:'/dashboard_v2.webp',
 };
 
 interface FeatureItem { icon: React.ElementType; title: string; desc: string; linkTo?: string }
@@ -719,7 +719,8 @@ export default function IndustryPage() {
                 boxShadow:'0 48px 120px rgba(0,0,0,0.28),0 16px 40px rgba(0,0,0,0.14),inset 0 1px 0 rgba(255,255,255,0.60)',
               }}>
                 <div style={{ width:'100%',height:'100%',borderRadius:46,background:'#000',overflow:'hidden',position:'relative' }}>
-                  <img src="/mobile_app_main_screen.jpeg" alt="Logezy mobile app"
+                  <img src="/mobile_app_main_screen.webp" alt="Logezy mobile app"
+                    loading="lazy" decoding="async"
                     style={{ width:'100%',height:'100%',objectFit:'cover',objectPosition:'top',display:'block' }} />
                   <div style={{ position:'absolute',top:12,left:'50%',transform:'translateX(-50%)',
                     width:110,height:28,background:'#000',borderRadius:16,zIndex:10 }} />
