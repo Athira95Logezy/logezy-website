@@ -200,7 +200,7 @@ export default function Footer() {
             <div className="flex items-center">
               {[
                 { label: 'Privacy', to: '/privacy-policy' },
-                { label: 'Terms', to: '#' },
+                { label: 'Terms', to: '/terms-of-service' },
                 { label: 'Cookies', to: '#' },
                 { label: 'GDPR', to: '#' },
               ].map((l, i, arr) => (

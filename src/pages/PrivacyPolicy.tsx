@@ -161,7 +161,7 @@ export default function PrivacyPolicy() {
         className="pt-28 pb-14 lg:pt-36 lg:pb-16"
         style={{ background: 'linear-gradient(135deg,#0C1640 0%,#183765 60%,#2396C6 100%)' }}
       >
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <motion.div {...fadeUp()} className="inline-flex items-center gap-2 mb-5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15">
             <ShieldCheck weight="fill" className="h-4 w-4 text-white" />
             <span className="text-xs font-semibold text-white/90 tracking-wide">Your privacy matters to us</span>
@@ -177,7 +177,7 @@ export default function PrivacyPolicy() {
 
       {/* ── Content ── */}
       <section className="py-14 lg:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
 
           <motion.div {...fadeUp()} className="mb-10 space-y-4">
             {intro.map((text, i) => (
