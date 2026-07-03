@@ -283,36 +283,15 @@ function InvoicingMockup() {
 
 function MobileAppMockup() {
   return (
-    <PhoneChrome>
-      <div style={{ background: 'linear-gradient(160deg,#183963,#183963)', padding: '16px 14px', minHeight: 290 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-          <div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.45)', marginBottom: 1 }}>Good morning,</div>
-            <div style={{ fontSize: 14, fontWeight: 800, color: 'white' }}>Sarah 👋</div>
-            <div style={{ fontSize: 8, color: 'rgba(255,255,255,0.35)' }}>3 shifts this week</div>
-          </div>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#2396C6,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 12, fontWeight: 700 }}>S</div>
-        </div>
-        {[
-          { title: 'NHS Ward B', time: 'Today · 7:00–15:00', status: 'Confirmed', sc: '#22C55E', sb: 'rgba(34,197,94,0.15)' },
-          { title: 'Royal Hospital', time: 'Tomorrow · 7:00–19:00', status: 'Upcoming', sc: '#F59E0B', sb: 'rgba(245,158,11,0.15)' },
-          { title: 'HC-One Group', time: 'Fri · 15:00–23:00', status: 'Upcoming', sc: '#F59E0B', sb: 'rgba(245,158,11,0.15)' },
-        ].map((shift, i) => (
-          <div key={i} style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 10, padding: '10px 12px', marginBottom: 6, border: '1px solid rgba(255,255,255,0.08)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'white' }}>{shift.title}</div>
-              <span style={{ fontSize: 8, background: shift.sb, color: shift.sc, padding: '2px 7px', borderRadius: 20, fontWeight: 700 }}>{shift.status}</span>
-            </div>
-            <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>{shift.time}</div>
-          </div>
-        ))}
-        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: 12, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-          {['Shifts','Availability','Timesheets','Chat'].map(tab => (
-            <div key={tab} style={{ fontSize: 8, color: tab === 'Shifts' ? '#2396C6' : 'rgba(255,255,255,0.35)', fontWeight: tab === 'Shifts' ? 700 : 400, textAlign: 'center' }}>{tab}</div>
-          ))}
-        </div>
-      </div>
-    </PhoneChrome>
+    <img
+      src="/Mobile_01.png"
+      alt="Logezy branded candidate mobile app showing vacancies, bookings, availability, timesheets and shift alerts"
+      width={1024}
+      height={1536}
+      loading="lazy"
+      decoding="async"
+      style={{ display: 'block', width: '100%', maxWidth: 340, height: 'auto', margin: '0 auto', borderRadius: 28, boxShadow: '0 30px 80px rgba(0,0,0,0.30)' }}
+    />
   );
 }
 
