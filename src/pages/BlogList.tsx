@@ -184,7 +184,7 @@ export default function BlogList() {
                       onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(0)'; el.style.boxShadow = '0 2px 14px rgba(0,0,0,0.07)'; }}
                     >
                       {/* ── Thumbnail image ── */}
-                      <div style={{ height: isMobile ? 140 : 300, overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ aspectRatio: '1 / 1', overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
                           src={post.coverImage} alt={post.coverImageAlt ?? post.title}
                           loading="lazy" decoding="async"
