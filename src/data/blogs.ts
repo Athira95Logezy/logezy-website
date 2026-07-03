@@ -247,7 +247,7 @@ export const blogs: BlogPost[] = [
         id: 'compliance-management',
         heading: '4. Workforce Compliance Management',
         level: 3,
-        body: "Businesses operating in regulated industries must ensure employees remain compliant with licensing, training, working time limits, and [right-to-work documentation](https://www.gov.uk/check-job-applicant-right-to-work).\n\nAutomated [workforce compliance monitoring](/product/compliance) helps businesses maintain accurate employee records, receive alerts before documents expire, and stay audit-ready — reducing legal and financial risks.",
+        body: "Businesses operating in regulated industries must ensure employees remain compliant with licensing, training, working time limits, and right-to-work documentation.\n\nAutomated [workforce compliance monitoring](/product/compliance) helps businesses maintain accurate employee records, receive alerts before documents expire, and stay audit-ready — reducing legal and financial risks.",
       },
       {
         id: 'mobile-workforce-management',
@@ -348,7 +348,7 @@ export const blogs: BlogPost[] = [
         },
       },
       {
-        body: 'Most importantly, managers gain more time to focus on strategic growth instead of repetitive administrative tasks. Employment bodies such as [ACAS](https://www.acas.org.uk/) consistently highlight fair, predictable scheduling and accurate pay as key drivers of employee wellbeing — outcomes that good workforce management software directly supports.',
+        body: 'Most importantly, managers gain more time to focus on strategic growth instead of repetitive administrative tasks. Employment bodies such as ACAS consistently highlight fair, predictable scheduling and accurate pay as key drivers of employee wellbeing — outcomes that good workforce management software directly supports.',
       },
       {
         id: 'how-to-choose',
