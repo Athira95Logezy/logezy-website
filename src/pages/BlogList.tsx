@@ -12,6 +12,7 @@ const CAT_COLOR: Record<string, { bg: string; text: string; dot: string }> = {
   Healthcare:    { bg: '#D1FAE5', text: '#065F46', dot: '#10B981' },
   Technology:    { bg: '#EEF2FF', text: '#3730A3', dot: '#6366F1' },
   'Agency Tips': { bg: '#FEF3C7', text: '#92400E', dot: '#F59E0B' },
+  Workforce:     { bg: '#E0F2FE', text: '#0369A1', dot: '#2396C6' },
 };
 function catStyle(cat: string) {
   return CAT_COLOR[cat] ?? { bg: '#E0F2FE', text: '#0369A1', dot: '#2396C6' };
@@ -185,9 +186,9 @@ export default function BlogList() {
                       {/* ── Thumbnail image ── */}
                       <div style={{ height: isMobile ? 140 : 300, overflow: 'hidden', flexShrink: 0, background: '#F0F2F5', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
-                          src={post.coverImage} alt={post.title}
+                          src={post.coverImage} alt={post.coverImageAlt ?? post.title}
                           loading="lazy" decoding="async"
-                          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center', display: 'block' }}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
                         />
                         {/* Category pill floating on image bottom-left */}
                         <div style={{ position: 'absolute', bottom: 14, left: 14 }}>

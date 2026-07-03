@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useParams, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
@@ -20,6 +20,12 @@ const ProductPage = lazy(() => import('./pages/product/ProductPage'));
 const IndustryPage = lazy(() => import('./pages/industries/IndustryPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+
+/* Short URLs: /blog and /blog/:slug redirect to the canonical /resources/blog paths */
+function BlogRedirect() {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={slug ? `/resources/blog/${slug}` : '/resources/blog'} replace />;
+}
 
 function ScrollToTop() {
   const { pathname, key } = useLocation();
@@ -46,6 +52,8 @@ function App() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/blog" element={<BlogList />} />
           <Route path="/resources/blog/:slug" element={<BlogPost />} />
+          <Route path="/blog" element={<BlogRedirect />} />
+          <Route path="/blog/:slug" element={<BlogRedirect />} />
           <Route path="/resources/case-studies" element={<CaseStudiesList />} />
           <Route path="/resources/case-studies/:slug" element={<CaseStudyDetail />} />
           <Route path="/pricing" element={<Pricing />} />
