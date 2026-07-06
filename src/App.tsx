@@ -20,6 +20,7 @@ const ProductPage = lazy(() => import('./pages/product/ProductPage'));
 const IndustryPage = lazy(() => import('./pages/industries/IndustryPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 /* Short URLs: /blog and /blog/:slug redirect to the canonical /resources/blog paths */
 function BlogRedirect() {
@@ -61,6 +62,7 @@ function App() {
           <Route path="/industries/:slug" element={<IndustryPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <Footer />

@@ -12,6 +12,7 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   ogType?: string;
+  robots?: string;
   schema?: object;
   breadcrumbs?: BreadcrumbItem[];
 }
@@ -42,6 +43,7 @@ export default function SEO({
   canonical,
   ogImage = DEFAULT_IMAGE,
   ogType = 'website',
+  robots = 'index, follow',
   schema,
   breadcrumbs,
 }: SEOProps) {
@@ -54,7 +56,7 @@ export default function SEO({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Open Graph */}

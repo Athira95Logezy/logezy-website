@@ -2,8 +2,6 @@
   command = "npm run build"
   publish = "dist"
 
-# SPA fallback
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Redirects are generated at build time by scripts/prerender.mjs into
+# dist/_redirects: explicit 200 rules for every real (prerendered) route,
+# 301s for legacy /blog URLs, and a final wildcard returning a true 404.
