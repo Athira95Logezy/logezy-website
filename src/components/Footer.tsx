@@ -21,6 +21,9 @@ const links = {
     { label: 'Healthcare & Nursing',     to: '/industries/healthcare'    },
     { label: 'Education',               to: '/industries/education'     },
     { label: 'Hospitality',             to: '/industries/hospitality'   },
+    { label: 'Home Care',               to: '/industries/home-care'     },
+    { label: 'Warehouse & Logistics',   to: '/industries/warehouse-logistics' },
+    { label: 'Construction',            to: '/industries/construction'  },
   ],
   Company: [
     { label: 'About Us',                to: '/about'                    },

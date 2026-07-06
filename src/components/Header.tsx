@@ -6,6 +6,7 @@ import {
   CalendarBlank, Clock, Users, Shield, FileText, Receipt,
   Briefcase, Buildings, DeviceMobile,
   Heartbeat, BookOpen, ForkKnife, Newspaper, ChartBar,
+  HouseLine, Truck, HardHat,
 } from '@phosphor-icons/react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -33,6 +34,9 @@ const industryLinks = [
   { icon: Heartbeat,  label: 'Healthcare & Nursing', desc: 'NMC / HCPC compliance tools',    color: 'text-rose-600 bg-rose-50',     to: '/industries/healthcare'  },
   { icon: BookOpen,   label: 'Education',            desc: 'Supply teachers & TAs',           color: 'text-violet-600 bg-violet-50', to: '/industries/education'   },
   { icon: ForkKnife,  label: 'Hospitality',          desc: 'Hotels, events & catering',       color: 'text-amber-600 bg-amber-50',   to: '/industries/hospitality' },
+  { icon: HouseLine,  label: 'Home Care',            desc: 'Domiciliary care rotas & CQC',    color: 'text-teal-600 bg-teal-50',     to: '/industries/home-care'   },
+  { icon: Truck,      label: 'Warehouse & Logistics',desc: 'High-volume industrial shifts',   color: 'text-orange-600 bg-orange-50', to: '/industries/warehouse-logistics' },
+  { icon: HardHat,    label: 'Construction',         desc: 'CSCS cards & site compliance',    color: 'text-yellow-600 bg-yellow-50', to: '/industries/construction' },
 ];
 
 /* ─────────────────────────────────────────────

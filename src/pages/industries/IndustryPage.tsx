@@ -6,7 +6,7 @@ import { useWindowWidth } from '../../hooks/useWindowWidth';
 import {
   CalendarBlank, Shield, DeviceMobile, FileText, Buildings, ClipboardText,
   Bell, ArrowRight, CheckCircle, XCircle, Heartbeat, BookOpen, ForkKnife,
-  ChartBar, MapPin, ArrowUpRight,
+  ChartBar, MapPin, ArrowUpRight, HouseLine, Truck, HardHat,
 } from '@phosphor-icons/react';
 
 const NAVY = '#183963';
@@ -44,6 +44,24 @@ const PAIN_SOLUTIONS: Record<string,{pain:string;fix:string}[]> = {
     { pain:'Event end-of-night chaos with paper timesheets',      fix:'Workers submit digitally from their phone on the spot' },
     { pain:'Clients complain about communication gaps',           fix:'Live client portal with full shift visibility' },
   ],
+  'home-care': [
+    { pain:'A lapsed DBS or expired training puts care at risk',  fix:'Auto-expiry alerts on every carer document' },
+    { pain:'Rota gaps discovered only when a visit is missed',    fix:'Live schedule visibility across every client home' },
+    { pain:'Paper visit records delay payroll and invoicing',     fix:'Mobile timesheets with e-signature, payroll-ready same day' },
+    { pain:'CQC inspection prep takes days of manual work',       fix:'Audit-ready compliance records in one click' },
+  ],
+  'warehouse-logistics': [
+    { pain:'Seasonal peaks need 50+ workers at short notice',     fix:'Bulk shift notifications fill high-volume rotas fast' },
+    { pain:'No-shows discovered when the shift has started',      fix:'Confirmations tracked in real time before start' },
+    { pain:'Paper clock-cards make attendance unverifiable',      fix:'GPS-verified mobile clock-in at the site' },
+    { pain:'Weekly payroll for hundreds of temps takes days',     fix:'Approved digital timesheets feed payroll automatically' },
+  ],
+  construction: [
+    { pain:'A worker without a valid CSCS card reaches site',     fix:'Certification checked before every placement' },
+    { pain:'Right-to-work gaps expose you to heavy penalties',    fix:'Document tracking with expiry alerts built in' },
+    { pain:'Timesheets from multiple sites arrive late or wrong', fix:'Site-stamped digital timesheets from the worker\'s phone' },
+    { pain:'Contractors want proof of compliance before work',    fix:'Shareable, audit-ready worker compliance profiles' },
+  ],
 };
 
 /* ── Hero screenshots per industry ── */
@@ -51,6 +69,9 @@ const HERO_IMAGES: Record<string,string> = {
   healthcare: '/DASHBAORD_NEW.webp',
   education:  '/schedule.webp',
   hospitality:'/dashboard_v2.webp',
+  'home-care': '/dashboard.webp',
+  'warehouse-logistics': '/Booking.webp',
+  construction: '/Timesheet.webp',
 };
 
 interface FeatureItem { icon: React.ElementType; title: string; desc: string; linkTo?: string }
@@ -58,6 +79,8 @@ interface IndustryConfig {
   slug: string; label: string; HeroIcon: React.ElementType;
   accent: string; accentBg: string; accentMid: string; heroBg: string;
   title: string; tagline: string; heroDesc: string;
+  /** Meta description for search results — keep to 150–160 characters */
+  metaDescription: string;
   heroStats: { value: string; label: string; icon: React.ElementType }[];
   challengeHeading: string; challengeText: string;
   featuresHeading: string; features: FeatureItem[];
@@ -70,6 +93,7 @@ const pages: IndustryConfig[] = [
     accent:'#E11D48', accentBg:'#FFF1F2', accentMid:'#FB7185',
     heroBg:'linear-gradient(135deg,#FFF1F2 0%,#FDF2F8 60%,#FFFFFF 100%)',
     title:'Healthcare & Nursing',
+    metaDescription:'Workforce management software for healthcare staffing agencies. Track DBS, NMC pins and right-to-work, fill nursing shifts faster and cut payroll admin.',
     tagline:'Compliant workers. Shifts filled faster. Zero admin chaos.',
     heroDesc:'Right-to-work checks, DBS certificates, NMC pins, shift cover at midnight. Nursing agencies carry more compliance weight than almost any other sector. Logezy takes that weight off your team with a single platform built for healthcare staffing.',
     heroStats:[
@@ -96,6 +120,7 @@ const pages: IndustryConfig[] = [
     accent:'#7C3AED', accentBg:'#F5F3FF', accentMid:'#A78BFA',
     heroBg:'linear-gradient(135deg,#F5F3FF 0%,#EFF6FF 60%,#FFFFFF 100%)',
     title:'Education',
+    metaDescription:'Education staffing software for supply teacher agencies. Safeguarding-compliant placements, same-day cover, digital timesheets and school client portals.',
     tagline:'The right teachers. The right checks. Ready when schools need them.',
     heroDesc:'Schools can\'t wait. Supplying teaching staff requires fast turnaround, airtight safeguarding compliance, and reliable workers who show up, every time. Logezy gives education agencies the tools to move faster, stay fully compliant, and build the reputation that keeps schools coming back.',
     heroStats:[
@@ -122,6 +147,7 @@ const pages: IndustryConfig[] = [
     accent:'#D97706', accentBg:'#FFFBEB', accentMid:'#FCD34D',
     heroBg:'linear-gradient(135deg,#FFFBEB 0%,#FFF7ED 60%,#FFFFFF 100%)',
     title:'Hospitality',
+    metaDescription:'Workforce management software for hospitality recruitment agencies. Fill last-minute shifts, cut no-shows with instant alerts and automate timesheets.',
     tagline:'Last-minute shifts covered. Workers always ready. Clients always happy.',
     heroDesc:'Events overrun, bookings spike, and clients need cover with hours to spare. Managing a flexible hospitality workforce manually means your team is always reacting. Logezy gives hospitality staffing agencies the tools to move faster, fill shifts with confidence, and keep every client covered.',
     heroStats:[
@@ -142,6 +168,87 @@ const pages: IndustryConfig[] = [
     ],
     quote:'"We\'re placing more workers in less time and the team isn\'t drowning in calls anymore."',
     quoteAuthor:'Hospitality Staffing Agency Director, UK',
+  },
+  {
+    slug: 'home-care', label: 'Home Care', HeroIcon: HouseLine,
+    accent:'#0D9488', accentBg:'#F0FDFA', accentMid:'#5EEAD4',
+    heroBg:'linear-gradient(135deg,#F0FDFA 0%,#ECFDF5 60%,#FFFFFF 100%)',
+    title:'Home Care',
+    metaDescription:'Workforce management software for home care providers. Carer rota scheduling, CQC-ready compliance tracking, mobile timesheets and payroll integration.',
+    tagline:'Every visit covered. Every carer compliant. Every record CQC-ready.',
+    heroDesc:'Domiciliary care runs on trust — and on logistics. Carers travelling between client homes, visit schedules that change daily, DBS checks, mandatory training, and CQC inspections that demand complete records. Logezy gives home care providers and domiciliary care agencies one workforce management platform to schedule visits, track carer compliance, capture timesheets from the field, and keep every record inspection-ready.',
+    heroStats:[
+      { value:'100%', label:'CQC audit-ready records', icon: Shield },
+      { value:'0',    label:'Missed visits from rota gaps', icon: CalendarBlank },
+      { value:'1 day',label:'Timesheet to payroll',    icon: FileText },
+    ],
+    challengeHeading:'One missed visit. One lapsed DBS. Families and inspectors notice.',
+    challengeText:'Home care workforce management is harder than rota-building in a single location. Your carers work alone, spread across dozens of client homes, and every one of them needs a valid DBS, up-to-date training, and the right care skills for each visit. Spreadsheets can\'t tell you that a carer\'s certificate expires next week or that Tuesday morning\'s visit has no cover. Logezy brings scheduling, compliance, attendance and payroll into one system, so your coordinators see problems before they reach a client\'s doorstep — and your CQC evidence is always one click away.',
+    featuresHeading:'Everything your home care agency needs to deliver reliable, compliant care.',
+    features:[
+      { icon:Shield,       title:'Compliance Tracking',     desc:'DBS checks, mandatory training, care certificates and right-to-work are monitored automatically with expiry alerts, so every carer who reaches a client\'s home is fully compliant.', linkTo:'/product/compliance' },
+      { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Plan care visits and rotas around carer availability, skills and location. Gaps are visible instantly, and changes reach carers on their phones in seconds.', linkTo:'/product/scheduling' },
+      { icon:DeviceMobile, title:'Candidate App',           desc:'Carers see their visit schedule, update availability, submit timesheets and upload documents from their phone — no calls to the office between visits.', linkTo:'/product/mobile-app' },
+      { icon:FileText,     title:'Digital Timesheets',      desc:'Visit records and working hours are captured digitally with e-signatures, replacing paper logs and making payroll accurate for every carer, every week.', linkTo:'/product/timesheets' },
+      { icon:Buildings,    title:'Client Portal',           desc:'Give local authorities and private clients visibility of scheduled visits, carer profiles and invoices without back-and-forth phone calls.', linkTo:'/product/client-portal' },
+      { icon:ClipboardText,title:'Fast Onboarding',         desc:'New carers complete onboarding digitally — documents, forms and compliance checks — so they\'re ready to deliver care in days, not weeks.', linkTo:'/product/recruitment' },
+    ],
+    quote:'"Our coordinators finally see every visit and every certificate in one place."',
+    quoteAuthor:'Home Care Provider Manager, UK',
+  },
+  {
+    slug: 'warehouse-logistics', label: 'Warehouse & Logistics', HeroIcon: Truck,
+    accent:'#EA580C', accentBg:'#FFF7ED', accentMid:'#FDBA74',
+    heroBg:'linear-gradient(135deg,#FFF7ED 0%,#FEF3C7 60%,#FFFFFF 100%)',
+    title:'Warehouse & Logistics',
+    metaDescription:'Staffing software for warehouse and logistics recruitment. Fill high-volume shifts fast, verify attendance on site and automate timesheets and payroll.',
+    tagline:'High-volume shifts filled fast. Attendance verified. Payroll automated.',
+    heroDesc:'Warehouse and logistics staffing is a numbers game played at speed. Peak season can demand fifty extra pickers by Monday; a distribution centre needs cover for a night shift that starts in four hours. Logezy gives industrial staffing agencies the workforce management tools to mobilise large temp workforces quickly, verify who actually turned up, and run accurate payroll for hundreds of workers without drowning in paperwork.',
+    heroStats:[
+      { value:'50+',  label:'Workers mobilised per day', icon: ArrowUpRight },
+      { value:'GPS',  label:'Verified site attendance',  icon: MapPin },
+      { value:'100%', label:'Payroll accuracy',          icon: CheckCircle },
+    ],
+    challengeHeading:'Peak season doesn\'t wait. Neither do your clients.',
+    challengeText:'Industrial staffing lives and dies on volume and reliability. When a client needs dozens of warehouse operatives at short notice, ringing round a spreadsheet of numbers is too slow — and when workers don\'t show, your client\'s pick rates suffer and the blame lands on your agency. Manual clock-cards make attendance disputes unwinnable, and weekly payroll for a large temp workforce swallows entire days of admin. Logezy replaces all of it: bulk shift notifications reach your whole qualified pool at once, GPS-verified clock-ins prove who was on site and when, and approved hours flow straight into payroll and invoicing.',
+    featuresHeading:'Everything your industrial staffing agency needs to run high-volume operations.',
+    features:[
+      { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Build high-volume shift patterns across sites and clients, then fill them fast with availability matching and bulk notifications to every qualified worker at once.', linkTo:'/product/scheduling' },
+      { icon:Bell,         title:'Three-Way Notifications', desc:'Push, SMS and email alerts land simultaneously, and worker confirmations are tracked in real time — you know a shift is covered before it starts, not after.', linkTo:'/product/mobile-app' },
+      { icon:MapPin,       title:'Digital Timesheets',      desc:'GPS-verified clock-in and clock-out at the warehouse gate ends attendance disputes. Hours, breaks and overtime are recorded automatically and approved in one click.', linkTo:'/product/timesheets' },
+      { icon:DeviceMobile, title:'Candidate App',           desc:'Workers pick up shifts, update availability and submit hours from their phone. Your consultants stop chasing and start filling the next order.', linkTo:'/product/mobile-app' },
+      { icon:Buildings,    title:'Client Portal',           desc:'Distribution centres and 3PL clients see live shift coverage, worker details and invoices in their own portal — fewer status calls, stronger contracts.', linkTo:'/product/client-portal' },
+      { icon:ClipboardText,title:'Fast Onboarding',         desc:'Register and clear large intakes of industrial workers quickly with digital onboarding — right-to-work, inductions and paperwork done before day one.', linkTo:'/product/recruitment' },
+    ],
+    quote:'"We filled a 60-worker peak order in an afternoon. That used to take three days of calls."',
+    quoteAuthor:'Industrial Staffing Agency Director, UK',
+  },
+  {
+    slug: 'construction', label: 'Construction', HeroIcon: HardHat,
+    accent:'#CA8A04', accentBg:'#FEFCE8', accentMid:'#FDE047',
+    heroBg:'linear-gradient(135deg,#FEFCE8 0%,#FFF7ED 60%,#FFFFFF 100%)',
+    title:'Construction',
+    metaDescription:'Workforce management software for construction recruitment agencies. CSCS card tracking, site-based scheduling, digital timesheets and compliant records.',
+    tagline:'Certified workers on site. Compliance proven. Timesheets from every site.',
+    heroDesc:'Construction recruitment carries real consequences for getting compliance wrong. CSCS cards, right-to-work checks, trade certifications, and site inductions all have to be valid before a worker steps through the gate — and main contractors expect proof. Logezy gives construction staffing agencies workforce management software that tracks every certification, schedules the right trades to the right sites, and captures verified timesheets from every location.',
+    heroStats:[
+      { value:'0',    label:'Uncertified workers on site', icon: Shield },
+      { value:'GPS',  label:'Site-verified timesheets',    icon: MapPin },
+      { value:'100%', label:'Right-to-work coverage',      icon: CheckCircle },
+    ],
+    challengeHeading:'One invalid CSCS card on site can cost you the contract.',
+    challengeText:'Contractors audit their labour supply chain, and agencies that can\'t prove worker compliance don\'t stay on the preferred supplier list. Tracking CSCS cards, trade qualifications, right-to-work documents and site inductions across a mobile workforce in spreadsheets means something always slips — and it only takes one lapsed card discovered on site to damage a client relationship you spent years building. Logezy monitors every document automatically, blocks non-compliant workers from being scheduled, and gives you shareable compliance profiles that contractors can trust. Meanwhile timesheets arrive digitally from every site, stamped with GPS, ready for payroll and invoicing.',
+    featuresHeading:'Everything your construction agency needs to supply certified, site-ready workers.',
+    features:[
+      { icon:Shield,       title:'Compliance Tracking',     desc:'CSCS cards, trade certifications, right-to-work checks and inductions are tracked with automatic expiry alerts — non-compliant workers can\'t be booked onto a site.', linkTo:'/product/compliance' },
+      { icon:CalendarBlank,title:'Shift Scheduling',        desc:'Match trades, tickets and location when scheduling workers across multiple sites. See who\'s certified, available and closest before the client calls twice.', linkTo:'/product/scheduling' },
+      { icon:MapPin,       title:'Digital Timesheets',      desc:'Workers submit hours from site with GPS verification and e-signature. Approvals take one click, and disputes about who was where disappear.', linkTo:'/product/timesheets' },
+      { icon:DeviceMobile, title:'Candidate App',           desc:'Workers manage availability, accept site placements and upload cards and certificates from their phone — even from the cab of a van at 7am.', linkTo:'/product/mobile-app' },
+      { icon:Buildings,    title:'Client Portal',           desc:'Main contractors get live visibility of supplied workers, their compliance status and invoices — the transparency that keeps you on the preferred supplier list.', linkTo:'/product/client-portal' },
+      { icon:ClipboardText,title:'Fast Onboarding',         desc:'Digital onboarding collects cards, qualifications and right-to-work evidence before day one, getting new tradespeople site-ready in hours rather than days.', linkTo:'/product/recruitment' },
+    ],
+    quote:'"Contractors ask for compliance proof and we send it in minutes. That wins us work."',
+    quoteAuthor:'Construction Recruitment Agency Director, UK',
   },
 ];
 
@@ -329,7 +436,7 @@ export default function IndustryPage() {
     <div style={{ minHeight:'100vh', background:'#fff', fontFamily:'var(--font-body)' }}>
       <SEO
         title={`${cfg.title} Staffing Software — Logezy`}
-        description={cfg.heroDesc}
+        description={cfg.metaDescription}
         keywords={`${cfg.label.toLowerCase()} staffing software, ${cfg.slug} workforce management UK, Logezy ${cfg.slug}`}
         canonical={`/industries/${cfg.slug}`}
         breadcrumbs={[
