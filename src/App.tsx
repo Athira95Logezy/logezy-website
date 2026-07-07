@@ -21,6 +21,7 @@ const IndustryPage = lazy(() => import('./pages/industries/IndustryPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const ComparePage = lazy(() => import('./pages/ComparePage'));
 
 /* Short URLs: /blog and /blog/:slug redirect to the canonical /resources/blog paths */
 function BlogRedirect() {
@@ -60,6 +61,7 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/industries/:slug" element={<IndustryPage />} />
+          <Route path="/compare/:slug" element={<ComparePage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="*" element={<NotFound />} />
