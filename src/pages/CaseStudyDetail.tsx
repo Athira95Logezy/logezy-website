@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import {
-  ArrowLeft, ArrowRight, CheckCircle,
+  ArrowLeft, ArrowRight, CheckCircle, ArrowUpRight,
   Database, CalendarBlank, Shield, DeviceMobile, Receipt,
   ChartBar, Lock, CurrencyCircleDollar, BookOpen,
 } from '@phosphor-icons/react';
@@ -179,6 +179,27 @@ export default function CaseStudyDetail() {
           transition={{ duration:0.55, delay:0.22, ease:EASE }}
           style={{ position: isMobile ? 'static' : 'sticky', top:24, display:'flex', flexDirection:'column', gap:20 }}
         >
+
+          {/* About the client */}
+          {cs.client && (
+            <div style={{ background:'#fff', borderRadius:20, padding:'26px', border:'1px solid rgba(0,0,0,0.06)', boxShadow:'0 2px 16px rgba(24,57,99,0.07)', textAlign:'center' as const }}>
+              <h3 style={{ fontSize:12, fontWeight:800, color:'#0F172A', letterSpacing:'0.07em', textTransform:'uppercase' as const, margin:'0 0 16px' }}>About the Client</h3>
+              <a href={cs.client.website} target="_blank" rel="noopener noreferrer" aria-label={`Visit the ${cs.client.name} website`}>
+                <img
+                  src={cs.client.logo}
+                  alt={`${cs.client.name} logo`}
+                  width={480} height={250}
+                  loading="lazy" decoding="async"
+                  style={{ width:'70%', maxWidth:220, height:'auto', display:'block', margin:'0 auto 14px' }}
+                />
+              </a>
+              <p style={{ fontSize:14, fontWeight:800, color:'#183963', margin:'0 0 12px', fontFamily:'var(--font-heading)' }}>{cs.client.name}</p>
+              <a href={cs.client.website} target="_blank" rel="noopener noreferrer"
+                style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'9px 18px', borderRadius:10, background:'#F0F9FF', border:'1.5px solid rgba(35,150,198,0.30)', color:'#2396C6', fontSize:13, fontWeight:700, textDecoration:'none' }}>
+                Visit Website <ArrowUpRight weight="bold" style={{ width:13, height:13 }} />
+              </a>
+            </div>
+          )}
 
           {/* Demo CTA */}
           <div style={{ background:'linear-gradient(135deg,#183765 0%,#2396C6 100%)', borderRadius:20, padding:'28px', position:'relative', overflow:'hidden', boxShadow:'0 8px 40px rgba(35,150,198,0.16)' }}>

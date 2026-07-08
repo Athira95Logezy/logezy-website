@@ -7,6 +7,8 @@ export interface CaseStudy {
   date: string;
   coverImage: string;
   excerpt: string;
+  /** Client branding shown on the case study page */
+  client?: { name: string; logo: string; website: string };
   stats: { value: string; label: string }[];
   challenge: string;
   sections: { heading: string; body: string; bullets?: string[] }[];
@@ -88,6 +90,11 @@ export const caseStudies: CaseStudy[] = [
     readTime: '3 min read',
     date: 'June 2026',
     coverImage: '/nurse.webp',
+    client: {
+      name: 'Sarga Healthcare Ltd',
+      logo: '/clients/sarga-healthcare-logo.png',
+      website: 'https://sargahealthcare.co.uk/',
+    },
     excerpt: 'Sarga Healthcare Ltd was managing scheduling, shift allocation and compliance across multiple manual processes. With Logezy, the agency brought staff management, rostering and compliance tracking into a single system — saving admin time and improving efficiency across the business.',
     stats: [
       { value: '5/5', label: 'Client feedback rating' },
