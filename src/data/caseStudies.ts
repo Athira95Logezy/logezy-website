@@ -82,4 +82,53 @@ export const caseStudies: CaseStudy[] = [
     ],
     conclusion: 'Logezy Staff Management Software is a feature-rich, flexible platform that enables staffing agencies to operate with confidence and efficiency. Its modern interface, 24/7 support, and automation-first approach means your team spends less time on admin and more time growing the business.',
   },
+  {
+    slug: 'sarga-healthcare-staffing-compliance',
+    title: 'How Logezy Streamlined Staffing, Shifts and Compliance for Sarga Healthcare',
+    subtitle: 'A growing UK domiciliary care agency brings rostering and compliance together in one platform',
+    category: 'Client Story',
+    readTime: '3 min read',
+    date: 'June 2026',
+    coverImage: '/nurse.webp',
+    pdfFile: '/resources/logezy-case-study-sarga-healthcare.pdf',
+    excerpt: 'Sarga Healthcare Ltd was managing scheduling, shift allocation and compliance across multiple manual processes. With Logezy, the agency brought staff management, rostering and compliance tracking into a single system — saving admin time and improving efficiency across the business.',
+    stats: [
+      { value: '5/5', label: 'Client feedback rating' },
+      { value: 'All-in-one', label: 'Staffing, shifts & compliance' },
+      { value: 'DBS · RTW', label: 'Documents tracked automatically' },
+      { value: 'UK', label: 'Domiciliary / home care' },
+    ],
+    challenge: 'Like many growing care agencies, Sarga Healthcare Ltd was managing staff scheduling, shift allocation and compliance tracking across multiple manual processes. As the agency scaled, keeping on top of day-to-day rostering while maintaining full compliance visibility — DBS checks, training records and right-to-work documentation — demanded increasing time and resource from the team.',
+    sections: [
+      {
+        heading: 'The Solution',
+        body: 'Sarga Healthcare Ltd adopted Logezy as their all-in-one workforce management platform, bringing staff management, shift scheduling and compliance tracking together in a single, easy-to-use system. Instead of juggling separate spreadsheets and manual records, the team now runs day-to-day rostering and compliance from one place.',
+      },
+      {
+        heading: 'The Results',
+        body: 'Since moving to Logezy, Sarga Healthcare has seen improvements across their daily operations:',
+        bullets: [
+          'Streamlined day-to-day operations across staffing, shifts and compliance',
+          'Time saved on administrative and rostering tasks',
+          'Improved overall efficiency across the agency',
+          'Easier, more reliable compliance management',
+        ],
+      },
+      {
+        heading: 'Support That Stands Out',
+        body: "Beyond the platform itself, Sarga Healthcare Ltd highlighted the exceptional support received from Logezy's customer and technical teams throughout their experience — from onboarding to day-to-day questions, help has been fast and reliable.",
+      },
+    ],
+    quote: {
+      text: "Logezy is an excellent staffing software! It's user friendly, reliable, and has streamlined our daily operations. Managing staff, shifts, and compliance has become much easier, saving us time and improving efficiency. Exceptional customer and technical team support. Highly recommended.",
+      author: 'Sibi Thomas, Sarga Healthcare Ltd',
+    },
+    features: [
+      { icon: 'calendar', title: 'Shift Scheduling',      body: 'Day-to-day rostering and shift allocation managed in one live view, with changes reaching carers instantly.' },
+      { icon: 'shield',   title: 'Compliance Tracking',   body: 'DBS checks, training records and right-to-work documentation monitored automatically with expiry alerts.' },
+      { icon: 'database', title: 'Staff Management',      body: 'Every carer\'s details, documents and availability in one centralised, searchable system.' },
+      { icon: 'phone',    title: 'Candidate Mobile App',  body: 'Carers view shifts, update availability and submit timesheets from their phone, cutting calls to the office.' },
+    ],
+    conclusion: 'Sarga Healthcare Ltd is one of many UK care agencies using Logezy to simplify staffing, shifts and compliance. Want results like these for your agency? Book a 15-minute demo and see the platform in action. Client feedback submitted 29 June 2026 and published with consent.',
+  },
 ];
