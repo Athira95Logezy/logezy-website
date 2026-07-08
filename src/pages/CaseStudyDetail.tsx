@@ -1,25 +1,13 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { motion, AnimatePresence } from 'framer-motion';
-import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
 import {
-  ArrowLeft, ArrowRight, CheckCircle, DownloadSimple,
+  ArrowLeft, ArrowRight, CheckCircle,
   Database, CalendarBlank, Shield, DeviceMobile, Receipt,
-  ChartBar, Lock, CurrencyCircleDollar, BookOpen, Warning,
+  ChartBar, Lock, CurrencyCircleDollar, BookOpen,
 } from '@phosphor-icons/react';
 import { caseStudies } from '../data/caseStudies';
-
-/* ─── EmailJS config ──────────────────────────────────────────
-   Set up a free account at https://www.emailjs.com
-   Replace the values below with your own Service ID,
-   Template ID and Public Key.
-   Template variables expected: {{to_name}}, {{to_email}},
-   {{company}}, {{pdf_link}}, {{guide_title}}
-─────────────────────────────────────────────────────────────── */
-const EMAILJS_SERVICE_ID  = 'service_logezy';    // ← replace
-const EMAILJS_TEMPLATE_ID = 'template_guide_dl'; // ← replace
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← replace
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -34,22 +22,10 @@ const FEATURE_ICONS: Record<string, React.ReactNode> = {
   money:     <CurrencyCircleDollar weight="regular" style={{ width:20,height:20 }} />,
 };
 
-/* ─── Download Gate Form ─────────────────────────────────────── */
-function DownloadGate({ cs }: { cs: ReturnType<typeof caseStudies[number]['slug'] extends string ? () => typeof caseStudies[0] : never> }) {
-  return null; // type helper only
-}
-
-interface FormState { name: string; email: string; company: string; role: string; }
-
 export default function CaseStudyDetail() {
   const { slug } = useParams<{ slug: string }>();
   const cs = caseStudies.find(c => c.slug === slug);
 
-  const [form, setForm]         = useState<FormState>({ name:'', email:'', company:'', role:'' });
-  const [sending, setSending]   = useState(false);
-  const [success, setSuccess]   = useState(false);
-  const [error, setError]       = useState('');
-  const formRef = useRef<HTMLFormElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -66,37 +42,6 @@ export default function CaseStudyDetail() {
       </div>
     );
   }
-
-  const pdfUrl = `${window.location.origin}${cs.pdfFile}`;
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.company) { setError('Please fill in all required fields.'); return; }
-    if (!/\S+@\S+\.\S+/.test(form.email)) { setError('Please enter a valid email address.'); return; }
-    setError('');
-    setSending(true);
-    try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          to_name:     form.name,
-          to_email:    form.email,
-          company:     form.company,
-          role:        form.role || 'Not specified',
-          pdf_link:    pdfUrl,
-          guide_title: cs.title,
-        },
-        EMAILJS_PUBLIC_KEY,
-      );
-      setSuccess(true);
-    } catch {
-      // EmailJS not configured yet — still show success + direct download
-      setSuccess(true);
-    } finally {
-      setSending(false);
-    }
-  };
 
   return (
     <div style={{ background:'#F8FAFC', minHeight:'100vh' }}>
@@ -235,106 +180,20 @@ export default function CaseStudyDetail() {
           style={{ position: isMobile ? 'static' : 'sticky', top:24, display:'flex', flexDirection:'column', gap:20 }}
         >
 
-          {/* ─── DOWNLOAD GATE FORM ─────────────────── */}
-          <div style={{ background:'#fff', borderRadius:20, overflow:'hidden', boxShadow:'0 8px 40px rgba(35,150,198,0.16)', border:'1.5px solid rgba(35,150,198,0.18)' }}>
-            {/* Form header */}
-            <div style={{ background:'linear-gradient(135deg,#183765 0%,#2396C6 100%)', padding:'24px 28px', position:'relative', overflow:'hidden' }}>
-              <div style={{ position:'absolute', inset:0, opacity:0.06, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'16px 16px', pointerEvents:'none' }} />
-              <div style={{ display:'flex', alignItems:'center', gap:10, position:'relative', zIndex:1, marginBottom:10 }}>
-                <div style={{ width:36, height:36, borderRadius:10, background:'rgba(255,255,255,0.18)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                  <DownloadSimple weight="bold" style={{ width:18, height:18, color:'#fff' }} />
-                </div>
-                <div>
-                  <p style={{ fontSize:10, fontWeight:800, color:'rgba(255,255,255,0.60)', margin:0, letterSpacing:'0.08em', textTransform:'uppercase' as const }}>Free Download</p>
-                  <p style={{ fontSize:14, fontWeight:800, color:'#fff', margin:0 }}>Get the PDF Guide</p>
-                </div>
-              </div>
-              <p style={{ fontSize:12.5, color:'rgba(255,255,255,0.70)', margin:0, lineHeight:1.55, position:'relative', zIndex:1 }}>
-                Enter your details and we'll send the full PDF guide directly to your inbox.
+          {/* Demo CTA */}
+          <div style={{ background:'linear-gradient(135deg,#183765 0%,#2396C6 100%)', borderRadius:20, padding:'28px', position:'relative', overflow:'hidden', boxShadow:'0 8px 40px rgba(35,150,198,0.16)' }}>
+            <div style={{ position:'absolute', inset:0, opacity:0.06, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'16px 16px', pointerEvents:'none' }} />
+            <div style={{ position:'relative', zIndex:1 }}>
+              <p style={{ fontSize:10, fontWeight:800, color:'rgba(255,255,255,0.60)', margin:'0 0 6px', letterSpacing:'0.08em', textTransform:'uppercase' as const }}>Get Started</p>
+              <h3 style={{ fontSize:18, fontWeight:800, color:'#fff', margin:'0 0 10px', fontFamily:'var(--font-heading)', lineHeight:1.3 }}>Want results like these for your agency?</h3>
+              <p style={{ fontSize:13, color:'rgba(255,255,255,0.72)', margin:'0 0 18px', fontFamily:'var(--font-body)', lineHeight:1.6 }}>
+                Book a free 15-minute demo and see how Logezy simplifies staffing, shifts and compliance for your team.
               </p>
+              <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noreferrer"
+                style={{ display:'inline-flex', alignItems:'center', gap:7, padding:'12px 22px', borderRadius:12, background:'#fff', color:'#183963', fontSize:13.5, fontWeight:800, textDecoration:'none' }}>
+                Book a Free Demo <ArrowRight weight="bold" style={{ width:14, height:14 }} />
+              </a>
             </div>
-
-            <AnimatePresence mode="wait">
-              {!success ? (
-                <motion.form
-                  key="form"
-                  ref={formRef}
-                  onSubmit={handleSubmit}
-                  initial={{ opacity:1 }} exit={{ opacity:0 }}
-                  style={{ padding:'24px 28px' }}
-                >
-                  {[
-                    { id:'name',    label:'Full Name *',       type:'text',  placeholder:'Jane Smith' },
-                    { id:'email',   label:'Work Email *',      type:'email', placeholder:'jane@agency.co.uk' },
-                    { id:'company', label:'Agency / Company *',type:'text',  placeholder:'Smith Healthcare Staffing' },
-                    { id:'role',    label:'Your Role',         type:'text',  placeholder:'Director, Recruiter...' },
-                  ].map(f => (
-                    <div key={f.id} style={{ marginBottom:14 }}>
-                      <label style={{ display:'block', fontSize:11.5, fontWeight:700, color:'#374151', marginBottom:5 }}>{f.label}</label>
-                      <input
-                        type={f.type}
-                        placeholder={f.placeholder}
-                        value={form[f.id as keyof FormState]}
-                        onChange={e => setForm(prev => ({ ...prev, [f.id]: e.target.value }))}
-                        style={{ width:'100%', padding:'10px 12px', borderRadius:9, border:'1.5px solid #E2E8F0', fontSize:13.5, color:'#0F172A', outline:'none', fontFamily:'var(--font-body)', boxSizing:'border-box' as const, transition:'border-color 0.2s' }}
-                        onFocus={e => { (e.target as HTMLInputElement).style.borderColor = '#2396C6'; }}
-                        onBlur={e  => { (e.target as HTMLInputElement).style.borderColor = '#E2E8F0'; }}
-                      />
-                    </div>
-                  ))}
-
-                  {error && (
-                    <div style={{ display:'flex', alignItems:'center', gap:7, padding:'10px 12px', borderRadius:9, background:'#FEF2F2', border:'1px solid #FECACA', marginBottom:14 }}>
-                      <Warning weight="fill" style={{ width:14, height:14, color:'#EF4444', flexShrink:0 }} />
-                      <span style={{ fontSize:12, color:'#B91C1C' }}>{error}</span>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={sending}
-                    style={{ width:'100%', padding:'13px', borderRadius:12, background: sending ? '#94A3B8' : 'linear-gradient(135deg,#183963,#2396C6)', color:'#fff', fontSize:14, fontWeight:800, border:'none', cursor: sending ? 'not-allowed':'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, transition:'opacity 0.2s', fontFamily:'var(--font-body)' }}
-                  >
-                    {sending ? (
-                      <>
-                        <svg style={{ animation:'spin 1s linear infinite', width:16, height:16 }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10" opacity="0.25"/><path d="M12 2a10 10 0 010 20" opacity="0.8"/></svg>
-                        Sending...
-                      </>
-                    ) : (
-                      <><DownloadSimple weight="bold" style={{ width:16, height:16 }} /> Download Free Guide</>
-                    )}
-                  </button>
-
-                  <p style={{ fontSize:11, color:'#94A3B8', textAlign:'center', margin:'12px 0 0', lineHeight:1.5 }}>
-                    We respect your privacy. No spam, ever.
-                  </p>
-                </motion.form>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity:0, scale:0.96 }} animate={{ opacity:1, scale:1 }}
-                  transition={{ duration:0.4, ease:EASE }}
-                  style={{ padding:'32px 28px', textAlign:'center' }}
-                >
-                  <div style={{ width:60, height:60, borderRadius:'50%', background:'#D1FAE5', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 16px' }}>
-                    <CheckCircle weight="fill" style={{ width:30, height:30, color:'#10B981' }} />
-                  </div>
-                  <h3 style={{ fontSize:17, fontWeight:800, color:'#0F172A', margin:'0 0 8px', fontFamily:'var(--font-heading)' }}>Check your inbox!</h3>
-                  <p style={{ fontSize:13, color:'#64748B', lineHeight:1.65, margin:'0 0 24px', fontFamily:'var(--font-body)' }}>
-                    We've sent the guide to <strong style={{ color:'#183963' }}>{form.email}</strong>. It should arrive within a few minutes.
-                  </p>
-                  <a
-                    href={cs.pdfFile}
-                    download
-                    target="_blank" rel="noreferrer"
-                    style={{ display:'inline-flex', alignItems:'center', gap:7, padding:'12px 22px', borderRadius:12, background:'linear-gradient(135deg,#183963,#2396C6)', color:'#fff', fontSize:13, fontWeight:800, textDecoration:'none', boxShadow:'0 4px 14px rgba(35,150,198,0.30)' }}
-                  >
-                    <DownloadSimple weight="bold" style={{ width:16, height:16 }} /> Download Now
-                  </a>
-                  <p style={{ fontSize:11, color:'#94A3B8', marginTop:12 }}>PDF · {cs.readTime}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
 
           {/* Other resources */}
@@ -358,23 +217,28 @@ export default function CaseStudyDetail() {
             ))}
           </div>
 
-          {/* Mini CTA */}
-          <div style={{ background:'linear-gradient(135deg,#183765,#2396C6)', borderRadius:18, padding:'22px', position:'relative', overflow:'hidden' }}>
-            <div style={{ position:'absolute', inset:0, opacity:0.06, backgroundImage:'radial-gradient(circle,rgba(255,255,255,1) 1px,transparent 1px)', backgroundSize:'14px 14px', pointerEvents:'none' }} />
-            <div style={{ position:'relative', zIndex:1 }}>
-              <h3 style={{ fontSize:15, fontWeight:800, color:'#fff', margin:'0 0 7px', fontFamily:'var(--font-heading)' }}>See Logezy in action</h3>
-              <p style={{ fontSize:12.5, color:'rgba(255,255,255,0.70)', margin:'0 0 16px', fontFamily:'var(--font-body)', lineHeight:1.55 }}>Free demo, no credit card needed.</p>
-              <a href="https://booking.logezy.co/#/67044000000025008" target="_blank" rel="noreferrer"
-                style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'10px 18px', borderRadius:10, background:'#fff', color:'#183963', fontSize:13, fontWeight:800, textDecoration:'none' }}>
-                Book Demo <ArrowRight weight="regular" style={{ width:13, height:13 }} />
-              </a>
+          {/* Explore features */}
+          <div style={{ background:'#fff', borderRadius:18, padding:'22px', border:'1px solid rgba(0,0,0,0.06)', boxShadow:'0 2px 12px rgba(24,57,99,0.06)' }}>
+            <h3 style={{ fontSize:12, fontWeight:800, color:'#0F172A', letterSpacing:'0.07em', textTransform:'uppercase' as const, margin:'0 0 12px' }}>Explore Logezy</h3>
+            <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
+              {[
+                { label:'Shift Scheduling',    to:'/product/scheduling'  },
+                { label:'Compliance Tracking', to:'/product/compliance'  },
+                { label:'Digital Timesheets',  to:'/product/timesheets'  },
+                { label:'Candidate Mobile App',to:'/product/mobile-app'  },
+                { label:'Pricing',             to:'/pricing'             },
+              ].map(l => (
+                <Link key={l.to} to={l.to} style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'9px 10px', borderRadius:9, textDecoration:'none', fontSize:13, fontWeight:600, color:'#334155', transition:'background 0.2s' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#F8FAFC'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
+                >
+                  {l.label} <ArrowRight weight="regular" style={{ width:12, height:12, color:'#94A3B8' }} />
+                </Link>
+              ))}
             </div>
           </div>
         </motion.aside>
       </div>
-
-      {/* spin keyframes */}
-      <style>{`@keyframes spin { to { transform:rotate(360deg); } }`}</style>
     </div>
   );
 }

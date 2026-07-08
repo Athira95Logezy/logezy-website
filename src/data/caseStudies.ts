@@ -6,7 +6,6 @@ export interface CaseStudy {
   readTime: string;
   date: string;
   coverImage: string;
-  pdfFile: string;              // path in /public/resources/
   excerpt: string;
   stats: { value: string; label: string }[];
   challenge: string;
@@ -25,7 +24,6 @@ export const caseStudies: CaseStudy[] = [
     readTime: '8 min read',
     date: 'June 2025',
     coverImage: '/resources/logezy-eBook_img.webp',
-    pdfFile: '/resources/logezy-guide-staffing-agency.pdf',
     excerpt: 'Everything you need to run a high-performing staffing agency, from building your candidate database and managing compliance, to automating schedules, timesheets and invoicing with Logezy.',
     stats: [
       { value: '60%', label: 'Less admin time' },
@@ -90,7 +88,6 @@ export const caseStudies: CaseStudy[] = [
     readTime: '3 min read',
     date: 'June 2026',
     coverImage: '/nurse.webp',
-    pdfFile: '/resources/logezy-case-study-sarga-healthcare.pdf',
     excerpt: 'Sarga Healthcare Ltd was managing scheduling, shift allocation and compliance across multiple manual processes. With Logezy, the agency brought staff management, rostering and compliance tracking into a single system — saving admin time and improving efficiency across the business.',
     stats: [
       { value: '5/5', label: 'Client feedback rating' },

@@ -140,7 +140,7 @@ export default function CaseStudiesList() {
                       <p style={{ fontSize: 13.5, color: '#64748B', lineHeight: 1.70, margin: '0 0 20px', flex: 1, fontFamily: 'var(--font-body)' }}>{cs.excerpt.slice(0, 130)}...</p>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 14, borderTop: '1px solid #F1F5F9' }}>
                         <span style={{ fontSize: 13, fontWeight: 800, color: '#2396C6', display: 'flex', alignItems: 'center', gap: 5 }}>
-                          Download Guide <ArrowRight weight="bold" style={{ width: 13, height: 13 }} />
+                          Read Case Study <ArrowRight weight="bold" style={{ width: 13, height: 13 }} />
                         </span>
                         <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg,#183963,#2396C6)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(35,150,198,0.30)' }}>
                           <ArrowUpRight weight="bold" style={{ width: 14, height: 14, color: '#fff' }} />
