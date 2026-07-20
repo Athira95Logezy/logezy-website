@@ -13,21 +13,63 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
 
-    <!-- Fonts: General Sans (headings) + Inter (body/UI) -->
+    <!-- Fonts: General Sans (headings) + Poppins (body/UI) -->
+    <!-- Warm up connections to both font CDNs before they're needed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Poppins — body & UI -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <!-- General Sans via Fontshare CDN — headings -->
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+
+    <!-- Load font CSS without blocking first paint: fetch as "print" (non-blocking),
+         then flip to "all" once ready. font-display:swap keeps text visible meanwhile. -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap"
+      media="print" onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" />
+      <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap" />
+    </noscript>
 
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Zoho SalesIQ Live Chat -->
-    <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script>
-    <script id="zsiqscript" src="https://salesiq.zohopublic.eu/widget?wc=siq5fb5645f56ea50b978e7083c353efed44a3b4822a20f679d46138b28cd1b9452" defer></script>
+    <!-- Zoho SalesIQ Live Chat — loaded lazily so it never blocks initial page load.
+         Injected on the first user interaction, or after 6s of idle, whichever comes first. -->
+    <script>
+      window.$zoho = window.$zoho || {};
+      $zoho.salesiq = $zoho.salesiq || { ready: function () {} };
+      (function () {
+        // Skip during build-time prerender (headless Chrome) so the widget
+        // is never baked eagerly into the static HTML snapshots.
+        if (navigator.webdriver) return;
+        var loaded = false;
+        function loadZoho() {
+          if (loaded || document.getElementById('zsiqscript')) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.id = 'zsiqscript';
+          s.defer = true;
+          s.src = 'https://salesiq.zohopublic.eu/widget?wc=siq5fb5645f56ea50b978e7083c353efed44a3b4822a20f679d46138b28cd1b9452';
+          document.body.appendChild(s);
+          cleanup();
+        }
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        function cleanup() {
+          events.forEach(function (e) { window.removeEventListener(e, loadZoho); });
+        }
+        events.forEach(function (e) { window.addEventListener(e, loadZoho, { once: true, passive: true }); });
+        // Fallback: load during idle time if the visitor never interacts.
+        (window.requestIdleCallback || function (cb) { setTimeout(cb, 6000); })(loadZoho, { timeout: 8000 });
+      })();
+    </script>
   </body>
 </html>

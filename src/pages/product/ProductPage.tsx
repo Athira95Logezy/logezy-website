@@ -284,10 +284,10 @@ function InvoicingMockup() {
 function MobileAppMockup() {
   return (
     <img
-      src="/Mobile_01.png"
+      src="/Mobile_01.webp"
       alt="Logezy branded candidate mobile app showing vacancies, bookings, availability, timesheets and shift alerts"
-      width={1024}
-      height={1536}
+      width={760}
+      height={1140}
       loading="lazy"
       decoding="async"
       style={{ display: 'block', width: '100%', maxWidth: 340, height: 'auto', margin: '0 auto', borderRadius: 28, boxShadow: '0 30px 80px rgba(0,0,0,0.30)' }}
