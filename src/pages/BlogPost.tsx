@@ -20,18 +20,21 @@ const categoryColor: Record<string, { bg: string; text: string }> = {
 const allCategories = ['Healthcare', 'Technology', 'Agency Tips', 'Compliance', 'Timesheets', 'Workforce', 'Scheduling', 'Recruitment'];
 
 /* ── Inline markdown-style links: [text](/internal) or [text](https://external) ── */
-const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
+// Inline markdown: [text](/path) or [text](https://...) links, and **bold** spans.
+const INLINE_RE = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
 function renderInline(text: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   let k = 0;
-  LINK_RE.lastIndex = 0;
-  while ((match = LINK_RE.exec(text)) !== null) {
+  INLINE_RE.lastIndex = 0;
+  const linkStyle: React.CSSProperties = { color: '#2396C6', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'rgba(35,150,198,0.35)', textUnderlineOffset: 3 };
+  while ((match = INLINE_RE.exec(text)) !== null) {
     if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
-    const [, label, href] = match;
-    const linkStyle: React.CSSProperties = { color: '#2396C6', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'rgba(35,150,198,0.35)', textUnderlineOffset: 3 };
-    if (href.startsWith('http')) {
+    const [, label, href, boldText] = match;
+    if (boldText !== undefined) {
+      nodes.push(<strong key={k++} style={{ color: '#183963', fontWeight: 700 }}>{boldText}</strong>);
+    } else if (href.startsWith('http')) {
       nodes.push(<a key={k++} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>{label}</a>);
     } else {
       nodes.push(<Link key={k++} to={href} style={linkStyle}>{label}</Link>);
