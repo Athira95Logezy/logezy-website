@@ -135,4 +135,42 @@ export const caseStudies: CaseStudy[] = [
     ],
     conclusion: 'Sarga Healthcare Ltd is one of many UK care agencies using Logezy to simplify staffing, shifts and compliance. Want results like these for your agency? Book a 15-minute demo and see the platform in action. Client feedback submitted 29 June 2026 and published with consent.',
   },
+  {
+    slug: 'passion-in-care-workforce-management',
+    title: 'How Passion in Care Ltd Runs Care Staffing with Logezy',
+    subtitle: 'A UK care agency backed by a support team they can rely on',
+    category: 'Client Story',
+    readTime: '2 min read',
+    date: 'August 2026',
+    coverImage: '/nurse.webp',
+    excerpt: 'Passion in Care Ltd, a UK care agency, uses Logezy to manage its workforce — and rates the experience five out of five, singling out the support team behind the platform.',
+    stats: [
+      { value: '5/5', label: 'Client feedback rating' },
+      { value: '"Very supportive team"', label: 'In their words' },
+      { value: 'Care', label: 'Sector' },
+      { value: 'UK', label: 'Based in' },
+    ],
+    challenge: 'Care agencies operate in one of the most demanding staffing environments in the UK — coordinating carers across client homes, keeping compliance records current, and covering shifts reliably, all while delivering a high standard of care. Getting that right depends not only on the software an agency uses, but on the team standing behind it when questions come up.',
+    sections: [
+      {
+        heading: 'The Solution',
+        body: 'Passion in Care Ltd uses Logezy as their workforce management platform, bringing staff scheduling, compliance tracking, digital timesheets and communication together in one easy-to-use system built for care providers.',
+      },
+      {
+        heading: 'Support That Stands Out',
+        body: 'When asked about their experience, Passion in Care Ltd rated Logezy five out of five and highlighted one thing above all: the people behind the product. A responsive, hands-on support team means questions get answered quickly and the agency can stay focused on delivering care rather than wrestling with software.',
+      },
+    ],
+    quote: {
+      text: 'Very supportive team.',
+      author: 'Derrick Kasadha, Passion in Care Ltd',
+    },
+    features: [
+      { icon: 'calendar', title: 'Shift Scheduling',      body: 'Plan carer rotas and shift allocation in one live view, with changes reaching carers on their phones instantly.' },
+      { icon: 'shield',   title: 'Compliance Tracking',   body: 'DBS checks, training records and right-to-work documentation monitored automatically with expiry alerts.' },
+      { icon: 'phone',    title: 'Candidate Mobile App',  body: 'Carers view shifts, update availability and submit timesheets from their phone, cutting calls to the office.' },
+      { icon: 'chart',    title: 'Dedicated Support',      body: 'A responsive UK customer and technical team on hand from onboarding through day-to-day use.' },
+    ],
+    conclusion: 'Passion in Care Ltd is one of many UK care agencies that rely on Logezy — and on the team behind it — to keep their workforce running smoothly. Want the same experience for your agency? Book a 15-minute demo and see the platform in action. Client feedback submitted 11 August 2026 and published with consent.',
+  },
 ];
