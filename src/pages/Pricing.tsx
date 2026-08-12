@@ -140,7 +140,7 @@ export default function Pricing() {
 
       {/* ── CARDS ───────────────────────────────── */}
       <section style={{ maxWidth: 1220, margin: '-20px auto 0', padding: '0 20px 80px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(260px,100%),1fr))', gap: 22, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(260px,100%),1fr))', gap: 22, alignItems: 'stretch' }}>
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -159,6 +159,9 @@ export default function Pricing() {
                 transform: plan.featured ? 'scale(1.04)' : 'scale(1)',
                 position: 'relative' as const,
                 background: plan.featured ? 'linear-gradient(160deg,#183963 0%,#1a3a5c 100%)' : '#fff',
+                display: 'flex',
+                flexDirection: 'column' as const,
+                height: '100%',
               }}
             >
               {/* Most Popular badge */}
@@ -211,7 +214,7 @@ export default function Pricing() {
               </div>
 
               {/* Body */}
-              <div style={{ padding: '22px 24px 26px', background: plan.featured ? 'linear-gradient(180deg,#183963,#1a3a5c)' : plan.enterprise ? 'linear-gradient(180deg,#0d1b2a,#0f3460)' : '#fff' }}>
+              <div style={{ padding: '22px 24px 26px', background: plan.featured ? 'linear-gradient(180deg,#183963,#1a3a5c)' : plan.enterprise ? 'linear-gradient(180deg,#0d1b2a,#0f3460)' : '#fff', flex: 1, display: 'flex', flexDirection: 'column' }}>
 
                 {/* Admin + Staff highlights */}
                 {(plan.admins || plan.staff) && (
@@ -274,7 +277,7 @@ export default function Pricing() {
                 {/* CTA */}
                 {plan.enterprise ? (
                   /* Enterprise: Talk with Sales */
-                  <div>
+                  <div style={{ marginTop: 'auto' }}>
                     <p style={{ fontSize: 12.5, color: 'rgba(186,230,255,0.60)', textAlign: 'center', marginBottom: 14, lineHeight: 1.55 }}>
                       Need a custom solution?<br />Contact our sales team.
                     </p>
@@ -299,7 +302,7 @@ export default function Pricing() {
                   </div>
                 ) : (
                   /* Regular plans: Register */
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} style={{ marginTop: 'auto' }}>
                     <a
                       href="https://logezy.co/get-started"
                       target="_blank"
