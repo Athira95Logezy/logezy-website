@@ -10,19 +10,6 @@ import SEO from '../components/SEO';
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 const plans = [
   {
-    name: 'Entry Level',
-    price: 50,
-    admins: '1 Admin User',
-    staff: 'Up to 25 Staff',
-    featured: false,
-    enterprise: false,
-    gradient: 'linear-gradient(135deg,#38BDF8 0%,#0EA5E9 100%)',
-    accent: '#0EA5E9',
-    accentBg: '#F0F9FF',
-    accentLight: '#BAE6FD',
-    tagline: 'Perfect for small agencies just starting out.',
-  },
-  {
     name: 'Startup',
     price: 100,
     admins: '3 Admin Users',
@@ -51,8 +38,8 @@ const plans = [
   {
     name: 'Enterprise',
     price: null,
-    admins: 'Unlimited Admins',
-    staff: 'Unlimited Staff',
+    admins: '',
+    staff: '',
     featured: false,
     enterprise: true,
     gradient: 'linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)',
@@ -227,6 +214,7 @@ export default function Pricing() {
               <div style={{ padding: '22px 24px 26px', background: plan.featured ? 'linear-gradient(180deg,#183963,#1a3a5c)' : plan.enterprise ? 'linear-gradient(180deg,#0d1b2a,#0f3460)' : '#fff' }}>
 
                 {/* Admin + Staff highlights */}
+                {(plan.admins || plan.staff) && (
                 <div style={{
                   background: plan.featured ? 'rgba(255,255,255,0.07)' : plan.enterprise ? 'rgba(35,150,198,0.12)' : plan.accentBg,
                   borderRadius: 12,
@@ -238,15 +226,20 @@ export default function Pricing() {
                       ? '1px solid rgba(35,150,198,0.25)'
                       : `1px solid ${plan.accentLight}`,
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 7 }}>
+                  {plan.admins && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: plan.staff ? 7 : 0 }}>
                     <UserCircle weight="fill" style={{ width: 16, height: 16, color: plan.featured || plan.enterprise ? '#7DD3FC' : plan.accent, flexShrink: 0 }} />
                     <span style={{ fontSize: 13.5, fontWeight: 700, color: plan.featured || plan.enterprise ? 'white' : '#183963' }}>{plan.admins}</span>
                   </div>
+                  )}
+                  {plan.staff && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
                     <Users weight="fill" style={{ width: 16, height: 16, color: plan.featured || plan.enterprise ? '#7DD3FC' : plan.accent, flexShrink: 0 }} />
                     <span style={{ fontSize: 13.5, fontWeight: 700, color: plan.featured || plan.enterprise ? 'white' : '#183963' }}>{plan.staff}</span>
                   </div>
+                  )}
                 </div>
+                )}
 
                 {/* Feature list */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: plan.enterprise ? 24 : 26, position: 'relative' }}>
