@@ -745,9 +745,9 @@ export const blogs: BlogPost[] = [
       'NHS Staffing',
     ],
     coverImage: '/blog/technology-transforming-healthcare-workforce-management.webp',
-    coverImageAlt: 'Logezy healthcare workforce management dashboard showing scheduling, attendance and compliance in one platform',
-    coverImageWidth: 800,
-    coverImageHeight: 1000,
+    coverImageAlt: 'How technology is transforming healthcare workforce management — Logezy workforce dashboard with scheduling, shift overview and compliance status',
+    coverImageWidth: 1200,
+    coverImageHeight: 684,
     sections: [
       {
         id: 'introduction',
