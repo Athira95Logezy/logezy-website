@@ -822,4 +822,111 @@ export const blogs: BlogPost[] = [
       body: 'Logezy helps hospitals, care homes, and nursing agencies simplify scheduling, compliance, timesheets, and communication in one platform. Book a free demo and see how technology can transform your healthcare workforce management.',
     },
   },
+  {
+    slug: 'future-of-recruitment-technology-2026',
+    title: 'The Future of Recruitment Technology: Top Trends for 2026',
+    seoTitle: 'Future of Recruitment Technology: 2026 Trends',
+    seoDescription: 'The top recruitment technology trends for 2026 — AI recruitment, mobile-first hiring, automated workforce management, data-driven decisions and compliance.',
+    excerpt: 'The recruitment industry is evolving faster than ever. In 2026, success depends on automation, data-driven decisions, and smarter workforce management. Here are the seven recruitment technology trends shaping the future of hiring — and how agencies can stay ahead.',
+    category: 'Technology',
+    readTime: '6 min read',
+    date: 'Oct 16, 2026',
+    author: 'Logezy Team',
+    tags: [
+      'Recruitment Technology',
+      'AI Recruitment',
+      'Temporary Recruitment Software',
+      'Workforce Management Software',
+      'Mobile Recruitment',
+      'Recruitment Automation',
+      'Workforce Compliance',
+    ],
+    coverImage: '/blog/future-of-recruitment-technology-2026.webp',
+    coverImageAlt: 'The future of recruitment technology — AI, mobile-first hiring and automated workforce management trends for 2026',
+    coverImageWidth: 800,
+    coverImageHeight: 1000,
+    sections: [
+      {
+        id: 'introduction',
+        heading: 'Introduction',
+        body: "The recruitment industry is evolving faster than ever. As businesses compete for top talent and candidates expect a seamless hiring experience, recruitment agencies must embrace technology to stay ahead. In 2026, success will depend on automation, data-driven decisions, and smarter [workforce management](/features).\n\nHere are the top recruitment technology trends shaping the future of hiring.",
+      },
+      {
+        id: 'ai-recruitment',
+        heading: '1. AI-Powered Recruitment',
+        body: 'Artificial Intelligence (AI) is transforming recruitment by automating repetitive tasks such as CV screening, candidate matching, and interview scheduling. Recruiters can spend less time on administration and more time building relationships with clients and candidates.',
+      },
+      {
+        id: 'mobile-first',
+        heading: '2. Mobile-First Recruitment',
+        body: 'Job seekers increasingly rely on smartphones to search and apply for jobs. A [branded mobile app](/product/mobile-app) allows candidates to browse vacancies, accept shifts, upload documents, and receive instant notifications, creating a faster and more engaging recruitment experience.',
+      },
+      {
+        id: 'automated-workforce-management',
+        heading: '3. Automated Workforce Management',
+        body: 'Manual scheduling and workforce planning are becoming outdated. Recruitment agencies are adopting [workforce management software](/product/scheduling) that automates shift allocation, attendance tracking, timesheets, payroll preparation, and compliance management, improving efficiency while reducing administrative work.',
+      },
+      {
+        id: 'real-time-communication',
+        heading: '4. Real-Time Communication',
+        body: "Fast communication is essential in today's recruitment market. Instant notifications, in-app messaging, and real-time shift updates help agencies fill vacancies quickly while keeping candidates informed and engaged.",
+      },
+      {
+        id: 'data-driven',
+        heading: '5. Data-Driven Recruitment',
+        body: 'Modern recruitment platforms provide valuable insights into hiring performance, employee availability, placement success, and workforce productivity. These analytics help agencies make informed decisions, improve planning, and optimise business performance.',
+      },
+      {
+        id: 'cloud-based',
+        heading: '6. Cloud-Based Recruitment Solutions',
+        body: 'Cloud technology enables recruiters to access workforce data securely from anywhere. Whether managing remote teams or multiple office locations, cloud-based platforms improve collaboration, flexibility, and business continuity.',
+      },
+      {
+        id: 'compliance-automation',
+        heading: '7. Compliance Automation',
+        body: 'Keeping up with employment regulations, certifications, and right-to-work documentation can be challenging. Automated [compliance tools](/product/compliance) help agencies maintain accurate records, reduce risk, and ensure regulatory compliance with minimal manual effort.',
+      },
+      {
+        id: 'why-it-matters',
+        heading: 'Why It Matters',
+        body: "Recruitment technology is no longer just about filling vacancies — it's about creating better experiences for candidates, improving operational efficiency, and helping agencies scale with confidence. Businesses that invest in digital recruitment solutions are better positioned to attract top talent, reduce costs, and respond quickly to changing workforce demands.",
+      },
+      {
+        id: 'how-logezy-helps',
+        heading: 'How Logezy Helps',
+        body: 'Logezy combines recruitment and workforce management into one powerful platform. From intelligent scheduling and [digital timesheets](/product/timesheets) to compliance tracking, payroll integration, real-time communication, and branded mobile apps, Logezy helps recruitment agencies streamline operations and deliver exceptional service to both clients and candidates.',
+      },
+      {
+        id: 'conclusion',
+        heading: 'Conclusion',
+        body: 'The future of recruitment is digital, automated, and mobile. Agencies that embrace emerging technologies will gain a competitive advantage through faster hiring, improved workforce management, and stronger candidate engagement.\n\nWith Logezy, recruitment agencies can stay ahead of industry trends, simplify daily operations, and build a smarter, more connected workforce for 2026 and beyond. Explore the [features](/features) and [pricing](/pricing), or [get in touch](/contact) to see it in action.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is recruitment technology?',
+        answer: 'Recruitment technology is software that automates and improves hiring and workforce management — covering AI-powered candidate matching, mobile apps, automated scheduling, real-time communication, analytics, cloud access, and compliance automation.',
+      },
+      {
+        question: 'How is AI used in recruitment?',
+        answer: 'AI automates repetitive tasks such as CV screening, candidate matching, and interview scheduling, freeing recruiters to focus on building relationships with clients and candidates.',
+      },
+      {
+        question: 'Why is mobile-first recruitment important?',
+        answer: 'Most candidates now search and apply for jobs on their phones. A branded mobile app lets them browse vacancies, accept shifts, upload documents, and get instant notifications, creating a faster, more engaging experience.',
+      },
+      {
+        question: 'How does recruitment technology help agencies scale?',
+        answer: 'By automating scheduling, timesheets, payroll, compliance, and communication, technology reduces admin work and lets agencies handle more placements, locations, and clients without proportionally growing their team.',
+      },
+      {
+        question: 'How does Logezy support recruitment agencies?',
+        answer: 'Logezy combines recruitment and workforce management in one platform — intelligent scheduling, digital timesheets, compliance tracking, payroll integration, real-time communication, and branded mobile apps.',
+      },
+    ],
+    cta: {
+      heading: 'Stay ahead of recruitment technology trends',
+      body: 'Logezy combines recruitment and workforce management into one platform built for UK staffing agencies. Book a free demo and see how automation, mobile, and real-time data can give your agency a competitive edge in 2026.',
+    },
+  },
 ];
