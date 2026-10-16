@@ -844,7 +844,7 @@ export const blogs: BlogPost[] = [
     coverImage: '/blog/future-of-recruitment-technology-2026.webp',
     coverImageAlt: 'The future of recruitment technology — AI, mobile-first hiring and automated workforce management trends for 2026',
     coverImageWidth: 800,
-    coverImageHeight: 1000,
+    coverImageHeight: 890,
     sections: [
       {
         id: 'introduction',
